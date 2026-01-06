@@ -84,6 +84,17 @@ Run `gh issue list --state open` for current status.
 | Quote | Complete | Character fade-in + shrink effect |
 | Contact/Footer | Needs Work | Design is "bland" |
 
+## Page Implementation Status
+
+| Page | Status | Notes |
+|------|--------|-------|
+| index.html | Complete | Master homepage with all sections |
+| tour.html | In Progress | Demos built, awaiting layout selection |
+| merch.html | Complete | Sticky product slides, cart icon with badge |
+| story.html | Not Started | V7 template + hamburger menu |
+| epk.html | Not Started | 3D flip cards + stat counters |
+| contact.html | Not Started | Field reveal + ripple submit |
+
 ## Animation Reference
 
 ### GSAP ScrollTrigger Patterns Used
@@ -122,6 +133,20 @@ When continuing work:
 4. Check `handoff.md` for detailed section documentation
 
 ## Recent Changes
+
+### January 2026 - Session 5
+- Built merch.html page with sticky product slides layout
+  - 4 products: Classic Logo Tee, Swamp Hoodie, Trucker Cap, Debut Album Vinyl
+  - Cart icon with badge in header (next to hamburger)
+  - Add to cart with badge bounce animation
+  - Size variant selection
+  - Alternating left/right product layouts
+- Added header-cart and product-slide CSS to immersive-master.css
+- Created tour-demos.html with 8 tour page layout options
+- GSAP Animation Library updates (separate repo):
+  - Added 24 examples across 7 categories
+  - Dynamic manifest system (build-manifest.cjs)
+  - Gallery and Page Builder now auto-load from manifest.json
 
 ### January 2026 - Session 4
 - Fixed sticky positioning broken by overflow-x: hidden on html/body

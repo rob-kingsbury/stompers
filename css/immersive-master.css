@@ -1566,6 +1566,63 @@ button {
   border-radius: var(--radius-lg);
   backdrop-filter: blur(10px);
   box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+/* Cart icon */
+.header-cart {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.header-cart:hover {
+  transform: scale(1.1);
+}
+
+.header-cart svg {
+  width: 22px;
+  height: 22px;
+  stroke: var(--color-text);
+  stroke-width: 1.5;
+  fill: none;
+}
+
+.header-cart-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 18px;
+  height: 18px;
+  background: var(--color-accent);
+  color: var(--color-bg);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+}
+
+.header-cart-badge:empty,
+.header-cart-badge[data-count="0"] {
+  display: none;
+}
+
+/* Divider between cart and hamburger */
+.header-divider {
+  width: 1px;
+  height: 24px;
+  background: var(--color-border);
 }
 
 /* Hamburger button */
@@ -1969,6 +2026,360 @@ button {
 }
 
 /* ============================================================
+   TOUR PAGE - HORIZONTAL SCROLL CAROUSEL
+   ============================================================ */
+
+/* Tour Page Hero */
+.page-hero--tour {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.page-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.page-hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.1);
+}
+
+.page-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 10, 10, 0.4) 0%,
+    rgba(10, 10, 10, 0.7) 50%,
+    rgba(10, 10, 10, 0.95) 100%
+  );
+  z-index: 1;
+}
+
+.page-hero--tour .page-hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.page-subtitle {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  margin-top: var(--spacing-md);
+  opacity: 0;
+  animation: fadeInUp 0.8s ease 0.5s forwards;
+}
+
+.page-hero-scroll-cue {
+  position: absolute;
+  bottom: var(--spacing-2xl);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  opacity: 0;
+  animation: fadeInUp 0.8s ease 0.8s forwards;
+}
+
+.page-hero-scroll-cue span {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--color-accent), transparent);
+  animation: scrollPulse 1.5s ease infinite;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; height: 40px; }
+  50% { opacity: 1; height: 50px; }
+}
+
+/* Horizontal Scroll Container */
+.tour-horizontal {
+  position: relative;
+  overflow: hidden;
+  /* Height set dynamically by JS for horizontal scroll */
+}
+
+.tour-horizontal-progress {
+  position: fixed;
+  top: 50%;
+  right: var(--spacing-lg);
+  transform: translateY(-50%);
+  width: 3px;
+  height: 120px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  z-index: var(--z-nav);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.tour-horizontal.is-active .tour-horizontal-progress {
+  opacity: 1;
+}
+
+.tour-horizontal-progress-bar {
+  width: 100%;
+  height: 0%;
+  background: var(--color-accent);
+  border-radius: 2px;
+  transition: height 0.1s ease;
+}
+
+/* Cards Wrapper */
+.tour-cards-wrapper {
+  display: flex;
+  height: 100vh;
+  will-change: transform;
+}
+
+/* Horizontal Tour Card */
+.tour-card-horizontal {
+  flex: 0 0 100vw;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.tour-card-horizontal-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.tour-card-horizontal-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.1);
+  transition: transform 0.8s ease;
+}
+
+.tour-card-horizontal:hover .tour-card-horizontal-bg img {
+  transform: scale(1.15);
+}
+
+.tour-card-horizontal-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 10, 10, 0.85) 0%,
+    rgba(10, 10, 10, 0.6) 50%,
+    rgba(10, 10, 10, 0.85) 100%
+  );
+  z-index: 1;
+}
+
+.tour-card-horizontal-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: var(--spacing-2xl);
+  max-width: 600px;
+}
+
+/* Date Display */
+.tour-card-horizontal-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.tour-card-horizontal-date .date-day {
+  font-family: var(--font-mono);
+  font-size: clamp(4rem, 15vw, 8rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-accent);
+  text-shadow: 0 4px 30px rgba(201, 162, 39, 0.3);
+}
+
+.tour-card-horizontal-date .date-month {
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  letter-spacing: 0.3em;
+  color: var(--color-text);
+  margin-top: var(--spacing-xs);
+}
+
+.tour-card-horizontal-date .date-year {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  letter-spacing: 0.2em;
+  color: var(--color-text-muted);
+}
+
+/* Venue Info */
+.tour-card-horizontal-info {
+  margin-bottom: var(--spacing-xl);
+}
+
+.tour-venue-large {
+  font-family: var(--font-mono);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tour-location-large {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-xs);
+}
+
+.tour-time {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--color-accent);
+  letter-spacing: 0.1em;
+}
+
+/* Large Button */
+.btn-large {
+  padding: var(--spacing-md) var(--spacing-2xl);
+  font-size: 1rem;
+}
+
+/* Card Number */
+.tour-card-horizontal-number {
+  position: absolute;
+  bottom: var(--spacing-2xl);
+  right: var(--spacing-2xl);
+  font-family: var(--font-mono);
+  font-size: clamp(4rem, 10vw, 8rem);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.05);
+  line-height: 1;
+  z-index: 1;
+  user-select: none;
+}
+
+/* Past Shows Section */
+.tour-past-section {
+  padding: var(--spacing-3xl) var(--spacing-xl);
+  background: var(--color-bg);
+}
+
+.tour-past-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto var(--spacing-2xl);
+}
+
+.tour-past-header h2 {
+  font-family: var(--font-mono);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin-bottom: var(--spacing-sm);
+}
+
+.tour-past-header p {
+  color: var(--color-text-muted);
+}
+
+.tour-past-list {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.tour-past-item {
+  display: grid;
+  grid-template-columns: 120px 1fr 150px;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) 0;
+  border-bottom: 1px solid var(--color-border);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.tour-past-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tour-past-date {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.tour-past-venue {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+}
+
+.tour-past-location {
+  font-family: var(--font-serif);
+  color: var(--color-text-muted);
+  text-align: right;
+}
+
+/* Tour CTA */
+.tour-cta {
+  background: linear-gradient(135deg, #1a1208 0%, var(--color-bg) 100%);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .tour-past-item {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xs);
+  }
+
+  .tour-past-location {
+    text-align: left;
+  }
+
+  .tour-horizontal-progress {
+    right: var(--spacing-sm);
+  }
+
+  .tour-card-horizontal-number {
+    bottom: var(--spacing-lg);
+    right: var(--spacing-lg);
+  }
+}
+
+/* ============================================================
    STORY PAGE
    ============================================================ */
 
@@ -2098,63 +2509,198 @@ button {
 }
 
 /* ============================================================
-   MERCH PAGE
+   MERCH PAGE - Product Slides (About Section Pattern)
    ============================================================ */
 
-.merch-grid {
+.section--merch-products {
+  position: relative;
+  padding: 0;
+  background: var(--color-bg);
+}
+
+/* Product slides - sticky stacking layout */
+.product-slide {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+  grid-template-columns: 1fr;
+  overflow: hidden;
 }
 
-.merch-card {
-  text-align: center;
+@media (min-width: 768px) {
+  .product-slide {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
-.merch-image {
-  aspect-ratio: 1;
-  background: var(--color-bg-alt);
-  border-radius: 8px;
+/* Z-index stacking - later products on top (sequential for stacking order) */
+.product-slide--1 { background: var(--color-bg); z-index: 1; }
+.product-slide--2 { background: var(--color-bg-alt); z-index: 2; }
+.product-slide--3 { background: var(--color-surface); z-index: 3; }
+.product-slide--4 { background: var(--color-surface-raised); z-index: 4; }
+.product-slide--5 { background: var(--color-bg); z-index: 5; }
+.product-slide--6 { background: var(--color-bg-alt); z-index: 6; }
+
+/* Reverse layout - image first, content second */
+@media (min-width: 768px) {
+  .product-slide--reverse {
+    direction: rtl;
+  }
+
+  .product-slide--reverse > * {
+    direction: ltr;
+  }
+}
+
+/* Product image area */
+.product-slide-image {
+  position: relative;
+  overflow: hidden;
+  min-height: 50vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1rem;
-  transition: transform 0.3s ease;
+  background: var(--color-bg-alt);
 }
 
-.merch-card:hover .merch-image {
-  transform: scale(1.02);
+@media (min-width: 768px) {
+  .product-slide-image {
+    min-height: auto;
+  }
 }
 
-.merch-placeholder {
-  font-family: var(--font-mono);
-  color: var(--color-text-muted);
-  font-size: 1.25rem;
+.product-slide-image img {
+  width: 80%;
+  max-width: 400px;
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-2xl);
+  transition: transform 0.6s ease;
 }
 
-.merch-name {
-  font-family: var(--font-mono);
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
+.product-slide:hover .product-slide-image img {
+  transform: scale(1.03) rotate(1deg);
 }
 
-.merch-price {
-  font-family: var(--font-mono);
-  font-size: 1.25rem;
-  color: var(--color-accent);
-  font-weight: 600;
-  margin-bottom: 1rem;
-}
-
-.merch-note {
-  text-align: center;
+/* Product content area */
+.product-slide-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding: 3rem 2rem;
+  position: relative;
 }
 
-.merch-note p {
+@media (min-width: 768px) {
+  .product-slide-content {
+    padding: 4rem;
+  }
+}
+
+/* Product category tag */
+.product-slide-category {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  background: rgba(var(--color-accent-rgb), 0.1);
+  border-radius: var(--radius-full);
+  width: fit-content;
+}
+
+/* Product title */
+.product-slide-title {
+  font-family: var(--font-mono);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--color-text);
+  margin: 0 0 1rem;
+  line-height: 1.1;
+}
+
+/* Product price */
+.product-slide-price {
+  font-family: var(--font-mono);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 700;
+  color: var(--color-accent);
+  margin-bottom: 1.5rem;
+}
+
+/* Product description */
+.product-slide-description {
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-muted);
+  margin: 0 0 2rem;
+  max-width: 450px;
+}
+
+/* Product actions */
+.product-slide-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.product-slide-actions .btn {
+  padding: 1rem 2rem;
+}
+
+/* Size/variant selector */
+.product-slide-variants {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.product-variant-btn {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.product-variant-btn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.product-variant-btn.is-active {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-bg);
+}
+
+/* Merch CTA section */
+.merch-cta {
+  text-align: center;
+  padding: var(--spacing-5xl) var(--spacing-xl);
+  background: var(--color-bg-alt);
+}
+
+.merch-cta-text {
   font-family: var(--font-mono);
   color: var(--color-text-muted);
   font-size: 0.9rem;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 /* ============================================================

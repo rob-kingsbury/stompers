@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="css/themes.css">
   <link rel="stylesheet" href="css/immersive-master.css">
 </head>
-<body data-barba="wrapper">
+<body data-barba="wrapper" data-page="tour">
   <!-- Hamburger Menu Button -->
   <div class="hamburger-container">
     <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
@@ -42,68 +42,177 @@
 
   <main class="page-main" data-barba="container" data-barba-namespace="tour">
     <!-- Page Hero -->
-    <section class="page-hero">
+    <section class="page-hero page-hero--tour">
+      <div class="page-hero-bg">
+        <img src="https://images.unsplash.com/photo-1501612780327-45045538702b?w=1600" alt="Concert crowd">
+      </div>
+      <div class="page-hero-overlay"></div>
       <div class="page-hero-content">
         <span class="section-number">LIVE SHOWS</span>
         <h1 class="page-title">Tour</h1>
+        <p class="page-subtitle">Scroll to explore upcoming dates</p>
+      </div>
+      <div class="page-hero-scroll-cue">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
       </div>
     </section>
 
-    <!-- Tour Dates -->
-    <section class="content-section">
-      <div class="tour-dates">
-        <article class="tour-card">
-          <div class="tour-card-date">
-            <span class="date-day">15</span>
-            <span class="date-month">JAN</span>
+    <!-- Horizontal Scroll Section -->
+    <section class="tour-horizontal">
+      <div class="tour-horizontal-progress">
+        <div class="tour-horizontal-progress-bar"></div>
+      </div>
+      <div class="tour-cards-wrapper">
+        <!-- Card 1 -->
+        <article class="tour-card-horizontal">
+          <div class="tour-card-horizontal-bg">
+            <img src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=1200" alt="Venue">
           </div>
-          <div class="tour-card-info">
-            <h3 class="tour-venue">The Bourbon Room</h3>
-            <p class="tour-location">Ottawa, ON</p>
+          <div class="tour-card-horizontal-overlay"></div>
+          <div class="tour-card-horizontal-content">
+            <div class="tour-card-horizontal-date">
+              <span class="date-day">15</span>
+              <span class="date-month">JAN</span>
+              <span class="date-year">2026</span>
+            </div>
+            <div class="tour-card-horizontal-info">
+              <h2 class="tour-venue-large">The Bourbon Room</h2>
+              <p class="tour-location-large">Ottawa, ON</p>
+              <p class="tour-time">Doors 7PM / Show 9PM</p>
+            </div>
+            <a href="#" class="btn btn-primary btn-large">Get Tickets</a>
           </div>
-          <a href="#" class="btn btn-outline">Tickets</a>
+          <div class="tour-card-horizontal-number">01</div>
         </article>
 
-        <article class="tour-card">
-          <div class="tour-card-date">
-            <span class="date-day">22</span>
-            <span class="date-month">JAN</span>
+        <!-- Card 2 -->
+        <article class="tour-card-horizontal">
+          <div class="tour-card-horizontal-bg">
+            <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200" alt="Venue">
           </div>
-          <div class="tour-card-info">
-            <h3 class="tour-venue">Swamp Shack</h3>
-            <p class="tour-location">Kingston, ON</p>
+          <div class="tour-card-horizontal-overlay"></div>
+          <div class="tour-card-horizontal-content">
+            <div class="tour-card-horizontal-date">
+              <span class="date-day">22</span>
+              <span class="date-month">JAN</span>
+              <span class="date-year">2026</span>
+            </div>
+            <div class="tour-card-horizontal-info">
+              <h2 class="tour-venue-large">Swamp Shack</h2>
+              <p class="tour-location-large">Kingston, ON</p>
+              <p class="tour-time">Doors 8PM / Show 9:30PM</p>
+            </div>
+            <a href="#" class="btn btn-primary btn-large">Get Tickets</a>
           </div>
-          <a href="#" class="btn btn-outline">Tickets</a>
+          <div class="tour-card-horizontal-number">02</div>
         </article>
 
-        <article class="tour-card">
-          <div class="tour-card-date">
-            <span class="date-day">05</span>
-            <span class="date-month">FEB</span>
+        <!-- Card 3 -->
+        <article class="tour-card-horizontal">
+          <div class="tour-card-horizontal-bg">
+            <img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?w=1200" alt="Venue">
           </div>
-          <div class="tour-card-info">
-            <h3 class="tour-venue">Blues Festival</h3>
-            <p class="tour-location">Montreal, QC</p>
+          <div class="tour-card-horizontal-overlay"></div>
+          <div class="tour-card-horizontal-content">
+            <div class="tour-card-horizontal-date">
+              <span class="date-day">05</span>
+              <span class="date-month">FEB</span>
+              <span class="date-year">2026</span>
+            </div>
+            <div class="tour-card-horizontal-info">
+              <h2 class="tour-venue-large">Blues Festival</h2>
+              <p class="tour-location-large">Montreal, QC</p>
+              <p class="tour-time">Main Stage / 10PM</p>
+            </div>
+            <a href="#" class="btn btn-primary btn-large">Get Tickets</a>
           </div>
-          <a href="#" class="btn btn-outline">Tickets</a>
+          <div class="tour-card-horizontal-number">03</div>
         </article>
 
-        <article class="tour-card">
-          <div class="tour-card-date">
-            <span class="date-day">14</span>
-            <span class="date-month">FEB</span>
+        <!-- Card 4 -->
+        <article class="tour-card-horizontal">
+          <div class="tour-card-horizontal-bg">
+            <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=1200" alt="Venue">
           </div>
-          <div class="tour-card-info">
-            <h3 class="tour-venue">Valentine's Blues Bash</h3>
-            <p class="tour-location">Toronto, ON</p>
+          <div class="tour-card-horizontal-overlay"></div>
+          <div class="tour-card-horizontal-content">
+            <div class="tour-card-horizontal-date">
+              <span class="date-day">14</span>
+              <span class="date-month">FEB</span>
+              <span class="date-year">2026</span>
+            </div>
+            <div class="tour-card-horizontal-info">
+              <h2 class="tour-venue-large">Valentine's Blues Bash</h2>
+              <p class="tour-location-large">Toronto, ON</p>
+              <p class="tour-time">Doors 7PM / Show 8:30PM</p>
+            </div>
+            <a href="#" class="btn btn-primary btn-large">Get Tickets</a>
           </div>
-          <a href="#" class="btn btn-outline">Tickets</a>
+          <div class="tour-card-horizontal-number">04</div>
         </article>
+
+        <!-- Card 5 -->
+        <article class="tour-card-horizontal">
+          <div class="tour-card-horizontal-bg">
+            <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=1200" alt="Venue">
+          </div>
+          <div class="tour-card-horizontal-overlay"></div>
+          <div class="tour-card-horizontal-content">
+            <div class="tour-card-horizontal-date">
+              <span class="date-day">28</span>
+              <span class="date-month">FEB</span>
+              <span class="date-year">2026</span>
+            </div>
+            <div class="tour-card-horizontal-info">
+              <h2 class="tour-venue-large">The Rusty Nail</h2>
+              <p class="tour-location-large">Hamilton, ON</p>
+              <p class="tour-time">Doors 8PM / Show 9PM</p>
+            </div>
+            <a href="#" class="btn btn-primary btn-large">Get Tickets</a>
+          </div>
+          <div class="tour-card-horizontal-number">05</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Past Shows Accordion -->
+    <section class="tour-past-section">
+      <div class="tour-past-header">
+        <h2>Past Shows</h2>
+        <p>200+ shows and counting. Here are some recent highlights.</p>
+      </div>
+      <div class="tour-past-list">
+        <div class="tour-past-item">
+          <div class="tour-past-date">Dec 31, 2025</div>
+          <div class="tour-past-venue">New Year's Eve Bash</div>
+          <div class="tour-past-location">Ottawa, ON</div>
+        </div>
+        <div class="tour-past-item">
+          <div class="tour-past-date">Dec 20, 2025</div>
+          <div class="tour-past-venue">Holiday Blues Show</div>
+          <div class="tour-past-location">Kingston, ON</div>
+        </div>
+        <div class="tour-past-item">
+          <div class="tour-past-date">Dec 14, 2025</div>
+          <div class="tour-past-venue">Winter Warmup</div>
+          <div class="tour-past-location">Toronto, ON</div>
+        </div>
+        <div class="tour-past-item">
+          <div class="tour-past-date">Nov 30, 2025</div>
+          <div class="tour-past-venue">Swamp Rock Saturday</div>
+          <div class="tour-past-location">Montreal, QC</div>
+        </div>
+        <div class="tour-past-item">
+          <div class="tour-past-date">Nov 15, 2025</div>
+          <div class="tour-past-venue">Blues & Brews Festival</div>
+          <div class="tour-past-location">London, ON</div>
+        </div>
       </div>
     </section>
 
     <!-- Booking CTA -->
-    <section class="cta-section">
+    <section class="cta-section tour-cta">
       <div class="cta-content">
         <h2>Book the Stompers</h2>
         <p>Looking for a band that'll shake the rafters and get the crowd moving? Let's talk.</p>

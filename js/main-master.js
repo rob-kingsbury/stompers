@@ -23,13 +23,22 @@ function init() {
   initSmoothScroll();
   initSiteNav();
   initPageTransitions();
-  initProgressNav();
-  initHeroAnimations();
-  initAboutAnimations();
-  initBandCardStack();
-  initTourSection();
-  initQuoteExplosion();
-  initContactParallax();
+
+  // Page-specific initialization based on data-page attribute
+  const page = document.body.dataset.page;
+
+  if (page === 'tour') {
+    initTourPage();
+  } else {
+    // Index page (master) animations
+    initProgressNav();
+    initHeroAnimations();
+    initAboutAnimations();
+    initBandCardStack();
+    initTourSection();
+    initQuoteExplosion();
+    initContactParallax();
+  }
 
   // Refresh ScrollTrigger after all triggers are created and Lenis is initialized
   // This ensures proper position calculations for sticky elements and scroll animations
@@ -89,7 +98,7 @@ function initPageTransitions() {
             lenis.scrollTo(0, { immediate: true });
           }
         },
-        afterEnter() {
+        afterEnter(data) {
           // Reinitialize components after page change
           ScrollTrigger.refresh();
 
@@ -97,13 +106,22 @@ function initPageTransitions() {
           resetStompMenu();
 
           initSiteNav();
-          initProgressNav();
-          initHeroAnimations();
-          initAboutAnimations();
-          initBandCardStack();
-          initTourSection();
-          initQuoteExplosion();
-          initContactParallax();
+
+          // Page-specific initialization based on namespace
+          const namespace = data.next.namespace;
+
+          if (namespace === 'tour') {
+            initTourPage();
+          } else {
+            // Index page (master) animations
+            initProgressNav();
+            initHeroAnimations();
+            initAboutAnimations();
+            initBandCardStack();
+            initTourSection();
+            initQuoteExplosion();
+            initContactParallax();
+          }
         },
       },
     ],
@@ -940,6 +958,201 @@ function initContactParallax() {
       }
     },
   });
+}
+
+// ============================================================
+// TOUR PAGE - Horizontal Scroll Carousel
+// ============================================================
+
+function initTourPage() {
+  initTourHeroAnimations();
+  initTourHorizontalScroll();
+  initTourPastShows();
+  initTourCTA();
+}
+
+function initTourHeroAnimations() {
+  const hero = document.querySelector('.page-hero--tour');
+  if (!hero) return;
+
+  const meta = hero.querySelector('.section-number');
+  const title = hero.querySelector('.page-title');
+  const subtitle = hero.querySelector('.page-subtitle');
+  const bg = hero.querySelector('.page-hero-bg img');
+
+  // Staggered entrance animation
+  const tl = gsap.timeline({ delay: 0.3 });
+
+  if (meta) {
+    gsap.set(meta, { opacity: 0, y: 20 });
+    tl.to(meta, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' });
+  }
+
+  if (title) {
+    gsap.set(title, { opacity: 0, y: 40 });
+    tl.to(title, { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, '-=0.5');
+  }
+
+  // Parallax on hero background
+  if (bg) {
+    gsap.to(bg, {
+      scale: 1.2,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: hero,
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+      },
+    });
+  }
+
+  // Fade out hero content on scroll
+  const heroContent = hero.querySelector('.page-hero-content');
+  if (heroContent) {
+    gsap.to(heroContent, {
+      opacity: 0,
+      y: -60,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: hero,
+        start: '30% top',
+        end: '80% top',
+        scrub: true,
+      },
+    });
+  }
+}
+
+function initTourHorizontalScroll() {
+  const section = document.querySelector('.tour-horizontal');
+  const wrapper = document.querySelector('.tour-cards-wrapper');
+  const cards = document.querySelectorAll('.tour-card-horizontal');
+  const progressBar = document.querySelector('.tour-horizontal-progress-bar');
+
+  if (!section || !wrapper || cards.length === 0) return;
+
+  // Calculate total scroll distance
+  const getScrollDistance = () => wrapper.scrollWidth - window.innerWidth;
+
+  // Pin the section and animate horizontal scroll
+  const horizontalScroll = gsap.to(wrapper, {
+    x: () => -getScrollDistance(),
+    ease: 'none',
+    scrollTrigger: {
+      trigger: section,
+      start: 'top top',
+      end: () => `+=${getScrollDistance()}`,
+      pin: true,
+      scrub: 1,
+      invalidateOnRefresh: true,
+      onEnter: () => section.classList.add('is-active'),
+      onLeave: () => section.classList.remove('is-active'),
+      onEnterBack: () => section.classList.add('is-active'),
+      onLeaveBack: () => section.classList.remove('is-active'),
+      onUpdate: (self) => {
+        // Update progress bar
+        if (progressBar) {
+          progressBar.style.height = `${self.progress * 100}%`;
+        }
+      },
+    },
+  });
+
+  // Animate card content as they come into view
+  cards.forEach((card, index) => {
+    const content = card.querySelector('.tour-card-horizontal-content');
+    const date = card.querySelector('.tour-card-horizontal-date');
+    const info = card.querySelector('.tour-card-horizontal-info');
+    const btn = card.querySelector('.btn');
+    const number = card.querySelector('.tour-card-horizontal-number');
+
+    if (content) {
+      // Calculate when this card enters view (based on horizontal position)
+      const cardStart = index / cards.length;
+      const cardEnd = (index + 1) / cards.length;
+
+      // Create timeline for card entrance
+      const cardTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top top',
+          end: () => `+=${getScrollDistance()}`,
+          scrub: 1,
+        },
+      });
+
+      // Fade in elements as card enters center of viewport
+      if (date) {
+        gsap.set(date, { opacity: 0, y: 30 });
+        cardTl.to(date, { opacity: 1, y: 0, duration: 0.1 }, cardStart);
+      }
+
+      if (info) {
+        gsap.set(info, { opacity: 0, y: 20 });
+        cardTl.to(info, { opacity: 1, y: 0, duration: 0.1 }, cardStart + 0.02);
+      }
+
+      if (btn) {
+        gsap.set(btn, { opacity: 0, y: 20 });
+        cardTl.to(btn, { opacity: 1, y: 0, duration: 0.1 }, cardStart + 0.04);
+      }
+
+      if (number) {
+        gsap.set(number, { opacity: 0 });
+        cardTl.to(number, { opacity: 0.05, duration: 0.1 }, cardStart + 0.02);
+      }
+    }
+  });
+}
+
+function initTourPastShows() {
+  const items = document.querySelectorAll('.tour-past-item');
+
+  if (items.length === 0) return;
+
+  items.forEach((item, index) => {
+    ScrollTrigger.create({
+      trigger: item,
+      start: 'top 85%',
+      onEnter: () => {
+        gsap.to(item, {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          delay: index * 0.1,
+          ease: 'power3.out',
+          onStart: () => item.classList.add('is-visible'),
+        });
+      },
+      onLeaveBack: () => {
+        item.classList.remove('is-visible');
+        gsap.set(item, { opacity: 0, y: 20 });
+      },
+    });
+  });
+}
+
+function initTourCTA() {
+  const cta = document.querySelector('.tour-cta');
+  if (!cta) return;
+
+  const content = cta.querySelector('.cta-content');
+
+  if (content) {
+    gsap.from(content.children, {
+      opacity: 0,
+      y: 40,
+      stagger: 0.15,
+      duration: 0.8,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: cta,
+        start: 'top 70%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+  }
 }
 
 // ============================================================
