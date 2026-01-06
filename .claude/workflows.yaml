@@ -1,0 +1,151 @@
+# Stompers Workflows
+# When a trigger word is detected, execute the workflow steps in order.
+# Do not skip steps. Do not ask for confirmation.
+
+audit:
+  triggers: ["audit", "run audit", "code audit"]
+  description: Run full codebase audit against defined rules
+  steps:
+    1_css:
+      name: CSS Architecture
+      reference: .claude/rules/css-architecture.md
+      checks:
+        - Grep for hardcoded hex colors (#xxx, rgba) not using var(--color-*)
+        - Grep for hardcoded px values not using var(--spacing-*)
+        - Grep for !important (note justified uses for third-party overrides)
+        - Grep for z-index not using var(--z-*)
+        - Grep for style=" in HTML files (inline styles)
+      severity: HIGH if colors/spacing, MEDIUM if inline styles
+
+    2_js:
+      name: JavaScript/GSAP
+      checks:
+        - Verify all ScrollTriggers have proper cleanup (kill on unmount)
+        - Check for duplicate ScrollTrigger IDs
+        - Verify Lenis integration is consistent
+        - Check for console.log not for errors
+      severity: HIGH if memory leaks, MEDIUM if cleanup needed
+
+    3_a11y:
+      name: Accessibility
+      checks:
+        - Verify video has muted attribute for autoplay
+        - Check for proper ARIA labels on interactive elements
+        - Verify focus states on clickable elements
+        - Check color contrast on text over images
+      severity: HIGH if missing
+
+    4_report:
+      action: Output summary table
+      format: |
+        | Category | Issues | Severity |
+        |----------|--------|----------|
+        | CSS      | X      | HIGH/MED |
+        | JS/GSAP  | X      | HIGH/MED |
+        | A11y     | X      | HIGH/MED |
+
+    5_resolve:
+      action: |
+        - Fix all LOW/MEDIUM issues immediately
+        - Create GitHub Issues for HIGH with priority-high label
+        - Update context.md with new issues
+        - Commit and push fixes
+
+handoff:
+  triggers: ["handoff", "session handoff", "prepare handoff"]
+  description: Prepare context for next Claude session
+  steps:
+    1_check_uncommitted:
+      action: Run git status and git diff --stat
+      if_changes: Ask user to commit or discard before proceeding
+
+    2_persist_todos:
+      action: |
+        - Review current TodoWrite items (pending/in_progress)
+        - For each significant todo not yet in GitHub Issues:
+          - Create GitHub Issue with appropriate labels
+          - Use gh issue create --title "..." --body "..."
+        - Skip trivial/session-specific todos
+
+    3_check_resolved_issues:
+      action: |
+        - Run gh issue list --state open
+        - Review work completed this session against open issues
+        - Identify any issues that were resolved but not closed
+        - If resolved issues found, commit with "Fixes #XX" to auto-close
+
+    4_update_context:
+      file: .claude/context.md
+      updates:
+        - Update Open Issues table with current open issues
+        - Add session notes to Recent Changes section
+        - Note any blockers or pending decisions
+
+    5_commit_context:
+      action: git add .claude/context.md && git commit -m "Update context.md with handoff notes"
+      skip_if: No changes to context.md
+
+    6_push:
+      action: git push
+      verify: Confirm push succeeded
+
+    7_output_summary:
+      format: |
+        ## Handoff Summary
+
+        **Last Commit:** [hash] [message]
+        **Branch:** main
+        **Open Issues:** [count]
+
+        ### Completed This Session
+        - [list of completed work]
+
+        ### Issues Closed
+        - [list with issue numbers]
+
+        ### In Progress
+        - [list with current status]
+
+        ### Next Steps
+        - [prioritized list for next session]
+
+status:
+  triggers: ["status", "project status"]
+  description: Show current project state
+  steps:
+    1_gather:
+      commands:
+        - gh issue list --state open
+        - git log --oneline -5
+        - git status
+
+    2_output:
+      format: |
+        ## Project Status
+
+        **Branch:** main
+        **Open Issues:** [count]
+
+        ### Recent Commits
+        [last 5 commits]
+
+        ### Uncommitted Changes
+        [list or "Working tree clean"]
+
+        ### Open Issues
+        [table of open issues]
+
+sync:
+  triggers: ["sync", "sync docs", "update docs"]
+  description: Sync reference files with code changes
+  steps:
+    1_functions:
+      compare: js/main-master.js vs .claude/functions.md
+      action: Update functions.md if GSAP functions added/changed
+
+    2_styles:
+      compare: css/themes.css vs .claude/style-guide.json
+      action: Update style-guide.json if CSS variables changed
+
+    3_report:
+      action: List changes made and commit if any updates
