@@ -4,4 +4,15 @@ dist/
 *.log
 .env
 .env.local
+
+# Analysis output (not critical to website)
 analysis-screenshots/
+scroll-analysis/
+scroll-analysis-output/
+
+# IDE/Editor
+.vscode/
+.idea/
+
+# Claude settings
+.claude/
