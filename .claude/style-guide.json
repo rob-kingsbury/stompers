@@ -1,9 +1,9 @@
 {
   "meta": {
     "project": "Stompers Redesign",
-    "version": "1.0.0",
-    "updated": "2026-01-05",
-    "description": "Design tokens and style reference for Stompers immersive website"
+    "version": "1.1.0",
+    "updated": "2026-01-06",
+    "description": "Design tokens and style reference for Stompers immersive website. All values sync with themes.css"
   },
 
   "breakpoints": {
@@ -15,69 +15,131 @@
 
   "colors": {
     "backgrounds": {
-      "bg": "#0a0a0a",
-      "bg-alt": "#111111",
-      "progress-pill": "#242628"
+      "--color-bg": "#0a0a0a",
+      "--color-bg-rgb": "10, 10, 10",
+      "--color-bg-alt": "#111111",
+      "--color-surface": "#1a1a1a",
+      "--color-surface-raised": "#222222"
     },
     "text": {
-      "primary": "#f5f5f0",
-      "muted": "rgba(245, 245, 240, 0.7)"
+      "--color-text": "#f5f5f0",
+      "--color-text-rgb": "245, 245, 240",
+      "--color-text-secondary": "rgba(255, 255, 255, 0.8)",
+      "--color-text-muted": "rgba(255, 255, 255, 0.6)"
     },
     "accent": {
-      "gold": "#c9a227",
-      "gold-dark": "#a07d1c"
+      "--color-accent": "#c9a227",
+      "--color-accent-rgb": "201, 162, 39",
+      "--color-accent-light": "#d4b84a",
+      "--color-accent-dark": "#a8861f"
+    },
+    "border": {
+      "--color-border": "rgba(255, 255, 255, 0.1)",
+      "--color-border-strong": "rgba(255, 255, 255, 0.2)"
     }
   },
 
-  "cssVariables": {
-    "colors": {
-      "--color-bg": "#0a0a0a",
-      "--color-bg-alt": "#111111",
-      "--color-text": "#f5f5f0",
-      "--color-accent": "#c9a227"
-    }
+  "spacing": {
+    "--spacing-xs": "0.25rem",
+    "--spacing-sm": "0.5rem",
+    "--spacing-md": "1rem",
+    "--spacing-lg": "1.5rem",
+    "--spacing-xl": "2rem",
+    "--spacing-2xl": "3rem",
+    "--spacing-3xl": "4rem",
+    "--spacing-4xl": "6rem",
+    "--spacing-5xl": "8rem"
   },
 
   "typography": {
     "families": {
-      "headers": "IBM Plex Mono",
-      "body": "Source Serif Pro"
+      "--font-mono": "'IBM Plex Mono', monospace",
+      "--font-serif": "'Source Serif Pro', Georgia, serif"
     },
-    "googleFonts": [
-      "IBM+Plex+Mono:wght@400;500;600;700",
-      "Source+Serif+Pro:wght@400;600;700"
-    ]
-  },
-
-  "spacing": {
-    "xs": "0.25rem",
-    "sm": "0.5rem",
-    "md": "1rem",
-    "lg": "1.5rem",
-    "xl": "2rem",
-    "2xl": "3rem",
-    "3xl": "4rem"
+    "sizes": {
+      "--font-size-xs": "0.75rem",
+      "--font-size-sm": "0.875rem",
+      "--font-size-md": "1rem",
+      "--font-size-lg": "1.25rem",
+      "--font-size-xl": "1.5rem",
+      "--font-size-2xl": "2rem"
+    },
+    "weights": {
+      "--font-weight-normal": "400",
+      "--font-weight-medium": "500",
+      "--font-weight-semibold": "600",
+      "--font-weight-bold": "700"
+    },
+    "letterSpacing": {
+      "--letter-spacing-tight": "-0.02em",
+      "--letter-spacing-normal": "0",
+      "--letter-spacing-wide": "0.025em",
+      "--letter-spacing-wider": "0.05em",
+      "--letter-spacing-widest": "0.1em"
+    },
+    "lineHeight": {
+      "--line-height-tight": "1.1",
+      "--line-height-snug": "1.25",
+      "--line-height-normal": "1.5",
+      "--line-height-relaxed": "1.625"
+    }
   },
 
   "zIndex": {
-    "base": "1",
-    "sticky": "9",
-    "nav": "99",
-    "modal": "999",
-    "critical": "9999"
+    "base": {
+      "--z-base": "0",
+      "--z-raised": "10",
+      "--z-dropdown": "100",
+      "--z-sticky": "200"
+    },
+    "navigation": {
+      "--z-nav": "900",
+      "--z-nav-above": "910"
+    },
+    "menu": {
+      "--z-menu-bg": "1000",
+      "--z-menu-content": "1010",
+      "--z-menu-effects": "1020",
+      "--z-menu-trigger": "1030"
+    },
+    "overlays": {
+      "--z-overlay": "1100",
+      "--z-modal": "1200",
+      "--z-tooltip": "1300",
+      "--z-max": "9999"
+    }
   },
 
-  "animations": {
-    "gsap": {
-      "scrubDuration": "true (follows scroll)",
-      "easeDefault": "power2.out",
-      "easeScroll": "none (linear for scrub)"
+  "timing": {
+    "durations": {
+      "--duration-fast": "150ms",
+      "--duration-normal": "200ms",
+      "--duration-slow": "300ms",
+      "--duration-slower": "500ms"
     },
-    "css": {
-      "transitionFast": "0.15s ease",
-      "transitionNormal": "0.3s ease",
-      "transitionSlow": "0.5s ease"
+    "easing": {
+      "--ease-standard": "cubic-bezier(0.4, 0.0, 0.2, 1)",
+      "--ease-out": "cubic-bezier(0.0, 0.0, 0.2, 1)",
+      "--ease-in": "cubic-bezier(0.4, 0.0, 1, 1)",
+      "--ease-out-expo": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "--ease-out-back": "cubic-bezier(0.34, 1.56, 0.64, 1)"
     }
+  },
+
+  "borders": {
+    "--border-width": "1px",
+    "--border-width-thick": "2px",
+    "--radius-sm": "2px",
+    "--radius-md": "4px",
+    "--radius-lg": "8px",
+    "--radius-full": "9999px"
+  },
+
+  "shadows": {
+    "--shadow-sm": "0 1px 2px rgba(0, 0, 0, 0.3)",
+    "--shadow-md": "0 2px 8px rgba(0, 0, 0, 0.4)",
+    "--shadow-lg": "0 4px 16px rgba(0, 0, 0, 0.5)",
+    "--shadow-xl": "0 8px 32px rgba(0, 0, 0, 0.6)"
   },
 
   "sections": {
@@ -102,27 +164,28 @@
 
   "components": {
     "progressNav": {
-      "pillBg": "#242628",
-      "pillRadius": "999px",
-      "blobGradient": "linear-gradient(135deg, #c9a227, #a07d1c)",
+      "pillBg": "var(--color-surface)",
+      "pillRadius": "var(--radius-full)",
+      "blobGradient": "linear-gradient(var(--color-accent), var(--color-accent-dark))",
       "dotSize": "10px",
-      "dotGap": "10px"
+      "dotGap": "var(--spacing-sm)"
     },
     "stackCards": {
-      "width": "calc(100% - 4rem)",
-      "minHeight": "70vh",
-      "borderRadius": "1rem",
-      "topOffset": "2rem base + 30px per card"
+      "width": "calc(100% - var(--spacing-5xl))",
+      "minHeight": "85vh",
+      "borderRadius": "var(--spacing-lg)",
+      "topOffset": "var(--spacing-xl) base + 30px per card"
     },
-    "scrollCue": {
-      "width": "1px",
-      "height": "60px",
-      "color": "var(--color-accent)"
+    "hamburgerMenu": {
+      "containerBg": "rgba(var(--color-bg-rgb), 0.9)",
+      "containerRadius": "var(--radius-lg)",
+      "menuBg": "linear-gradient(var(--color-bg), var(--color-bg-alt))"
     }
   },
 
   "references": {
     "metamask": "https://metamask.io/en-GB/",
-    "concom": "https://concom.tv/"
+    "concom": "https://concom.tv/",
+    "stomp": "https://stomp.cloud/"
   }
 }

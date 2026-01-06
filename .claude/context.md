@@ -36,11 +36,12 @@ repo:
 
 ## Key Rules
 
-1. **GSAP Patterns**: Check existing animation code before writing new ScrollTriggers
-2. **CSS Variables**: Use `--color-*` from themes.css, never hardcode colors
-3. **Mobile First**: Base styles for mobile, min-width queries to enhance
-4. **GitHub Issues**: All tasks, bugs, and features tracked in Issues
-5. **No Emojis**: Keep code and commits clean
+1. **DRY (Don't Repeat Yourself)**: Define values once, reference via CSS variables
+2. **CSS Variables**: All colors, spacing, z-index, typography from themes.css
+3. **GSAP Patterns**: Check existing animation code before writing new ScrollTriggers
+4. **Mobile First**: Base styles for mobile, min-width queries to enhance
+5. **GitHub Issues**: All tasks, bugs, and features tracked in Issues
+6. **No Emojis**: Keep code and commits clean
 
 ## Quick Commands
 
@@ -120,6 +121,19 @@ When continuing work:
 4. Check `handoff.md` for detailed section documentation
 
 ## Recent Changes
+
+### January 2026 - Session 3
+- Implemented Stomp hamburger menu with seismic shake effect
+- Major CSS refactoring for DRY compliance:
+  - Added comprehensive z-index scale to themes.css (--z-nav, --z-menu-*, --z-overlay)
+  - Added RGB variants for rgba() usage (--color-bg-rgb, --color-text-rgb)
+  - Replaced all hardcoded colors with CSS variables
+  - Replaced hardcoded spacing, typography, timing with variables
+- Removed duplicate CSS variables from immersive-master.css (now in themes.css only)
+- Updated css-architecture.md rules with DRY principle and updated z-index scale
+- Fixed hamburger z-index layering issues with menu
+- Fixed scrollbar layout shift with scrollbar-gutter: stable
+- Cleaned up PHP files (multi-page approach abandoned)
 
 ### January 2026 - Session 2
 - Added View Transitions API for multi-page navigation
