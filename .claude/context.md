@@ -16,18 +16,19 @@ tech:
   js: Vanilla JS (ES6+)
 
 paths:
-  master: index-immersive-master.html
+  master: index.html
   css: css/immersive-master.css
   js: js/main-master.js
   themes: css/themes.css
+  pages: tour.html, story.html, epk.html, merch.html, contact.html
   demos: demos/view-transitions/, demos/transitions.html
   archive: _archive/ (gitignored)
   rules: .claude/rules/
 
 workflow:
-  dev: npm run dev (opens master design)
+  dev: npm run dev
   build: npm run build
-  test: http://localhost:5173/index-immersive-master.html
+  test: http://localhost:5173/
 
 repo:
   github: https://github.com/rob-kingsbury/stompers.git
@@ -117,7 +118,7 @@ GSAP ScrollTrigger's pin creates spacer elements that interfere with other Scrol
 When continuing work:
 1. Run `npm run dev` to start dev server
 2. Run `gh issue list` to see current priorities
-3. Master design is at `/index-immersive-master.html`
+3. Main site is at `http://localhost:5173/`
 4. Check `handoff.md` for detailed section documentation
 
 ## Recent Changes
