@@ -5,12 +5,13 @@
 ```yaml
 principles:
   - Mobile-first: base styles for mobile, min-width queries to enhance
-  - CSS variables: all colors/spacing from themes.css
+  - CSS variables: all colors, spacing, z-index from themes.css
+  - DRY: Don't Repeat Yourself - define values once, reference via variables
   - No !important: refactor specificity instead (exceptions for GSAP overrides)
   - Single source: component defined once, modifiers for variations
 
 files:
-  themes.css: CSS variables (colors only currently)
+  themes.css: CSS variables (colors, spacing, z-index, typography, easing)
   immersive-master.css: Components, layout, animations
 
 naming:
@@ -21,9 +22,10 @@ naming:
 
 required-variables:
   colors: var(--color-*) never hardcode hex
-  accent: var(--color-accent) for gold highlights
-  backgrounds: var(--color-bg), var(--color-bg-alt)
-  text: var(--color-text)
+  spacing: var(--spacing-*) never hardcode px/rem
+  z-index: var(--z-*) never hardcode numbers (except card stacking)
+  typography: var(--font-*), var(--letter-spacing-*) for consistency
+  timing: var(--duration-*), var(--ease-*) for animations
 ```
 
 ## Color Palette (from themes.css)
@@ -37,15 +39,33 @@ required-variables:
 
 ## Z-Index Scale
 
-Use consistent z-index values:
+Use variables from themes.css (never hardcode z-index):
 
 ```css
---z-base: 1;        /* Default stacking */
---z-sticky: 9;      /* Sticky elements */
---z-nav: 99;        /* Navigation */
---z-modal: 999;     /* Modals, overlays */
---z-critical: 9999; /* Above everything */
+/* Base layers */
+--z-base: 0;               /* Default */
+--z-raised: 10;            /* Above siblings */
+--z-dropdown: 100;         /* Dropdowns */
+--z-sticky: 200;           /* Sticky elements */
+
+/* Navigation */
+--z-nav: 900;              /* Progress nav, sticky headers */
+--z-nav-above: 910;        /* Elements above nav */
+
+/* Menu system (layered back to front) */
+--z-menu-bg: 1000;         /* Menu background panel */
+--z-menu-content: 1010;    /* Menu links, footer */
+--z-menu-effects: 1020;    /* Dust particles, flash */
+--z-menu-trigger: 1030;    /* Hamburger button */
+
+/* Overlays */
+--z-overlay: 1100;         /* Generic overlays */
+--z-modal: 1200;           /* Modal dialogs */
+--z-tooltip: 1300;         /* Tooltips */
+--z-max: 9999;             /* Page transitions */
 ```
+
+**Exception:** Sequential stacking (1, 2, 3, 4) is allowed for card/layer ordering within a component (e.g., stacking cards) - add a comment explaining why.
 
 ## Component Template
 
