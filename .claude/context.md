@@ -11,6 +11,7 @@ tech:
   build: Vite
   scroll: Lenis (smooth scroll)
   animation: GSAP + ScrollTrigger
+  transitions: View Transitions API (Lift style)
   css: Vanilla CSS with CSS variables
   js: Vanilla JS (ES6+)
 
@@ -19,7 +20,8 @@ paths:
   css: css/immersive-master.css
   js: js/main-master.js
   themes: css/themes.css
-  experiments: index-immersive-v1.html through v10.html
+  demos: demos/view-transitions/, demos/transitions.html
+  archive: _archive/ (gitignored)
   rules: .claude/rules/
 
 workflow:
@@ -119,7 +121,15 @@ When continuing work:
 
 ## Recent Changes
 
-### January 2026
+### January 2026 - Session 2
+- Added View Transitions API for multi-page navigation
+- Created demos/view-transitions/ with 5 transition styles (slide, fade, scale, lift, flip)
+- Chose "Lift" transition for production (scale + 3D tilt)
+- Cleaned up project: archived 52 experimental files to _archive/
+- Created .claude/ configuration directory with workflows, rules, style-guide
+- Created claude-project-template repo for future projects
+
+### January 2026 - Session 1
 - Initial GitHub repo setup
 - Quote section overhauled from explosion to shrink reveal
 - Created GitHub issues for known TODOs

@@ -1,7 +1,64 @@
 # Stompers Functions Reference
 
-**File:** `js/main-master.js`
 **Last Updated:** 2026-01-05
+
+---
+
+## View Transitions API
+
+**Files:** All HTML pages need `<meta name="view-transition" content="same-origin">`
+**CSS:** Add to main stylesheet
+
+### Enabling Transitions
+
+```html
+<!-- In <head> of every page -->
+<meta name="view-transition" content="same-origin">
+```
+
+```css
+/* Enable cross-document transitions */
+@view-transition {
+  navigation: auto;
+}
+```
+
+### Lift Transition (Production Style)
+
+```css
+::view-transition-old(page-content) {
+  animation: lift-out 0.45s cubic-bezier(0.4, 0, 0.2, 1) both;
+  transform-style: preserve-3d;
+}
+::view-transition-new(page-content) {
+  animation: lift-in 0.45s cubic-bezier(0.4, 0, 0.2, 1) both;
+  transform-style: preserve-3d;
+}
+
+@keyframes lift-out {
+  from { opacity: 1; transform: perspective(800px) scale(1) rotateX(0deg) translateY(0); }
+  to { opacity: 0; transform: perspective(800px) scale(0.88) rotateX(12deg) translateY(-40px); }
+}
+
+@keyframes lift-in {
+  from { opacity: 0; transform: perspective(800px) scale(1.06) rotateX(-10deg) translateY(50px); }
+  to { opacity: 1; transform: perspective(800px) scale(1) rotateX(0deg) translateY(0); }
+}
+```
+
+### Named Transition Elements
+
+```html
+<!-- Elements that morph between pages -->
+<main style="view-transition-name: page-content;">
+<h1 style="view-transition-name: hero-title;">
+```
+
+---
+
+## GSAP/Lenis Reference
+
+**File:** `js/main-master.js`
 
 ## Initialization
 

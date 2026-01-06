@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="view-transition" content="same-origin">
+  <title>Tour - View Transitions Demo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <a href="index.html" class="logo">STOMPERS</a>
+    <nav class="nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="tour.html" class="nav-link active">Tour</a>
+      <a href="merch.html" class="nav-link">Merch</a>
+    </nav>
+    <div class="hamburger" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <main class="page-content" style="view-transition-name: page-content;">
+    <section class="page-hero page-hero--tour">
+      <h1 class="page-title" style="view-transition-name: hero-title;">Tour</h1>
+    </section>
+
+    <section class="content-section">
+      <div class="tour-list">
+        <div class="tour-item">
+          <div class="tour-date">
+            <span class="day">15</span>
+            <span class="month">JAN</span>
+          </div>
+          <div class="tour-info">
+            <h3>The Bourbon Room</h3>
+            <p>Ottawa, ON</p>
+          </div>
+          <a href="#" class="btn btn-outline">Tickets</a>
+        </div>
+        <div class="tour-item">
+          <div class="tour-date">
+            <span class="day">22</span>
+            <span class="month">JAN</span>
+          </div>
+          <div class="tour-info">
+            <h3>Swamp Shack</h3>
+            <p>Kingston, ON</p>
+          </div>
+          <a href="#" class="btn btn-outline">Tickets</a>
+        </div>
+        <div class="tour-item">
+          <div class="tour-date">
+            <span class="day">05</span>
+            <span class="month">FEB</span>
+          </div>
+          <div class="tour-info">
+            <h3>Blues Festival</h3>
+            <p>Montreal, QC</p>
+          </div>
+          <a href="#" class="btn btn-outline">Tickets</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="menu-overlay" id="menuOverlay">
+    <button class="menu-close" id="menuClose">&times;</button>
+    <nav class="menu-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="tour.html">Tour</a>
+      <a href="merch.html">Merch</a>
+    </nav>
+  </div>
+
+  <script src="transitions.js"></script>
+</body>
+</html>

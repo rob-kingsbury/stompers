@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="view-transition" content="same-origin">
+  <title>About - View Transitions Demo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <a href="index.html" class="logo">STOMPERS</a>
+    <nav class="nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link active">About</a>
+      <a href="tour.html" class="nav-link">Tour</a>
+      <a href="merch.html" class="nav-link">Merch</a>
+    </nav>
+    <div class="hamburger" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <main class="page-content" style="view-transition-name: page-content;">
+    <section class="page-hero page-hero--about">
+      <h1 class="page-title" style="view-transition-name: hero-title;">About</h1>
+    </section>
+
+    <section class="content-section">
+      <div class="content-grid">
+        <div class="content-text">
+          <h2>Our Story</h2>
+          <p>Born in the swamps of Eastern Ontario, the Stompers bring raw, unfiltered southern rock and swamp blues to stages across the region.</p>
+          <p>With roots running deep into the blues tradition and branches reaching toward rock and roll, we create music that moves bodies and souls alike.</p>
+        </div>
+        <div class="content-image">
+          <div class="image-placeholder">Band Photo</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="menu-overlay" id="menuOverlay">
+    <button class="menu-close" id="menuClose">&times;</button>
+    <nav class="menu-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="tour.html">Tour</a>
+      <a href="merch.html">Merch</a>
+    </nav>
+  </div>
+
+  <script src="transitions.js"></script>
+</body>
+</html>

@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stompers - Transition & Menu Demos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg: #0a0a0a;
+      --color-bg-alt: #111111;
+      --color-text: #f5f5f0;
+      --color-accent: #c9a227;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Source Serif 4', serif;
+      background: var(--color-bg);
+      color: var(--color-text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, button {
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .demo-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: rgba(10, 10, 10, 0.9);
+      backdrop-filter: blur(10px);
+    }
+
+    .demo-header h1 {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--color-accent);
+    }
+
+    .demo-container {
+      padding: 8rem 2rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .demo-section {
+      margin-bottom: 6rem;
+    }
+
+    .demo-section h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--color-accent);
+    }
+
+    .demo-section p {
+      opacity: 0.7;
+      margin-bottom: 2rem;
+      max-width: 600px;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .demo-card {
+      background: var(--color-bg-alt);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 2rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .demo-card:hover {
+      border-color: var(--color-accent);
+      transform: translateY(-4px);
+    }
+
+    .demo-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .demo-card p {
+      font-size: 0.9rem;
+      opacity: 0.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .demo-card button {
+      background: transparent;
+      border: 1px solid var(--color-accent);
+      color: var(--color-accent);
+      padding: 0.75rem 1.5rem;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .demo-card button:hover {
+      background: var(--color-accent);
+      color: var(--color-bg);
+    }
+
+    /* ========== TRANSITION OVERLAYS ========== */
+    .transition-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      pointer-events: none;
+    }
+
+    /* Transition 1: Slide Down (Risksolved-style) */
+    .transition-slide-down {
+      background: var(--color-bg-alt);
+      transform: translateY(-100%);
+    }
+
+    /* Transition 2: Diagonal Wipe */
+    .transition-diagonal {
+      background: var(--color-accent);
+      clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    }
+
+    /* Transition 3: Center Expand */
+    .transition-center {
+      background: var(--color-bg-alt);
+      clip-path: circle(0% at 50% 50%);
+    }
+
+    /* Transition 4: Horizontal Bars */
+    .transition-bars {
+      display: flex;
+      flex-direction: column;
+    }
+    .transition-bars .bar {
+      flex: 1;
+      background: var(--color-bg-alt);
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+    .transition-bars .bar:nth-child(even) {
+      transform-origin: right;
+    }
+
+    /* ========== MENU OVERLAYS ========== */
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--color-bg);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .menu-close {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      background: none;
+      border: none;
+      color: var(--color-text);
+      font-size: 2rem;
+      cursor: pointer;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .menu-nav {
+      list-style: none;
+      text-align: center;
+    }
+
+    .menu-nav li {
+      overflow: hidden;
+    }
+
+    .menu-nav a {
+      display: block;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: clamp(2rem, 8vw, 5rem);
+      font-weight: 700;
+      color: var(--color-text);
+      text-decoration: none;
+      padding: 0.25em 0;
+      transition: color 0.3s;
+    }
+
+    .menu-nav a:hover {
+      color: var(--color-accent);
+    }
+
+    /* Menu Style 2: With hover images */
+    .menu-with-images {
+      display: flex;
+      width: 100%;
+      height: 100%;
+    }
+
+    .menu-with-images .menu-left {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .menu-with-images .menu-right {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .menu-with-images .menu-image {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .menu-with-images .menu-image.active {
+      opacity: 1;
+    }
+
+    /* Menu Style 3: Staggered reveal */
+    .menu-staggered .menu-nav a {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+
+    .menu-staggered.active .menu-nav a {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      width: 32px;
+      height: 24px;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hamburger span {
+      display: block;
+      height: 2px;
+      background: var(--color-text);
+      transition: all 0.3s ease;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    /* Status message */
+    .status {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--color-accent);
+      color: var(--color-bg);
+      padding: 1rem 2rem;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.9rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: 10000;
+    }
+
+    .status.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <header class="demo-header">
+    <h1>TRANSITION & MENU DEMOS</h1>
+    <div class="hamburger" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <main class="demo-container">
+    <!-- PAGE TRANSITIONS -->
+    <section class="demo-section">
+      <h2>Page Transitions</h2>
+      <p>Click to preview each transition style. These would play when navigating between pages.</p>
+
+      <div class="demo-grid">
+        <div class="demo-card">
+          <h3>1. Slide Down (Risksolved-style)</h3>
+          <p>New page slides down over old page, then content fades in.</p>
+          <button onclick="playTransition('slide-down')">Preview</button>
+        </div>
+
+        <div class="demo-card">
+          <h3>2. Diagonal Wipe</h3>
+          <p>Angled shape sweeps across screen with accent color.</p>
+          <button onclick="playTransition('diagonal')">Preview</button>
+        </div>
+
+        <div class="demo-card">
+          <h3>3. Center Expand</h3>
+          <p>Circle expands from center of screen.</p>
+          <button onclick="playTransition('center')">Preview</button>
+        </div>
+
+        <div class="demo-card">
+          <h3>4. Horizontal Bars</h3>
+          <p>Multiple bars slide in from alternating sides.</p>
+          <button onclick="playTransition('bars')">Preview</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- MENU STYLES -->
+    <section class="demo-section">
+      <h2>Menu Animations</h2>
+      <p>Click to preview each menu style. Use the hamburger icon in the header to toggle.</p>
+
+      <div class="demo-grid">
+        <div class="demo-card">
+          <h3>1. Simple Full-Screen</h3>
+          <p>Clean fade-in with large centered navigation.</p>
+          <button onclick="showMenu('simple')">Preview</button>
+        </div>
+
+        <div class="demo-card">
+          <h3>2. Staggered Text Reveal</h3>
+          <p>Menu items animate in one by one from bottom.</p>
+          <button onclick="showMenu('staggered')">Preview</button>
+        </div>
+
+        <div class="demo-card">
+          <h3>3. Split with Hover Images</h3>
+          <p>Navigation on left, dynamic image on right changes on hover.</p>
+          <button onclick="showMenu('images')">Preview</button>
+        </div>
+
+        <div class="demo-card">
+          <h3>4. Slide from Right</h3>
+          <p>Off-canvas panel slides in from right side.</p>
+          <button onclick="showMenu('slide')">Preview</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- TRANSITION OVERLAYS -->
+  <div class="transition-overlay transition-slide-down" id="transition-slide-down"></div>
+  <div class="transition-overlay transition-diagonal" id="transition-diagonal"></div>
+  <div class="transition-overlay transition-center" id="transition-center"></div>
+  <div class="transition-overlay transition-bars" id="transition-bars">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+
+  <!-- MENU OVERLAYS -->
+  <div class="menu-overlay" id="menu-simple">
+    <button class="menu-close" onclick="closeMenu('simple')">&times;</button>
+    <nav class="menu-nav">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Tour</a></li>
+      <li><a href="#">Merch</a></li>
+      <li><a href="#">Contact</a></li>
+    </nav>
+  </div>
+
+  <div class="menu-overlay menu-staggered" id="menu-staggered">
+    <button class="menu-close" onclick="closeMenu('staggered')">&times;</button>
+    <nav class="menu-nav">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Tour</a></li>
+      <li><a href="#">Merch</a></li>
+      <li><a href="#">Contact</a></li>
+    </nav>
+  </div>
+
+  <div class="menu-overlay" id="menu-images">
+    <button class="menu-close" onclick="closeMenu('images')">&times;</button>
+    <div class="menu-with-images">
+      <div class="menu-left">
+        <nav class="menu-nav">
+          <li><a href="#" data-image="1">Home</a></li>
+          <li><a href="#" data-image="2">About</a></li>
+          <li><a href="#" data-image="3">Tour</a></li>
+          <li><a href="#" data-image="4">Merch</a></li>
+          <li><a href="#" data-image="5">Contact</a></li>
+        </nav>
+      </div>
+      <div class="menu-right">
+        <div class="menu-image active" style="background: linear-gradient(45deg, #c9a227, #a07d1c);"></div>
+        <div class="menu-image" data-for="1" style="background: url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800') center/cover;"></div>
+        <div class="menu-image" data-for="2" style="background: url('https://images.unsplash.com/photo-1598387993441-a364f854c3e1?w=800') center/cover;"></div>
+        <div class="menu-image" data-for="3" style="background: url('https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=800') center/cover;"></div>
+        <div class="menu-image" data-for="4" style="background: url('https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=800') center/cover;"></div>
+        <div class="menu-image" data-for="5" style="background: url('https://images.unsplash.com/photo-1557682250-33bd709cbe85?w=800') center/cover;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-overlay" id="menu-slide" style="transform: translateX(100%); width: 50%; left: auto; transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);">
+    <button class="menu-close" onclick="closeMenu('slide')">&times;</button>
+    <nav class="menu-nav">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Tour</a></li>
+      <li><a href="#">Merch</a></li>
+      <li><a href="#">Contact</a></li>
+    </nav>
+  </div>
+
+  <div class="status" id="status"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script>
+    // Status message helper
+    function showStatus(message) {
+      const status = document.getElementById('status');
+      status.textContent = message;
+      status.classList.add('show');
+      setTimeout(() => status.classList.remove('show'), 2000);
+    }
+
+    // ========== PAGE TRANSITIONS ==========
+    function playTransition(type) {
+      const overlay = document.getElementById(`transition-${type}`);
+
+      switch(type) {
+        case 'slide-down':
+          gsap.timeline()
+            .to(overlay, { y: '0%', duration: 0.6, ease: 'power3.inOut' })
+            .to(overlay, { y: '100%', duration: 0.6, ease: 'power3.inOut', delay: 0.3 })
+            .set(overlay, { y: '-100%' });
+          break;
+
+        case 'diagonal':
+          gsap.timeline()
+            .to(overlay, { clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)', duration: 0.6, ease: 'power3.inOut' })
+            .to(overlay, { clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)', duration: 0.6, ease: 'power3.inOut', delay: 0.3 })
+            .set(overlay, { clipPath: 'polygon(0 0, 0 0, 0 100%, 0 100%)' });
+          break;
+
+        case 'center':
+          gsap.timeline()
+            .to(overlay, { clipPath: 'circle(150% at 50% 50%)', duration: 0.8, ease: 'power3.inOut' })
+            .to(overlay, { clipPath: 'circle(0% at 50% 50%)', duration: 0.6, ease: 'power3.inOut', delay: 0.3 });
+          break;
+
+        case 'bars':
+          const bars = overlay.querySelectorAll('.bar');
+          gsap.timeline()
+            .to(bars, { scaleX: 1, duration: 0.4, stagger: 0.05, ease: 'power3.inOut' })
+            .to(bars, { scaleX: 0, duration: 0.4, stagger: 0.05, ease: 'power3.inOut', delay: 0.3 });
+          break;
+      }
+
+      showStatus(`Playing: ${type} transition`);
+    }
+
+    // ========== MENU ANIMATIONS ==========
+    let currentMenu = null;
+
+    function showMenu(type) {
+      if (currentMenu) closeMenu(currentMenu);
+      currentMenu = type;
+
+      const menu = document.getElementById(`menu-${type}`);
+      const hamburger = document.getElementById('menuToggle');
+      hamburger.classList.add('active');
+
+      switch(type) {
+        case 'simple':
+          menu.classList.add('active');
+          break;
+
+        case 'staggered':
+          menu.classList.add('active');
+          const links = menu.querySelectorAll('.menu-nav a');
+          gsap.fromTo(links,
+            { y: '100%', opacity: 0 },
+            { y: '0%', opacity: 1, duration: 0.6, stagger: 0.1, ease: 'power3.out', delay: 0.2 }
+          );
+          break;
+
+        case 'images':
+          menu.classList.add('active');
+          // Add hover handlers
+          const imageLinks = menu.querySelectorAll('.menu-nav a');
+          imageLinks.forEach(link => {
+            link.addEventListener('mouseenter', handleImageHover);
+          });
+          break;
+
+        case 'slide':
+          menu.style.opacity = '1';
+          menu.style.visibility = 'visible';
+          gsap.to(menu, { x: '0%', duration: 0.5, ease: 'power3.out' });
+          break;
+      }
+
+      showStatus(`Menu style: ${type}`);
+    }
+
+    function closeMenu(type) {
+      const menu = document.getElementById(`menu-${type}`);
+      const hamburger = document.getElementById('menuToggle');
+      hamburger.classList.remove('active');
+
+      if (type === 'slide') {
+        gsap.to(menu, {
+          x: '100%',
+          duration: 0.5,
+          ease: 'power3.in',
+          onComplete: () => {
+            menu.style.opacity = '0';
+            menu.style.visibility = 'hidden';
+          }
+        });
+      } else {
+        menu.classList.remove('active');
+        if (type === 'staggered') {
+          const links = menu.querySelectorAll('.menu-nav a');
+          gsap.set(links, { y: '100%', opacity: 0 });
+        }
+      }
+
+      currentMenu = null;
+    }
+
+    function handleImageHover(e) {
+      const imageId = e.target.dataset.image;
+      const menu = document.getElementById('menu-images');
+      const images = menu.querySelectorAll('.menu-image');
+
+      images.forEach(img => img.classList.remove('active'));
+      const targetImage = menu.querySelector(`.menu-image[data-for="${imageId}"]`);
+      if (targetImage) targetImage.classList.add('active');
+    }
+
+    // Hamburger toggle
+    document.getElementById('menuToggle').addEventListener('click', () => {
+      if (currentMenu) {
+        closeMenu(currentMenu);
+      } else {
+        showMenu('staggered'); // Default to staggered
+      }
+    });
+
+    // Close on escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && currentMenu) {
+        closeMenu(currentMenu);
+      }
+    });
+  </script>
+</body>
+</html>

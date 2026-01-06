@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="view-transition" content="same-origin">
+  <title>Home - View Transitions Demo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <a href="index.html" class="logo">STOMPERS</a>
+    <nav class="nav">
+      <a href="index.html" class="nav-link active">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="tour.html" class="nav-link">Tour</a>
+      <a href="merch.html" class="nav-link">Merch</a>
+    </nav>
+    <div class="hamburger" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <main class="page-content" style="view-transition-name: page-content;">
+    <section class="hero">
+      <h1 class="hero-title" style="view-transition-name: hero-title;">Swamp City<br>Stompers</h1>
+      <p class="hero-tagline">Southern Rock & Swamp Blues from Eastern Ontario</p>
+      <div class="hero-cta">
+        <a href="tour.html" class="btn btn-primary">See Tour Dates</a>
+        <a href="about.html" class="btn btn-outline">Our Story</a>
+      </div>
+    </section>
+
+    <section class="intro">
+      <h2>View Transitions Demo</h2>
+      <p>Click any navigation link to see the page transition effect. The View Transitions API handles the animation automatically.</p>
+
+      <div class="transition-info">
+        <h3>Current Transition Style:</h3>
+        <div class="style-switcher">
+          <button class="style-btn active" data-style="slide">Slide Up</button>
+          <button class="style-btn" data-style="fade">Crossfade</button>
+          <button class="style-btn" data-style="scale">Scale</button>
+          <button class="style-btn" data-style="lift">Lift</button>
+          <button class="style-btn" data-style="flip">Flip</button>
+        </div>
+        <p class="hint">Switch styles and navigate to see different effects</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Full-screen menu overlay -->
+  <div class="menu-overlay" id="menuOverlay">
+    <button class="menu-close" id="menuClose">&times;</button>
+    <nav class="menu-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="tour.html">Tour</a>
+      <a href="merch.html">Merch</a>
+    </nav>
+  </div>
+
+  <script src="transitions.js"></script>
+</body>
+</html>
