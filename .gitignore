@@ -5,10 +5,8 @@ dist/
 .env
 .env.local
 
-# Analysis output (not critical to website)
-analysis-screenshots/
-scroll-analysis/
-scroll-analysis-output/
+# Archive (experimental versions, analysis output)
+_archive/
 
 # IDE/Editor
 .vscode/
