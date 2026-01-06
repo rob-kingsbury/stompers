@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Swamp City Stompers</title>
+  <meta name="description" content="Get in touch with the Swamp City Stompers - booking inquiries and general contact.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/immersive-master.css">
+</head>
+<body data-barba="wrapper">
+  <!-- Hamburger Menu Button -->
+  <div class="hamburger-container">
+    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <!-- Menu Overlay -->
+  <div class="menu-overlay" aria-hidden="true">
+    <nav class="menu-nav">
+      <a href="index.html" class="menu-nav-link">Home</a>
+      <a href="tour.html" class="menu-nav-link">Tour</a>
+      <a href="story.html" class="menu-nav-link">Story</a>
+      <a href="epk.html" class="menu-nav-link">EPK</a>
+      <a href="merch.html" class="menu-nav-link">Merch</a>
+      <a href="contact.html" class="menu-nav-link is-active">Contact</a>
+    </nav>
+    <div class="menu-footer">
+      <a href="https://facebook.com/swampcitystompers" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://instagram.com/swampcitystompers" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://youtube.com/@swampcitystompers" target="_blank" rel="noopener">YouTube</a>
+    </div>
+  </div>
+
+  <main class="page-main" data-barba="container" data-barba-namespace="contact">
+    <!-- Page Hero -->
+    <section class="page-hero page-hero--contact">
+      <div class="page-hero-content">
+        <span class="section-number">GET IN TOUCH</span>
+        <h1 class="page-title">Contact</h1>
+      </div>
+    </section>
+
+    <!-- Contact Content -->
+    <section class="content-section">
+      <div class="contact-grid">
+        <!-- Contact Form -->
+        <div class="contact-form-wrapper">
+          <h2>Send a Message</h2>
+          <form class="contact-form" action="#" method="post">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <select id="subject" name="subject">
+                <option value="booking">Booking Inquiry</option>
+                <option value="press">Press / Media</option>
+                <option value="general">General</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+          </form>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="contact-info">
+          <div class="info-block">
+            <h3>Booking</h3>
+            <p>For booking inquiries, please use the form or email us directly.</p>
+            <a href="mailto:booking@swampcitystompers.com">booking@swampcitystompers.com</a>
+          </div>
+
+          <div class="info-block">
+            <h3>Follow Us</h3>
+            <div class="social-links">
+              <a href="https://facebook.com/swampcitystompers" target="_blank" rel="noopener">Facebook</a>
+              <a href="https://instagram.com/swampcitystompers" target="_blank" rel="noopener">Instagram</a>
+              <a href="https://youtube.com/@swampcitystompers" target="_blank" rel="noopener">YouTube</a>
+            </div>
+          </div>
+
+          <div class="info-block">
+            <h3>Based In</h3>
+            <p>Ottawa, Ontario, Canada</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="js/main-master.js"></script>
+</body>
+</html>

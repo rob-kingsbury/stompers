@@ -13,7 +13,33 @@
   <link rel="stylesheet" href="css/themes.css">
   <link rel="stylesheet" href="css/immersive-master.css">
 </head>
-<body>
+<body data-barba="wrapper">
+  <!-- Hamburger Menu Button -->
+  <div class="hamburger-container">
+    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <!-- Full-screen Menu Overlay -->
+  <div class="menu-overlay" aria-hidden="true">
+    <nav class="menu-nav">
+      <a href="index.html" class="menu-nav-link is-active">Home</a>
+      <a href="tour.html" class="menu-nav-link">Tour</a>
+      <a href="story.html" class="menu-nav-link">Story</a>
+      <a href="epk.html" class="menu-nav-link">EPK</a>
+      <a href="merch.html" class="menu-nav-link">Merch</a>
+      <a href="contact.html" class="menu-nav-link">Contact</a>
+    </nav>
+    <div class="menu-footer">
+      <a href="https://facebook.com/swampcitystompers" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://instagram.com/swampcitystompers" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://youtube.com/@swampcitystompers" target="_blank" rel="noopener">YouTube</a>
+    </div>
+  </div>
+
   <!-- ============================================================
        PROGRESS NAV (MetaMask Style - Vertical Pill with Blob)
        ============================================================ -->
@@ -57,13 +83,7 @@
     </div>
   </nav>
 
-  <!-- Skip to Standard Site -->
-  <a href="index.html" class="skip-link">Standard Site</a>
-
-  <!-- Story Link -->
-  <a href="index-immersive-story.html" class="story-link">Our Story</a>
-
-  <main class="immersive">
+  <main class="immersive" data-barba="container" data-barba-namespace="home">
     <!-- ============================================================
          SECTION 1: HERO - Dark video that GROWS on scroll
          ============================================================ -->

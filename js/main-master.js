@@ -7,6 +7,7 @@ import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+import barba from '@barba/core';
 
 import 'lenis/dist/lenis.css';
 
@@ -20,6 +21,8 @@ let lenis;
 
 function init() {
   initSmoothScroll();
+  initSiteNav();
+  initPageTransitions();
   initProgressNav();
   initHeroAnimations();
   initAboutAnimations();
@@ -27,6 +30,308 @@ function init() {
   initTourSection();
   initQuoteExplosion();
   initContactParallax();
+}
+
+// ============================================================
+// PAGE TRANSITIONS (Barba.js + GSAP Lift Effect)
+// ============================================================
+
+function initPageTransitions() {
+  // Create transition overlay
+  const overlay = document.createElement('div');
+  overlay.className = 'transition-overlay';
+  document.body.appendChild(overlay);
+
+  barba.init({
+    transitions: [
+      {
+        name: 'lift',
+        leave(data) {
+          const done = this.async();
+          const content = data.current.container;
+
+          // Lift out animation
+          gsap.to(content, {
+            opacity: 0,
+            y: -30,
+            scale: 0.98,
+            duration: 0.35,
+            ease: 'power2.in',
+            onComplete: done,
+          });
+        },
+        enter(data) {
+          const content = data.next.container;
+
+          // Set initial state
+          gsap.set(content, {
+            opacity: 0,
+            y: 30,
+            scale: 0.98,
+          });
+
+          // Lift in animation
+          gsap.to(content, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.35,
+            ease: 'power2.out',
+          });
+
+          // Scroll to top
+          window.scrollTo(0, 0);
+          if (lenis) {
+            lenis.scrollTo(0, { immediate: true });
+          }
+        },
+        afterEnter() {
+          // Reinitialize components after page change
+          ScrollTrigger.refresh();
+
+          // Reset menu state before reinitializing
+          resetStompMenu();
+
+          initSiteNav();
+          initProgressNav();
+          initHeroAnimations();
+          initAboutAnimations();
+          initBandCardStack();
+          initTourSection();
+          initQuoteExplosion();
+          initContactParallax();
+        },
+      },
+    ],
+  });
+}
+
+// ============================================================
+// SITE NAVIGATION - STOMP MENU (Seismic Impact Effect)
+// ============================================================
+
+let menuTimeline = null;
+let menuIsOpen = false;
+let menuIsAnimating = false;
+
+// Reset menu state (called before page transitions)
+function resetStompMenu() {
+  menuIsOpen = false;
+  menuIsAnimating = false;
+
+  const hamburger = document.querySelector('.hamburger');
+  const menuOverlay = document.querySelector('.menu-overlay');
+  const menuBg = document.querySelector('.menu-bg');
+  const menuLinks = document.querySelectorAll('.menu-nav-link');
+  const menuFooter = document.querySelector('.menu-footer');
+
+  // Reset classes
+  hamburger?.classList.remove('is-active');
+  menuOverlay?.classList.remove('is-open');
+
+  // Reset GSAP transforms
+  if (hamburger?.children) {
+    gsap.set(hamburger.children[0], { y: 0, rotate: 0 });
+    gsap.set(hamburger.children[1], { opacity: 1, scaleX: 1 });
+    gsap.set(hamburger.children[2], { y: 0, rotate: 0 });
+  }
+
+  if (menuBg) {
+    gsap.set(menuBg, { right: '-100%' });
+  }
+
+  if (menuLinks.length) {
+    gsap.set(menuLinks, { opacity: 0, y: 60 });
+  }
+
+  if (menuFooter) {
+    gsap.set(menuFooter, { opacity: 0 });
+  }
+
+  // Clear any leftover transforms from body
+  gsap.set(document.body, { clearProps: 'transform' });
+  document.body.style.overflow = '';
+
+  // Kill old timeline
+  if (menuTimeline) {
+    menuTimeline.kill();
+    menuTimeline = null;
+  }
+}
+
+function initSiteNav() {
+  const hamburger = document.querySelector('.hamburger');
+  const menuOverlay = document.querySelector('.menu-overlay');
+
+  if (!hamburger || !menuOverlay) return;
+
+  // Create menu elements if they don't exist
+  if (!document.querySelector('.menu-bg')) {
+    const menuBg = document.createElement('div');
+    menuBg.className = 'menu-bg';
+    document.body.appendChild(menuBg);
+  }
+
+  if (!document.querySelector('.dust-container')) {
+    const dustContainer = document.createElement('div');
+    dustContainer.className = 'dust-container';
+    document.body.appendChild(dustContainer);
+  }
+
+  const menuBg = document.querySelector('.menu-bg');
+  const dustContainer = document.querySelector('.dust-container');
+  const menuLinks = menuOverlay.querySelectorAll('.menu-nav-link');
+  const menuFooter = menuOverlay.querySelector('.menu-footer');
+  const pageContent = document.querySelector('.immersive') || document.querySelector('.page-main');
+
+  // Set initial states for menu content (GSAP controls these)
+  gsap.set(menuLinks, { opacity: 0, y: 60 });
+  gsap.set(menuFooter, { opacity: 0 });
+
+  // Build the GSAP timeline for Stomp effect (matching demo)
+  menuTimeline = gsap.timeline({ paused: true });
+
+  menuTimeline
+    // Hamburger to X animation
+    .to(hamburger.children[0], { y: 10, rotate: 45, duration: 0.2 }, 0)
+    .to(hamburger.children[1], { scaleX: 0, duration: 0.2 }, 0)
+    .to(hamburger.children[2], { y: -10, rotate: -45, duration: 0.2 }, 0)
+
+    // Screen shake effect on page content (not body, to preserve fixed positioning)
+    .to(pageContent, {
+      x: () => Math.random() * 8 - 4,
+      y: () => Math.random() * 8 - 4,
+      duration: 0.05,
+      repeat: 6,
+      yoyo: true,
+      ease: 'none',
+    }, 0.1)
+    .set(pageContent, { x: 0, y: 0 })
+
+    // Menu background crashes in from right
+    .to(menuBg, {
+      right: 0,
+      duration: 0.5,
+      ease: 'power4.out',
+    }, 0.15)
+
+    // Spawn dust particles on impact
+    .add(() => {
+      spawnDustParticles(dustContainer, 15);
+    }, 0.2)
+
+    // Menu links bounce in with elastic easing
+    .to(menuLinks, {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      stagger: 0.1,
+      ease: 'elastic.out(1, 0.5)',
+    }, 0.3)
+
+    // Footer fades in
+    .to(menuFooter, {
+      opacity: 1,
+      duration: 0.4,
+    }, 0.6);
+
+  // Click handler - prevent clicks during animation
+  hamburger.addEventListener('click', () => {
+    if (menuIsAnimating) return;
+
+    if (menuIsOpen) {
+      closeStompMenu();
+    } else {
+      openStompMenu();
+    }
+  });
+
+  // Close on escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menuIsOpen) {
+      closeStompMenu();
+    }
+  });
+
+  // Close when clicking a link
+  menuLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      closeStompMenu();
+    });
+  });
+
+  function openStompMenu() {
+    menuIsOpen = true;
+    menuIsAnimating = true;
+    menuOverlay.classList.add('is-open');
+    hamburger.classList.add('is-active');
+    document.body.style.overflow = 'hidden';
+    if (lenis) lenis.stop();
+    menuTimeline.play();
+
+    // Allow clicks after animation completes
+    setTimeout(() => {
+      menuIsAnimating = false;
+    }, 800);
+  }
+
+  function closeStompMenu() {
+    menuIsOpen = false;
+    menuIsAnimating = true;
+    hamburger.classList.remove('is-active');
+    document.body.style.overflow = '';
+    if (lenis) lenis.start();
+    menuTimeline.reverse();
+
+    // Remove is-open class and allow clicks after animation completes
+    setTimeout(() => {
+      if (!menuIsOpen) {
+        menuOverlay.classList.remove('is-open');
+      }
+      menuIsAnimating = false;
+    }, 800);
+  }
+}
+
+// Spawn dust particles for stomp effect
+function spawnDustParticles(container, count) {
+  if (!container) return;
+
+  for (let i = 0; i < count; i++) {
+    const dust = document.createElement('div');
+    dust.className = 'dust';
+
+    // Random position along bottom
+    const startX = Math.random() * 100;
+    dust.style.left = `${startX}%`;
+
+    // Random size
+    const size = 4 + Math.random() * 8;
+    dust.style.width = `${size}px`;
+    dust.style.height = `${size}px`;
+
+    container.appendChild(dust);
+
+    // Animate particle
+    gsap.fromTo(
+      dust,
+      {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+      },
+      {
+        y: -180 - Math.random() * 150,
+        x: (Math.random() - 0.5) * 150,
+        opacity: 0,
+        scale: 0.3 + Math.random() * 0.5,
+        rotation: Math.random() * 360,
+        duration: 1 + Math.random() * 0.8,
+        ease: 'power2.out',
+        onComplete: () => dust.remove(),
+      }
+    );
+  }
 }
 
 // ============================================================

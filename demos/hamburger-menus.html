@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hamburger Menu Concepts | Stompers</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --color-bg: #0a0a0a;
+      --color-bg-alt: #111111;
+      --color-text: #f5f5f0;
+      --color-text-muted: #888888;
+      --color-accent: #c9a227;
+      --color-accent-rgb: 201, 162, 39;
+      --font-mono: 'IBM Plex Mono', monospace;
+      --font-serif: 'Source Serif Pro', Georgia, serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-mono);
+      background: var(--color-bg);
+      color: var(--color-text);
+      min-height: 100vh;
+    }
+
+    /* Demo Selector */
+    .demo-selector {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.5rem;
+      z-index: 1000;
+      background: rgba(0,0,0,0.9);
+      padding: 1rem;
+      border-radius: 50px;
+      border: 1px solid rgba(201, 162, 39, 0.3);
+    }
+
+    .demo-btn {
+      padding: 0.75rem 1.25rem;
+      background: transparent;
+      border: 1px solid var(--color-text-muted);
+      color: var(--color-text);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      cursor: pointer;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .demo-btn:hover {
+      border-color: var(--color-accent);
+      color: var(--color-accent);
+    }
+
+    .demo-btn.active {
+      background: var(--color-accent);
+      border-color: var(--color-accent);
+      color: var(--color-bg);
+    }
+
+    /* Demo Container */
+    .demo-container {
+      display: none;
+      min-height: 100vh;
+    }
+
+    .demo-container.active {
+      display: block;
+    }
+
+    /* Common Header Styles */
+    .demo-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+    }
+
+    .demo-logo {
+      font-family: var(--font-mono);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--color-text);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+    }
+
+    /* Common Menu Overlay */
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 90;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4rem;
+      pointer-events: none;
+    }
+
+    .menu-overlay.is-open {
+      pointer-events: all;
+    }
+
+    .menu-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .menu-link {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 8vw, 5rem);
+      font-weight: 600;
+      color: var(--color-text);
+      text-decoration: none;
+      opacity: 0;
+      transform: translateY(60px);
+      display: inline-block;
+      transition: color 0.3s ease;
+    }
+
+    .menu-link:hover {
+      color: var(--color-accent);
+    }
+
+    .menu-footer {
+      position: absolute;
+      bottom: 4rem;
+      left: 4rem;
+      display: flex;
+      gap: 2rem;
+      opacity: 0;
+    }
+
+    .menu-footer a {
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.3s ease;
+    }
+
+    .menu-footer a:hover {
+      color: var(--color-accent);
+    }
+
+    /* Page Content */
+    .page-content {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .page-content h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 6vw, 4rem);
+      margin-bottom: 1rem;
+    }
+
+    .page-content p {
+      color: var(--color-text-muted);
+      max-width: 400px;
+      line-height: 1.6;
+    }
+
+    .demo-label {
+      position: fixed;
+      top: 50%;
+      left: 2rem;
+      transform: rotate(-90deg) translateX(-50%);
+      transform-origin: left center;
+      font-size: 0.75rem;
+      color: var(--color-accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    /* ============================================
+       DEMO 1: SWAMP REVEAL - Liquid Morphing
+       ============================================ */
+    #demo1 .hamburger {
+      width: 32px;
+      height: 24px;
+      position: relative;
+      cursor: pointer;
+      z-index: 101;
+    }
+
+    #demo1 .hamburger span {
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: var(--color-text);
+      transition: all 0.3s ease;
+    }
+
+    #demo1 .hamburger span:nth-child(1) { top: 0; }
+    #demo1 .hamburger span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+    #demo1 .hamburger span:nth-child(3) { bottom: 0; }
+
+    #demo1 .menu-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--color-bg);
+      clip-path: circle(0% at calc(100% - 3rem) 2.5rem);
+      transition: clip-path 0s;
+      z-index: 80;
+    }
+
+    /* Swamp particles */
+    #demo1 .swamp-particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 85;
+      overflow: hidden;
+    }
+
+    #demo1 .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--color-accent);
+      border-radius: 50%;
+      opacity: 0;
+    }
+
+    /* ============================================
+       DEMO 2: STOMP EFFECT - Seismic Impact
+       ============================================ */
+    #demo2 .hamburger {
+      width: 32px;
+      height: 24px;
+      position: relative;
+      cursor: pointer;
+      z-index: 101;
+    }
+
+    #demo2 .hamburger span {
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      background: var(--color-text);
+      border-radius: 2px;
+    }
+
+    #demo2 .hamburger span:nth-child(1) { top: 0; }
+    #demo2 .hamburger span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+    #demo2 .hamburger span:nth-child(3) { bottom: 0; }
+
+    #demo2 .menu-bg {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+      z-index: 80;
+    }
+
+    #demo2 .dust-container {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 200px;
+      pointer-events: none;
+      z-index: 85;
+      overflow: hidden;
+    }
+
+    #demo2 .dust {
+      position: absolute;
+      bottom: 0;
+      width: 8px;
+      height: 8px;
+      background: rgba(201, 162, 39, 0.6);
+      border-radius: 50%;
+    }
+
+    /* ============================================
+       DEMO 3: MAGNETIC WHISKEY - Cursor Reactive
+       ============================================ */
+    #demo3 .hamburger {
+      width: 40px;
+      height: 40px;
+      position: relative;
+      cursor: pointer;
+      z-index: 101;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+    }
+
+    #demo3 .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--color-text);
+      transition: all 0.3s ease;
+    }
+
+    #demo3 .menu-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--color-bg);
+      opacity: 0;
+      visibility: hidden;
+      z-index: 80;
+    }
+
+    #demo3 .menu-link {
+      position: relative;
+      padding: 0.5rem 0;
+    }
+
+    #demo3 .cursor-glow {
+      position: fixed;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(201, 162, 39, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 95;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+    }
+
+    /* ============================================
+       DEMO 4: SPLIT STAGE - Theatrical Curtain
+       ============================================ */
+    #demo4 .hamburger {
+      width: 32px;
+      height: 24px;
+      position: relative;
+      cursor: pointer;
+      z-index: 101;
+    }
+
+    #demo4 .hamburger span {
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: var(--color-text);
+    }
+
+    #demo4 .hamburger span:nth-child(1) { top: 0; width: 50%; }
+    #demo4 .hamburger span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+    #demo4 .hamburger span:nth-child(3) { bottom: 0; width: 75%; }
+
+    #demo4 .curtain {
+      position: fixed;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      z-index: 80;
+    }
+
+    #demo4 .curtain--left {
+      left: 0;
+      background: linear-gradient(90deg, #0a0a0a, #151515);
+      transform: translateX(-100%);
+    }
+
+    #demo4 .curtain--right {
+      right: 0;
+      background: linear-gradient(-90deg, #0a0a0a, #151515);
+      transform: translateX(100%);
+    }
+
+    #demo4 .spotlight {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 50% 50%, rgba(201, 162, 39, 0.1) 0%, transparent 50%);
+      opacity: 0;
+      z-index: 85;
+      pointer-events: none;
+    }
+
+    #demo4 .menu-overlay {
+      align-items: center;
+      text-align: center;
+    }
+
+    /* ============================================
+       DEMO 5: VINYL SPIN - Record Player
+       ============================================ */
+    #demo5 .hamburger {
+      width: 40px;
+      height: 40px;
+      position: relative;
+      cursor: pointer;
+      z-index: 101;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+      border: 2px solid var(--color-text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #demo5 .hamburger::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: var(--color-accent);
+      border-radius: 50%;
+    }
+
+    #demo5 .hamburger span {
+      display: none;
+    }
+
+    #demo5 .vinyl-bg {
+      position: fixed;
+      top: calc(100% - 3rem);
+      right: 3rem;
+      width: 50px;
+      height: 50px;
+      background: radial-gradient(circle,
+        var(--color-accent) 0%,
+        var(--color-accent) 15%,
+        #1a1a1a 15%,
+        #1a1a1a 20%,
+        #0a0a0a 20%,
+        #0a0a0a 30%,
+        #1a1a1a 30%,
+        #1a1a1a 35%,
+        #0a0a0a 35%,
+        #0a0a0a 50%,
+        #1a1a1a 50%,
+        #1a1a1a 55%,
+        #0a0a0a 55%,
+        #0a0a0a 70%,
+        #1a1a1a 70%,
+        #1a1a1a 75%,
+        #0a0a0a 75%
+      );
+      border-radius: 50%;
+      z-index: 80;
+      transform-origin: center center;
+    }
+
+    #demo5 .menu-overlay {
+      align-items: center;
+      text-align: center;
+    }
+
+    #demo5 .menu-link {
+      font-family: var(--font-mono);
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+
+    #demo5 .menu-link::before {
+      content: attr(data-track);
+      margin-right: 2rem;
+      color: var(--color-accent);
+      font-size: 0.875rem;
+    }
+
+    #demo5 .needle {
+      position: fixed;
+      top: 50%;
+      right: 10%;
+      width: 150px;
+      height: 4px;
+      background: linear-gradient(90deg, #333, #666);
+      transform-origin: right center;
+      transform: rotate(30deg);
+      z-index: 86;
+      opacity: 0;
+    }
+
+    #demo5 .needle::before {
+      content: '';
+      position: absolute;
+      left: -10px;
+      top: -8px;
+      width: 20px;
+      height: 20px;
+      background: #444;
+      border-radius: 50%;
+    }
+
+    #demo5 .needle::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: -2px;
+      border-left: 8px solid #888;
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+    }
+
+    /* Instructions */
+    .instructions {
+      position: fixed;
+      top: 6rem;
+      right: 2rem;
+      text-align: right;
+      z-index: 50;
+    }
+
+    .instructions p {
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .instructions .arrow {
+      display: inline-block;
+      animation: bounce 1s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Demo Selector -->
+  <nav class="demo-selector">
+    <button class="demo-btn active" data-demo="1">Swamp</button>
+    <button class="demo-btn" data-demo="2">Stomp</button>
+    <button class="demo-btn" data-demo="3">Magnetic</button>
+    <button class="demo-btn" data-demo="4">Curtain</button>
+    <button class="demo-btn" data-demo="5">Vinyl</button>
+  </nav>
+
+  <!-- ============================================
+       DEMO 1: SWAMP REVEAL
+       ============================================ -->
+  <div id="demo1" class="demo-container active">
+    <span class="demo-label">01 — Swamp Reveal</span>
+
+    <header class="demo-header">
+      <a href="#" class="demo-logo">STOMPERS</a>
+      <div class="hamburger" id="hamburger1">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </header>
+
+    <div class="menu-bg"></div>
+    <div class="swamp-particles">
+      <!-- Particles added by JS -->
+    </div>
+
+    <div class="menu-overlay">
+      <nav class="menu-nav">
+        <a href="#" class="menu-link">Home</a>
+        <a href="#" class="menu-link">Tour</a>
+        <a href="#" class="menu-link">Story</a>
+        <a href="#" class="menu-link">EPK</a>
+        <a href="#" class="menu-link">Contact</a>
+      </nav>
+      <div class="menu-footer">
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">YouTube</a>
+      </div>
+    </div>
+
+    <div class="page-content">
+      <h1>Swamp Reveal</h1>
+      <p>Liquid morphing overlay that expands from the hamburger. Menu items rise from the murk like creatures from the swamp.</p>
+    </div>
+
+    <div class="instructions">
+      <p>Click the hamburger <span class="arrow">↑</span></p>
+    </div>
+  </div>
+
+  <!-- ============================================
+       DEMO 2: STOMP EFFECT
+       ============================================ -->
+  <div id="demo2" class="demo-container">
+    <span class="demo-label">02 — Stomp Effect</span>
+
+    <header class="demo-header">
+      <a href="#" class="demo-logo">STOMPERS</a>
+      <div class="hamburger" id="hamburger2">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </header>
+
+    <div class="menu-bg"></div>
+    <div class="dust-container"></div>
+
+    <div class="menu-overlay">
+      <nav class="menu-nav">
+        <a href="#" class="menu-link">Home</a>
+        <a href="#" class="menu-link">Tour</a>
+        <a href="#" class="menu-link">Story</a>
+        <a href="#" class="menu-link">EPK</a>
+        <a href="#" class="menu-link">Contact</a>
+      </nav>
+      <div class="menu-footer">
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">YouTube</a>
+      </div>
+    </div>
+
+    <div class="page-content">
+      <h1>Stomp Effect</h1>
+      <p>Seismic impact animation. The screen shakes, menu crashes in with dust particles and spring physics.</p>
+    </div>
+
+    <div class="instructions">
+      <p>Click the hamburger <span class="arrow">↑</span></p>
+    </div>
+  </div>
+
+  <!-- ============================================
+       DEMO 3: MAGNETIC WHISKEY
+       ============================================ -->
+  <div id="demo3" class="demo-container">
+    <span class="demo-label">03 — Magnetic Whiskey</span>
+
+    <header class="demo-header">
+      <a href="#" class="demo-logo">STOMPERS</a>
+      <div class="hamburger" id="hamburger3">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </header>
+
+    <div class="menu-bg"></div>
+    <div class="cursor-glow"></div>
+
+    <div class="menu-overlay">
+      <nav class="menu-nav">
+        <a href="#" class="menu-link">Home</a>
+        <a href="#" class="menu-link">Tour</a>
+        <a href="#" class="menu-link">Story</a>
+        <a href="#" class="menu-link">EPK</a>
+        <a href="#" class="menu-link">Contact</a>
+      </nav>
+      <div class="menu-footer">
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">YouTube</a>
+      </div>
+    </div>
+
+    <div class="page-content">
+      <h1>Magnetic Whiskey</h1>
+      <p>Smooth cursor-reactive menu. Items have magnetic pull, gold glow follows the cursor with whiskey-smooth easing.</p>
+    </div>
+
+    <div class="instructions">
+      <p>Click the hamburger <span class="arrow">↑</span></p>
+    </div>
+  </div>
+
+  <!-- ============================================
+       DEMO 4: SPLIT STAGE
+       ============================================ -->
+  <div id="demo4" class="demo-container">
+    <span class="demo-label">04 — Split Stage</span>
+
+    <header class="demo-header">
+      <a href="#" class="demo-logo">STOMPERS</a>
+      <div class="hamburger" id="hamburger4">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </header>
+
+    <div class="curtain curtain--left"></div>
+    <div class="curtain curtain--right"></div>
+    <div class="spotlight"></div>
+
+    <div class="menu-overlay">
+      <nav class="menu-nav">
+        <a href="#" class="menu-link">Home</a>
+        <a href="#" class="menu-link">Tour</a>
+        <a href="#" class="menu-link">Story</a>
+        <a href="#" class="menu-link">EPK</a>
+        <a href="#" class="menu-link">Contact</a>
+      </nav>
+      <div class="menu-footer">
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">YouTube</a>
+      </div>
+    </div>
+
+    <div class="page-content">
+      <h1>Split Stage</h1>
+      <p>Theatrical curtain reveal. Two panels slide apart like stage curtains, menu items fade in with spotlight effect.</p>
+    </div>
+
+    <div class="instructions">
+      <p>Click the hamburger <span class="arrow">↑</span></p>
+    </div>
+  </div>
+
+  <!-- ============================================
+       DEMO 5: VINYL SPIN
+       ============================================ -->
+  <div id="demo5" class="demo-container">
+    <span class="demo-label">05 — Vinyl Spin</span>
+
+    <header class="demo-header">
+      <a href="#" class="demo-logo">STOMPERS</a>
+      <div class="hamburger" id="hamburger5">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </header>
+
+    <div class="vinyl-bg"></div>
+    <div class="needle"></div>
+
+    <div class="menu-overlay">
+      <nav class="menu-nav">
+        <a href="#" class="menu-link" data-track="01">Home</a>
+        <a href="#" class="menu-link" data-track="02">Tour</a>
+        <a href="#" class="menu-link" data-track="03">Story</a>
+        <a href="#" class="menu-link" data-track="04">EPK</a>
+        <a href="#" class="menu-link" data-track="05">Contact</a>
+      </nav>
+      <div class="menu-footer">
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">YouTube</a>
+      </div>
+    </div>
+
+    <div class="page-content">
+      <h1>Vinyl Spin</h1>
+      <p>Record player themed menu. Vinyl spins and expands to fill screen, menu items appear as track listings.</p>
+    </div>
+
+    <div class="instructions">
+      <p>Click the vinyl <span class="arrow">↑</span></p>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script>
+    // Demo Selector
+    const demoButtons = document.querySelectorAll('.demo-btn');
+    const demoContainers = document.querySelectorAll('.demo-container');
+
+    demoButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const demoId = btn.dataset.demo;
+
+        // Update buttons
+        demoButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Close any open menus first
+        closeAllMenus();
+
+        // Update containers
+        demoContainers.forEach(c => c.classList.remove('active'));
+        document.getElementById(`demo${demoId}`).classList.add('active');
+      });
+    });
+
+    function closeAllMenus() {
+      // Reset all menu states
+      [menuTl1, menuTl2, menuTl3, menuTl4, menuTl5].forEach((tl, i) => {
+        if (tl) tl.reverse();
+        menuStates[i] = false;
+      });
+    }
+
+    // Track menu states
+    const menuStates = [false, false, false, false, false];
+
+    // ============================================
+    // DEMO 1: SWAMP REVEAL
+    // ============================================
+    const demo1 = document.querySelector('#demo1');
+    const hamburger1 = document.querySelector('#hamburger1');
+    const menuBg1 = demo1.querySelector('.menu-bg');
+    const menuOverlay1 = demo1.querySelector('.menu-overlay');
+    const menuLinks1 = demo1.querySelectorAll('.menu-link');
+    const menuFooter1 = demo1.querySelector('.menu-footer');
+    const particles1 = demo1.querySelector('.swamp-particles');
+
+    // Create particles
+    for (let i = 0; i < 20; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.left = `${Math.random() * 100}%`;
+      particle.style.top = `${Math.random() * 100}%`;
+      particles1.appendChild(particle);
+    }
+
+    const menuTl1 = gsap.timeline({ paused: true });
+
+    menuTl1
+      // Hamburger to X
+      .to(hamburger1.children[0], { y: 11, rotate: 45, duration: 0.3 }, 0)
+      .to(hamburger1.children[1], { opacity: 0, duration: 0.2 }, 0)
+      .to(hamburger1.children[2], { y: -11, rotate: -45, duration: 0.3 }, 0)
+      // Expand circle
+      .to(menuBg1, {
+        clipPath: 'circle(150% at calc(100% - 3rem) 2.5rem)',
+        duration: 0.8,
+        ease: 'power4.inOut'
+      }, 0.1)
+      // Particles float up
+      .to(particles1.children, {
+        opacity: 0.6,
+        y: () => -100 - Math.random() * 200,
+        x: () => (Math.random() - 0.5) * 100,
+        duration: 2,
+        stagger: 0.05,
+        ease: 'power1.out'
+      }, 0.3)
+      // Menu links rise
+      .to(menuLinks1, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.08,
+        ease: 'back.out(1.2)'
+      }, 0.4)
+      // Footer
+      .to(menuFooter1, {
+        opacity: 1,
+        duration: 0.4
+      }, 0.7);
+
+    hamburger1.addEventListener('click', () => {
+      menuStates[0] = !menuStates[0];
+      menuStates[0] ? menuTl1.play() : menuTl1.reverse();
+      menuOverlay1.classList.toggle('is-open', menuStates[0]);
+    });
+
+    // ============================================
+    // DEMO 2: STOMP EFFECT
+    // ============================================
+    const demo2 = document.querySelector('#demo2');
+    const hamburger2 = document.querySelector('#hamburger2');
+    const menuBg2 = demo2.querySelector('.menu-bg');
+    const menuOverlay2 = demo2.querySelector('.menu-overlay');
+    const menuLinks2 = demo2.querySelectorAll('.menu-link');
+    const menuFooter2 = demo2.querySelector('.menu-footer');
+    const dustContainer = demo2.querySelector('.dust-container');
+
+    const menuTl2 = gsap.timeline({ paused: true });
+
+    menuTl2
+      // Hamburger animation
+      .to(hamburger2.children[0], { y: 10, rotate: 45, duration: 0.2 }, 0)
+      .to(hamburger2.children[1], { scaleX: 0, duration: 0.2 }, 0)
+      .to(hamburger2.children[2], { y: -10, rotate: -45, duration: 0.2 }, 0)
+      // Screen shake
+      .to(demo2, {
+        x: () => Math.random() * 10 - 5,
+        y: () => Math.random() * 10 - 5,
+        duration: 0.05,
+        repeat: 5,
+        yoyo: true,
+        ease: 'none'
+      }, 0.1)
+      .set(demo2, { x: 0, y: 0 })
+      // Menu crashes in
+      .to(menuBg2, {
+        right: 0,
+        duration: 0.5,
+        ease: 'power4.out'
+      }, 0.15)
+      // Dust particles
+      .add(() => {
+        for (let i = 0; i < 15; i++) {
+          const dust = document.createElement('div');
+          dust.className = 'dust';
+          dust.style.left = `${Math.random() * 100}%`;
+          dustContainer.appendChild(dust);
+
+          gsap.fromTo(dust,
+            { y: 0, opacity: 1, scale: 1 },
+            {
+              y: -150 - Math.random() * 100,
+              x: (Math.random() - 0.5) * 100,
+              opacity: 0,
+              scale: 0,
+              duration: 1 + Math.random(),
+              ease: 'power2.out',
+              onComplete: () => dust.remove()
+            }
+          );
+        }
+      }, 0.2)
+      // Menu items bounce in
+      .to(menuLinks2, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: 'elastic.out(1, 0.5)'
+      }, 0.3)
+      .to(menuFooter2, {
+        opacity: 1,
+        duration: 0.4
+      }, 0.6);
+
+    hamburger2.addEventListener('click', () => {
+      menuStates[1] = !menuStates[1];
+      if (menuStates[1]) {
+        menuTl2.play();
+      } else {
+        menuTl2.reverse();
+      }
+      menuOverlay2.classList.toggle('is-open', menuStates[1]);
+    });
+
+    // ============================================
+    // DEMO 3: MAGNETIC WHISKEY
+    // ============================================
+    const demo3 = document.querySelector('#demo3');
+    const hamburger3 = document.querySelector('#hamburger3');
+    const menuBg3 = demo3.querySelector('.menu-bg');
+    const menuOverlay3 = demo3.querySelector('.menu-overlay');
+    const menuLinks3 = demo3.querySelectorAll('.menu-link');
+    const menuFooter3 = demo3.querySelector('.menu-footer');
+    const cursorGlow = demo3.querySelector('.cursor-glow');
+
+    const menuTl3 = gsap.timeline({ paused: true });
+
+    menuTl3
+      // Hamburger morph
+      .to(hamburger3.children[0], { y: 8, rotate: 45, duration: 0.3 }, 0)
+      .to(hamburger3.children[1], { opacity: 0, duration: 0.2 }, 0)
+      .to(hamburger3.children[2], { y: -8, rotate: -45, duration: 0.3 }, 0)
+      // Background fade
+      .to(menuBg3, {
+        opacity: 1,
+        visibility: 'visible',
+        duration: 0.4,
+        ease: 'power2.inOut'
+      }, 0.1)
+      // Cursor glow
+      .to(cursorGlow, {
+        opacity: 1,
+        duration: 0.3
+      }, 0.2)
+      // Menu links pour in
+      .to(menuLinks3, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: 'power4.out'
+      }, 0.3)
+      .to(menuFooter3, {
+        opacity: 1,
+        duration: 0.4
+      }, 0.6);
+
+    // Magnetic effect on menu links
+    menuLinks3.forEach(link => {
+      link.addEventListener('mousemove', (e) => {
+        if (!menuStates[2]) return;
+        const rect = link.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        gsap.to(link, {
+          x: x * 0.3,
+          y: y * 0.3,
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+      });
+
+      link.addEventListener('mouseleave', () => {
+        gsap.to(link, {
+          x: 0,
+          y: 0,
+          duration: 0.5,
+          ease: 'elastic.out(1, 0.3)'
+        });
+      });
+    });
+
+    // Cursor glow follow
+    demo3.addEventListener('mousemove', (e) => {
+      if (!menuStates[2]) return;
+      gsap.to(cursorGlow, {
+        x: e.clientX,
+        y: e.clientY,
+        duration: 0.8,
+        ease: 'power2.out'
+      });
+    });
+
+    hamburger3.addEventListener('click', () => {
+      menuStates[2] = !menuStates[2];
+      menuStates[2] ? menuTl3.play() : menuTl3.reverse();
+      menuOverlay3.classList.toggle('is-open', menuStates[2]);
+    });
+
+    // ============================================
+    // DEMO 4: SPLIT STAGE
+    // ============================================
+    const demo4 = document.querySelector('#demo4');
+    const hamburger4 = document.querySelector('#hamburger4');
+    const curtainLeft = demo4.querySelector('.curtain--left');
+    const curtainRight = demo4.querySelector('.curtain--right');
+    const spotlight = demo4.querySelector('.spotlight');
+    const menuOverlay4 = demo4.querySelector('.menu-overlay');
+    const menuLinks4 = demo4.querySelectorAll('.menu-link');
+    const menuFooter4 = demo4.querySelector('.menu-footer');
+
+    const menuTl4 = gsap.timeline({ paused: true });
+
+    menuTl4
+      // Hamburger
+      .to(hamburger4.children[0], { width: '100%', y: 11, rotate: 45, duration: 0.3 }, 0)
+      .to(hamburger4.children[1], { opacity: 0, duration: 0.2 }, 0)
+      .to(hamburger4.children[2], { width: '100%', y: -11, rotate: -45, duration: 0.3 }, 0)
+      // Curtains open
+      .to(curtainLeft, {
+        x: 0,
+        duration: 0.8,
+        ease: 'power3.inOut'
+      }, 0.1)
+      .to(curtainRight, {
+        x: 0,
+        duration: 0.8,
+        ease: 'power3.inOut'
+      }, 0.1)
+      // Spotlight
+      .to(spotlight, {
+        opacity: 1,
+        duration: 0.5
+      }, 0.4)
+      // Menu links with spotlight stagger
+      .to(menuLinks4, {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        stagger: {
+          each: 0.15,
+          onStart: function() {
+            const index = Array.from(menuLinks4).indexOf(this.targets()[0]);
+            const yPos = 30 + (index * 12);
+            gsap.to(spotlight, {
+              background: `radial-gradient(circle at 50% ${yPos}%, rgba(201, 162, 39, 0.2) 0%, transparent 40%)`,
+              duration: 0.3
+            });
+          }
+        },
+        ease: 'power2.out'
+      }, 0.5)
+      .to(menuFooter4, {
+        opacity: 1,
+        duration: 0.4
+      }, 1);
+
+    hamburger4.addEventListener('click', () => {
+      menuStates[3] = !menuStates[3];
+      menuStates[3] ? menuTl4.play() : menuTl4.reverse();
+      menuOverlay4.classList.toggle('is-open', menuStates[3]);
+    });
+
+    // ============================================
+    // DEMO 5: VINYL SPIN
+    // ============================================
+    const demo5 = document.querySelector('#demo5');
+    const hamburger5 = document.querySelector('#hamburger5');
+    const vinylBg = demo5.querySelector('.vinyl-bg');
+    const needle = demo5.querySelector('.needle');
+    const menuOverlay5 = demo5.querySelector('.menu-overlay');
+    const menuLinks5 = demo5.querySelectorAll('.menu-link');
+    const menuFooter5 = demo5.querySelector('.menu-footer');
+
+    const menuTl5 = gsap.timeline({ paused: true });
+
+    // Continuous vinyl rotation
+    const vinylSpin = gsap.to(vinylBg, {
+      rotation: 360,
+      duration: 4,
+      repeat: -1,
+      ease: 'none',
+      paused: true
+    });
+
+    menuTl5
+      // Hamburger spins
+      .to(hamburger5, {
+        rotation: 360,
+        scale: 0,
+        duration: 0.5,
+        ease: 'power2.in'
+      }, 0)
+      // Vinyl expands and moves to center
+      .to(vinylBg, {
+        top: '50%',
+        right: '50%',
+        xPercent: 50,
+        yPercent: -50,
+        width: '150vmax',
+        height: '150vmax',
+        duration: 0.8,
+        ease: 'power3.inOut'
+      }, 0.2)
+      // Start spinning
+      .add(() => vinylSpin.play(), 0.3)
+      // Needle appears
+      .to(needle, {
+        opacity: 1,
+        rotation: 15,
+        duration: 0.6,
+        ease: 'power2.out'
+      }, 0.6)
+      // Menu links slide in like tracks
+      .to(menuLinks5, {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        stagger: 0.1,
+        ease: 'power2.out'
+      }, 0.7)
+      .to(menuFooter5, {
+        opacity: 1,
+        duration: 0.4
+      }, 1);
+
+    // Reverse cleanup
+    menuTl5.eventCallback('onReverseComplete', () => {
+      vinylSpin.pause();
+      gsap.set(vinylBg, { rotation: 0 });
+    });
+
+    hamburger5.addEventListener('click', () => {
+      menuStates[4] = !menuStates[4];
+      if (menuStates[4]) {
+        menuTl5.play();
+      } else {
+        menuTl5.reverse();
+        vinylSpin.pause();
+      }
+      menuOverlay5.classList.toggle('is-open', menuStates[4]);
+    });
+
+    // Reset all menus on load
+    gsap.set([menuLinks1, menuLinks2, menuLinks3, menuLinks4, menuLinks5], {
+      opacity: 0,
+      y: 60
+    });
+  </script>
+</body>
+</html>
