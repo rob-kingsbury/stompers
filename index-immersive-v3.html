@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Swamp City Stompers | Southern Rock from the Bayou</title>
+  <meta name="description" content="Swamp City Stompers - Gritty southern rock, swamp blues, and roots Americana.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/immersive-v3.css">
+</head>
+<body>
+  <!-- Cinematic Bars -->
+  <div class="cinema-bar cinema-bar--top"></div>
+  <div class="cinema-bar cinema-bar--bottom"></div>
+
+  <!-- Floating Nav -->
+  <nav class="float-nav">
+    <a href="#hero" class="float-nav-item is-active">Home</a>
+    <a href="#story" class="float-nav-item">Story</a>
+    <a href="#band" class="float-nav-item">Band</a>
+    <a href="#live" class="float-nav-item">Live</a>
+    <a href="#connect" class="float-nav-item">Connect</a>
+  </nav>
+
+  <!-- Sound Toggle -->
+  <button class="sound-toggle" id="sound-toggle" aria-label="Toggle sound">
+    <svg class="sound-on" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+      <path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/>
+    </svg>
+    <svg class="sound-off" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+      <line x1="23" y1="9" x2="17" y2="15"/>
+      <line x1="17" y1="9" x2="23" y2="15"/>
+    </svg>
+  </button>
+
+  <main>
+    <!-- HERO - Full Cinematic -->
+    <section class="scene scene--hero" id="hero">
+      <video class="scene-video" autoplay muted loop playsinline id="hero-video">
+        <source src="img/vid-header-mute.mp4" type="video/mp4">
+      </video>
+      <div class="scene-overlay"></div>
+
+      <div class="scene-content">
+        <div class="hero-intro">
+          <span class="hero-intro-line">From the swamps of</span>
+          <span class="hero-intro-line">Eastern Ontario</span>
+        </div>
+
+        <h1 class="hero-band-name">
+          <span class="char-wrap"><span class="char">S</span></span><span class="char-wrap"><span class="char">w</span></span><span class="char-wrap"><span class="char">a</span></span><span class="char-wrap"><span class="char">m</span></span><span class="char-wrap"><span class="char">p</span></span>
+          <br>
+          <span class="char-wrap"><span class="char">C</span></span><span class="char-wrap"><span class="char">i</span></span><span class="char-wrap"><span class="char">t</span></span><span class="char-wrap"><span class="char">y</span></span>
+          <br>
+          <span class="char-wrap"><span class="char">S</span></span><span class="char-wrap"><span class="char">t</span></span><span class="char-wrap"><span class="char">o</span></span><span class="char-wrap"><span class="char">m</span></span><span class="char-wrap"><span class="char">p</span></span><span class="char-wrap"><span class="char">e</span></span><span class="char-wrap"><span class="char">r</span></span><span class="char-wrap"><span class="char">s</span></span>
+        </h1>
+
+        <div class="hero-tagline">
+          <span>Southern Rock</span>
+          <span class="divider">/</span>
+          <span>Blues</span>
+          <span class="divider">/</span>
+          <span>Roots</span>
+        </div>
+      </div>
+
+      <div class="scene-footer">
+        <div class="scene-footer-left">
+          <span>Scroll to explore</span>
+        </div>
+        <div class="scene-footer-center">
+          <div class="scroll-indicator">
+            <div class="scroll-indicator-track">
+              <div class="scroll-indicator-thumb"></div>
+            </div>
+          </div>
+        </div>
+        <div class="scene-footer-right">
+          <span>Est. 2019</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- STORY - Text over parallax image -->
+    <section class="scene scene--story" id="story">
+      <div class="parallax-bg">
+        <img src="https://images.unsplash.com/photo-1501612780327-45045538702b?w=1600" alt="Concert atmosphere">
+      </div>
+      <div class="scene-overlay scene-overlay--gradient"></div>
+
+      <div class="story-container">
+        <div class="story-chapter">
+          <span class="chapter-number">01</span>
+          <h2 class="chapter-title">The Origin</h2>
+          <p class="chapter-text">
+            It started in a garage. Four friends, too much cheap beer, and a shared
+            obsession with the dirty, sweaty rock and roll our parents grew up on.
+          </p>
+        </div>
+
+        <div class="story-chapter">
+          <span class="chapter-number">02</span>
+          <h2 class="chapter-title">The Sound</h2>
+          <p class="chapter-text">
+            We don't do genres. We do feelings. If it makes you want to stomp your
+            feet and raise your glass, it belongs in our set.
+          </p>
+        </div>
+
+        <div class="story-chapter">
+          <span class="chapter-number">03</span>
+          <h2 class="chapter-title">The Mission</h2>
+          <p class="chapter-text">
+            Keep rock and roll dangerous. No safety nets. No backing tracks.
+            Just four people giving everything they've got, every single night.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- BAND - Dramatic portraits -->
+    <section class="scene scene--band" id="band">
+      <div class="band-intro">
+        <h2 class="band-intro-title">The Lineup</h2>
+        <p class="band-intro-text">Four players. One sound.</p>
+      </div>
+
+      <div class="band-gallery">
+        <article class="band-member" data-member="rob">
+          <div class="band-member-image">
+            <img src="https://images.unsplash.com/photo-1516924962500-2b4b3b99ea02?w=800" alt="Rob Morrison">
+          </div>
+          <div class="band-member-info">
+            <span class="band-member-role">Vocals & Guitar</span>
+            <h3 class="band-member-name">Rob Morrison</h3>
+          </div>
+          <div class="band-member-detail">
+            <p>"If you're not sweating by song two, we're not doing our job."</p>
+          </div>
+        </article>
+
+        <article class="band-member" data-member="jeans">
+          <div class="band-member-image">
+            <img src="https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=800" alt="Jeans McGee">
+          </div>
+          <div class="band-member-info">
+            <span class="band-member-role">Lead Guitar</span>
+            <h3 class="band-member-name">Jeans McGee</h3>
+          </div>
+          <div class="band-member-detail">
+            <p>"More gain. Always more gain."</p>
+          </div>
+        </article>
+
+        <article class="band-member" data-member="matt">
+          <div class="band-member-image">
+            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800" alt="Matt Thompson">
+          </div>
+          <div class="band-member-info">
+            <span class="band-member-role">Bass</span>
+            <h3 class="band-member-name">Matt Thompson</h3>
+          </div>
+          <div class="band-member-detail">
+            <p>"Someone has to be the adult. Usually it's me."</p>
+          </div>
+        </article>
+
+        <article class="band-member" data-member="kurt">
+          <div class="band-member-image">
+            <img src="https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?w=800" alt="Kurt Williams">
+          </div>
+          <div class="band-member-info">
+            <span class="band-member-role">Drums</span>
+            <h3 class="band-member-name">Kurt Williams</h3>
+          </div>
+          <div class="band-member-detail">
+            <p>"I break a lot of sticks. It's part of the show."</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- LIVE - Shows with immersive map -->
+    <section class="scene scene--live" id="live">
+      <div class="live-split">
+        <div class="live-map-side">
+          <iframe
+            id="tour-map"
+            class="live-map"
+            src="https://www.google.com/maps?q=Austin+TX&output=embed"
+            loading="lazy"
+            title="Tour location"
+          ></iframe>
+          <div class="live-map-overlay"></div>
+        </div>
+
+        <div class="live-shows-side">
+          <div class="live-header">
+            <h2 class="live-title">On Tour</h2>
+            <p class="live-subtitle">Hover to explore. Click for tickets.</p>
+          </div>
+
+          <div class="live-list">
+            <a href="#" class="live-show is-active" data-venue="The Rusty Nail" data-location="Austin, TX">
+              <div class="live-show-date">
+                <span class="live-show-month">Jan</span>
+                <span class="live-show-day">15</span>
+              </div>
+              <div class="live-show-info">
+                <span class="live-show-venue">The Rusty Nail</span>
+                <span class="live-show-location">Austin, TX</span>
+              </div>
+              <span class="live-show-arrow">&rarr;</span>
+            </a>
+
+            <a href="#" class="live-show" data-venue="Muddy Waters Saloon" data-location="New Orleans, LA">
+              <div class="live-show-date">
+                <span class="live-show-month">Jan</span>
+                <span class="live-show-day">22</span>
+              </div>
+              <div class="live-show-info">
+                <span class="live-show-venue">Muddy Waters Saloon</span>
+                <span class="live-show-location">New Orleans, LA</span>
+              </div>
+              <span class="live-show-arrow">&rarr;</span>
+            </a>
+
+            <a href="#" class="live-show" data-venue="The Bluebird Cafe" data-location="Nashville, TN">
+              <div class="live-show-date">
+                <span class="live-show-month">Feb</span>
+                <span class="live-show-day">05</span>
+              </div>
+              <div class="live-show-info">
+                <span class="live-show-venue">The Bluebird Cafe</span>
+                <span class="live-show-location">Nashville, TN</span>
+              </div>
+              <span class="live-show-arrow">&rarr;</span>
+            </a>
+
+            <a href="#" class="live-show" data-venue="Hi-Tone Cafe" data-location="Memphis, TN">
+              <div class="live-show-date">
+                <span class="live-show-month">Feb</span>
+                <span class="live-show-day">19</span>
+              </div>
+              <div class="live-show-info">
+                <span class="live-show-venue">Hi-Tone Cafe</span>
+                <span class="live-show-location">Memphis, TN</span>
+              </div>
+              <span class="live-show-arrow">&rarr;</span>
+            </a>
+
+            <a href="#" class="live-show" data-venue="Ground Zero Blues Club" data-location="Clarksdale, MS">
+              <div class="live-show-date">
+                <span class="live-show-month">Mar</span>
+                <span class="live-show-day">08</span>
+              </div>
+              <div class="live-show-info">
+                <span class="live-show-venue">Ground Zero Blues Club</span>
+                <span class="live-show-location">Clarksdale, MS</span>
+              </div>
+              <span class="live-show-arrow">&rarr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONNECT - Contact & Social -->
+    <section class="scene scene--connect" id="connect">
+      <div class="connect-bg">
+        <img src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=1600" alt="Stage lights">
+      </div>
+      <div class="scene-overlay"></div>
+
+      <div class="connect-content">
+        <div class="connect-cta">
+          <h2 class="connect-title">Book The Band</h2>
+          <p class="connect-text">For booking inquiries, press, or just to say hey.</p>
+          <a href="mailto:booking@swampcitystompers.ca" class="connect-email">
+            booking@swampcitystompers.ca
+          </a>
+        </div>
+
+        <div class="connect-social">
+          <a href="#" class="social-btn">
+            <span>Facebook</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-btn">
+            <span>Instagram</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="5"/>
+              <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </a>
+          <a href="#" class="social-btn">
+            <span>Spotify</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-btn">
+            <span>YouTube</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <footer class="scene-credit">
+        <p>&copy; 2026 Swamp City Stompers. All rights reserved.</p>
+      </footer>
+    </section>
+  </main>
+
+  <script type="module" src="js/main-v3.js"></script>
+</body>
+</html>

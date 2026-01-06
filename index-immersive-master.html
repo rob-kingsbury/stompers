@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Swamp City Stompers | Southern Rock from the Bayou</title>
+  <meta name="description" content="Swamp City Stompers - Gritty southern rock, swamp blues, and roots Americana from Eastern Ontario.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/immersive-master.css">
+</head>
+<body>
+  <!-- ============================================================
+       PROGRESS NAV (MetaMask Style - Vertical Pill with Blob)
+       ============================================================ -->
+  <nav class="progress-nav" aria-label="Section navigation">
+    <div class="progress-pill">
+      <button class="progress-dot is-active" data-section="hero" aria-label="Go to Home section">
+        <span class="dot-inner"></span>
+        <span class="dot-bar"></span>
+        <span class="dot-tooltip">Home</span>
+      </button>
+
+      <button class="progress-dot" data-section="about" aria-label="Go to About section">
+        <span class="dot-inner"></span>
+        <span class="dot-bar"></span>
+        <span class="dot-tooltip">About</span>
+      </button>
+
+      <button class="progress-dot" data-section="band" aria-label="Go to Band section">
+        <span class="dot-inner"></span>
+        <span class="dot-bar"></span>
+        <span class="dot-tooltip">Band</span>
+      </button>
+
+      <button class="progress-dot" data-section="tour" aria-label="Go to Tour section">
+        <span class="dot-inner"></span>
+        <span class="dot-bar"></span>
+        <span class="dot-tooltip">Tour</span>
+      </button>
+
+      <button class="progress-dot" data-section="quote" aria-label="Go to Quote section">
+        <span class="dot-inner"></span>
+        <span class="dot-bar"></span>
+        <span class="dot-tooltip">Words</span>
+      </button>
+
+      <button class="progress-dot" data-section="contact" aria-label="Go to Contact section">
+        <span class="dot-inner"></span>
+        <span class="dot-bar"></span>
+        <span class="dot-tooltip">Contact</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Skip to Standard Site -->
+  <a href="index.html" class="skip-link">Standard Site</a>
+
+  <!-- Story Link -->
+  <a href="index-immersive-story.html" class="story-link">Our Story</a>
+
+  <main class="immersive">
+    <!-- ============================================================
+         SECTION 1: HERO - Dark video that GROWS on scroll
+         ============================================================ -->
+    <section id="hero" class="section section--hero" data-section="hero">
+      <div class="hero-video-container">
+        <video autoplay muted loop playsinline class="hero-video">
+          <source src="img/vid-header-mute.mp4" type="video/mp4">
+        </video>
+        <div class="hero-video-overlay"></div>
+      </div>
+
+      <div class="hero-content">
+        <div class="hero-meta">
+          <span class="meta-year">Est. 2019</span>
+          <span class="meta-divider">/</span>
+          <span class="meta-location">Eastern Ontario, CA</span>
+        </div>
+
+        <h1 class="hero-title">
+          <span class="title-line" data-delay="0">Swamp</span>
+          <span class="title-line" data-delay="1">City</span>
+          <span class="title-line title-line--accent" data-delay="2">Stompers</span>
+        </h1>
+
+        <p class="hero-tagline">Southern Rock &bull; Swamp Blues &bull; Roots Americana</p>
+
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-value" data-count="200">0</span>
+            <span class="stat-label">Shows</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value" data-count="6">0</span>
+            <span class="stat-label">Years</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value" data-count="4">0</span>
+            <span class="stat-label">Members</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-scroll-cue">
+        <span>Scroll</span>
+        <div class="scroll-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 5v14M5 12l7 7 7-7"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 2: ABOUT - Stacking Cards with Staggered Layout
+         ============================================================ -->
+    <section id="about" class="section section--about" data-section="about">
+      <!-- Card 1: Photo Left, Text Right -->
+      <article class="about-card about-card--1">
+        <div class="about-card-image">
+          <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800" alt="Live performance">
+        </div>
+        <div class="about-card-content">
+          <span class="about-card-number">01</span>
+          <h2 class="about-card-title">The Sound</h2>
+          <p class="about-card-text">
+            We blend swamp blues, southern rock, and a healthy dose of grit into something
+            that makes you want to drink whiskey and dance on tables. It's not pretty,
+            but it's honest.
+          </p>
+        </div>
+      </article>
+
+      <!-- Card 2: Text Left, Photo Right -->
+      <article class="about-card about-card--2 about-card--reverse">
+        <div class="about-card-image">
+          <img src="https://images.unsplash.com/photo-1501612780327-45045538702b?w=800" alt="Concert crowd">
+        </div>
+        <div class="about-card-content">
+          <span class="about-card-number">02</span>
+          <h2 class="about-card-title">The Vibe</h2>
+          <p class="about-card-text">
+            Every show is a party, every song is a story. We don't do setlists -
+            we read the room and play what feels right. Sometimes that means three
+            encores. Sometimes it means one very long jam.
+          </p>
+        </div>
+      </article>
+
+      <!-- Card 3: Photo Left, Text Right -->
+      <article class="about-card about-card--3">
+        <div class="about-card-image">
+          <img src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=800" alt="Guitar close-up">
+        </div>
+        <div class="about-card-content">
+          <span class="about-card-number">03</span>
+          <h2 class="about-card-title">The Mission</h2>
+          <p class="about-card-text">
+            Keep real rock and roll alive. No backing tracks, no auto-tune,
+            no bullshit. Just four people making noise loud enough to feel
+            in your chest.
+          </p>
+        </div>
+      </article>
+
+      <!-- Card 4: Text Left, Photo Right -->
+      <article class="about-card about-card--4 about-card--reverse">
+        <div class="about-card-image">
+          <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800" alt="Stage lights">
+        </div>
+        <div class="about-card-content">
+          <span class="about-card-number">04</span>
+          <h2 class="about-card-title">The Road</h2>
+          <p class="about-card-text">
+            From dive bars to festival stages, we've played them all. Every mile,
+            every broken string, every 3 AM load-out has shaped who we are.
+            The road is home.
+          </p>
+        </div>
+      </article>
+    </section>
+
+    <!-- ============================================================
+         SECTION 3: BAND - Concom.tv Style Stacking Cards
+         ============================================================ -->
+    <section id="band" class="section section--band" data-section="band">
+      <header class="section-header section-header--center">
+        <span class="section-number">02</span>
+        <h2 class="section-title">The Band</h2>
+      </header>
+
+      <!-- Stacking cards container - cards stack on top of each other -->
+      <div class="stack-container">
+
+        <!-- Member 1: Rob -->
+        <article class="stack-card" data-index="0">
+          <div class="stack-card-inner">
+            <div class="stack-card-image">
+              <img src="https://images.unsplash.com/photo-1516924962500-2b4b3b99ea02?w=1200" alt="Rob Morrison">
+            </div>
+            <div class="stack-card-content">
+              <span class="member-number">01</span>
+              <h3 class="member-name">Rob Morrison</h3>
+              <p class="member-role">Vocals / Guitar</p>
+              <p class="member-bio">The voice. The vision. Started the band in his garage with nothing but a broken amp and a dream. Former construction worker who traded his hard hat for a microphone.</p>
+              <blockquote class="member-quote">"If it doesn't make you feel something, we're not doing it right."</blockquote>
+            </div>
+          </div>
+        </article>
+
+        <!-- Member 2: Jeans -->
+        <article class="stack-card" data-index="1">
+          <div class="stack-card-inner">
+            <div class="stack-card-image">
+              <img src="https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=1200" alt="Jeans McGee">
+            </div>
+            <div class="stack-card-content">
+              <span class="member-number">02</span>
+              <h3 class="member-name">Jeans McGee</h3>
+              <p class="member-role">Lead Guitar</p>
+              <p class="member-bio">Tone wizard. Pedal hoarder. Spent a decade studying the greats before finding his own voice. Will spend 45 minutes getting his sound right, then play a solo that makes you forget your own name.</p>
+              <blockquote class="member-quote">"The sound isn't something we invented. It's something we discovered."</blockquote>
+            </div>
+          </div>
+        </article>
+
+        <!-- Member 3: Matt -->
+        <article class="stack-card" data-index="2">
+          <div class="stack-card-inner">
+            <div class="stack-card-image">
+              <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1200" alt="Matt Thompson">
+            </div>
+            <div class="stack-card-content">
+              <span class="member-number">03</span>
+              <h3 class="member-name">Matt Thompson</h3>
+              <p class="member-role">Bass</p>
+              <p class="member-bio">The pocket. The groove. The guy who keeps us from completely falling apart. Someone has to be the adult in the room. Also the designated driver.</p>
+              <blockquote class="member-quote">"Lock in with the kick drum and let the music breathe."</blockquote>
+            </div>
+          </div>
+        </article>
+
+        <!-- Member 4: Kurt -->
+        <article class="stack-card" data-index="3">
+          <div class="stack-card-inner">
+            <div class="stack-card-image">
+              <img src="https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?w=1200" alt="Kurt Williams">
+            </div>
+            <div class="stack-card-content">
+              <span class="member-number">04</span>
+              <h3 class="member-name">Kurt Williams</h3>
+              <p class="member-role">Drums</p>
+              <p class="member-bio">Hits like thunder. Drives the bus. Self-taught. Been keeping time since day one, and breaks about three sticks per show. It's part of the act now.</p>
+              <blockquote class="member-quote">"Play every show like it's your last."</blockquote>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 4: TOUR - Full-Page Cards THEN List Accordion
+         ============================================================ -->
+    <section id="tour" class="section section--tour" data-section="tour">
+      <!-- Full-page show cards - Next 3 shows only -->
+      <div class="tour-fullpage-cards">
+        <article class="tour-fullpage-card" data-show="0">
+          <div class="fullpage-card-bg">
+            <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1600" alt="Austin venue">
+          </div>
+          <div class="fullpage-card-content">
+            <div class="show-date-big">
+              <span class="date-day">15</span>
+              <span class="date-month">JAN</span>
+              <span class="date-year">2026</span>
+            </div>
+            <h3 class="show-venue-big">The Rusty Nail</h3>
+            <p class="show-location-big">Austin, TX</p>
+            <div class="show-details-big">
+              <span>Doors 8PM</span>
+              <span>21+</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="tour-fullpage-card" data-show="1">
+          <div class="fullpage-card-bg">
+            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1600" alt="New Orleans venue">
+          </div>
+          <div class="fullpage-card-content">
+            <div class="show-date-big">
+              <span class="date-day">22</span>
+              <span class="date-month">JAN</span>
+              <span class="date-year">2026</span>
+            </div>
+            <h3 class="show-venue-big">Muddy Waters Saloon</h3>
+            <p class="show-location-big">New Orleans, LA</p>
+            <div class="show-details-big">
+              <span>Doors 7:30PM</span>
+              <span>18+</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="tour-fullpage-card" data-show="2">
+          <div class="fullpage-card-bg">
+            <img src="https://images.unsplash.com/photo-1501612780327-45045538702b?w=1600" alt="Nashville venue">
+          </div>
+          <div class="fullpage-card-content">
+            <div class="show-date-big">
+              <span class="date-day">05</span>
+              <span class="date-month">FEB</span>
+              <span class="date-year">2026</span>
+            </div>
+            <h3 class="show-venue-big">The Bluebird Cafe</h3>
+            <p class="show-location-big">Nashville, TN</p>
+            <div class="show-details-big">
+              <span>Doors 6PM</span>
+              <span>All Ages</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- List view with accordions (revealed after full-page cards) -->
+      <div class="tour-list-section">
+        <header class="section-header section-header--center">
+          <span class="section-number">03</span>
+          <h2 class="section-title">All Shows</h2>
+        </header>
+
+        <div class="tour-accordion-list" data-page="1">
+          <!-- Show 1 -->
+          <div class="tour-accordion-item" data-venue="The Rusty Nail">
+            <button class="accordion-header">
+              <span class="accordion-date">JAN 15</span>
+              <span class="accordion-venue">The Rusty Nail</span>
+              <span class="accordion-location">Austin, TX</span>
+              <span class="accordion-icon"></span>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-map">
+                <iframe src="https://www.google.com/maps?q=The+Rusty+Nail+Austin+TX&output=embed" loading="lazy"></iframe>
+              </div>
+              <div class="accordion-details">
+                <p><strong>Doors:</strong> 8:00 PM</p>
+                <p><strong>Show:</strong> 9:00 PM</p>
+                <p><strong>Age:</strong> 21+</p>
+                <a href="#" class="btn-tickets">Get Tickets</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Show 2 -->
+          <div class="tour-accordion-item" data-venue="Muddy Waters Saloon">
+            <button class="accordion-header">
+              <span class="accordion-date">JAN 22</span>
+              <span class="accordion-venue">Muddy Waters Saloon</span>
+              <span class="accordion-location">New Orleans, LA</span>
+              <span class="accordion-icon"></span>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-map">
+                <iframe src="https://www.google.com/maps?q=Muddy+Waters+Saloon+New+Orleans+LA&output=embed" loading="lazy"></iframe>
+              </div>
+              <div class="accordion-details">
+                <p><strong>Doors:</strong> 7:30 PM</p>
+                <p><strong>Show:</strong> 8:30 PM</p>
+                <p><strong>Age:</strong> 18+</p>
+                <a href="#" class="btn-tickets">Get Tickets</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Show 3 -->
+          <div class="tour-accordion-item" data-venue="The Bluebird Cafe">
+            <button class="accordion-header">
+              <span class="accordion-date">FEB 05</span>
+              <span class="accordion-venue">The Bluebird Cafe</span>
+              <span class="accordion-location">Nashville, TN</span>
+              <span class="accordion-icon"></span>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-map">
+                <iframe src="https://www.google.com/maps?q=The+Bluebird+Cafe+Nashville+TN&output=embed" loading="lazy"></iframe>
+              </div>
+              <div class="accordion-details">
+                <p><strong>Doors:</strong> 6:00 PM</p>
+                <p><strong>Show:</strong> 7:00 PM</p>
+                <p><strong>Age:</strong> All Ages</p>
+                <a href="#" class="btn-tickets">Get Tickets</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Show 4 -->
+          <div class="tour-accordion-item" data-venue="Hi-Tone Cafe">
+            <button class="accordion-header">
+              <span class="accordion-date">FEB 19</span>
+              <span class="accordion-venue">Hi-Tone Cafe</span>
+              <span class="accordion-location">Memphis, TN</span>
+              <span class="accordion-icon"></span>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-map">
+                <iframe src="https://www.google.com/maps?q=Hi-Tone+Cafe+Memphis+TN&output=embed" loading="lazy"></iframe>
+              </div>
+              <div class="accordion-details">
+                <p><strong>Doors:</strong> 8:00 PM</p>
+                <p><strong>Show:</strong> 9:00 PM</p>
+                <p><strong>Age:</strong> 21+</p>
+                <a href="#" class="btn-tickets">Get Tickets</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Show 5 -->
+          <div class="tour-accordion-item" data-venue="Ground Zero Blues Club">
+            <button class="accordion-header">
+              <span class="accordion-date">MAR 08</span>
+              <span class="accordion-venue">Ground Zero Blues Club</span>
+              <span class="accordion-location">Clarksdale, MS</span>
+              <span class="accordion-icon"></span>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-map">
+                <iframe src="https://www.google.com/maps?q=Ground+Zero+Blues+Club+Clarksdale+MS&output=embed" loading="lazy"></iframe>
+              </div>
+              <div class="accordion-details">
+                <p><strong>Doors:</strong> 7:00 PM</p>
+                <p><strong>Show:</strong> 8:00 PM</p>
+                <p><strong>Age:</strong> 21+</p>
+                <a href="#" class="btn-tickets">Get Tickets</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Show 6 -->
+          <div class="tour-accordion-item" data-venue="The Parish">
+            <button class="accordion-header">
+              <span class="accordion-date">MAR 15</span>
+              <span class="accordion-venue">The Parish</span>
+              <span class="accordion-location">Austin, TX</span>
+              <span class="accordion-icon"></span>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-map">
+                <iframe src="https://www.google.com/maps?q=The+Parish+Austin+TX&output=embed" loading="lazy"></iframe>
+              </div>
+              <div class="accordion-details">
+                <p><strong>Doors:</strong> 8:00 PM</p>
+                <p><strong>Show:</strong> 9:00 PM</p>
+                <p><strong>Age:</strong> 21+</p>
+                <a href="#" class="btn-tickets">Get Tickets</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Show 7 -->
+          <div class="tour-accordion-item" data-venue="Tipitinas">
+            <button class="accordion-header">
+              <span class="accordion-date">MAR 22</span>
+              <span class="accordion-venue">Tipitina's</span>
+              <span class="accordion-location">New Orleans, LA</span>
+              <span class="accordion-icon"></span>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-map">
+                <iframe src="https://www.google.com/maps?q=Tipitinas+New+Orleans+LA&output=embed" loading="lazy"></iframe>
+              </div>
+              <div class="accordion-details">
+                <p><strong>Doors:</strong> 7:00 PM</p>
+                <p><strong>Show:</strong> 8:00 PM</p>
+                <p><strong>Age:</strong> 18+</p>
+                <a href="#" class="btn-tickets">Get Tickets</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Show 8 -->
+          <div class="tour-accordion-item" data-venue="The Basement East">
+            <button class="accordion-header">
+              <span class="accordion-date">MAR 29</span>
+              <span class="accordion-venue">The Basement East</span>
+              <span class="accordion-location">Nashville, TN</span>
+              <span class="accordion-icon"></span>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-map">
+                <iframe src="https://www.google.com/maps?q=The+Basement+East+Nashville+TN&output=embed" loading="lazy"></iframe>
+              </div>
+              <div class="accordion-details">
+                <p><strong>Doors:</strong> 7:00 PM</p>
+                <p><strong>Show:</strong> 8:00 PM</p>
+                <p><strong>Age:</strong> 18+</p>
+                <a href="#" class="btn-tickets">Get Tickets</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Show 9 -->
+          <div class="tour-accordion-item" data-venue="Red Rocks Amphitheatre">
+            <button class="accordion-header">
+              <span class="accordion-date">APR 05</span>
+              <span class="accordion-venue">Red Rocks Amphitheatre</span>
+              <span class="accordion-location">Morrison, CO</span>
+              <span class="accordion-icon"></span>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-map">
+                <iframe src="https://www.google.com/maps?q=Red+Rocks+Amphitheatre+Morrison+CO&output=embed" loading="lazy"></iframe>
+              </div>
+              <div class="accordion-details">
+                <p><strong>Doors:</strong> 6:00 PM</p>
+                <p><strong>Show:</strong> 7:30 PM</p>
+                <p><strong>Age:</strong> All Ages</p>
+                <a href="#" class="btn-tickets">Get Tickets</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Show 10 -->
+          <div class="tour-accordion-item" data-venue="The Fillmore">
+            <button class="accordion-header">
+              <span class="accordion-date">APR 12</span>
+              <span class="accordion-venue">The Fillmore</span>
+              <span class="accordion-location">San Francisco, CA</span>
+              <span class="accordion-icon"></span>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-map">
+                <iframe src="https://www.google.com/maps?q=The+Fillmore+San+Francisco+CA&output=embed" loading="lazy"></iframe>
+              </div>
+              <div class="accordion-details">
+                <p><strong>Doors:</strong> 7:00 PM</p>
+                <p><strong>Show:</strong> 8:00 PM</p>
+                <p><strong>Age:</strong> 21+</p>
+                <a href="#" class="btn-tickets">Get Tickets</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Show 11 -->
+          <div class="tour-accordion-item" data-venue="The Troubadour">
+            <button class="accordion-header">
+              <span class="accordion-date">APR 19</span>
+              <span class="accordion-venue">The Troubadour</span>
+              <span class="accordion-location">Los Angeles, CA</span>
+              <span class="accordion-icon"></span>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-map">
+                <iframe src="https://www.google.com/maps?q=The+Troubadour+Los+Angeles+CA&output=embed" loading="lazy"></iframe>
+              </div>
+              <div class="accordion-details">
+                <p><strong>Doors:</strong> 8:00 PM</p>
+                <p><strong>Show:</strong> 9:00 PM</p>
+                <p><strong>Age:</strong> 21+</p>
+                <a href="#" class="btn-tickets">Get Tickets</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Show 12 -->
+          <div class="tour-accordion-item" data-venue="Brooklyn Bowl">
+            <button class="accordion-header">
+              <span class="accordion-date">APR 26</span>
+              <span class="accordion-venue">Brooklyn Bowl</span>
+              <span class="accordion-location">Brooklyn, NY</span>
+              <span class="accordion-icon"></span>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-map">
+                <iframe src="https://www.google.com/maps?q=Brooklyn+Bowl+Brooklyn+NY&output=embed" loading="lazy"></iframe>
+              </div>
+              <div class="accordion-details">
+                <p><strong>Doors:</strong> 6:00 PM</p>
+                <p><strong>Show:</strong> 8:00 PM</p>
+                <p><strong>Age:</strong> 21+</p>
+                <a href="#" class="btn-tickets">Get Tickets</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="tour-pagination">
+          <button class="pagination-btn pagination-prev" disabled aria-label="Previous page">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M15 18l-6-6 6-6"/>
+            </svg>
+          </button>
+          <div class="pagination-info">
+            <span class="pagination-current">1</span>
+            <span class="pagination-sep">/</span>
+            <span class="pagination-total">2</span>
+          </div>
+          <button class="pagination-btn pagination-next" aria-label="Next page">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 18l6-6-6-6"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 5: QUOTE - Text Explodes Outward
+         ============================================================ -->
+    <section id="quote" class="section section--quote" data-section="quote">
+      <div class="quote-pin-wrapper">
+        <div class="quote-content">
+          <blockquote class="exploding-quote">
+            <p class="quote-line">"We didn't set out</p>
+            <p class="quote-line">to be famous.</p>
+            <p class="quote-line">We set out to be</p>
+            <p class="quote-line quote-line--accent">remembered."</p>
+          </blockquote>
+          <cite class="quote-attribution">— Rob Morrison, 2024</cite>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 6: CONTACT/FOOTER - Deep Parallax Reveal
+         ============================================================ -->
+    <section id="contact" class="section section--contact" data-section="contact">
+      <!-- This creates the "reveal from under" effect -->
+      <div class="contact-parallax-wrapper">
+        <div class="contact-inner">
+          <header class="section-header section-header--center">
+            <span class="section-number">04</span>
+            <h2 class="section-title">Get In Touch</h2>
+          </header>
+
+          <div class="contact-grid">
+            <div class="contact-block">
+              <h3>Book The Band</h3>
+              <a href="mailto:booking@swampcitystompers.ca" class="contact-email">booking@swampcitystompers.ca</a>
+              <p class="contact-phone">(613) 555-1234</p>
+            </div>
+
+            <div class="contact-block">
+              <h3>Follow Us</h3>
+              <div class="social-links">
+                <a href="#" class="social-link">FB</a>
+                <a href="#" class="social-link">IG</a>
+                <a href="#" class="social-link">YT</a>
+                <a href="#" class="social-link">SP</a>
+              </div>
+            </div>
+
+            <div class="contact-block">
+              <h3>Resources</h3>
+              <a href="#" class="resource-link">Electronic Press Kit</a>
+              <a href="#" class="resource-link">Tech Rider</a>
+              <a href="#" class="resource-link">Stage Plot</a>
+            </div>
+          </div>
+
+          <footer class="site-footer">
+            <img src="img/logo-goon.png" alt="Swamp City Stompers" class="footer-logo">
+            <p>&copy; 2026 Swamp City Stompers</p>
+            <p>Eastern Ontario, Canada</p>
+          </footer>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="js/main-master.js"></script>
+</body>
+</html>

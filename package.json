@@ -1,0 +1,26 @@
+{
+  "name": "stompers-redesign",
+  "version": "1.0.0",
+  "description": "Swamp City Stompers - Immersive band website",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "band",
+    "music",
+    "rock"
+  ],
+  "author": "Swamp City Stompers",
+  "license": "ISC",
+  "dependencies": {
+    "gsap": "^3.14.2",
+    "lenis": "^1.3.17"
+  },
+  "devDependencies": {
+    "playwright": "^1.57.0",
+    "vite": "^7.3.0"
+  }
+}

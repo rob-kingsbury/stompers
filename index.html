@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Swamp City Stompers | Southern Rock from the Bayou</title>
+  <meta name="description" content="Swamp City Stompers - Gritty southern rock, swamp blues, and roots Americana. Live shows, music, and more.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Design System CSS -->
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Skip Link -->
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="/" class="nav-logo">
+      <span class="nav-logo-text">Swamp City Stompers</span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-links" role="navigation">
+      <li><a href="#shows" class="nav-link is-active">Shows</a></li>
+      <li><a href="#music" class="nav-link">Music</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#merch" class="nav-link">Merch</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main id="main">
+    <!-- Hero Section -->
+    <section class="hero hero--dark texture-grain">
+      <div class="hero-content">
+        <span class="hero-eyebrow">Southern Rock &bull; Blues &bull; Roots</span>
+        <h1 class="hero-title">Swamp City Stompers</h1>
+        <p class="hero-subtitle">
+          Gritty southern rock forged in the swamps. Raw, soulful, and loud enough to wake the gators.
+        </p>
+        <div class="hero-cta">
+          <a href="#shows" class="btn btn--primary">See Shows</a>
+          <a href="#music" class="btn btn--secondary" style="border-color: var(--color-neutral-50); color: var(--color-neutral-50);">Listen Now</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Shows Section with Interactive Map -->
+    <section id="shows" class="section">
+      <div class="container">
+        <div class="tour-section">
+          <!-- Map -->
+          <div class="tour-map">
+            <iframe
+              id="tour-map-frame"
+              title="Tour location map"
+              loading="lazy"
+              allowfullscreen
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=The+Rusty+Nail+Austin+TX&output=embed"
+            ></iframe>
+          </div>
+
+          <!-- Tour List -->
+          <div class="tour-list-container">
+            <header class="tour-list-header">
+              <span class="section-header-eyebrow">On The Road</span>
+              <h2 class="section-header-title">Upcoming Shows</h2>
+              <p class="tour-list-hint">Hover or tap a venue to update the map</p>
+            </header>
+
+            <ul class="tour-list" id="tour-list">
+              <!-- Tour Item 1 -->
+              <li class="tour-item is-active" data-venue="The Rusty Nail" data-location="Austin, TX">
+                <div class="tour-item-date">
+                  <span class="tour-item-date-month">Jan</span>
+                  <span class="tour-item-date-day">15</span>
+                </div>
+                <div class="tour-item-venue">
+                  <h3 class="tour-item-venue-name">
+                    <a href="https://example.com/rustynail" target="_blank" rel="noopener">The Rusty Nail</a>
+                  </h3>
+                  <p class="tour-item-location">
+                    <a href="https://maps.google.com/?q=Austin+TX" target="_blank" rel="noopener">Austin, TX</a>
+                  </p>
+                </div>
+                <div class="tour-item-actions">
+                  <a href="#" class="tour-item-tag">Tickets</a>
+                  <span class="tour-item-tag">21+</span>
+                </div>
+              </li>
+
+              <!-- Tour Item 2 -->
+              <li class="tour-item" data-venue="Muddy Waters Saloon" data-location="New Orleans, LA">
+                <div class="tour-item-date">
+                  <span class="tour-item-date-month">Jan</span>
+                  <span class="tour-item-date-day">22</span>
+                </div>
+                <div class="tour-item-venue">
+                  <h3 class="tour-item-venue-name">
+                    <a href="https://example.com/muddywaters" target="_blank" rel="noopener">Muddy Waters Saloon</a>
+                  </h3>
+                  <p class="tour-item-location">
+                    <a href="https://maps.google.com/?q=New+Orleans+LA" target="_blank" rel="noopener">New Orleans, LA</a>
+                  </p>
+                </div>
+                <div class="tour-item-actions">
+                  <a href="#" class="tour-item-tag">Tickets</a>
+                  <span class="tour-item-tag">19+</span>
+                </div>
+              </li>
+
+              <!-- Tour Item 3 -->
+              <li class="tour-item" data-venue="The Bluebird Cafe" data-location="Nashville, TN">
+                <div class="tour-item-date">
+                  <span class="tour-item-date-month">Feb</span>
+                  <span class="tour-item-date-day">05</span>
+                </div>
+                <div class="tour-item-venue">
+                  <h3 class="tour-item-venue-name">
+                    <a href="https://example.com/bluebird" target="_blank" rel="noopener">The Bluebird Cafe</a>
+                  </h3>
+                  <p class="tour-item-location">
+                    <a href="https://maps.google.com/?q=Nashville+TN" target="_blank" rel="noopener">Nashville, TN</a>
+                  </p>
+                </div>
+                <div class="tour-item-actions">
+                  <a href="#" class="tour-item-tag">Details</a>
+                  <span class="tour-item-tag">All Ages</span>
+                </div>
+              </li>
+
+              <!-- Tour Item 4 -->
+              <li class="tour-item" data-venue="Blind Pig" data-location="Ann Arbor, MI">
+                <div class="tour-item-date">
+                  <span class="tour-item-date-month">Feb</span>
+                  <span class="tour-item-date-day">12</span>
+                </div>
+                <div class="tour-item-venue">
+                  <h3 class="tour-item-venue-name">
+                    <a href="https://example.com/blindpig" target="_blank" rel="noopener">Blind Pig</a>
+                  </h3>
+                  <p class="tour-item-location">
+                    <a href="https://maps.google.com/?q=Ann+Arbor+MI" target="_blank" rel="noopener">Ann Arbor, MI</a>
+                  </p>
+                </div>
+                <div class="tour-item-actions">
+                  <a href="#" class="tour-item-tag">Tickets</a>
+                  <span class="tour-item-tag">18+</span>
+                </div>
+              </li>
+
+              <!-- Tour Item 5 -->
+              <li class="tour-item" data-venue="Hi-Tone Cafe" data-location="Memphis, TN">
+                <div class="tour-item-date">
+                  <span class="tour-item-date-month">Feb</span>
+                  <span class="tour-item-date-day">19</span>
+                </div>
+                <div class="tour-item-venue">
+                  <h3 class="tour-item-venue-name">
+                    <a href="https://example.com/hitone" target="_blank" rel="noopener">Hi-Tone Cafe</a>
+                  </h3>
+                  <p class="tour-item-location">
+                    <a href="https://maps.google.com/?q=Memphis+TN" target="_blank" rel="noopener">Memphis, TN</a>
+                  </p>
+                </div>
+                <div class="tour-item-actions">
+                  <a href="#" class="tour-item-tag">Tickets</a>
+                  <span class="tour-item-tag">21+</span>
+                </div>
+              </li>
+
+              <!-- Tour Item 6 - Private -->
+              <li class="tour-item" data-venue="Private Event" data-location="Houston, TX">
+                <div class="tour-item-date">
+                  <span class="tour-item-date-month">Mar</span>
+                  <span class="tour-item-date-day">01</span>
+                </div>
+                <div class="tour-item-venue">
+                  <h3 class="tour-item-venue-name">Continental Club</h3>
+                  <p class="tour-item-location">Houston, TX</p>
+                </div>
+                <div class="tour-item-actions">
+                  <span class="tour-item-tag tour-item-tag--private">Private</span>
+                </div>
+              </li>
+            </ul>
+
+            <div class="text-center mt-lg">
+              <a href="#" class="btn btn--ghost">View All Shows</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section section--alt texture-paper">
+      <div class="container container--md">
+        <header class="section-header section-header--left">
+          <span class="section-header-eyebrow">The Band</span>
+          <h2 class="section-header-title">About the Stompers</h2>
+          <hr class="section-header-divider">
+        </header>
+
+        <div class="stack stack--lg">
+          <p class="text--lead">
+            Born in the humid summers of Louisiana and tempered by endless miles of southern highways, Swamp City Stompers play rock and roll the way it was meant to be played: loud, sweaty, and without apology.
+          </p>
+
+          <p>
+            Drawing from the deep well of southern rock, swamp blues, and roots Americana, the band crafts a sound that's equal parts Lynyrd Skynyrd and Howlin' Wolf. Three guitars, a rhythm section that hits like a freight train, and vocals that sound like whiskey and regret.
+          </p>
+
+          <p>
+            Since forming in 2019, they've logged over 500 shows across honky-tonks, festivals, and dive bars from Texas to the Carolinas. Their debut album, <em>Mud and Glory</em>, earned praise from Rolling Stone as "the best southern rock record in a decade."
+          </p>
+
+          <blockquote>
+            "We don't make music for streaming algorithms. We make music for people drinking beer at 2 AM in a bar that smells like smoke and bad decisions."
+            <cite>Jake "Swamp Dog" Morrison, Lead Guitar</cite>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+      <div class="container container--sm">
+        <header class="section-header">
+          <span class="section-header-eyebrow">Get In Touch</span>
+          <h2 class="section-header-title">Book the Band</h2>
+          <p class="section-header-subtitle">
+            Interested in booking Swamp City Stompers for your venue, festival, or private event? Drop us a line.
+          </p>
+          <hr class="section-header-divider">
+        </header>
+
+        <form class="stack">
+          <div class="form-group">
+            <label for="name" class="form-label">Your Name</label>
+            <input type="text" id="name" name="name" class="form-input" placeholder="John Doe" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="form-label">Email Address</label>
+            <input type="email" id="email" name="email" class="form-input" placeholder="john@example.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="venue" class="form-label">Venue / Event Name</label>
+            <input type="text" id="venue" name="venue" class="form-input" placeholder="The Blue Moon Saloon">
+          </div>
+
+          <div class="form-group">
+            <label for="date" class="form-label">Preferred Date</label>
+            <input type="date" id="date" name="date" class="form-input">
+          </div>
+
+          <div class="form-group">
+            <label for="message" class="form-label">Message</label>
+            <textarea id="message" name="message" class="form-input form-textarea" placeholder="Tell us about your event..."></textarea>
+            <p class="form-hint">Include details about the venue, expected attendance, and any special requests.</p>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn--primary btn--lg w-full">Send Message</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Design System Demo Section -->
+    <section id="design-system" class="section section--alt">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-header-eyebrow">Reference</span>
+          <h2 class="section-header-title">Design System Components</h2>
+          <p class="section-header-subtitle">
+            A showcase of the design system elements used throughout this site.
+          </p>
+          <hr class="section-header-divider">
+        </header>
+
+        <!-- Color Palette -->
+        <div class="mb-xl">
+          <h3 class="mb-lg">Color Palette</h3>
+          <div class="grid grid--3">
+            <div class="card">
+              <div class="card-body" style="display: flex; align-items: center; gap: var(--spacing-md);">
+                <div style="width: 48px; height: 48px; border-radius: var(--radius-sm); background-color: var(--color-primary);"></div>
+                <div>
+                  <strong>Swamp Green</strong><br>
+                  <code class="text--small">#4A5D4C</code>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-body" style="display: flex; align-items: center; gap: var(--spacing-md);">
+                <div style="width: 48px; height: 48px; border-radius: var(--radius-sm); background-color: var(--color-primary-dark);"></div>
+                <div>
+                  <strong>Dark Moss</strong><br>
+                  <code class="text--small">#2D3B2E</code>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-body" style="display: flex; align-items: center; gap: var(--spacing-md);">
+                <div style="width: 48px; height: 48px; border-radius: var(--radius-sm); background-color: var(--color-secondary);"></div>
+                <div>
+                  <strong>River Mud</strong><br>
+                  <code class="text--small">#6B5344</code>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-body" style="display: flex; align-items: center; gap: var(--spacing-md);">
+                <div style="width: 48px; height: 48px; border-radius: var(--radius-sm); background-color: var(--color-secondary-dark);"></div>
+                <div>
+                  <strong>Tobacco</strong><br>
+                  <code class="text--small">#4A3728</code>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-body" style="display: flex; align-items: center; gap: var(--spacing-md);">
+                <div style="width: 48px; height: 48px; border-radius: var(--radius-sm); background-color: var(--color-neutral-100); border: var(--border-width) solid var(--color-border);"></div>
+                <div>
+                  <strong>Parchment</strong><br>
+                  <code class="text--small">#EDE9DC</code>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-body" style="display: flex; align-items: center; gap: var(--spacing-md);">
+                <div style="width: 48px; height: 48px; border-radius: var(--radius-sm); background-color: var(--color-neutral-900);"></div>
+                <div>
+                  <strong>Charcoal</strong><br>
+                  <code class="text--small">#1C1C1A</code>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Typography -->
+        <div class="mb-xl">
+          <h3 class="mb-lg">Typography</h3>
+
+          <div class="card mb-md">
+            <div class="card-body">
+              <span class="eyebrow mb-sm" style="display: block;">Display / Headlines (Clarendon)</span>
+              <p style="font-family: var(--font-display); font-size: var(--font-size-3xl); font-weight: var(--font-weight-bold); margin-bottom: 0;">The quick brown fox</p>
+            </div>
+          </div>
+
+          <div class="card mb-md">
+            <div class="card-body">
+              <span class="eyebrow mb-sm" style="display: block;">Body Text (Source Serif Pro)</span>
+              <p style="margin-bottom: 0;">The quick brown fox jumps over the lazy dog. This is body text, designed for readability in long-form content like band bios and press kits.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <span class="eyebrow mb-sm" style="display: block;">Utility / Metadata (IBM Plex Mono)</span>
+              <p class="meta" style="margin-bottom: 0;">Jan 15, 2026 &bull; Austin, TX &bull; 9:00 PM</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="mb-xl">
+          <h3 class="mb-lg">Buttons</h3>
+
+          <div class="card mb-md">
+            <div class="card-body" style="display: flex; flex-wrap: wrap; gap: var(--spacing-md); align-items: center;">
+              <button class="btn btn--primary">Primary</button>
+              <button class="btn btn--secondary">Secondary</button>
+              <button class="btn btn--ghost">Ghost</button>
+              <button class="btn btn--primary is-disabled">Disabled</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body" style="display: flex; flex-wrap: wrap; gap: var(--spacing-md); align-items: center;">
+              <button class="btn btn--primary btn--sm">Small</button>
+              <button class="btn btn--primary">Default</button>
+              <button class="btn btn--primary btn--lg">Large</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Badges -->
+        <div class="mb-xl">
+          <h3 class="mb-lg">Badges</h3>
+
+          <div class="card">
+            <div class="card-body" style="display: flex; flex-wrap: wrap; gap: var(--spacing-md); align-items: center;">
+              <span class="badge">Default</span>
+              <span class="badge badge--primary">Primary</span>
+              <span class="badge badge--secondary">Secondary</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form Elements -->
+        <div>
+          <h3 class="mb-lg">Form Elements</h3>
+
+          <div class="grid grid--2">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Text Input</label>
+              <input type="text" class="form-input" placeholder="Enter text...">
+            </div>
+
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Select</label>
+              <select class="form-select">
+                <option>Option 1</option>
+                <option>Option 2</option>
+                <option>Option 3</option>
+              </select>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">With Error</label>
+              <input type="text" class="form-input has-error" value="Invalid input">
+              <p class="form-error">This field is required.</p>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">With Hint</label>
+              <input type="text" class="form-input" placeholder="Enter text...">
+              <p class="form-hint">Helper text goes here.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <h4 class="footer-section-title">Swamp City Stompers</h4>
+        <p class="text--small text--muted">
+          Southern rock, swamp blues, and roots Americana from the bayou.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="footer-section-title">Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="#shows">Shows</a></li>
+          <li><a href="#music">Music</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#merch">Merch</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-section-title">Connect</h4>
+        <ul class="footer-links">
+          <li><a href="#">Spotify</a></li>
+          <li><a href="#">Apple Music</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">YouTube</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-section-title">Booking</h4>
+        <p class="text--small text--muted">
+          For booking inquiries:<br>
+          <a href="mailto:booking@swampcitystompers.com">booking@swampcitystompers.com</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copyright">
+        &copy; 2026 Swamp City Stompers. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Mobile nav toggle
+      const navToggle = document.querySelector('.nav-toggle');
+      const navLinks = document.querySelector('.nav-links');
+
+      if (navToggle && navLinks) {
+        navToggle.addEventListener('click', () => {
+          const isOpen = navLinks.classList.toggle('is-open');
+          navToggle.setAttribute('aria-expanded', isOpen);
+        });
+      }
+
+      // Tour map interaction
+      const mapFrame = document.getElementById('tour-map-frame');
+      const tourItems = document.querySelectorAll('.tour-item');
+
+      if (mapFrame && tourItems.length) {
+        // Generate Google Maps embed URL from venue and location
+        const generateMapUrl = (item) => {
+          const venue = item.dataset.venue || '';
+          const location = item.dataset.location || '';
+          const searchQuery = venue && !venue.toLowerCase().includes('private')
+            ? `${venue} ${location}`
+            : location;
+
+          if (searchQuery) {
+            return `https://www.google.com/maps?q=${encodeURIComponent(searchQuery)}&output=embed`;
+          }
+          return null;
+        };
+
+        // Set active tour item and update map
+        const setActiveTourItem = (item) => {
+          tourItems.forEach((el) => el.classList.remove('is-active'));
+          item.classList.add('is-active');
+
+          const mapUrl = generateMapUrl(item);
+          if (mapUrl && mapFrame.src !== mapUrl) {
+            mapFrame.src = mapUrl;
+          }
+        };
+
+        // Event listeners
+        tourItems.forEach((item) => {
+          // Hover to preview
+          item.addEventListener('mouseenter', () => setActiveTourItem(item));
+
+          // Click to select (for touch devices)
+          item.addEventListener('click', (e) => {
+            // Don't interfere with link clicks
+            if (e.target.tagName.toLowerCase() === 'a') return;
+            e.preventDefault();
+            setActiveTourItem(item);
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>
