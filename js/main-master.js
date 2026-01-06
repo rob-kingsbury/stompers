@@ -30,6 +30,10 @@ function init() {
   initTourSection();
   initQuoteExplosion();
   initContactParallax();
+
+  // Refresh ScrollTrigger after all triggers are created and Lenis is initialized
+  // This ensures proper position calculations for sticky elements and scroll animations
+  ScrollTrigger.refresh();
 }
 
 // ============================================================
@@ -649,20 +653,25 @@ function initBandCardStack() {
 
   // Each card scales down as the next card scrolls over it
   // This creates the "stacking" visual effect
+  // IMPORTANT: We scale the INNER element, not the card itself,
+  // because transforms break sticky positioning
   stackCards.forEach((card, index) => {
+    const inner = card.querySelector('.stack-card-inner');
+
     // Skip the last card - it doesn't need to scale down
     if (index === stackCards.length - 1) return;
+    if (!inner) return;
 
-    // Create ScrollTrigger that scales the card down as the NEXT card comes in
+    // Create ScrollTrigger that scales the inner content as the NEXT card comes in
     ScrollTrigger.create({
       trigger: card,
       start: 'top top',
-      end: '+=200%', // Scale down over the duration of scrolling through this card
+      end: '+=200%',
       scrub: true,
       onUpdate: (self) => {
         // Scale from 1 down to 0.9 based on scroll progress
         const scale = 1 - self.progress * 0.1;
-        card.style.transform = `scale(${scale})`;
+        inner.style.transform = `scale(${scale})`;
       },
     });
   });
@@ -942,3 +951,8 @@ if (document.readyState === 'loading') {
 } else {
   init();
 }
+
+// Refresh ScrollTrigger after all images load for accurate position calculations
+window.addEventListener('load', () => {
+  ScrollTrigger.refresh();
+});

@@ -24,12 +24,35 @@ html {
   scrollbar-gutter: stable;
 }
 
+/* Lenis smooth scroll compatibility - required for sticky positioning */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
 body {
   font-family: var(--font-serif);
   background: var(--color-bg);
   color: var(--color-text);
   line-height: 1.6;
-  overflow-x: hidden;
+  /* NOTE: overflow-x: hidden breaks sticky positioning - use wrapper instead */
+}
+
+/* Contain horizontal overflow without breaking sticky */
+.immersive {
+  overflow-x: clip; /* clip doesn't affect sticky like hidden does */
 }
 
 ::selection {
@@ -639,12 +662,14 @@ button {
   color: var(--color-text);
 }
 
-/* Stack container - relative positioning for sticky children */
+/* Stack container - needs sufficient height for sticky cards to work */
+/* Each card is ~85vh, we need container height = (numCards * cardHeight) for proper stacking */
 .stack-container {
   position: relative;
 }
 
 /* Each card is sticky and stacks on top of the previous */
+/* NOTE: Do NOT add transform to this element - it breaks sticky positioning */
 .stack-card {
   position: sticky;
   width: calc(100% - var(--spacing-5xl));
@@ -654,11 +679,9 @@ button {
   align-items: center;
   justify-content: center;
   padding: var(--spacing-3xl) var(--spacing-4xl);
-  will-change: transform;
-  transform-origin: center top;
-  border-radius: var(--spacing-lg);
+  border-radius: 24px;
   overflow: hidden;
-  box-shadow: var(--shadow-xl);
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.3); /* Upward shadow for lifted card effect */
 }
 
 /* Different background colors for each card + staggered top position (z-index 1-4 for stacking order) */
@@ -694,6 +717,8 @@ button {
   max-width: 1400px;
   width: 100%;
   align-items: center;
+  will-change: transform;
+  transform-origin: center top;
 }
 
 /* Alternate layout for even cards */
@@ -711,9 +736,9 @@ button {
 .stack-card-image {
   position: relative;
   aspect-ratio: 4/5;
-  border-radius: var(--radius-lg);
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: var(--shadow-xl);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4); /* Deep shadow for image depth */
 }
 
 .stack-card-image img {
@@ -1583,14 +1608,8 @@ button {
    STOMP MENU - Full-screen overlay with seismic effects
    ============================================================ */
 
-/* Prevent horizontal scroll during shake animation */
-html {
-  overflow-x: hidden;
-}
-
-body {
-  overflow-x: hidden;
-}
+/* NOTE: overflow-x: hidden on html/body breaks sticky positioning
+   The shake animation overflow is now handled by .immersive { overflow-x: clip; } */
 
 /* Menu background panel - slides in from right */
 .menu-bg {

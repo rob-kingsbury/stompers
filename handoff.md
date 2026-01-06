@@ -1,6 +1,36 @@
 # Stompers Redesign - Immersive Master Handoff
 
-## Latest Session Changes (January 2026)
+## Latest Session Changes (January 2026 - Session 4)
+
+### Fixed: Sticky Positioning Broken by overflow-x: hidden
+
+**Root Cause:** `overflow-x: hidden` on `html` or `body` breaks `position: sticky` throughout the entire page. This was causing band cards to float instead of stack, and tour section panels to not animate.
+
+**Fix Applied:**
+1. Removed `overflow-x: hidden` from `body` and menu section CSS
+2. Added `overflow-x: clip` to `.immersive` wrapper instead (clip doesn't break sticky)
+3. Added Lenis compatibility CSS (`html.lenis { height: auto; }`)
+
+### Fixed: Transform Breaking Sticky on Band Cards
+
+**Root Cause:** Applying `transform: scale()` directly to elements with `position: sticky` breaks their sticky behavior.
+
+**Fix Applied:**
+1. Changed `initBandCardStack()` to scale `.stack-card-inner` instead of `.stack-card`
+2. Moved `will-change` and `transform-origin` from `.stack-card` to `.stack-card-inner`
+
+### Added: ScrollTrigger.refresh() Calls
+
+Added `ScrollTrigger.refresh()` at end of `init()` and on `window.load` to ensure proper position calculations after Lenis initializes and images load.
+
+### Documentation Updates
+
+- Added sticky positioning rule to `.claude/rules/css-architecture.md`
+- Created GitHub issues #6-10 for future work
+
+---
+
+## Session 3 Changes (January 2026)
 
 ### Quote Section Overhaul
 The quote section was completely reworked from an "explosion" effect to a **concom.tv-style shrink reveal**:
@@ -331,11 +361,16 @@ stompers-redesign/
 
 ---
 
-## Known Issues / TODOs
-- Mobile: Progress nav hidden on screens < 768px
-- Band cards: Manual click to flip works, scroll-triggered flip may need tuning
-- Footer design: User noted it's "bland" and needs a refresh
-- Quote section: Pin behavior was removed due to conflicts with shrink effect (caused duplicate elements/spacers)
+## Known Issues / TODOs (GitHub Issues)
+- #1 Mobile: Progress nav hidden on screens < 768px
+- #2 Band cards: Scroll-triggered flip animation needs tuning
+- #3 Footer design needs refresh
+- #4 Quote section: Pin behavior removed due to GSAP conflicts (note)
+- #6 Fix hardcoded colors on band cards
+- #7 Tour panels persistent label ("See Us Soon")
+- #8 Consolidate tour section (move list to tour page)
+- #9 Gradient blends at image edges
+- #10 JSON config for dynamic content
 
 ---
 

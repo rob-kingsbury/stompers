@@ -123,6 +123,18 @@ When continuing work:
 
 ## Recent Changes
 
+### January 2026 - Session 4
+- Fixed sticky positioning broken by overflow-x: hidden on html/body
+  - Root cause: overflow-x: hidden breaks position: sticky sitewide
+  - Fix: Use overflow-x: clip on .immersive wrapper instead
+- Fixed band card animations not working
+  - Root cause: transform on sticky elements breaks sticky behavior
+  - Fix: Scale .stack-card-inner instead of .stack-card
+- Added Lenis smooth scroll CSS compatibility rules
+- Added ScrollTrigger.refresh() calls for proper position calculations
+- Added sticky positioning rules to css-architecture.md
+- Created GitHub issues #6-10 for future work
+
 ### January 2026 - Session 3
 - Implemented Stomp hamburger menu with seismic shake effect
 - Major CSS refactoring for DRY compliance:

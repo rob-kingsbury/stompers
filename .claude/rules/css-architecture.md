@@ -116,6 +116,20 @@ Use `will-change` sparingly - only on elements that will animate.
 }
 ```
 
+## Sticky Positioning
+
+**CRITICAL**: Never use `overflow: hidden` or `overflow-x: hidden` on `html` or `body` - it breaks `position: sticky` throughout the entire page.
+
+```css
+/* BAD - breaks sticky */
+body { overflow-x: hidden; }
+
+/* GOOD - use clip on a wrapper instead */
+.immersive { overflow-x: clip; }
+```
+
+Also avoid applying `transform` directly to sticky elements - it breaks their sticky behavior. Apply transforms to an inner wrapper instead.
+
 ## Checklist
 
 Before committing CSS changes:
