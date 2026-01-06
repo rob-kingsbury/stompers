@@ -143,13 +143,26 @@
      Z-INDEX SCALE
      ============================================ */
 
+  /* Base layers */
   --z-base: 0;
   --z-raised: 10;
   --z-dropdown: 100;
   --z-sticky: 200;
-  --z-overlay: 300;
-  --z-modal: 400;
-  --z-tooltip: 500;
+
+  /* Navigation layers */
+  --z-nav: 900;              /* Progress nav, sticky headers */
+  --z-nav-above: 910;        /* Elements above nav */
+
+  /* Menu system (layered from back to front) */
+  --z-menu-bg: 1000;         /* Menu background panel */
+  --z-menu-content: 1010;    /* Menu links, footer */
+  --z-menu-effects: 1020;    /* Dust particles, flash effects */
+  --z-menu-trigger: 1030;    /* Hamburger button (always on top) */
+
+  /* Overlays */
+  --z-overlay: 1100;
+  --z-modal: 1200;
+  --z-tooltip: 1300;
   --z-max: 9999;
 
   /* ============================================
