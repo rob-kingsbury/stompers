@@ -163,6 +163,38 @@ status:
         ### Open Issues
         [table of open issues]
 
+todo:
+  triggers: ["add to todo", "add todo", "todo"]
+  description: Capture ideas persistently - never lose ideas between sessions
+  steps:
+    1_capture:
+      action: Get the idea/task from user input
+
+    2_check_existing:
+      action: |
+        - Review current TodoWrite items (pending/in_progress)
+        - Run gh issue list --state open
+        - Check if idea already exists or relates to existing issue
+
+    3_decide:
+      options:
+        - If duplicate: Note which issue covers it, no action needed
+        - If related to existing issue: Add as comment to that issue
+        - If new: Create GitHub Issue with appropriate label
+
+    4_create_issue:
+      action: |
+        gh issue create --title "[title]" --body "[description]" --label "[label]"
+      labels:
+        - enhancement (new feature)
+        - bug (something broken)
+        - animation (GSAP/scroll)
+        - css (styling)
+        - mobile (responsive)
+
+    5_confirm:
+      action: Output the issue number and title so user knows it's captured
+
 sync:
   triggers: ["sync", "sync docs", "update docs"]
   description: Sync reference files with code changes
