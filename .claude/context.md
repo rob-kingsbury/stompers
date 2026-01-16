@@ -4,9 +4,6 @@
 project: Swamp City Stompers Website (Immersive Redesign)
 type: Band website with scroll-based animations
 
-# Work tracking: GitHub Issues
-# See: gh issue list --state open
-
 tech:
   build: Vite
   scroll: Lenis (smooth scroll)
@@ -21,175 +18,53 @@ paths:
   js: js/main-master.js
   themes: css/themes.css
   pages: tour.html, story.html, epk.html, merch.html, contact.html
-  demos: demos/view-transitions/, demos/transitions.html
-  archive: _archive/ (gitignored)
-  rules: .claude/rules/
+  docs: handoff.md (detailed section docs, read on-demand)
 
 workflow:
   dev: npm run dev
   build: npm run build
-  test: http://localhost:5173/
+  issues: gh issue list --state open
 
 repo:
   github: https://github.com/rob-kingsbury/stompers.git
   branch: main
 ```
 
-## Key Rules
+## Section Status
 
-1. **DRY (Don't Repeat Yourself)**: Define values once, reference via CSS variables
-2. **CSS Variables**: All colors, spacing, z-index, typography from themes.css
-3. **GSAP Patterns**: Check existing animation code before writing new ScrollTriggers
-4. **Mobile First**: Base styles for mobile, min-width queries to enhance
-5. **GitHub Issues**: All tasks, bugs, and features tracked in Issues
-6. **No Emojis**: Keep code and commits clean
-
-## Quick Commands
-
-```bash
-# Development
-npm run dev          # Start Vite dev server
-npm run build        # Production build
-
-# View open issues
-gh issue list --state open
-
-# Create issue
-gh issue create --title "Title" --body "Description"
-
-# Close when done (via commit preferred)
-# Include "Fixes #123" in commit message
-```
-
-## Current Open Issues
-
-Run `gh issue list --state open` for current status.
-
-| # | Title | Priority |
-|---|-------|----------|
-| 1 | Mobile: Progress nav hidden on screens < 768px | Medium |
-| 2 | Band cards: Scroll-triggered flip animation needs tuning | Medium |
-| 3 | Footer design needs refresh | Low |
-| 4 | Quote section: Pin behavior removed due to GSAP conflicts | Note |
-
-## Section Implementation Status
-
-| Section | Status | Notes |
-|---------|--------|-------|
-| Progress Nav | Complete | MetaMask-style, hidden on mobile |
-| Hero | Complete | Video grows on scroll, animated stats |
-| About | Complete | Clip-path image reveal |
-| Band Cards | Complete | Stacking cards, click-to-flip works |
-| Tour | Complete | Sticky stack + accordion |
-| Quote | Complete | Character fade-in + shrink effect |
-| Contact/Footer | Needs Work | Design is "bland" |
-
-## Page Implementation Status
-
-| Page | Status | Notes |
-|------|--------|-------|
-| index.html | Complete | Master homepage with all sections |
-| tour.html | In Progress | Demos built, awaiting layout selection |
-| merch.html | Complete | Sticky product slides, cart icon with badge |
-| story.html | Not Started | V7 template + hamburger menu |
-| epk.html | Not Started | 3D flip cards + stat counters |
-| contact.html | Not Started | Field reveal + ripple submit |
-
-## Animation Reference
-
-### GSAP ScrollTrigger Patterns Used
-
-```javascript
-// Scrub animation (follows scroll position)
-gsap.to(element, {
-  scale: 0.9,
-  scrollTrigger: {
-    trigger: element,
-    start: 'top top',
-    end: 'bottom top',
-    scrub: true,
-  }
-});
-
-// Enter/Leave triggers (one-time or toggle)
-ScrollTrigger.create({
-  trigger: section,
-  start: 'top 60%',
-  onEnter: () => { /* animate in */ },
-  onLeaveBack: () => { /* reset */ },
-});
-```
-
-### Key Insight: Pin Conflicts
-
-GSAP ScrollTrigger's pin creates spacer elements that interfere with other ScrollTriggers on the same element. If you need both pin and other effects, use separate elements or alternative approaches.
-
-## Session Handoff Notes
-
-When continuing work:
-1. Run `npm run dev` to start dev server
-2. Run `gh issue list` to see current priorities
-3. Main site is at `http://localhost:5173/`
-4. Check `handoff.md` for detailed section documentation
+| Section | Status | Page Status |
+|---------|--------|-------------|
+| Progress Nav | Complete | index.html - Complete |
+| Hero | Complete | tour.html - In Progress |
+| About | Complete | merch.html - Complete |
+| Band Cards | Complete | story.html - Not Started |
+| Tour | Complete | epk.html - Not Started |
+| Quote | Complete | contact.html - Not Started |
+| Contact/Footer | Needs Work | |
 
 ## Recent Changes
 
 ### January 2026 - Session 5
 - Built merch.html page with sticky product slides layout
-  - 4 products: Classic Logo Tee, Swamp Hoodie, Trucker Cap, Debut Album Vinyl
-  - Cart icon with badge in header (next to hamburger)
-  - Add to cart with badge bounce animation
-  - Size variant selection
-  - Alternating left/right product layouts
-- Added header-cart and product-slide CSS to immersive-master.css
 - Created tour-demos.html with 8 tour page layout options
-- GSAP Animation Library updates (separate repo):
-  - Added 24 examples across 7 categories
-  - Dynamic manifest system (build-manifest.cjs)
-  - Gallery and Page Builder now auto-load from manifest.json
+- GSAP Animation Library updates (separate repo)
 
 ### January 2026 - Session 4
-- Fixed sticky positioning broken by overflow-x: hidden on html/body
-  - Root cause: overflow-x: hidden breaks position: sticky sitewide
-  - Fix: Use overflow-x: clip on .immersive wrapper instead
-- Fixed band card animations not working
-  - Root cause: transform on sticky elements breaks sticky behavior
-  - Fix: Scale .stack-card-inner instead of .stack-card
-- Added Lenis smooth scroll CSS compatibility rules
-- Added ScrollTrigger.refresh() calls for proper position calculations
-- Added sticky positioning rules to css-architecture.md
-- Created GitHub issues #6-10 for future work
+- Fixed sticky positioning broken by overflow-x: hidden
+- Fixed band card animations (transform breaks sticky)
+- Added Lenis CSS compatibility rules
+- Created GitHub issues #6-10
 
 ### January 2026 - Session 3
-- Implemented Stomp hamburger menu with seismic shake effect
-- Major CSS refactoring for DRY compliance:
-  - Added comprehensive z-index scale to themes.css (--z-nav, --z-menu-*, --z-overlay)
-  - Added RGB variants for rgba() usage (--color-bg-rgb, --color-text-rgb)
-  - Replaced all hardcoded colors with CSS variables
-  - Replaced hardcoded spacing, typography, timing with variables
-- Removed duplicate CSS variables from immersive-master.css (now in themes.css only)
-- Updated css-architecture.md rules with DRY principle and updated z-index scale
-- Fixed hamburger z-index layering issues with menu
-- Fixed scrollbar layout shift with scrollbar-gutter: stable
-- Cleaned up PHP files (multi-page approach abandoned)
+- Implemented Stomp hamburger menu with seismic shake
+- Major CSS refactoring for DRY compliance
+- Added comprehensive z-index scale to themes.css
 
 ### January 2026 - Session 2
-- Added View Transitions API for multi-page navigation
-- Created demos/view-transitions/ with 5 transition styles (slide, fade, scale, lift, flip)
-- Chose "Lift" transition for production (scale + 3D tilt)
-- Cleaned up project: archived 52 experimental files to _archive/
-- Created .claude/ configuration directory with workflows, rules, style-guide
-- Created claude-project-template repo for future projects
+- Added View Transitions API (Lift style chosen)
+- Archived 52 experimental files to _archive/
+- Created .claude/ configuration directory
 
 ### January 2026 - Session 1
 - Initial GitHub repo setup
-- Quote section overhauled from explosion to shrink reveal
-- Created GitHub issues for known TODOs
-
-## See Also
-
-- `handoff.md` - Detailed section-by-section documentation
-- `.claude/rules/css-architecture.md` - CSS standards
-- `.claude/rules/development-workflow.md` - How we work together
-- `.claude/style-guide.json` - Design tokens
-- `.claude/functions.md` - GSAP/Lenis function reference
+- Quote section overhauled to shrink reveal

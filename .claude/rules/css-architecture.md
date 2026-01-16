@@ -37,33 +37,28 @@ required-variables:
 --color-accent: #c9a227;   /* Gold accent */
 ```
 
-## Z-Index Scale
+## Z-Index Scale (Power of 9)
 
-Use variables from themes.css (never hardcode z-index):
+Simple 4-tier scale using powers of 9. Count the 9s to know the layer depth.
 
 ```css
-/* Base layers */
---z-base: 0;               /* Default */
---z-raised: 10;            /* Above siblings */
---z-dropdown: 100;         /* Dropdowns */
---z-sticky: 200;           /* Sticky elements */
-
-/* Navigation */
---z-nav: 900;              /* Progress nav, sticky headers */
---z-nav-above: 910;        /* Elements above nav */
-
-/* Menu system (layered back to front) */
---z-menu-bg: 1000;         /* Menu background panel */
---z-menu-content: 1010;    /* Menu links, footer */
---z-menu-effects: 1020;    /* Dust particles, flash */
---z-menu-trigger: 1030;    /* Hamburger button */
-
-/* Overlays */
---z-overlay: 1100;         /* Generic overlays */
---z-modal: 1200;           /* Modal dialogs */
---z-tooltip: 1300;         /* Tooltips */
---z-max: 9999;             /* Page transitions */
+--z-base: auto;      /* Default stacking */
+--z-raised: 9;       /* Above siblings: cards, sticky nav, tooltips */
+--z-fixed: 99;       /* Fixed elements: dropdowns, progress nav */
+--z-overlay: 999;    /* Overlays: menu, modals, notifications */
+--z-critical: 9999;  /* Page transitions only */
 ```
+
+**Shim values** - when you need to stack between layers:
+- Between 9 and 99: use 91, 92, 93...
+- Between 99 and 999: use 991, 992, 993...
+- Between 999 and 9999: use 9991, 9992, 9993...
+
+**Rules:**
+1. Never use arbitrary values like 10000, 99999, 100000
+2. Count the 9s to know the layer (one 9 = raised, two 9s = fixed, etc.)
+3. Use shim values only when necessary
+4. Document any new z-index additions
 
 **Exception:** Sequential stacking (1, 2, 3, 4) is allowed for card/layer ordering within a component (e.g., stacking cards) - add a comment explaining why.
 

@@ -118,7 +118,7 @@ button {
   right: var(--spacing-xl);
   top: 50%;
   transform: translateY(-50%);
-  z-index: var(--z-nav);
+  z-index: var(--z-fixed);
   opacity: 0;
   transition: opacity 0.5s ease;
 }
@@ -259,7 +259,7 @@ button {
 .story-link {
   position: fixed;
   top: var(--spacing-xl);
-  z-index: var(--z-nav);
+  z-index: var(--z-fixed);
   font-family: var(--font-mono);
   font-size: 0.7rem;
   text-transform: uppercase;
@@ -1560,7 +1560,7 @@ button {
   position: fixed;
   top: var(--spacing-lg);
   right: var(--spacing-lg);
-  z-index: var(--z-menu-trigger);
+  z-index: var(--z-overlay);
   background: rgba(var(--color-bg-rgb), 0.9);
   padding: var(--spacing-md);
   border-radius: var(--radius-lg);
@@ -1676,7 +1676,7 @@ button {
   width: 100%;
   height: 100%;
   background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-alt) 50%, var(--color-bg) 100%);
-  z-index: var(--z-menu-bg);
+  z-index: var(--z-overlay);
 }
 
 /* Dust particle container */
@@ -1687,7 +1687,7 @@ button {
   width: 100%;
   height: 300px;
   pointer-events: none;
-  z-index: var(--z-menu-effects);
+  z-index: var(--z-overlay);
   overflow: hidden;
 }
 
@@ -1714,7 +1714,7 @@ button {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: var(--z-menu-content);
+  z-index: var(--z-overlay);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -1782,7 +1782,7 @@ button {
   position: fixed;
   inset: 0;
   background: rgba(var(--color-accent-rgb), 0.1);
-  z-index: var(--z-menu-effects);
+  z-index: var(--z-overlay);
   opacity: 0;
   pointer-events: none;
 }
@@ -1849,7 +1849,7 @@ button {
   position: fixed;
   inset: 0;
   background: var(--color-bg);
-  z-index: var(--z-max);
+  z-index: var(--z-critical);
   pointer-events: none;
   opacity: 0;
 }
@@ -2139,7 +2139,7 @@ button {
   height: 120px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 2px;
-  z-index: var(--z-nav);
+  z-index: var(--z-fixed);
   opacity: 0;
   transition: opacity 0.3s ease;
 }

@@ -15,7 +15,9 @@ audit:
         - Grep for !important (note justified uses for third-party overrides)
         - Grep for z-index not using var(--z-*)
         - Grep for style=" in HTML files (inline styles)
-      severity: HIGH if colors/spacing, MEDIUM if inline styles
+        - Grep for max-width media queries (should use min-width for mobile-first)
+        - Check for desktop-first patterns (base styles with large values overridden in queries)
+      severity: HIGH if colors/spacing, MEDIUM if inline styles or max-width queries
 
     2_js:
       name: JavaScript/GSAP
@@ -35,7 +37,27 @@ audit:
         - Check color contrast on text over images
       severity: HIGH if missing
 
-    4_report:
+    4_security:
+      name: Security
+      checks:
+        - CDN scripts missing integrity hash (subresource integrity)
+        - Links with target="_blank" missing rel="noopener noreferrer"
+        - Mixed content (HTTP resources on HTTPS)
+        - Inline event handlers (onclick, onload) - CSP concerns
+        - Sensitive data in JS/HTML (API keys, credentials, tokens)
+      severity: HIGH if credentials exposed, MEDIUM otherwise
+
+    5_dry:
+      name: DRY / Reusability
+      checks:
+        - Same function appearing in multiple JS files (should be shared module)
+        - Copy-pasted HTML sections across pages (should be component/partial)
+        - Repeated CSS blocks that could be a shared class
+        - Magic numbers/strings that should be constants or variables
+      severity: LOW (note for future refactor, don't block)
+      note: Apply Rule of Three - only flag if duplicated 3+ times or across files
+
+    6_report:
       action: Output summary table
       format: |
         | Category | Issues | Severity |
@@ -43,8 +65,10 @@ audit:
         | CSS      | X      | HIGH/MED |
         | JS/GSAP  | X      | HIGH/MED |
         | A11y     | X      | HIGH/MED |
+        | Security | X      | HIGH/MED |
+        | DRY      | X      | LOW      |
 
-    5_resolve:
+    7_resolve:
       action: |
         - Fix all LOW/MEDIUM issues immediately
         - Create GitHub Issues for HIGH with priority-high label
@@ -80,6 +104,10 @@ handoff:
         - Update Open Issues table with current open issues
         - Add session notes to Recent Changes section
         - Note any blockers or pending decisions
+      pruning:
+        - Keep context.md under 500 lines OR max 5 sessions in Recent Changes (whichever limit hits first)
+        - When pruning, remove oldest sessions first
+        - Deleted content is already in git history, no need to archive elsewhere
 
     5_commit_context:
       action: git add .claude/context.md && git commit -m "Update context.md with handoff notes"

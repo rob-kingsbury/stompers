@@ -122,9 +122,20 @@ gh issue close <number> --comment "Completed in <commit>"
 
 ## Sessions and Context
 
-- I can read `.claude/context.md` for quick project reference
-- Detailed docs in `handoff.md`
+### Starting a Session ("Ready?" prompt)
+
+When you ask "Ready?" or similar, I read/run these before responding:
+1. `.claude/context.md` - Project overview, status, recent changes
+2. Run `gh issue list --state open` - Check current open issues
+
+Read `handoff.md` on-demand when working on specific sections (not at startup).
+
+This keeps startup lean while ensuring full context is available when needed.
+
+### During a Session
+
 - Run `npm run dev` to start development
+- Check issues with `gh issue list`
 
 ## Your Preferences (Learned)
 

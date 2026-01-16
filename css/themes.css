@@ -142,30 +142,17 @@
   --shadow-glow: 0 0 20px rgba(var(--color-accent-rgb), 0.3);
 
   /* ============================================
-     Z-INDEX SCALE
+     Z-INDEX SCALE (Power of 9)
+     ============================================
+     Simple 4-tier scale: 9, 99, 999, 9999
+     Use DOM order for layering within same tier
      ============================================ */
 
-  /* Base layers */
-  --z-base: 0;
-  --z-raised: 10;
-  --z-dropdown: 100;
-  --z-sticky: 200;
-
-  /* Navigation layers */
-  --z-nav: 900;              /* Progress nav, sticky headers */
-  --z-nav-above: 910;        /* Elements above nav */
-
-  /* Menu system (layered from back to front) */
-  --z-menu-bg: 1000;         /* Menu background panel */
-  --z-menu-content: 1010;    /* Menu links, footer */
-  --z-menu-effects: 1020;    /* Dust particles, flash effects */
-  --z-menu-trigger: 1030;    /* Hamburger button (always on top) */
-
-  /* Overlays */
-  --z-overlay: 1100;
-  --z-modal: 1200;
-  --z-tooltip: 1300;
-  --z-max: 9999;
+  --z-base: auto;            /* Default stacking */
+  --z-raised: 9;             /* Above siblings: cards, sticky nav, tooltips */
+  --z-fixed: 99;             /* Fixed elements: dropdowns, progress nav */
+  --z-overlay: 999;          /* Overlays: menu, modals, notifications */
+  --z-critical: 9999;        /* Page transitions only */
 
   /* ============================================
      LAYOUT
