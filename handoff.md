@@ -1,10 +1,34 @@
 # Stompers Redesign - Immersive Master Handoff
 
-## Latest Session Changes (January 2026 - Session 4)
+## Latest Session Changes (February 2026 - Session 10)
+
+### Hero Section Redesign: Video Replaced with Logo Animation
+
+**Problem:** Hero video (16MB) showed only the bassist on mobile. Poor framing and heavy file size.
+
+**Solution:** Replaced video with logo-based intro animation and layered grunge background.
+
+**New Hero Structure:**
+1. **Background Layer 1 (static):** `scratch-overlay.webp` at 8% opacity, `mix-blend-mode: screen`
+2. **Background Layer 2 (moving):** `grunge-texture.jpg` at 6% opacity, 90s Ken Burns drift
+3. **Ambient Sparks:** Gold particles floating upward (20 initial, spawned every 200ms)
+4. **Content:** Logo fade-in → meta/tagline appear → stamp BAMs with screen shake
+
+**Bug Fixes:**
+- Skip-link always visible → `translateY(-200%)` + `:focus-visible`
+- Scroll cue opacity locked → `gsap.fromTo()` + `immediateRender: false`
+- Menu FOUC on reload → `opacity: 0` on `.menu-nav-link` and `.menu-footer`
+
+---
+
+## Earlier Session Changes
+
+<details>
+<summary>Session 4 (January 2026) - Sticky positioning fixes</summary>
 
 ### Fixed: Sticky Positioning Broken by overflow-x: hidden
 
-**Root Cause:** `overflow-x: hidden` on `html` or `body` breaks `position: sticky` throughout the entire page. This was causing band cards to float instead of stack, and tour section panels to not animate.
+**Root Cause:** `overflow-x: hidden` on `html` or `body` breaks `position: sticky` throughout the entire page.
 
 **Fix Applied:**
 1. Removed `overflow-x: hidden` from `body` and menu section CSS
@@ -13,35 +37,23 @@
 
 ### Fixed: Transform Breaking Sticky on Band Cards
 
-**Root Cause:** Applying `transform: scale()` directly to elements with `position: sticky` breaks their sticky behavior.
+Changed `initBandCardStack()` to scale `.stack-card-inner` instead of `.stack-card`.
 
-**Fix Applied:**
-1. Changed `initBandCardStack()` to scale `.stack-card-inner` instead of `.stack-card`
-2. Moved `will-change` and `transform-origin` from `.stack-card` to `.stack-card-inner`
+</details>
 
-### Added: ScrollTrigger.refresh() Calls
-
-Added `ScrollTrigger.refresh()` at end of `init()` and on `window.load` to ensure proper position calculations after Lenis initializes and images load.
-
-### Documentation Updates
-
-- Added sticky positioning rule to `.claude/rules/css-architecture.md`
-- Created GitHub issues #6-10 for future work
-
----
-
-## Session 3 Changes (January 2026)
+<details>
+<summary>Session 3 (January 2026) - Quote section overhaul</summary>
 
 ### Quote Section Overhaul
-The quote section was completely reworked from an "explosion" effect to a **concom.tv-style shrink reveal**:
+Reworked from "explosion" effect to **concom.tv-style shrink reveal**:
 
-1. **Removed:** Explosion animation where words flew outward
-2. **Added:** Staggered character fade-in animation when section enters viewport
-3. **Added:** Section shrinks (scale 1 → 0.9) with border-radius as user scrolls past
-4. **Removed:** Pin behavior (caused duplicate elements and conflicted with shrink)
-5. **Fixed:** Contact section background changed from `--color-bg-alt` to `--color-bg` (#0a0a0a) for seamless reveal
+1. Staggered character fade-in animation when section enters viewport
+2. Section shrinks (scale 1 → 0.9) with border-radius as user scrolls past
+3. Removed pin behavior (caused duplicate elements and conflicted with shrink)
 
-**Key Insight:** GSAP ScrollTrigger's pin creates spacer elements that interfere with other ScrollTriggers on the same element. The solution was to remove the pin entirely and use a simple onEnter/onLeaveBack trigger for fade-in, plus a separate gsap.to with scrub for the shrink effect.
+**Key Insight:** GSAP ScrollTrigger's pin creates spacer elements that interfere with other ScrollTriggers on the same element.
+
+</details>
 
 ---
 
@@ -67,7 +79,7 @@ npm run build        # Production build
 ### Files
 | File | Purpose |
 |------|---------|
-| `index-immersive-master.html` | Main HTML structure |
+| `index.html` | Main HTML structure |
 | `css/styles.css` | All styles (~1470 lines) |
 | `js/main.js` | GSAP/Lenis animations (~570 lines) |
 | `vite.config.js` | Build config, opens to master by default |
@@ -96,21 +108,35 @@ npm run build        # Production build
 
 ---
 
-### 2. Hero Section
+### 2. Hero Section (Redesigned Session 10)
 **What it does:**
-- Darker video overlay (50-85% opacity gradient)
-- Video **GROWS** on scroll (scale 1 → 1.3)
-- Staggered entrance: meta → title lines → tagline → stats → scroll cue
-- Animated number counters for stats
+- Two-layer grunge background: static scratch texture + moving grunge with Ken Burns
+- Ambient gold floating sparks
+- Logo fades in with subtle scale (1.15 → 1)
+- Meta + tagline appear, then stamp BAMs down with screen shake
+- Content fades out with parallax on scroll
 
-**Key JS:** `initHeroAnimations()` - lines 137-217
-```javascript
-// Video grows on scroll
-gsap.to(video, {
-  scale: 1.3,
-  scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true }
-});
+**Background Layers:**
+```css
+/* Layer 1: Static scratch — no animation */
+.hero-grain { background: url('scratch-overlay.webp'); opacity: 0.08; mix-blend-mode: screen; }
+
+/* Layer 2: Moving grunge — 90s Ken Burns */
+.hero-grain::before { background: url('grunge-texture.jpg'); opacity: 0.06; animation: kenBurns 90s; }
 ```
+
+**Key JS:** `initHeroAnimations()` + `initHeroSparks()` in main.js
+```javascript
+// Stamp BAM with screen shake
+tl.to(stamp, { opacity: 1, scale: 1, rotation: -12, duration: 0.15, ease: 'power4.out' });
+tl.to(hero, { x: 4, yoyo: true, repeat: 5, duration: 0.03, ease: 'none' });
+```
+
+**Assets:**
+- `img/stompers-logo-full.png` — full band logo
+- `img/sleazy-rock.png` — "100% Sleazy Rock & Roll" stamp
+- `img/grunge-texture.jpg` — moving grunge layer
+- `img/scratch-overlay.webp` — static scratch texture
 
 ---
 

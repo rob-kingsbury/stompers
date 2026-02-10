@@ -8,9 +8,22 @@ dist/
 # Archive (experimental versions, analysis output)
 _archive/
 
+# Analysis output
+scroll-analysis-output/
+
 # IDE/Editor
 .vscode/
 .idea/
+
+# Windows artifacts
+nul
+
+# Source assets in project root (production copies in img/)
+/stompers.png
+/sleazy-rock.png
+/stomper-logo-mockup-SMALL.png
+/417866336_*.jpg
+/9819746_12816.eps
 
 # Claude local settings only (keep .claude/ docs in repo)
 .claude/settings.local.json

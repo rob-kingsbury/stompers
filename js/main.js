@@ -655,97 +655,74 @@ function initProgressNav() {
 }
 
 // ============================================================
-// HERO ANIMATIONS - Video GROWS on Scroll
+// HERO ANIMATIONS - Logo Intro Sequence
 // ============================================================
 
 function initHeroAnimations() {
   const hero = document.querySelector('.section--hero');
   if (!hero) return;
 
-  const video = hero.querySelector('.hero-video');
+  const logoReveal = hero.querySelector('.hero-logo-reveal');
+  const logoImg = hero.querySelector('.hero-logo-img');
+  const stamp = hero.querySelector('.hero-stamp');
   const meta = hero.querySelector('.hero-meta');
-  const titleLines = hero.querySelectorAll('.title-line');
   const tagline = hero.querySelector('.hero-tagline');
-  const stats = hero.querySelector('.hero-stats');
   const scrollCue = hero.querySelector('.hero-scroll-cue');
 
   const reducedMotion = prefersReducedMotion();
   const config = getScrollTriggerConfig('hero');
+  const mobile = isMobile();
 
   // If reduced motion, show everything immediately
   if (reducedMotion) {
+    gsap.set(logoReveal, { opacity: 1 });
+    gsap.set(stamp, { opacity: 1, scale: 1, rotation: -12 });
     meta?.classList.add('is-visible');
-    titleLines.forEach((line) => line.classList.add('is-visible'));
     tagline?.classList.add('is-visible');
-    stats?.classList.add('is-visible');
     scrollCue?.classList.add('is-visible');
-    animateStats();
     return;
   }
 
-  // Staggered entrance animation
   const tl = gsap.timeline({ delay: 0.3 });
 
-  // Meta
-  if (meta) {
-    tl.add(() => meta.classList.add('is-visible'), 0);
-  }
+  // Logo fades in
+  tl.to(logoReveal, { opacity: 1, duration: 1, ease: 'power2.out' });
+  tl.from(logoImg, { scale: 1.15, duration: 1, ease: 'power2.out' }, '<');
 
-  // Title lines with stagger
-  titleLines.forEach((line, i) => {
-    tl.add(() => line.classList.add('is-visible'), 0.2 + i * 0.15);
+  // Meta + tagline
+  tl.add(() => meta?.classList.add('is-visible'), '+=0.2');
+  tl.add(() => tagline?.classList.add('is-visible'), '+=0.1');
+
+  // Stamp BAM
+  tl.to(stamp, {
+    opacity: 1, scale: 1, rotation: -12,
+    duration: 0.15, ease: 'power4.out',
+  }, '+=0.3');
+  tl.to(hero, {
+    x: 4, yoyo: true, repeat: 5, duration: 0.03, ease: 'none',
+    onComplete: () => gsap.set(hero, { x: 0 }),
   });
 
-  // Tagline
-  if (tagline) {
-    tl.add(() => tagline.classList.add('is-visible'), 0.7);
-  }
+  tl.add(() => scrollCue?.classList.add('is-visible'), '+=0.4');
 
-  // Stats with number animation
-  if (stats) {
-    tl.add(() => {
-      stats.classList.add('is-visible');
-      animateStats();
-    }, 0.9);
-  }
-
-  // Scroll cue
-  if (scrollCue) {
-    tl.add(() => scrollCue.classList.add('is-visible'), 1.3);
-  }
-
-  // Video GROWS on scroll (scale from 1 to 1.3) - reduced on mobile for performance
-  if (video) {
-    const maxScale = isMobile() ? 1.15 : 1.3;
-    gsap.to(video, {
-      scale: maxScale,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: hero,
-        start: 'top top',
-        end: 'bottom top',
-        scrub: true,
-      },
-    });
-  }
-
-  // Fade out content on scroll - adjusted for mobile
-  gsap.to('.hero-content', {
+  // Fade out logo + content on scroll
+  gsap.to('.hero-logo-reveal', {
     opacity: 0,
-    y: isMobile() ? -40 : -80,
+    y: mobile ? -40 : -80,
     ease: 'none',
     scrollTrigger: {
       trigger: hero,
-      start: config.contentFade.start,
-      end: config.contentFade.end,
+      start: 'top top',
+      end: '60% top',
       scrub: true,
     },
   });
 
   // Fade out scroll cue
-  gsap.to('.hero-scroll-cue', {
+  gsap.fromTo('.hero-scroll-cue', { opacity: 1 }, {
     opacity: 0,
     ease: 'none',
+    immediateRender: false,
     scrollTrigger: {
       trigger: hero,
       start: config.scrollCue.start,
@@ -753,27 +730,71 @@ function initHeroAnimations() {
       scrub: true,
     },
   });
+
+  // Ambient sparks
+  initHeroSparks(hero);
 }
 
-function animateStats() {
-  const statValues = document.querySelectorAll('.stat-value');
-  statValues.forEach((stat) => {
-    const target = parseInt(stat.dataset.count, 10);
-    if (!target) return;
+// Floating ambient sparks over the hero background
+function initHeroSparks(hero) {
+  const container = hero.querySelector('.hero-sparks');
+  if (!container || prefersReducedMotion()) return;
 
-    const counter = { value: 0 };
-    gsap.to(counter, {
-      value: target,
-      duration: 1.2,
-      ease: 'power2.out',
-      onUpdate: () => {
-        stat.textContent = Math.floor(counter.value);
+  const heroHeight = hero.offsetHeight;
+
+  function spawnSpark(immediate) {
+    const spark = document.createElement('div');
+    spark.className = 'hero-spark';
+
+    // Random horizontal position, always start at bottom
+    spark.style.left = `${Math.random() * 100}%`;
+    spark.style.bottom = '0';
+
+    // Random small size (2-4px)
+    const size = 2 + Math.random() * 2;
+    spark.style.width = `${size}px`;
+    spark.style.height = `${size}px`;
+
+    container.appendChild(spark);
+
+    // Travel full viewport height, bottom to top
+    const travel = heroHeight * (0.7 + Math.random() * 0.3);
+    const duration = 7 + Math.random() * 6;
+
+    // If immediate, start partway through the journey
+    const startProgress = immediate ? Math.random() * 0.8 : 0;
+
+    gsap.fromTo(spark,
+      {
+        y: 0,
+        opacity: 0,
       },
-      onComplete: () => {
-        stat.textContent = target;
-      },
-    });
-  });
+      {
+        y: -travel,
+        x: (Math.random() - 0.5) * 100,
+        opacity: 0.4 + Math.random() * 0.3,
+        duration: duration * (1 - startProgress),
+        ease: 'none',
+        onStart: () => {
+          if (startProgress > 0) {
+            gsap.set(spark, { y: -travel * startProgress });
+          }
+        },
+        onComplete: () => spark.remove(),
+      }
+    );
+  }
+
+  // Spawn sparks at intervals — more frequent for denser field
+  const interval = setInterval(() => spawnSpark(false), 200);
+
+  // Immediate batch — scattered across the viewport on load
+  for (let i = 0; i < 20; i++) {
+    spawnSpark(true);
+  }
+
+  // Cleanup on page transition
+  cleanupFns.push(() => clearInterval(interval));
 }
 
 // ============================================================

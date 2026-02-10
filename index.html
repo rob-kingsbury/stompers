@@ -99,42 +99,24 @@
          SECTION 1: HERO - Dark video that GROWS on scroll
          ============================================================ -->
     <section id="hero" class="section section--hero" data-section="hero">
-      <div class="hero-video-container">
-        <video autoplay muted loop playsinline preload="metadata" aria-hidden="true" class="hero-video">
-          <source src="img/vid-header-mute.mp4" type="video/mp4">
-        </video>
-        <div class="hero-video-overlay"></div>
-      </div>
+      <!-- Grungy swamp background -->
+      <div class="hero-grain" aria-hidden="true"></div>
+      <!-- Ambient floating sparks -->
+      <div class="hero-sparks" aria-hidden="true"></div>
 
-      <div class="hero-content">
+      <!-- Logo reveal: single column — logo, meta, tagline, stamp -->
+      <div class="hero-logo-reveal">
+        <img class="hero-logo-img" src="img/stompers-logo-full.png" alt="Swamp City Stompers" width="600" height="600">
+
         <div class="hero-meta">
           <span class="meta-year">Est. 2019</span>
           <span class="meta-divider">/</span>
           <span class="meta-location">Eastern Ontario, CA</span>
         </div>
 
-        <h1 class="hero-title">
-          <span class="title-line" data-delay="0">Swamp</span>
-          <span class="title-line" data-delay="1">City</span>
-          <span class="title-line title-line--accent" data-delay="2">Stompers</span>
-        </h1>
-
         <p class="hero-tagline">Southern Rock &bull; Blues &bull; Soul &bull; Outlaw Country</p>
 
-        <div class="hero-stats">
-          <div class="stat">
-            <span class="stat-value" data-count="200">0</span>
-            <span class="stat-label">Shows</span>
-          </div>
-          <div class="stat">
-            <span class="stat-value" data-count="6">0</span>
-            <span class="stat-label">Years</span>
-          </div>
-          <div class="stat">
-            <span class="stat-value" data-count="4">0</span>
-            <span class="stat-label">Members</span>
-          </div>
-        </div>
+        <img class="hero-stamp" src="img/sleazy-rock.png" alt="100% Sleazy Rock and Roll" width="200" height="200">
       </div>
 
       <div class="hero-scroll-cue">

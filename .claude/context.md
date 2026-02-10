@@ -1,9 +1,9 @@
 ---
 project: Stompers
 status: In Progress
-last_session: 9
+last_session: 10
 session_date: 2026-02-09
-current_focus: Full site audit and optimization
+current_focus: Hero section redesign (video replaced with logo animation)
 open_issues: 11
 next_priority: "Tour page layout (#11)"
 ---
@@ -45,7 +45,7 @@ repo:
 | Section | Status | Page Status |
 |---------|--------|-------------|
 | Progress Nav | Complete | index.html - Complete |
-| Hero | Complete | tour.html - In Progress |
+| Hero | Redesigned (logo anim) | tour.html - In Progress |
 | About | Complete | merch.html - Complete |
 | Band Cards | Complete | story.html - Not Started |
 | Tour | Complete | epk.html - Not Started |
@@ -53,6 +53,47 @@ repo:
 | Contact/Footer | Needs Work | |
 
 ## Recent Changes
+
+### February 2026 - Session 10: Hero Redesign (Video to Logo Animation)
+
+**Replaced hero video with logo-based intro animation and layered grunge background.**
+
+Problem: Hero video showed only the bassist on mobile. Video was 16MB. Decided to drop it entirely.
+
+Hero Animation (index.html + js/main.js):
+- Removed hero video, overlay, title lines, stats section (200 shows/6 years/4 members)
+- New sequence: logo fades in with subtle scale → meta/tagline appear → stamp BAMs down with screen shake
+- Single GSAP timeline, same on mobile and desktop
+- Logo + tagline + stamp in single flex column layout
+- Scroll-triggered fade-out with parallax (logo scrolls up and fades)
+- Reduced motion: all elements shown immediately, no animation
+
+Hero Background (css/styles.css):
+- Layer 1 (static): `scratch-overlay.webp` at 8% opacity, `mix-blend-mode: screen`
+- Layer 2 (moving): `grunge-texture.jpg` at 6% opacity, 90s Ken Burns drift animation
+- Layer 3: Ambient gold sparks (20 initial + spawned every 200ms, 7-13s travel time)
+- Replaced SVG noise grain with real texture images
+
+New Assets (img/):
+- `stompers-logo-full.png` — full band logo on black background
+- `sleazy-rock.png` — "100% Sleazy Rock & Roll" stamp
+- `grunge-texture.jpg` — moving grunge layer (from texturelabs.org)
+- `scratch-overlay.webp` — static scratch texture (inverted + converted via Sharp, 345KB)
+
+Bug Fixes:
+- Skip-link always visible: fixed with `translateY(-200%)` + `:focus-visible`
+- Scroll cue stuck at opacity 0: fixed with `gsap.fromTo()` + `immediateRender: false`
+- Menu FOUC on reload: added `opacity: 0` to `.menu-nav-link` and `.menu-footer` in CSS
+
+Cleanup:
+- Updated `.gitignore` (scroll-analysis-output, Windows nul artifact, source asset PNGs)
+- Removed Black Ops One font (tried and abandoned for text BAM approach)
+- Removed all video-related CSS and JS
+
+Approaches tried and abandoned:
+- Text BAM (SWAMP/CITY/STOMPERS with Black Ops One font) — font mismatch with hand-illustrated logo
+- Clip-path staged reveal of logo regions — alignment issues with artwork
+- SVG feTurbulence grain — too subtle, replaced with real textures
 
 ### February 2026 - Session 9: Full Site Audit and Optimization
 
@@ -100,7 +141,7 @@ Config:
 - Added missing variables to style-guide.json (spacing-6xl, shadow-2xl, shadow-upward, border-width-heavy, letter-spacing-ultra/extreme)
 
 Not fixed (deferred):
-- Hero video 16MB (no ffmpeg available; video being replaced soon)
+- Hero video 16MB — resolved in session 10 (video removed, replaced with logo animation)
 - Content placeholders (fake phone, # links, placeholder dates)
 - Design items (band card grid, full desktop nav, footer refresh)
 
