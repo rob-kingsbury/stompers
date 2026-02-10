@@ -7,6 +7,7 @@ export default defineConfig({
   publicDir: 'public',
   build: {
     outDir: 'dist',
+    sourcemap: false,
     rollupOptions: {
       input: {
         index: resolve(__dirname, 'index.html'),

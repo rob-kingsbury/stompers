@@ -17,6 +17,9 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 let lenis;
 
+// Track listeners for cleanup on page transitions
+let cleanupFns = [];
+
 // ============================================================
 // RESPONSIVE & ACCESSIBILITY UTILITIES
 // ============================================================
@@ -107,9 +110,12 @@ function init() {
     initContactParallax();
   }
 
-  // Refresh ScrollTrigger after all triggers are created and Lenis is initialized
-  // This ensures proper position calculations for sticky elements and scroll animations
-  ScrollTrigger.refresh();
+}
+
+// Run all registered cleanup functions and clear the list
+function runCleanup() {
+  cleanupFns.forEach((fn) => fn());
+  cleanupFns = [];
 }
 
 // ============================================================
@@ -129,6 +135,18 @@ function initPageTransitions() {
         leave(data) {
           const done = this.async();
           const content = data.current.container;
+
+          // Clean up all event listeners registered during this page
+          runCleanup();
+
+          // Kill all ScrollTrigger instances to prevent memory leaks
+          ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+
+          // Destroy Lenis instance
+          if (lenis) {
+            lenis.destroy();
+            lenis = null;
+          }
 
           // Lift out animation
           gsap.to(content, {
@@ -166,12 +184,11 @@ function initPageTransitions() {
           }
         },
         afterEnter(data) {
-          // Reinitialize components after page change
-          ScrollTrigger.refresh();
+          // Reinitialize smooth scroll first (other inits depend on lenis)
+          initSmoothScroll();
 
           // Reset menu state before reinitializing
           resetStompMenu();
-
           initSiteNav();
 
           // Page-specific initialization based on namespace
@@ -180,7 +197,6 @@ function initPageTransitions() {
           if (namespace === 'tour') {
             initTourPage();
           } else {
-            // Index page (master) animations
             initProgressNav();
             initHeroAnimations();
             initAboutAnimations();
@@ -189,6 +205,9 @@ function initPageTransitions() {
             initQuoteExplosion();
             initContactParallax();
           }
+
+          // Refresh after all triggers created
+          ScrollTrigger.refresh();
         },
       },
     ],
@@ -337,28 +356,37 @@ function initSiteNav() {
     }, 0.6);
 
   // Click handler - prevent clicks during animation
-  hamburger.addEventListener('click', () => {
+  const onHamburgerClick = () => {
     if (menuIsAnimating) return;
-
     if (menuIsOpen) {
       closeStompMenu();
     } else {
       openStompMenu();
     }
-  });
+  };
+  hamburger.addEventListener('click', onHamburgerClick);
 
   // Close on escape
-  document.addEventListener('keydown', (e) => {
+  const onEscapeKey = (e) => {
     if (e.key === 'Escape' && menuIsOpen) {
       closeStompMenu();
     }
-  });
+  };
+  document.addEventListener('keydown', onEscapeKey);
 
-  // Close when clicking a link
-  menuLinks.forEach((link) => {
-    link.addEventListener('click', () => {
+  // Close when clicking a menu link (event delegation)
+  const onMenuLinkClick = (e) => {
+    if (e.target.closest('.menu-nav-link')) {
       closeStompMenu();
-    });
+    }
+  };
+  menuOverlay.addEventListener('click', onMenuLinkClick);
+
+  // Register cleanup for page transitions
+  cleanupFns.push(() => {
+    hamburger.removeEventListener('click', onHamburgerClick);
+    document.removeEventListener('keydown', onEscapeKey);
+    menuOverlay.removeEventListener('click', onMenuLinkClick);
   });
 
   function openStompMenu() {
@@ -476,31 +504,38 @@ function initSmoothScroll() {
 
   gsap.ticker.lagSmoothing(0);
 
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener('click', (e) => {
-      const href = anchor.getAttribute('href');
-      if (href === '#') return;
+  // Smooth scroll for anchor links (event delegation)
+  const onAnchorClick = (e) => {
+    const anchor = e.target.closest('a[href^="#"]');
+    if (!anchor || !lenis) return;
 
-      e.preventDefault();
-      const target = document.querySelector(href);
-      if (target) {
-        const duration = reducedMotion ? 0.1 : (mobile ? 1.0 : 1.5);
-        lenis.scrollTo(target, { offset: 0, duration });
-      }
-    });
-  });
+    const href = anchor.getAttribute('href');
+    if (href === '#') return;
 
-  // Handle resize - recreate Lenis with new settings if device type changes
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) {
+      const duration = reducedMotion ? 0.1 : (mobile ? 1.0 : 1.5);
+      lenis.scrollTo(target, { offset: 0, duration });
+    }
+  };
+  document.addEventListener('click', onAnchorClick);
+
+  // Handle resize - refresh ScrollTrigger if device type changes
   let wasDesktop = isDesktop();
-  window.addEventListener('resize', () => {
+  const onResize = () => {
     const nowDesktop = isDesktop();
     if (wasDesktop !== nowDesktop) {
       wasDesktop = nowDesktop;
-      // Lenis settings will be applied on next page load
-      // For now, just refresh ScrollTrigger
       ScrollTrigger.refresh();
     }
+  };
+  window.addEventListener('resize', onResize);
+
+  // Register cleanup for page transitions
+  cleanupFns.push(() => {
+    document.removeEventListener('click', onAnchorClick);
+    window.removeEventListener('resize', onResize);
   });
 }
 
@@ -726,17 +761,18 @@ function animateStats() {
     const target = parseInt(stat.dataset.count, 10);
     if (!target) return;
 
-    let current = 0;
-    const increment = target / 40;
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= target) {
+    const counter = { value: 0 };
+    gsap.to(counter, {
+      value: target,
+      duration: 1.2,
+      ease: 'power2.out',
+      onUpdate: () => {
+        stat.textContent = Math.floor(counter.value);
+      },
+      onComplete: () => {
         stat.textContent = target;
-        clearInterval(timer);
-      } else {
-        stat.textContent = Math.floor(current);
-      }
-    }, 30);
+      },
+    });
   });
 }
 

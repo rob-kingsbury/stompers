@@ -34,6 +34,17 @@
   opacity: 1;
 }
 
+/* Focus styles for keyboard navigation */
+*:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+a:focus-visible,
+button:focus-visible {
+  box-shadow: var(--shadow-focus);
+}
+
 /* ============================================================
    BASE & RESET
    ============================================================ */
@@ -113,7 +124,7 @@ button {
    ============================================================ */
 
 .section-header {
-  margin-bottom: 3rem;
+  margin-bottom: var(--spacing-2xl);
 }
 
 .section-header--center {
@@ -123,10 +134,10 @@ button {
 .section-number {
   display: block;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.3em;
+  font-size: var(--font-size-xs);
+  letter-spacing: var(--letter-spacing-extreme);
   color: var(--color-accent);
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--spacing-sm);
 }
 
 .section-title {
@@ -134,7 +145,7 @@ button {
   font-size: clamp(2.5rem, 6vw, 5rem);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: var(--letter-spacing-wider);
   line-height: 1.1;
 }
 
@@ -186,7 +197,7 @@ button {
   border-radius: 50%;
   background: var(--color-text-muted);
   transition: all var(--duration-slow) ease;
-  z-index: calc(var(--z-raised) + 1);
+  z-index: 91; /* shim: above raised */
   position: relative;
 }
 
@@ -290,7 +301,7 @@ button {
   top: var(--spacing-xl);
   z-index: var(--z-fixed);
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: var(--font-size-xs);
   text-transform: uppercase;
   letter-spacing: var(--letter-spacing-widest);
   padding: var(--spacing-sm) var(--spacing-md);
@@ -444,11 +455,11 @@ button {
 /* Tagline */
 .hero-tagline {
   font-family: var(--font-mono);
-  font-size: 0.875rem;
-  letter-spacing: 0.2em;
+  font-size: var(--font-size-sm);
+  letter-spacing: var(--letter-spacing-ultra);
   text-transform: uppercase;
   color: var(--color-text-muted);
-  margin-bottom: 3rem;
+  margin-bottom: var(--spacing-2xl);
   opacity: 0;
   transform: translateY(20px);
 }
@@ -463,7 +474,7 @@ button {
 .hero-stats {
   display: flex;
   justify-content: center;
-  gap: 4rem;
+  gap: var(--spacing-3xl);
   opacity: 0;
   transform: translateY(30px);
 }
@@ -489,9 +500,9 @@ button {
 
 .stat-label {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: var(--font-size-xs);
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: var(--letter-spacing-widest);
   color: var(--color-text-muted);
   margin-top: 0.25rem;
 }
@@ -499,7 +510,7 @@ button {
 /* Scroll Cue */
 .hero-scroll-cue {
   position: absolute;
-  bottom: 3rem;
+  bottom: var(--spacing-2xl);
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -507,9 +518,9 @@ button {
   align-items: center;
   gap: 0.75rem;
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: var(--font-size-xs);
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: var(--letter-spacing-ultra);
   color: var(--color-text-muted);
   opacity: 0;
 }
@@ -603,7 +614,7 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 3rem 2rem;
+  padding: var(--spacing-2xl) var(--spacing-xl);
   position: relative;
 }
 
@@ -617,11 +628,11 @@ button {
 .about-card-number {
   display: block;
   font-family: var(--font-mono);
-  font-size: 0.875rem;
+  font-size: var(--font-size-sm);
   font-weight: 600;
-  letter-spacing: 0.2em;
+  letter-spacing: var(--letter-spacing-ultra);
   color: var(--color-accent);
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--spacing-lg);
 }
 
 /* Card title */
@@ -630,7 +641,7 @@ button {
   font-size: clamp(2rem, 6vw, 4rem);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
+  letter-spacing: var(--letter-spacing-wide);
   color: var(--color-text);
   margin: 0 0 1.5rem;
   line-height: 1.1;
@@ -710,7 +721,7 @@ button {
   padding: var(--spacing-3xl) var(--spacing-4xl);
   border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.3); /* Upward shadow for lifted card effect */
+  box-shadow: var(--shadow-upward); /* Upward shadow for lifted card effect */
 }
 
 /* Different background colors for each card + staggered top position (z-index 1-4 for stacking order) */
@@ -767,7 +778,7 @@ button {
   aspect-ratio: 4/5;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4); /* Deep shadow for image depth */
+  box-shadow: var(--shadow-xl); /* Deep shadow for image depth */
 }
 
 .stack-card-image img {
@@ -793,7 +804,7 @@ button {
 .member-number {
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 0.875rem;
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
   letter-spacing: var(--letter-spacing-widest);
   color: var(--color-accent);
@@ -809,7 +820,7 @@ button {
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
+  letter-spacing: var(--letter-spacing-wide);
   margin: 0 0 0.75rem;
   line-height: 1.1;
 }
@@ -819,7 +830,7 @@ button {
   font-size: 1.25rem;
   color: var(--color-accent);
   margin: 0 0 2rem;
-  letter-spacing: 0.05em;
+  letter-spacing: var(--letter-spacing-wider);
 }
 
 .member-bio {
@@ -838,7 +849,7 @@ button {
   opacity: 0.7;
   margin: 0;
   padding-left: 1.5rem;
-  border-left: 3px solid var(--color-accent);
+  border-left: var(--border-width-heavy) solid var(--color-accent);
   max-width: 440px;
 }
 
@@ -906,7 +917,7 @@ button {
   align-items: baseline;
   justify-content: center;
   gap: 0.75rem;
-  margin-bottom: 2rem;
+  margin-bottom: var(--spacing-xl);
 }
 
 .date-day {
@@ -923,7 +934,7 @@ button {
   font-family: var(--font-mono);
   font-size: clamp(1.5rem, 4vw, 2.5rem);
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: var(--letter-spacing-widest);
   opacity: 0.8;
 }
 
@@ -932,7 +943,7 @@ button {
   font-size: clamp(2rem, 5vw, 4rem);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: var(--letter-spacing-wider);
   margin: 0 0 0.5rem;
 }
 
@@ -944,11 +955,11 @@ button {
 
 .show-details-big {
   display: flex;
-  gap: 2rem;
+  gap: var(--spacing-xl);
   justify-content: center;
   font-family: var(--font-mono);
-  font-size: 0.875rem;
-  letter-spacing: 0.1em;
+  font-size: var(--font-size-sm);
+  letter-spacing: var(--letter-spacing-widest);
   text-transform: uppercase;
   opacity: 0.6;
 }
@@ -956,7 +967,7 @@ button {
 /* Tour List Section - Hidden until all cards pass */
 .tour-list-section {
   position: relative;
-  padding: 8rem 4rem;
+  padding: var(--spacing-5xl) var(--spacing-3xl);
   background: var(--color-bg);
   opacity: 0;
   transform: translateY(80px);
@@ -980,10 +991,10 @@ button {
 .accordion-header {
   display: grid;
   grid-template-columns: 100px 1fr 1fr 40px;
-  gap: 2rem;
+  gap: var(--spacing-xl);
   align-items: center;
   width: 100%;
-  padding: 1.5rem 0;
+  padding: var(--spacing-lg) 0;
   text-align: left;
   transition: all 0.3s ease;
 }
@@ -994,9 +1005,9 @@ button {
 
 .accordion-date {
   font-family: var(--font-mono);
-  font-size: 0.875rem;
+  font-size: var(--font-size-sm);
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: var(--letter-spacing-widest);
   color: var(--color-accent);
 }
 
@@ -1007,7 +1018,7 @@ button {
 }
 
 .accordion-location {
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
   opacity: 0.6;
 }
 
@@ -1046,7 +1057,7 @@ button {
 .accordion-body {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  gap: var(--spacing-xl);
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.5s var(--ease-out-expo),
@@ -1087,21 +1098,21 @@ button {
 
 .accordion-details p {
   margin: 0;
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
 }
 
 .btn-tickets {
   display: inline-block;
-  margin-top: 1rem;
-  padding: 12px 24px;
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-xl);
   background: var(--color-accent);
   color: var(--color-bg);
   font-family: var(--font-mono);
-  font-size: 0.875rem;
+  font-size: var(--font-size-sm);
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  border-radius: 4px;
+  letter-spacing: var(--letter-spacing-widest);
+  border-radius: var(--radius-md);
   transition: all 0.3s ease;
 }
 
@@ -1115,9 +1126,9 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.5rem;
+  gap: var(--spacing-lg);
   margin-top: 2rem;
-  padding: 1rem 0;
+  padding: var(--spacing-md) 0;
 }
 
 .pagination-btn {
@@ -1282,7 +1293,7 @@ button {
 .contact-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 4rem;
+  gap: var(--spacing-3xl);
   max-width: 1000px;
   width: 100%;
   margin: 4rem 0;
@@ -1307,9 +1318,9 @@ button {
 
 .contact-block h3 {
   font-family: var(--font-mono);
-  font-size: 0.875rem;
+  font-size: var(--font-size-sm);
   font-weight: 600;
-  letter-spacing: 0.15em;
+  letter-spacing: var(--letter-spacing-widest);
   text-transform: uppercase;
   color: var(--color-accent);
   margin: 0 0 1.5rem;
@@ -1318,7 +1329,7 @@ button {
 .contact-email {
   display: block;
   font-size: 1.125rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--spacing-sm);
   transition: color 0.3s ease;
 }
 
@@ -1328,7 +1339,7 @@ button {
 
 .contact-phone {
   font-family: var(--font-mono);
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
   opacity: 0.6;
   margin: 0;
 }
@@ -1364,7 +1375,7 @@ button {
 .resource-link {
   display: block;
   margin-bottom: 0.75rem;
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
   transition: all 0.3s ease;
 }
 
@@ -1401,7 +1412,7 @@ button {
 .site-footer p {
   margin: 0 0 0.25rem;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: var(--font-size-xs);
   opacity: 0.5;
 }
 
@@ -1418,34 +1429,34 @@ button {
 
 .skip-link,
 .story-link {
-  top: 1rem;
-  padding: 0.4rem 0.8rem;
-  font-size: 0.6rem;
+  top: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: var(--font-size-xs);
 }
 
 .skip-link {
-  right: 1rem;
+  right: var(--spacing-md);
 }
 
 .story-link {
-  right: 6rem;
+  right: var(--spacing-4xl);
 }
 
 /* Band section mobile base */
 .section--band .section-header {
-  padding: 4rem 2rem 2rem;
+  padding: var(--spacing-3xl) var(--spacing-xl) 2rem;
 }
 
 .stack-card {
-  width: calc(100% - 2rem);
+  width: calc(100% - var(--spacing-xl));
   padding: 3rem 1.5rem;
   border-radius: 16px;
 }
 
-.stack-card[data-index="0"] { top: 0.5rem; }
-.stack-card[data-index="1"] { top: calc(0.5rem + 20px); }
-.stack-card[data-index="2"] { top: calc(0.5rem + 40px); }
-.stack-card[data-index="3"] { top: calc(0.5rem + 60px); }
+.stack-card[data-index="0"] { top: var(--spacing-sm); }
+.stack-card[data-index="1"] { top: calc(var(--spacing-sm) + 20px); }
+.stack-card[data-index="2"] { top: calc(var(--spacing-sm) + 40px); }
+.stack-card[data-index="3"] { top: calc(var(--spacing-sm) + 60px); }
 
 .stack-card-inner {
   grid-template-columns: 1fr;
@@ -1496,7 +1507,7 @@ button {
 }
 
 .hero-stats {
-  gap: 2rem;
+  gap: var(--spacing-xl);
 }
 
 .stat-value {
@@ -1504,7 +1515,7 @@ button {
 }
 
 .tour-list-section {
-  padding: 4rem 2rem;
+  padding: var(--spacing-3xl) var(--spacing-xl);
 }
 
 .contact-inner {
@@ -1513,12 +1524,12 @@ button {
 
 .contact-grid {
   grid-template-columns: 1fr;
-  gap: 2rem;
+  gap: var(--spacing-xl);
 }
 
 .about-reveal-container {
   grid-template-columns: 1fr;
-  gap: 2rem;
+  gap: var(--spacing-xl);
   padding: 2rem;
 }
 
@@ -1530,12 +1541,12 @@ button {
 @media (min-width: 769px) {
   .progress-nav {
     display: block;
-    right: 16px;
+    right: var(--spacing-md);
   }
 
   .progress-pill {
-    padding: 12px 10px;
-    gap: 10px;
+    padding: var(--spacing-md) var(--spacing-sm);
+    gap: var(--spacing-sm);
   }
 
   .progress-dot {
@@ -1552,7 +1563,7 @@ button {
   .story-link {
     top: var(--spacing-xl);
     padding: var(--spacing-sm) var(--spacing-md);
-    font-size: 0.7rem;
+    font-size: var(--font-size-xs);
   }
 
   .skip-link {
@@ -1568,22 +1579,22 @@ button {
   }
 
   .stack-card {
-    width: calc(100% - 4rem);
+    width: calc(100% - var(--spacing-3xl));
     min-height: auto;
-    padding: 4rem 2rem;
+    padding: var(--spacing-3xl) var(--spacing-xl);
   }
 
-  .stack-card[data-index="0"] { top: 1rem; }
-  .stack-card[data-index="1"] { top: calc(1rem + 24px); }
-  .stack-card[data-index="2"] { top: calc(1rem + 48px); }
-  .stack-card[data-index="3"] { top: calc(1rem + 72px); }
+  .stack-card[data-index="0"] { top: var(--spacing-md); }
+  .stack-card[data-index="1"] { top: calc(var(--spacing-md) + 24px); }
+  .stack-card[data-index="2"] { top: calc(var(--spacing-md) + 48px); }
+  .stack-card[data-index="3"] { top: calc(var(--spacing-md) + 72px); }
 
   .accordion-body {
     grid-template-columns: 1fr 1fr;
   }
 
   .hero-stats {
-    gap: 4rem;
+    gap: var(--spacing-3xl);
   }
 
   .stat-value {
@@ -1591,7 +1602,7 @@ button {
   }
 
   .tour-list-section {
-    padding: 8rem 4rem;
+    padding: var(--spacing-5xl) var(--spacing-3xl);
   }
 
   .contact-inner {
@@ -1621,7 +1632,7 @@ button {
 
   .accordion-header {
     grid-template-columns: 100px 1fr 1fr 40px;
-    gap: 2rem;
+    gap: var(--spacing-xl);
   }
 
   .accordion-location {
@@ -1676,7 +1687,7 @@ button {
 
   .contact-grid {
     grid-template-columns: repeat(3, 1fr);
-    gap: 4rem;
+    gap: var(--spacing-3xl);
   }
 
   .about-reveal-container {
@@ -1708,7 +1719,7 @@ button {
   position: fixed;
   top: var(--spacing-lg);
   right: var(--spacing-lg);
-  z-index: calc(var(--z-overlay) + 1); /* Above menu overlay so close button stays clickable */
+  z-index: 9991; /* shim: above overlay, below critical */
   background: rgba(var(--color-bg-rgb), 0.9);
   padding: var(--spacing-md);
   border-radius: var(--radius-lg);
@@ -1752,7 +1763,7 @@ button {
   background: var(--color-accent);
   color: var(--color-bg);
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: var(--font-size-xs);
   font-weight: 700;
   border-radius: var(--radius-full);
   display: flex;
@@ -1824,7 +1835,7 @@ button {
   width: 100%;
   height: 100%;
   background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-alt) 50%, var(--color-bg) 100%);
-  z-index: calc(var(--z-overlay) - 1); /* Below menu overlay so content shows above */
+  z-index: 991; /* shim: below overlay */
 }
 
 /* Dust particle container */
@@ -1906,17 +1917,17 @@ button {
 /* Menu footer with social links */
 .menu-footer {
   position: absolute;
-  bottom: 4rem;
-  left: 4rem;
+  bottom: var(--spacing-3xl);
+  left: var(--spacing-3xl);
   display: flex;
-  gap: 2rem;
+  gap: var(--spacing-xl);
   /* Initial opacity set by GSAP in main.js */
 }
 
 .menu-footer a {
   color: var(--color-text-muted);
   text-decoration: none;
-  font-size: 0.875rem;
+  font-size: var(--font-size-sm);
   transition: color 0.3s ease;
 }
 
@@ -1937,13 +1948,13 @@ button {
 /* Menu responsive - Mobile-first */
 /* Mobile base (default) */
 .menu-overlay {
-  padding: 5rem 1.5rem 3rem;
+  padding: var(--spacing-4xl) var(--spacing-lg) var(--spacing-2xl);
   justify-content: flex-start;
   padding-top: 20vh;
 }
 
 .menu-nav {
-  gap: 0.1rem;
+  gap: var(--spacing-xs);
 }
 
 .menu-nav-link {
@@ -1952,23 +1963,23 @@ button {
 }
 
 .menu-footer {
-  gap: 1.25rem;
+  gap: var(--spacing-lg);
   flex-wrap: wrap;
   justify-content: center;
-  bottom: 1.5rem;
+  bottom: var(--spacing-lg);
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
 }
 
 .menu-footer a {
-  font-size: 0.7rem;
+  font-size: var(--font-size-xs);
 }
 
 /* Tablet menu (481px and up) */
 @media (min-width: 481px) {
   .menu-overlay {
-    padding: 6rem 2rem 4rem;
+    padding: var(--spacing-4xl) var(--spacing-xl) 4rem;
     justify-content: flex-end;
     padding-top: unset;
   }
@@ -1983,16 +1994,16 @@ button {
   }
 
   .menu-footer {
-    left: 4rem;
+    left: var(--spacing-3xl);
     transform: none;
-    bottom: 4rem;
+    bottom: var(--spacing-3xl);
     width: auto;
     flex-wrap: nowrap;
     justify-content: flex-start;
   }
 
   .menu-footer a {
-    font-size: 0.875rem;
+    font-size: var(--font-size-sm);
   }
 }
 
@@ -2017,7 +2028,7 @@ button {
   }
 
   .menu-footer {
-    gap: 2rem;
+    gap: var(--spacing-xl);
   }
 }
 
@@ -2061,10 +2072,10 @@ button {
 .page-hero .section-number {
   display: block;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.3em;
+  font-size: var(--font-size-xs);
+  letter-spacing: var(--letter-spacing-extreme);
   color: var(--color-accent);
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacing-md);
 }
 
 .page-title {
@@ -2072,7 +2083,7 @@ button {
   font-size: clamp(3rem, 10vw, 6rem);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: var(--letter-spacing-wider);
   line-height: 1.1;
 }
 
@@ -2084,14 +2095,14 @@ button {
 
 /* Content Section */
 .content-section {
-  padding: 4rem 2rem;
+  padding: var(--spacing-3xl) var(--spacing-xl);
   max-width: 1200px;
   margin: 0 auto;
 }
 
 /* CTA Section */
 .cta-section {
-  padding: 6rem 2rem;
+  padding: var(--spacing-4xl) var(--spacing-xl);
   text-align: center;
   background: var(--color-bg-alt);
 }
@@ -2104,26 +2115,26 @@ button {
 .cta-content h2 {
   font-family: var(--font-mono);
   font-size: clamp(1.5rem, 4vw, 2.5rem);
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacing-md);
 }
 
 .cta-content p {
   font-size: 1.1rem;
   color: var(--color-text-muted);
-  margin-bottom: 2rem;
+  margin-bottom: var(--spacing-xl);
 }
 
 /* Buttons */
 .btn {
   display: inline-block;
-  padding: 1rem 2rem;
+  padding: var(--spacing-md) var(--spacing-xl);
   font-family: var(--font-mono);
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
   text-decoration: none;
-  border: 1px solid var(--color-accent);
+  border: var(--border-width) solid var(--color-accent);
   transition: all 0.3s ease;
   cursor: pointer;
-  letter-spacing: 0.05em;
+  letter-spacing: var(--letter-spacing-wider);
 }
 
 .btn-primary {
@@ -2159,10 +2170,10 @@ button {
 .tour-card {
   display: flex;
   align-items: center;
-  gap: 2rem;
-  padding: 1.5rem 2rem;
+  gap: var(--spacing-xl);
+  padding: var(--spacing-lg) var(--spacing-xl);
   background: var(--color-bg-alt);
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -2187,9 +2198,9 @@ button {
 .tour-card-date .date-month {
   display: block;
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: var(--font-size-sm);
   opacity: 0.7;
-  letter-spacing: 0.1em;
+  letter-spacing: var(--letter-spacing-widest);
 }
 
 .tour-card-info {
@@ -2275,8 +2286,8 @@ button {
 
 .page-hero-scroll-cue span {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
+  font-size: var(--font-size-xs);
+  letter-spacing: var(--letter-spacing-ultra);
   color: var(--color-text-muted);
   text-transform: uppercase;
 }
@@ -2414,15 +2425,15 @@ button {
 .tour-card-horizontal-date .date-month {
   font-family: var(--font-mono);
   font-size: clamp(1rem, 3vw, 1.5rem);
-  letter-spacing: 0.3em;
+  letter-spacing: var(--letter-spacing-extreme);
   color: var(--color-text);
   margin-top: var(--spacing-xs);
 }
 
 .tour-card-horizontal-date .date-year {
   font-family: var(--font-mono);
-  font-size: 0.875rem;
-  letter-spacing: 0.2em;
+  font-size: var(--font-size-sm);
+  letter-spacing: var(--letter-spacing-ultra);
   color: var(--color-text-muted);
 }
 
@@ -2437,7 +2448,7 @@ button {
   font-weight: 600;
   margin-bottom: var(--spacing-sm);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: var(--letter-spacing-wider);
 }
 
 .tour-location-large {
@@ -2449,9 +2460,9 @@ button {
 
 .tour-time {
   font-family: var(--font-mono);
-  font-size: 0.875rem;
+  font-size: var(--font-size-sm);
   color: var(--color-accent);
-  letter-spacing: 0.1em;
+  letter-spacing: var(--letter-spacing-widest);
 }
 
 /* Large Button */
@@ -2519,7 +2530,7 @@ button {
 
 .tour-past-date {
   font-family: var(--font-mono);
-  font-size: 0.875rem;
+  font-size: var(--font-size-sm);
   color: var(--color-text-muted);
 }
 
@@ -2590,14 +2601,14 @@ button {
 }
 
 .story-block {
-  margin-bottom: 3rem;
+  margin-bottom: var(--spacing-2xl);
 }
 
 .story-block h2 {
   font-family: var(--font-mono);
   font-size: 1.5rem;
   color: var(--color-accent);
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacing-md);
 }
 
 .story-block p {
@@ -2609,7 +2620,7 @@ button {
 .story-quote {
   margin: 4rem 0;
   padding: 2rem;
-  border-left: 3px solid var(--color-accent);
+  border-left: var(--border-width-heavy) solid var(--color-accent);
 }
 
 .story-quote blockquote {
@@ -2627,7 +2638,7 @@ button {
 .epk-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
+  gap: var(--spacing-xl);
 }
 
 .epk-card {
@@ -2650,7 +2661,7 @@ button {
 
 .epk-card p {
   color: var(--color-text-muted);
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--spacing-lg);
   line-height: 1.6;
 }
 
@@ -2660,17 +2671,17 @@ button {
 
 .epk-stats .section-title {
   font-size: 1.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: var(--spacing-xl);
 }
 
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 2rem;
+  gap: var(--spacing-xl);
 }
 
 .stat-item {
-  padding: 1.5rem;
+  padding: var(--spacing-lg);
 }
 
 .stat-item .stat-value {
@@ -2679,20 +2690,20 @@ button {
   font-size: 2.5rem;
   font-weight: 700;
   color: var(--color-accent);
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--spacing-sm);
 }
 
 .stat-item .stat-label {
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: var(--font-size-sm);
   color: var(--color-text-muted);
-  letter-spacing: 0.1em;
+  letter-spacing: var(--letter-spacing-widest);
 }
 
 .epk-info {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+  gap: var(--spacing-xl);
   margin-top: 3rem;
 }
 
@@ -2700,8 +2711,8 @@ button {
   font-family: var(--font-mono);
   font-size: 1rem;
   color: var(--color-accent);
-  margin-bottom: 0.5rem;
-  letter-spacing: 0.05em;
+  margin-bottom: var(--spacing-sm);
+  letter-spacing: var(--letter-spacing-wider);
 }
 
 .info-block p {
@@ -2790,7 +2801,7 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 3rem 2rem;
+  padding: var(--spacing-2xl) var(--spacing-xl);
   position: relative;
 }
 
@@ -2804,13 +2815,13 @@ button {
 .product-slide-category {
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: var(--font-size-xs);
   font-weight: 600;
-  letter-spacing: 0.2em;
+  letter-spacing: var(--letter-spacing-ultra);
   color: var(--color-accent);
   text-transform: uppercase;
-  margin-bottom: 1rem;
-  padding: 0.5rem 1rem;
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
   background: rgba(var(--color-accent-rgb), 0.1);
   border-radius: var(--radius-full);
   width: fit-content;
@@ -2822,7 +2833,7 @@ button {
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
+  letter-spacing: var(--letter-spacing-wide);
   color: var(--color-text);
   margin: 0 0 1rem;
   line-height: 1.1;
@@ -2834,7 +2845,7 @@ button {
   font-size: clamp(1.5rem, 3vw, 2.25rem);
   font-weight: 700;
   color: var(--color-accent);
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--spacing-lg);
 }
 
 /* Product description */
@@ -2855,23 +2866,23 @@ button {
 }
 
 .product-slide-actions .btn {
-  padding: 1rem 2rem;
+  padding: var(--spacing-md) var(--spacing-xl);
 }
 
 /* Size/variant selector */
 .product-slide-variants {
   display: flex;
   gap: 0.5rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--spacing-lg);
   flex-wrap: wrap;
 }
 
 .product-variant-btn {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
-  padding: 0.5rem 1rem;
+  font-size: var(--font-size-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
   background: transparent;
-  border: 1px solid var(--color-border);
+  border: var(--border-width) solid var(--color-border);
   color: var(--color-text-muted);
   border-radius: var(--radius-sm);
   cursor: pointer;
@@ -2899,7 +2910,7 @@ button {
 .merch-cta-text {
   font-family: var(--font-mono);
   color: var(--color-text-muted);
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
   max-width: 500px;
   margin: 0 auto;
 }
@@ -2912,26 +2923,26 @@ button {
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr; /* Mobile: single column */
-  gap: 2rem;
+  gap: var(--spacing-xl);
 }
 
 @media (min-width: 769px) {
   .contact-grid {
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    gap: var(--spacing-3xl);
   }
 }
 
 .contact-form-wrapper h2 {
   font-family: var(--font-mono);
   font-size: 1.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: var(--spacing-xl);
 }
 
 .contact-form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: var(--spacing-lg);
 }
 
 .form-group {
@@ -2942,9 +2953,9 @@ button {
 
 .form-group label {
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: var(--font-size-sm);
   color: var(--color-text-muted);
-  letter-spacing: 0.05em;
+  letter-spacing: var(--letter-spacing-wider);
 }
 
 .form-group input,
@@ -2974,7 +2985,7 @@ button {
 .contact-info {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: var(--spacing-xl);
 }
 
 .contact-info .info-block a {
@@ -2988,13 +2999,13 @@ button {
 
 .social-links {
   display: flex;
-  gap: 1.5rem;
-  margin-top: 0.5rem;
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-sm);
 }
 
 .social-links a {
   font-family: var(--font-mono);
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
   color: var(--color-text);
   text-decoration: none;
   transition: color 0.3s ease;

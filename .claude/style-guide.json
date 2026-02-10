@@ -48,7 +48,8 @@
     "--spacing-2xl": "3rem",
     "--spacing-3xl": "4rem",
     "--spacing-4xl": "6rem",
-    "--spacing-5xl": "8rem"
+    "--spacing-5xl": "8rem",
+    "--spacing-6xl": "10rem"
   },
 
   "typography": {
@@ -75,7 +76,9 @@
       "--letter-spacing-normal": "0",
       "--letter-spacing-wide": "0.025em",
       "--letter-spacing-wider": "0.05em",
-      "--letter-spacing-widest": "0.1em"
+      "--letter-spacing-widest": "0.1em",
+    "--letter-spacing-ultra": "0.2em",
+    "--letter-spacing-extreme": "0.3em"
     },
     "lineHeight": {
       "--line-height-tight": "1.1",
@@ -86,27 +89,18 @@
   },
 
   "zIndex": {
-    "base": {
-      "--z-base": "0",
-      "--z-raised": "10",
-      "--z-dropdown": "100",
-      "--z-sticky": "200"
+    "_note": "Power of 9 scale. Count the 9s to know the layer depth. Shim values (91, 992, etc.) for between-layer stacking.",
+    "scale": {
+      "--z-base": "auto",
+      "--z-raised": "9",
+      "--z-fixed": "99",
+      "--z-overlay": "999",
+      "--z-critical": "9999"
     },
-    "navigation": {
-      "--z-nav": "900",
-      "--z-nav-above": "910"
-    },
-    "menu": {
-      "--z-menu-bg": "1000",
-      "--z-menu-content": "1010",
-      "--z-menu-effects": "1020",
-      "--z-menu-trigger": "1030"
-    },
-    "overlays": {
-      "--z-overlay": "1100",
-      "--z-modal": "1200",
-      "--z-tooltip": "1300",
-      "--z-max": "9999"
+    "shimExamples": {
+      "between-raised-and-fixed": "91, 92, 93...",
+      "between-fixed-and-overlay": "991, 992, 993...",
+      "between-overlay-and-critical": "9991, 9992, 9993..."
     }
   },
 
@@ -129,6 +123,7 @@
   "borders": {
     "--border-width": "1px",
     "--border-width-thick": "2px",
+    "--border-width-heavy": "3px",
     "--radius-sm": "2px",
     "--radius-md": "4px",
     "--radius-lg": "8px",
@@ -139,7 +134,9 @@
     "--shadow-sm": "0 1px 2px rgba(0, 0, 0, 0.3)",
     "--shadow-md": "0 2px 8px rgba(0, 0, 0, 0.4)",
     "--shadow-lg": "0 4px 16px rgba(0, 0, 0, 0.5)",
-    "--shadow-xl": "0 8px 32px rgba(0, 0, 0, 0.6)"
+    "--shadow-xl": "0 8px 32px rgba(0, 0, 0, 0.6)",
+    "--shadow-2xl": "0 16px 64px rgba(0, 0, 0, 0.7)",
+    "--shadow-upward": "0 -10px 40px rgba(0, 0, 0, 0.3)"
   },
 
   "sections": {

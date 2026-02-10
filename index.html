@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Swamp City Stompers | Southern Rock from the Bayou</title>
   <meta name="description" content="Swamp City Stompers - Gritty southern rock, swamp blues, and roots Americana from Eastern Ontario.">
+  <link rel="icon" type="image/png" href="img/logo-goon.png">
+
+  <meta property="og:title" content="Swamp City Stompers | Southern Rock from the Bayou">
+  <meta property="og:description" content="Gritty southern rock, swamp blues, and roots Americana from Eastern Ontario.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="img/logo-stompers.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Swamp City Stompers">
+  <meta name="twitter:description" content="Southern Rock | Blues | Soul | Outlaw Country">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,6 +23,8 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body data-barba="wrapper">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
   <!-- Hamburger Menu Button -->
   <div class="hamburger-container">
     <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
@@ -83,13 +94,13 @@
     </div>
   </nav>
 
-  <main class="immersive" data-barba="container" data-barba-namespace="home">
+  <main class="immersive" id="main-content" data-barba="container" data-barba-namespace="home">
     <!-- ============================================================
          SECTION 1: HERO - Dark video that GROWS on scroll
          ============================================================ -->
     <section id="hero" class="section section--hero" data-section="hero">
       <div class="hero-video-container">
-        <video autoplay muted loop playsinline class="hero-video">
+        <video autoplay muted loop playsinline preload="metadata" aria-hidden="true" class="hero-video">
           <source src="img/vid-header-mute.mp4" type="video/mp4">
         </video>
         <div class="hero-video-overlay"></div>
@@ -108,7 +119,7 @@
           <span class="title-line title-line--accent" data-delay="2">Stompers</span>
         </h1>
 
-        <p class="hero-tagline">Southern Rock &bull; Swamp Blues &bull; Roots Americana</p>
+        <p class="hero-tagline">Southern Rock &bull; Blues &bull; Soul &bull; Outlaw Country</p>
 
         <div class="hero-stats">
           <div class="stat">
@@ -143,7 +154,7 @@
       <!-- Card 1: Photo Left, Text Right -->
       <article class="about-card about-card--1">
         <div class="about-card-image">
-          <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800" alt="Live performance">
+          <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800" alt="Live performance" loading="lazy">
         </div>
         <div class="about-card-content">
           <span class="about-card-number">01</span>
@@ -159,7 +170,7 @@
       <!-- Card 2: Text Left, Photo Right -->
       <article class="about-card about-card--2 about-card--reverse">
         <div class="about-card-image">
-          <img src="https://images.unsplash.com/photo-1501612780327-45045538702b?w=800" alt="Concert crowd">
+          <img src="https://images.unsplash.com/photo-1501612780327-45045538702b?w=800" alt="Concert crowd" loading="lazy">
         </div>
         <div class="about-card-content">
           <span class="about-card-number">02</span>
@@ -175,7 +186,7 @@
       <!-- Card 3: Photo Left, Text Right -->
       <article class="about-card about-card--3">
         <div class="about-card-image">
-          <img src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=800" alt="Guitar close-up">
+          <img src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=800" alt="Guitar close-up" loading="lazy">
         </div>
         <div class="about-card-content">
           <span class="about-card-number">03</span>
@@ -191,7 +202,7 @@
       <!-- Card 4: Text Left, Photo Right -->
       <article class="about-card about-card--4 about-card--reverse">
         <div class="about-card-image">
-          <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800" alt="Stage lights">
+          <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800" alt="Stage lights" loading="lazy">
         </div>
         <div class="about-card-content">
           <span class="about-card-number">04</span>
@@ -221,7 +232,7 @@
         <article class="stack-card" data-index="0">
           <div class="stack-card-inner">
             <div class="stack-card-image">
-              <img src="https://images.unsplash.com/photo-1516924962500-2b4b3b99ea02?w=1200" alt="Rob Morrison">
+              <img src="https://images.unsplash.com/photo-1516924962500-2b4b3b99ea02?w=1200" alt="Rob Morrison" loading="lazy">
             </div>
             <div class="stack-card-content">
               <span class="member-number">01</span>
@@ -237,7 +248,7 @@
         <article class="stack-card" data-index="1">
           <div class="stack-card-inner">
             <div class="stack-card-image">
-              <img src="https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=1200" alt="Jeans McGee">
+              <img src="https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=1200" alt="Jeans McGee" loading="lazy">
             </div>
             <div class="stack-card-content">
               <span class="member-number">02</span>
@@ -253,7 +264,7 @@
         <article class="stack-card" data-index="2">
           <div class="stack-card-inner">
             <div class="stack-card-image">
-              <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1200" alt="Matt Thompson">
+              <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1200" alt="Matt Thompson" loading="lazy">
             </div>
             <div class="stack-card-content">
               <span class="member-number">03</span>
@@ -269,7 +280,7 @@
         <article class="stack-card" data-index="3">
           <div class="stack-card-inner">
             <div class="stack-card-image">
-              <img src="https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?w=1200" alt="Kurt Williams">
+              <img src="https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?w=1200" alt="Kurt Williams" loading="lazy">
             </div>
             <div class="stack-card-content">
               <span class="member-number">04</span>
@@ -292,7 +303,7 @@
       <div class="tour-fullpage-cards">
         <article class="tour-fullpage-card" data-show="0">
           <div class="fullpage-card-bg">
-            <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1600" alt="Austin venue">
+            <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1600" alt="Austin venue" loading="lazy">
           </div>
           <div class="fullpage-card-content">
             <div class="show-date-big">
@@ -311,7 +322,7 @@
 
         <article class="tour-fullpage-card" data-show="1">
           <div class="fullpage-card-bg">
-            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1600" alt="New Orleans venue">
+            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1600" alt="New Orleans venue" loading="lazy">
           </div>
           <div class="fullpage-card-content">
             <div class="show-date-big">
@@ -330,7 +341,7 @@
 
         <article class="tour-fullpage-card" data-show="2">
           <div class="fullpage-card-bg">
-            <img src="https://images.unsplash.com/photo-1501612780327-45045538702b?w=1600" alt="Nashville venue">
+            <img src="https://images.unsplash.com/photo-1501612780327-45045538702b?w=1600" alt="Nashville venue" loading="lazy">
           </div>
           <div class="fullpage-card-content">
             <div class="show-date-big">
@@ -358,15 +369,15 @@
         <div class="tour-accordion-list" data-page="1">
           <!-- Show 1 -->
           <div class="tour-accordion-item" data-venue="The Rusty Nail">
-            <button class="accordion-header">
+            <button class="accordion-header" aria-expanded="false">
               <span class="accordion-date">JAN 15</span>
               <span class="accordion-venue">The Rusty Nail</span>
               <span class="accordion-location">Austin, TX</span>
               <span class="accordion-icon"></span>
             </button>
-            <div class="accordion-body">
+            <div class="accordion-body" role="region">
               <div class="accordion-map">
-                <iframe src="https://www.google.com/maps?q=The+Rusty+Nail+Austin+TX&output=embed" loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps?q=The+Rusty+Nail+Austin+TX&output=embed" loading="lazy" title="Map showing The Rusty Nail, Austin TX"></iframe>
               </div>
               <div class="accordion-details">
                 <p><strong>Doors:</strong> 8:00 PM</p>
@@ -379,15 +390,15 @@
 
           <!-- Show 2 -->
           <div class="tour-accordion-item" data-venue="Muddy Waters Saloon">
-            <button class="accordion-header">
+            <button class="accordion-header" aria-expanded="false">
               <span class="accordion-date">JAN 22</span>
               <span class="accordion-venue">Muddy Waters Saloon</span>
               <span class="accordion-location">New Orleans, LA</span>
               <span class="accordion-icon"></span>
             </button>
-            <div class="accordion-body">
+            <div class="accordion-body" role="region">
               <div class="accordion-map">
-                <iframe src="https://www.google.com/maps?q=Muddy+Waters+Saloon+New+Orleans+LA&output=embed" loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps?q=Muddy+Waters+Saloon+New+Orleans+LA&output=embed" loading="lazy" title="Map showing Muddy Waters Saloon, New Orleans LA"></iframe>
               </div>
               <div class="accordion-details">
                 <p><strong>Doors:</strong> 7:30 PM</p>
@@ -400,15 +411,15 @@
 
           <!-- Show 3 -->
           <div class="tour-accordion-item" data-venue="The Bluebird Cafe">
-            <button class="accordion-header">
+            <button class="accordion-header" aria-expanded="false">
               <span class="accordion-date">FEB 05</span>
               <span class="accordion-venue">The Bluebird Cafe</span>
               <span class="accordion-location">Nashville, TN</span>
               <span class="accordion-icon"></span>
             </button>
-            <div class="accordion-body">
+            <div class="accordion-body" role="region">
               <div class="accordion-map">
-                <iframe src="https://www.google.com/maps?q=The+Bluebird+Cafe+Nashville+TN&output=embed" loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps?q=The+Bluebird+Cafe+Nashville+TN&output=embed" loading="lazy" title="Map showing The Bluebird Cafe, Nashville TN"></iframe>
               </div>
               <div class="accordion-details">
                 <p><strong>Doors:</strong> 6:00 PM</p>
@@ -421,15 +432,15 @@
 
           <!-- Show 4 -->
           <div class="tour-accordion-item" data-venue="Hi-Tone Cafe">
-            <button class="accordion-header">
+            <button class="accordion-header" aria-expanded="false">
               <span class="accordion-date">FEB 19</span>
               <span class="accordion-venue">Hi-Tone Cafe</span>
               <span class="accordion-location">Memphis, TN</span>
               <span class="accordion-icon"></span>
             </button>
-            <div class="accordion-body">
+            <div class="accordion-body" role="region">
               <div class="accordion-map">
-                <iframe src="https://www.google.com/maps?q=Hi-Tone+Cafe+Memphis+TN&output=embed" loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps?q=Hi-Tone+Cafe+Memphis+TN&output=embed" loading="lazy" title="Map showing Hi-Tone Cafe, Memphis TN"></iframe>
               </div>
               <div class="accordion-details">
                 <p><strong>Doors:</strong> 8:00 PM</p>
@@ -442,15 +453,15 @@
 
           <!-- Show 5 -->
           <div class="tour-accordion-item" data-venue="Ground Zero Blues Club">
-            <button class="accordion-header">
+            <button class="accordion-header" aria-expanded="false">
               <span class="accordion-date">MAR 08</span>
               <span class="accordion-venue">Ground Zero Blues Club</span>
               <span class="accordion-location">Clarksdale, MS</span>
               <span class="accordion-icon"></span>
             </button>
-            <div class="accordion-body">
+            <div class="accordion-body" role="region">
               <div class="accordion-map">
-                <iframe src="https://www.google.com/maps?q=Ground+Zero+Blues+Club+Clarksdale+MS&output=embed" loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps?q=Ground+Zero+Blues+Club+Clarksdale+MS&output=embed" loading="lazy" title="Map showing Ground Zero Blues Club, Clarksdale MS"></iframe>
               </div>
               <div class="accordion-details">
                 <p><strong>Doors:</strong> 7:00 PM</p>
@@ -463,15 +474,15 @@
 
           <!-- Show 6 -->
           <div class="tour-accordion-item" data-venue="The Parish">
-            <button class="accordion-header">
+            <button class="accordion-header" aria-expanded="false">
               <span class="accordion-date">MAR 15</span>
               <span class="accordion-venue">The Parish</span>
               <span class="accordion-location">Austin, TX</span>
               <span class="accordion-icon"></span>
             </button>
-            <div class="accordion-body">
+            <div class="accordion-body" role="region">
               <div class="accordion-map">
-                <iframe src="https://www.google.com/maps?q=The+Parish+Austin+TX&output=embed" loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps?q=The+Parish+Austin+TX&output=embed" loading="lazy" title="Map showing The Parish, Austin TX"></iframe>
               </div>
               <div class="accordion-details">
                 <p><strong>Doors:</strong> 8:00 PM</p>
@@ -484,15 +495,15 @@
 
           <!-- Show 7 -->
           <div class="tour-accordion-item" data-venue="Tipitinas">
-            <button class="accordion-header">
+            <button class="accordion-header" aria-expanded="false">
               <span class="accordion-date">MAR 22</span>
               <span class="accordion-venue">Tipitina's</span>
               <span class="accordion-location">New Orleans, LA</span>
               <span class="accordion-icon"></span>
             </button>
-            <div class="accordion-body">
+            <div class="accordion-body" role="region">
               <div class="accordion-map">
-                <iframe src="https://www.google.com/maps?q=Tipitinas+New+Orleans+LA&output=embed" loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps?q=Tipitinas+New+Orleans+LA&output=embed" loading="lazy" title="Map showing Tipitina's, New Orleans LA"></iframe>
               </div>
               <div class="accordion-details">
                 <p><strong>Doors:</strong> 7:00 PM</p>
@@ -505,15 +516,15 @@
 
           <!-- Show 8 -->
           <div class="tour-accordion-item" data-venue="The Basement East">
-            <button class="accordion-header">
+            <button class="accordion-header" aria-expanded="false">
               <span class="accordion-date">MAR 29</span>
               <span class="accordion-venue">The Basement East</span>
               <span class="accordion-location">Nashville, TN</span>
               <span class="accordion-icon"></span>
             </button>
-            <div class="accordion-body">
+            <div class="accordion-body" role="region">
               <div class="accordion-map">
-                <iframe src="https://www.google.com/maps?q=The+Basement+East+Nashville+TN&output=embed" loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps?q=The+Basement+East+Nashville+TN&output=embed" loading="lazy" title="Map showing The Basement East, Nashville TN"></iframe>
               </div>
               <div class="accordion-details">
                 <p><strong>Doors:</strong> 7:00 PM</p>
@@ -526,15 +537,15 @@
 
           <!-- Show 9 -->
           <div class="tour-accordion-item" data-venue="Red Rocks Amphitheatre">
-            <button class="accordion-header">
+            <button class="accordion-header" aria-expanded="false">
               <span class="accordion-date">APR 05</span>
               <span class="accordion-venue">Red Rocks Amphitheatre</span>
               <span class="accordion-location">Morrison, CO</span>
               <span class="accordion-icon"></span>
             </button>
-            <div class="accordion-body">
+            <div class="accordion-body" role="region">
               <div class="accordion-map">
-                <iframe src="https://www.google.com/maps?q=Red+Rocks+Amphitheatre+Morrison+CO&output=embed" loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps?q=Red+Rocks+Amphitheatre+Morrison+CO&output=embed" loading="lazy" title="Map showing Red Rocks Amphitheatre, Morrison CO"></iframe>
               </div>
               <div class="accordion-details">
                 <p><strong>Doors:</strong> 6:00 PM</p>
@@ -547,15 +558,15 @@
 
           <!-- Show 10 -->
           <div class="tour-accordion-item" data-venue="The Fillmore">
-            <button class="accordion-header">
+            <button class="accordion-header" aria-expanded="false">
               <span class="accordion-date">APR 12</span>
               <span class="accordion-venue">The Fillmore</span>
               <span class="accordion-location">San Francisco, CA</span>
               <span class="accordion-icon"></span>
             </button>
-            <div class="accordion-body">
+            <div class="accordion-body" role="region">
               <div class="accordion-map">
-                <iframe src="https://www.google.com/maps?q=The+Fillmore+San+Francisco+CA&output=embed" loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps?q=The+Fillmore+San+Francisco+CA&output=embed" loading="lazy" title="Map showing The Fillmore, San Francisco CA"></iframe>
               </div>
               <div class="accordion-details">
                 <p><strong>Doors:</strong> 7:00 PM</p>
@@ -568,15 +579,15 @@
 
           <!-- Show 11 -->
           <div class="tour-accordion-item" data-venue="The Troubadour">
-            <button class="accordion-header">
+            <button class="accordion-header" aria-expanded="false">
               <span class="accordion-date">APR 19</span>
               <span class="accordion-venue">The Troubadour</span>
               <span class="accordion-location">Los Angeles, CA</span>
               <span class="accordion-icon"></span>
             </button>
-            <div class="accordion-body">
+            <div class="accordion-body" role="region">
               <div class="accordion-map">
-                <iframe src="https://www.google.com/maps?q=The+Troubadour+Los+Angeles+CA&output=embed" loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps?q=The+Troubadour+Los+Angeles+CA&output=embed" loading="lazy" title="Map showing The Troubadour, Los Angeles CA"></iframe>
               </div>
               <div class="accordion-details">
                 <p><strong>Doors:</strong> 8:00 PM</p>
@@ -589,15 +600,15 @@
 
           <!-- Show 12 -->
           <div class="tour-accordion-item" data-venue="Brooklyn Bowl">
-            <button class="accordion-header">
+            <button class="accordion-header" aria-expanded="false">
               <span class="accordion-date">APR 26</span>
               <span class="accordion-venue">Brooklyn Bowl</span>
               <span class="accordion-location">Brooklyn, NY</span>
               <span class="accordion-icon"></span>
             </button>
-            <div class="accordion-body">
+            <div class="accordion-body" role="region">
               <div class="accordion-map">
-                <iframe src="https://www.google.com/maps?q=Brooklyn+Bowl+Brooklyn+NY&output=embed" loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps?q=Brooklyn+Bowl+Brooklyn+NY&output=embed" loading="lazy" title="Map showing Brooklyn Bowl, Brooklyn NY"></iframe>
               </div>
               <div class="accordion-details">
                 <p><strong>Doors:</strong> 6:00 PM</p>
@@ -685,7 +696,7 @@
           </div>
 
           <footer class="site-footer">
-            <img src="img/logo-goon.png" alt="Swamp City Stompers" class="footer-logo">
+            <img src="img/logo-goon.png" alt="Swamp City Stompers" class="footer-logo" loading="lazy">
             <p>&copy; 2026 Swamp City Stompers</p>
             <p>Eastern Ontario, Canada</p>
           </footer>

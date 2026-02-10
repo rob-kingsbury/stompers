@@ -1,9 +1,9 @@
 ---
 project: Stompers
 status: In Progress
-last_session: 8
+last_session: 9
 session_date: 2026-02-09
-current_focus: Configuration optimization, skills, workflows
+current_focus: Full site audit and optimization
 open_issues: 11
 next_priority: "Tour page layout (#11)"
 ---
@@ -53,6 +53,56 @@ repo:
 | Contact/Footer | Needs Work | |
 
 ## Recent Changes
+
+### February 2026 - Session 9: Full Site Audit and Optimization
+
+**Comprehensive audit across 5 categories: CSS, JS, HTML/accessibility, performance, mobile visual.**
+
+JS Memory Leak Fixes (main.js):
+- Added `cleanupFns` array + `runCleanup()` for event listener lifecycle management
+- Barba `leave` hook now kills all ScrollTriggers and destroys Lenis before page transition
+- `afterEnter` reinitializes Lenis + ScrollTrigger properly after transition
+- Escape key, hamburger, menu links, anchor links, resize — all use named handlers with cleanup
+- Replaced `setInterval` stat counter with GSAP tween
+- Removed redundant early `ScrollTrigger.refresh()` call
+
+CSS Variable Sweep (styles.css + themes.css):
+- Replaced ~80+ hardcoded spacing values with `var(--spacing-*)`
+- Replaced ~40+ hardcoded letter-spacing with `var(--letter-spacing-*)`
+- Replaced ~15 hardcoded font-sizes with `var(--font-size-*)`
+- Added new variables: `--shadow-2xl`, `--shadow-upward`, `--spacing-6xl`, `--border-width-heavy`, `--letter-spacing-ultra`, `--letter-spacing-extreme`
+- Z-index `calc()` expressions replaced with shim values (91, 991, 9991)
+- Added `:focus-visible` styles for keyboard navigation
+
+Accessibility (all 6 HTML pages):
+- Skip-to-content link on every page
+- `aria-hidden="true"` on decorative hero video
+- `title` attributes on all Google Maps iframes
+- `aria-expanded` + `role="region"` on tour accordions
+- EPK heading hierarchy fixed (h3 before h2 → proper h2)
+- Favicon reference added to all pages
+- `autocomplete` attributes on contact form inputs
+
+SEO (all 6 HTML pages):
+- Open Graph meta tags (og:title, og:description, og:type, og:image)
+- Twitter Card meta tags
+- Google Fonts already had `display=swap`
+
+Performance:
+- Logo PNGs compressed: logo-stompers.png 1.3MB → 268KB, logo-goon.png 400KB → 220KB
+- WebP versions created: 160KB and 67KB
+- `loading="lazy"` on 24 below-fold images
+- `preload="metadata"` on hero video
+- `sourcemap: false` in Vite production build
+
+Config:
+- style-guide.json z-index updated to match power-of-9 scale
+- Added missing variables to style-guide.json (spacing-6xl, shadow-2xl, shadow-upward, border-width-heavy, letter-spacing-ultra/extreme)
+
+Not fixed (deferred):
+- Hero video 16MB (no ffmpeg available; video being replaced soon)
+- Content placeholders (fake phone, # links, placeholder dates)
+- Design items (band card grid, full desktop nav, footer refresh)
 
 ### February 2026 - Session 8: Configuration Optimization
 

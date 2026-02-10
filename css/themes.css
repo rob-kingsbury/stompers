@@ -57,6 +57,7 @@
   --spacing-3xl: 4rem;     /* 64px */
   --spacing-4xl: 6rem;     /* 96px */
   --spacing-5xl: 8rem;     /* 128px */
+  --spacing-6xl: 10rem;    /* 160px */
 
   /* ============================================
      TYPOGRAPHY
@@ -90,6 +91,8 @@
   --letter-spacing-wide: 0.025em;
   --letter-spacing-wider: 0.05em;
   --letter-spacing-widest: 0.1em;
+  --letter-spacing-ultra: 0.2em;
+  --letter-spacing-extreme: 0.3em;
 
   /* Font Weights */
   --font-weight-normal: 400;
@@ -124,6 +127,7 @@
 
   --border-width: 1px;
   --border-width-thick: 2px;
+  --border-width-heavy: 3px;
 
   --radius-sm: 2px;
   --radius-md: 4px;
@@ -138,6 +142,8 @@
   --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.5);
   --shadow-xl: 0 8px 32px rgba(0, 0, 0, 0.6);
+  --shadow-2xl: 0 16px 64px rgba(0, 0, 0, 0.7);
+  --shadow-upward: 0 -10px 40px rgba(0, 0, 0, 0.3);
   --shadow-focus: 0 0 0 3px var(--color-focus-ring);
   --shadow-glow: 0 0 20px rgba(var(--color-accent-rgb), 0.3);
 

@@ -5,7 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact | Swamp City Stompers</title>
   <meta name="description" content="Get in touch with the Swamp City Stompers - booking inquiries and general contact.">
+  <meta property="og:title" content="Contact | Swamp City Stompers">
+  <meta property="og:description" content="Get in touch with the Swamp City Stompers. Booking inquiries, press, and general contact.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="img/logo-stompers.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contact | Swamp City Stompers">
+  <meta name="twitter:description" content="Get in touch with the Swamp City Stompers.">
 
+  <link rel="icon" type="image/png" href="img/logo-goon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -14,6 +22,7 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body data-barba="wrapper">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
   <!-- Hamburger Menu Button -->
   <div class="hamburger-container">
     <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
@@ -40,7 +49,7 @@
     </div>
   </div>
 
-  <main class="page-main" data-barba="container" data-barba-namespace="contact">
+  <main class="page-main" id="main-content" data-barba="container" data-barba-namespace="contact">
     <!-- Page Hero -->
     <section class="page-hero page-hero--contact">
       <div class="page-hero-content">
@@ -58,11 +67,11 @@
           <form class="contact-form" action="#" method="post">
             <div class="form-group">
               <label for="name">Name</label>
-              <input type="text" id="name" name="name" required>
+              <input type="text" id="name" name="name" autocomplete="name" required>
             </div>
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="email" id="email" name="email" required>
+              <input type="email" id="email" name="email" autocomplete="email" required>
             </div>
             <div class="form-group">
               <label for="subject">Subject</label>
