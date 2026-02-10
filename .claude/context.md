@@ -44,6 +44,31 @@ repo:
 
 ## Recent Changes
 
+### February 2026 - Session 7 (Nav Menu Fixes)
+**Fixed nav menu bugs and consolidated file naming:**
+
+File Renames:
+- `css/immersive-master.css` → `css/styles.css`
+- `js/main-master.js` → `js/main.js`
+- Updated all references across HTML, docs, and config
+
+Nav Menu Fixes (css/styles.css + js/main.js):
+- Fixed menu text hidden behind menu-bg: z-index stacking with `calc(var(--z-overlay) +/- 1)`
+  - `.menu-bg`: `calc(var(--z-overlay) - 1)` (background, behind content)
+  - `.menu-overlay`: `var(--z-overlay)` (menu content)
+  - `.hamburger-container`: `calc(var(--z-overlay) + 1)` (always clickable)
+- Removed CSS `opacity: 0` from `.menu-nav-link` and `.menu-footer` (GSAP controls initial state)
+- Added dynamic `is-active` class on menu links based on `window.location.pathname`
+- Replaced `menuTimeline.reverse()` with custom close timeline for snappy exit
+- Added dust particles on menu close for visual parity with open animation
+
+Scroll Animation Fix (js/main.js):
+- Added `immediateRender: false` to `gsap.from()` calls with ScrollTrigger
+- Prevents about section text from being invisible at desktop widths
+
+Config:
+- Fixed `vite.config.js` server open path to `/index.html`
+
 ### January 2026 - Session 6 (Mobile-First Audit)
 **Complete mobile-first refactor of entire codebase:**
 
