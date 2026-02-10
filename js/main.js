@@ -393,6 +393,7 @@ function initSiteNav() {
     menuIsOpen = true;
     menuIsAnimating = true;
     menuOverlay.classList.add('is-open');
+    menuBg.classList.add('is-open');
     hamburger.classList.add('is-active');
     document.body.style.overflow = 'hidden';
     if (lenis) lenis.stop();
@@ -415,6 +416,7 @@ function initSiteNav() {
     const closeTl = gsap.timeline({
       onComplete: () => {
         menuOverlay.classList.remove('is-open');
+        menuBg.classList.remove('is-open');
         menuIsAnimating = false;
         menuTimeline.pause(0); // Reset open timeline to start
       },
@@ -705,15 +707,15 @@ function initHeroAnimations() {
 
   tl.add(() => scrollCue?.classList.add('is-visible'), '+=0.4');
 
-  // Fade out logo + content on scroll
+  // Fade out logo + content on scroll (delayed start so it doesn't vanish instantly)
   gsap.to('.hero-logo-reveal', {
     opacity: 0,
     y: mobile ? -40 : -80,
     ease: 'none',
     scrollTrigger: {
       trigger: hero,
-      start: 'top top',
-      end: '60% top',
+      start: '20% top',
+      end: '80% top',
       scrub: true,
     },
   });

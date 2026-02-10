@@ -1,11 +1,11 @@
 ---
 project: Stompers
 status: In Progress
-last_session: 10
+last_session: 11
 session_date: 2026-02-09
-current_focus: Hero section redesign (video replaced with logo animation)
+current_focus: Hero background — looping grunge video + scratch overlay
 open_issues: 11
-next_priority: "Tour page layout (#11)"
+next_priority: "Fix hero bugs: logo scroll fade + menu flash on load"
 ---
 
 # Stompers Redesign Context
@@ -53,6 +53,34 @@ repo:
 | Contact/Footer | Needs Work | |
 
 ## Recent Changes
+
+### February 2026 - Session 11: Hero Background Rework
+
+**Replaced static grunge textures with looping grunge video + single scratch overlay.**
+
+Hero Background Changes (index.html + css/styles.css):
+- Replaced two static grunge div layers with a looping `<video>` element (`img/grunge-loop.mp4`)
+- Video: autoplay, muted, loop, playsinline, 15% opacity, `mix-blend-mode: screen`
+- Single scratch overlay (`scratch-overlay.webp`) drifts slowly on top at 8% opacity
+- HTML now uses `.hero-video-grain` video element + single `.hero-grain` div (was two `.hero-grain--scratch` / `.hero-grain--grunge` divs)
+
+Assets Added:
+- `img/grunge-loop.mp4` — looping dirt/grain video (26MB, needs compression via ffmpeg)
+- `img/scratch-overlay-alpha.png` — transparent PNG version (unused, created during iteration)
+- `img/grunge-texture-alpha.png` — transparent PNG version (unused, created during iteration)
+- `img/water-loop.mp4` — water texture video (tried and reverted, can delete)
+
+Demo Files Created:
+- `hero-demos.html` — 4 hero concepts (parallax depth, ember glow, scroll separation, swamp fog). Can delete.
+
+UNRESOLVED BUGS (must fix next session):
+1. **Menu flashes on page load** — `.menu-bg` is visible briefly on load/reload. Not FOUC — the styled menu panel flashes in. Current fix attempt (visibility: hidden + is-open class) did not work. The `.menu-bg` div is created dynamically by JS (line ~278 in main.js) AND exists in CSS. Need to investigate the actual flash cause — may be the `.menu-overlay` or GSAP timeline init, not just `.menu-bg`.
+2. **Logo disappears instantly on scroll** — should fade gradually but vanishes immediately. ScrollTrigger range was adjusted from `top top`/`60% top` to `20% top`/`80% top` but user reports no change. Possibly a Lenis scroll reporting issue or the tween is conflicting with the entry timeline. Need to debug with markers.
+
+Approaches tried and abandoned:
+- Two CSS-animated grunge layers (couldn't get them visibly moving in different directions)
+- Transparent PNG textures with luminosity-as-alpha (still looked like one layer)
+- CSS filter tinting (sepia + hue-rotate) for swamp color (too subtle on dark bg)
 
 ### February 2026 - Session 10: Hero Redesign (Video to Logo Animation)
 

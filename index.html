@@ -99,7 +99,11 @@
          SECTION 1: HERO - Dark video that GROWS on scroll
          ============================================================ -->
     <section id="hero" class="section section--hero" data-section="hero">
-      <!-- Grungy swamp background -->
+      <!-- Looping grunge video — does the bulk of the movement -->
+      <video class="hero-video-grain" autoplay muted loop playsinline aria-hidden="true">
+        <source src="img/grunge-loop.mp4" type="video/mp4">
+      </video>
+      <!-- Single drifting grunge layer on top -->
       <div class="hero-grain" aria-hidden="true"></div>
       <!-- Ambient floating sparks -->
       <div class="hero-sparks" aria-hidden="true"></div>
