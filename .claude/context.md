@@ -14,8 +14,8 @@ tech:
 
 paths:
   master: index.html
-  css: css/immersive-master.css
-  js: js/main-master.js
+  css: css/styles.css
+  js: js/main.js
   themes: css/themes.css
   pages: tour.html, story.html, epk.html, merch.html, contact.html
   docs: handoff.md (detailed section docs, read on-demand)
@@ -43,6 +43,28 @@ repo:
 | Contact/Footer | Needs Work | |
 
 ## Recent Changes
+
+### January 2026 - Session 6 (Mobile-First Audit)
+**Complete mobile-first refactor of entire codebase:**
+
+CSS Changes (styles.css):
+- Added `.no-js` fallback styles (lines 9-35) - content visible without JS
+- Converted ALL 7 `max-width` queries to mobile-first `min-width`
+- Responsive breakpoints: 481px, 769px, 1025px, 1201px
+- Menu responsive styles refactored to mobile-first
+
+JS Changes (main.js):
+- Added responsive utilities: `isMobile()`, `isTablet()`, `isDesktop()`, `isTouchDevice()`
+- Added `prefersReducedMotion()` support throughout all animations
+- `getScrollTriggerConfig()` returns mobile-adjusted trigger points
+- Lenis configured with mobile touch multipliers (1.5x mobile, 2.0x desktop)
+- Quote animation simplified on mobile (fade lines, not characters)
+- Menu shake reduced on mobile (4px/3 repeats vs 8px/6 repeats)
+- Hero video scale reduced on mobile (1.15 vs 1.3)
+- Removes `no-js` class from `<html>` on load
+
+HTML Changes:
+- Added `class="no-js"` to all 6 production pages (index, tour, merch, story, epk, contact)
 
 ### January 2026 - Session 5
 - Built merch.html page with sticky product slides layout

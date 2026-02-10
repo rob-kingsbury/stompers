@@ -40,10 +40,10 @@
 stompers-redesign/
 ├── index-immersive-master.html    # Master design (main file)
 ├── css/
-│   ├── immersive-master.css       # Master styles
+│   ├── styles.css       # Master styles
 │   └── themes.css                 # CSS variables
 ├── js/
-│   └── main-master.js             # GSAP/Lenis animations
+│   └── main.js             # GSAP/Lenis animations
 ├── img/
 │   └── vid-header-mute.mp4        # Hero video
 ├── .claude/

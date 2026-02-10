@@ -200,7 +200,7 @@ sync:
   description: Sync reference files with code changes
   steps:
     1_functions:
-      compare: js/main-master.js vs .claude/functions.md
+      compare: js/main.js vs .claude/functions.md
       action: Update functions.md if GSAP functions added/changed
 
     2_styles:

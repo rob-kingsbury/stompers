@@ -58,7 +58,7 @@
 
 ## GSAP/Lenis Reference
 
-**File:** `js/main-master.js`
+**File:** `js/main.js`
 
 ## Initialization
 

@@ -12,7 +12,7 @@ principles:
 
 files:
   themes.css: CSS variables (colors, spacing, z-index, typography, easing)
-  immersive-master.css: Components, layout, animations
+  styles.css: Components, layout, animations
 
 naming:
   block: .section, .hero, .stack-card

@@ -68,8 +68,8 @@ npm run build        # Production build
 | File | Purpose |
 |------|---------|
 | `index-immersive-master.html` | Main HTML structure |
-| `css/immersive-master.css` | All styles (~1470 lines) |
-| `js/main-master.js` | GSAP/Lenis animations (~570 lines) |
+| `css/styles.css` | All styles (~1470 lines) |
+| `js/main.js` | GSAP/Lenis animations (~570 lines) |
 | `vite.config.js` | Build config, opens to master by default |
 
 ---
@@ -92,7 +92,7 @@ npm run build        # Production build
 .progress-blob { background: linear-gradient(135deg, #c9a227, #a07d1c); }
 ```
 
-**Key JS:** `initProgressNav()` in main-master.js:71-131
+**Key JS:** `initProgressNav()` in main.js:71-131
 
 ---
 
@@ -224,7 +224,7 @@ cards.forEach((card, i) => {
 }
 ```
 
-**Key JS:** `initQuoteSection()` in main-master.js
+**Key JS:** `initQuoteSection()` in main.js
 ```javascript
 // 1. Text is pre-split into .char spans in HTML
 const allChars = section.querySelectorAll('.char');
@@ -344,11 +344,11 @@ stompers-redesign/
 ├── index-immersive-v1.html        # Version 1-10 experiments
 ├── ...
 ├── css/
-│   ├── immersive-master.css       # Master styles
+│   ├── styles.css       # Master styles
 │   ├── themes.css                 # Color themes
 │   └── ...
 ├── js/
-│   ├── main-master.js             # Master animations
+│   ├── main.js             # Master animations
 │   └── ...
 ├── img/
 │   └── vid-header-mute.mp4        # Hero video

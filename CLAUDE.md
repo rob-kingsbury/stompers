@@ -21,9 +21,9 @@
 
 ## Project Context
 
-- **Main file:** index-immersive-master.html
-- **Styles:** css/immersive-master.css, css/themes.css
-- **Animations:** js/main-master.js (GSAP + Lenis)
+- **Main file:** index.html
+- **Styles:** css/styles.css, css/themes.css
+- **Animations:** js/main.js (GSAP + Lenis)
 - **Docs:** .claude/context.md, handoff.md
 
 ## Quick Reference

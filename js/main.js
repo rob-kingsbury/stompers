@@ -1,6 +1,8 @@
 /**
  * IMMERSIVE MASTER - Main JavaScript
  * MetaMask-style progress, dramatic reveals, 3D flips, explosions
+ *
+ * Mobile-first: Responsive breakpoints, touch handling, reduced motion support
  */
 
 import Lenis from 'lenis';
@@ -14,6 +16,71 @@ import 'lenis/dist/lenis.css';
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 let lenis;
+
+// ============================================================
+// RESPONSIVE & ACCESSIBILITY UTILITIES
+// ============================================================
+
+// Breakpoints matching CSS
+const BREAKPOINTS = {
+  mobile: 768,
+  tablet: 1024,
+  desktop: 1200,
+};
+
+// Device detection
+const isMobile = () => window.innerWidth <= BREAKPOINTS.mobile;
+const isTablet = () => window.innerWidth > BREAKPOINTS.mobile && window.innerWidth <= BREAKPOINTS.tablet;
+const isDesktop = () => window.innerWidth > BREAKPOINTS.tablet;
+const isTouchDevice = () => 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+// Reduced motion preference
+const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Get responsive scroll trigger values
+function getScrollTriggerConfig(section) {
+  const mobile = isMobile();
+
+  // Default configs adjusted for mobile viewports
+  const configs = {
+    hero: {
+      contentFade: {
+        start: mobile ? '20% top' : '30% top',
+        end: mobile ? '60% top' : '80% top',
+      },
+      scrollCue: {
+        start: mobile ? '5% top' : '10% top',
+        end: mobile ? '20% top' : '30% top',
+      },
+    },
+    about: {
+      cardReveal: {
+        start: mobile ? 'top 80%' : 'top 70%',
+      },
+    },
+    quote: {
+      fadeIn: {
+        start: mobile ? 'top 70%' : 'top 60%',
+      },
+    },
+    contact: {
+      reveal: {
+        start: mobile ? 'top 70%' : 'top 60%',
+      },
+    },
+    tour: {
+      cardActive: {
+        start: mobile ? 'top 90%' : 'top 80%',
+        end: mobile ? 'bottom 10%' : 'bottom 20%',
+      },
+    },
+  };
+
+  return configs[section] || {};
+}
+
+// Remove no-js class when JS loads
+document.documentElement.classList.remove('no-js');
 
 // ============================================================
 // INITIALIZATION
@@ -203,6 +270,12 @@ function initSiteNav() {
   const menuBg = document.querySelector('.menu-bg');
   const dustContainer = document.querySelector('.dust-container');
   const menuLinks = menuOverlay.querySelectorAll('.menu-nav-link');
+
+  // Set active state on menu links based on current page
+  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+  menuLinks.forEach((link) => {
+    link.classList.toggle('is-active', link.getAttribute('href') === currentPath);
+  });
   const menuFooter = menuOverlay.querySelector('.menu-footer');
   const pageContent = document.querySelector('.immersive') || document.querySelector('.page-main');
 
@@ -213,18 +286,24 @@ function initSiteNav() {
   // Build the GSAP timeline for Stomp effect (matching demo)
   menuTimeline = gsap.timeline({ paused: true });
 
+  // Reduce shake intensity on mobile
+  const mobile = isMobile();
+  const reducedMotion = prefersReducedMotion();
+  const shakeIntensity = reducedMotion ? 0 : (mobile ? 4 : 8);
+  const shakeRepeats = reducedMotion ? 0 : (mobile ? 3 : 6);
+
   menuTimeline
     // Hamburger to X animation
     .to(hamburger.children[0], { y: 10, rotate: 45, duration: 0.2 }, 0)
     .to(hamburger.children[1], { scaleX: 0, duration: 0.2 }, 0)
     .to(hamburger.children[2], { y: -10, rotate: -45, duration: 0.2 }, 0)
 
-    // Screen shake effect on page content (not body, to preserve fixed positioning)
+    // Screen shake effect on page content (reduced on mobile)
     .to(pageContent, {
-      x: () => Math.random() * 8 - 4,
-      y: () => Math.random() * 8 - 4,
+      x: () => Math.random() * shakeIntensity - shakeIntensity / 2,
+      y: () => Math.random() * shakeIntensity - shakeIntensity / 2,
       duration: 0.05,
-      repeat: 6,
+      repeat: shakeRepeats,
       yoyo: true,
       ease: 'none',
     }, 0.1)
@@ -303,15 +382,27 @@ function initSiteNav() {
     hamburger.classList.remove('is-active');
     document.body.style.overflow = '';
     if (lenis) lenis.start();
-    menuTimeline.reverse();
 
-    // Remove is-open class and allow clicks after animation completes
-    setTimeout(() => {
-      if (!menuIsOpen) {
+    // Custom close: text and footer fade out immediately, then bg slides away
+    const closeTl = gsap.timeline({
+      onComplete: () => {
         menuOverlay.classList.remove('is-open');
-      }
-      menuIsAnimating = false;
-    }, 800);
+        menuIsAnimating = false;
+        menuTimeline.pause(0); // Reset open timeline to start
+      },
+    });
+
+    closeTl
+      .to(hamburger.children[0], { y: 0, rotate: 0, duration: 0.2 }, 0)
+      .to(hamburger.children[1], { scaleX: 1, duration: 0.2 }, 0)
+      .to(hamburger.children[2], { y: 0, rotate: 0, duration: 0.2 }, 0)
+      .to(menuLinks, { opacity: 0, y: -20, duration: 0.2, stagger: 0.02, ease: 'power2.in' }, 0)
+      .to(menuFooter, { opacity: 0, duration: 0.15 }, 0)
+      // Dust particles on bg slide-out impact
+      .add(() => {
+        spawnDustParticles(dustContainer, 15);
+      }, 0.25)
+      .to(menuBg, { right: '-100%', duration: 0.5, ease: 'power4.out' }, 0.25);
   }
 }
 
@@ -361,12 +452,20 @@ function spawnDustParticles(container, count) {
 // ============================================================
 
 function initSmoothScroll() {
+  const mobile = isMobile();
+  const touch = isTouchDevice();
+  const reducedMotion = prefersReducedMotion();
+
+  // Configure Lenis based on device capabilities
   lenis = new Lenis({
-    duration: 1.4,
+    duration: reducedMotion ? 0.01 : (mobile ? 1.0 : 1.4),
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     orientation: 'vertical',
-    smoothWheel: true,
-    wheelMultiplier: 0.8,
+    smoothWheel: !reducedMotion,
+    wheelMultiplier: mobile ? 1.0 : 0.8,
+    // Touch-specific settings
+    touchMultiplier: mobile ? 1.5 : 2.0,
+    infinite: false,
   });
 
   lenis.on('scroll', ScrollTrigger.update);
@@ -386,9 +485,22 @@ function initSmoothScroll() {
       e.preventDefault();
       const target = document.querySelector(href);
       if (target) {
-        lenis.scrollTo(target, { offset: 0, duration: 1.5 });
+        const duration = reducedMotion ? 0.1 : (mobile ? 1.0 : 1.5);
+        lenis.scrollTo(target, { offset: 0, duration });
       }
     });
+  });
+
+  // Handle resize - recreate Lenis with new settings if device type changes
+  let wasDesktop = isDesktop();
+  window.addEventListener('resize', () => {
+    const nowDesktop = isDesktop();
+    if (wasDesktop !== nowDesktop) {
+      wasDesktop = nowDesktop;
+      // Lenis settings will be applied on next page load
+      // For now, just refresh ScrollTrigger
+      ScrollTrigger.refresh();
+    }
   });
 }
 
@@ -522,6 +634,20 @@ function initHeroAnimations() {
   const stats = hero.querySelector('.hero-stats');
   const scrollCue = hero.querySelector('.hero-scroll-cue');
 
+  const reducedMotion = prefersReducedMotion();
+  const config = getScrollTriggerConfig('hero');
+
+  // If reduced motion, show everything immediately
+  if (reducedMotion) {
+    meta?.classList.add('is-visible');
+    titleLines.forEach((line) => line.classList.add('is-visible'));
+    tagline?.classList.add('is-visible');
+    stats?.classList.add('is-visible');
+    scrollCue?.classList.add('is-visible');
+    animateStats();
+    return;
+  }
+
   // Staggered entrance animation
   const tl = gsap.timeline({ delay: 0.3 });
 
@@ -553,10 +679,11 @@ function initHeroAnimations() {
     tl.add(() => scrollCue.classList.add('is-visible'), 1.3);
   }
 
-  // Video GROWS on scroll (scale from 1 to 1.3)
+  // Video GROWS on scroll (scale from 1 to 1.3) - reduced on mobile for performance
   if (video) {
+    const maxScale = isMobile() ? 1.15 : 1.3;
     gsap.to(video, {
-      scale: 1.3,
+      scale: maxScale,
       ease: 'none',
       scrollTrigger: {
         trigger: hero,
@@ -567,15 +694,15 @@ function initHeroAnimations() {
     });
   }
 
-  // Fade out content on scroll
+  // Fade out content on scroll - adjusted for mobile
   gsap.to('.hero-content', {
     opacity: 0,
-    y: -80,
+    y: isMobile() ? -40 : -80,
     ease: 'none',
     scrollTrigger: {
       trigger: hero,
-      start: '30% top',
-      end: '80% top',
+      start: config.contentFade.start,
+      end: config.contentFade.end,
       scrub: true,
     },
   });
@@ -586,8 +713,8 @@ function initHeroAnimations() {
     ease: 'none',
     scrollTrigger: {
       trigger: hero,
-      start: '10% top',
-      end: '30% top',
+      start: config.scrollCue.start,
+      end: config.scrollCue.end,
       scrub: true,
     },
   });
@@ -629,12 +756,14 @@ function initAboutAnimations() {
 
     if (content) {
       // Animate content children (number, title, text)
+      // immediateRender: false prevents hiding content before trigger fires
       gsap.from(content.children, {
         opacity: 0,
         y: 50,
         stagger: 0.15,
         duration: 0.8,
         ease: 'power3.out',
+        immediateRender: false,
         scrollTrigger: {
           trigger: card,
           start: 'top 70%',
@@ -707,12 +836,23 @@ function initTourSection() {
 
   if (!section || fullpageCards.length === 0) return;
 
-  // Activate fullpage cards as they come into view
+  const config = getScrollTriggerConfig('tour');
+  const reducedMotion = prefersReducedMotion();
+
+  // If reduced motion, show all cards immediately
+  if (reducedMotion) {
+    fullpageCards.forEach((card) => card.classList.add('is-active'));
+    listSection?.classList.add('is-revealed');
+    accordionItems.forEach((item) => item.classList.add('is-visible'));
+    return;
+  }
+
+  // Activate fullpage cards as they come into view (responsive start/end)
   fullpageCards.forEach((card, index) => {
     ScrollTrigger.create({
       trigger: card,
-      start: 'top 80%',
-      end: 'bottom 20%',
+      start: config.cardActive?.start || 'top 80%',
+      end: config.cardActive?.end || 'bottom 20%',
       onEnter: () => card.classList.add('is-active'),
       onLeave: () => card.classList.remove('is-active'),
       onEnterBack: () => card.classList.add('is-active'),
@@ -811,7 +951,85 @@ function initQuoteExplosion() {
 
   if (!section || !pinWrapper || quoteLines.length === 0) return;
 
-  // 1. Split all text into individual character spans on load
+  const reducedMotion = prefersReducedMotion();
+  const mobile = isMobile();
+  const config = getScrollTriggerConfig('quote');
+
+  // For reduced motion or mobile: simple fade-in, no character splitting
+  if (reducedMotion) {
+    // Just show the quote immediately
+    return;
+  }
+
+  // On mobile: simplified animation (fade in lines, not individual characters)
+  if (mobile) {
+    initQuoteSimplified(section, quoteLines, attribution, config);
+    return;
+  }
+
+  // Desktop: Full character animation
+  initQuoteFull(section, quoteContent, quoteLines, attribution, config);
+}
+
+// Simplified quote animation for mobile - fade in lines instead of characters
+function initQuoteSimplified(section, quoteLines, attribution, config) {
+  // Set initial state
+  quoteLines.forEach((line) => {
+    line.style.opacity = '0';
+    line.style.transform = 'translateY(20px)';
+  });
+
+  if (attribution) {
+    attribution.style.opacity = '0';
+    attribution.style.transform = 'translateY(20px)';
+  }
+
+  ScrollTrigger.create({
+    trigger: section,
+    start: config.fadeIn?.start || 'top 70%',
+    onEnter: () => {
+      // Animate lines with stagger
+      gsap.to(quoteLines, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.15,
+        ease: 'power2.out',
+      });
+
+      if (attribution) {
+        gsap.to(attribution, {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          delay: quoteLines.length * 0.15,
+          ease: 'power2.out',
+        });
+      }
+    },
+    onLeaveBack: () => {
+      gsap.set(quoteLines, { opacity: 0, y: 20 });
+      if (attribution) gsap.set(attribution, { opacity: 0, y: 20 });
+    },
+  });
+
+  // Section shrink effect (reduced on mobile)
+  gsap.to(section, {
+    scale: 0.95,
+    borderRadius: '16px',
+    ease: 'none',
+    scrollTrigger: {
+      trigger: section,
+      start: 'top top',
+      end: 'bottom top',
+      scrub: true,
+    },
+  });
+}
+
+// Full character animation for desktop
+function initQuoteFull(section, quoteContent, quoteLines, attribution, config) {
+  // Split all text into individual character spans
   const allChars = [];
 
   quoteLines.forEach((line) => {
@@ -840,11 +1058,10 @@ function initQuoteExplosion() {
     });
   }
 
-  // 2. Pre-calculate explosion trajectories for each character
+  // Pre-calculate explosion trajectories for each character
   let charData = [];
 
   function calculateExplosionVectors() {
-    // Get center of the quote block
     const rect = quoteContent.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
@@ -854,31 +1071,27 @@ function initQuoteExplosion() {
       const x = r.left + r.width / 2;
       const y = r.top + r.height / 2;
 
-      // Vector pointing outward from center
       const dx = x - centerX;
       const dy = y - centerY;
       const dist = Math.sqrt(dx * dx + dy * dy) || 1;
 
-      // Explosion distance: farther from center = flies farther
       const baseDist = 400 + Math.random() * 600;
 
       return {
         el: span,
-        // Target position (relative to starting point)
         tx: (dx / dist) * baseDist + (Math.random() - 0.5) * 150,
         ty: (dy / dist) * baseDist + (Math.random() - 0.5) * 150,
-        tr: (Math.random() - 0.5) * 90, // rotation
-        ts: 2 + Math.random() * 3, // scale (toward viewer)
+        tr: (Math.random() - 0.5) * 90,
+        ts: 2 + Math.random() * 3,
       };
     });
   }
 
-  // Calculate once DOM is ready
   requestAnimationFrame(() => {
     calculateExplosionVectors();
   });
 
-  // 3. Fade-in when section enters (no pin - simpler approach)
+  // Fade-in when section enters
   let hasFadedIn = false;
 
   // Start with chars hidden
@@ -889,12 +1102,11 @@ function initQuoteExplosion() {
 
   ScrollTrigger.create({
     trigger: section,
-    start: 'top 60%',
+    start: config.fadeIn?.start || 'top 60%',
     onEnter: () => {
       if (hasFadedIn) return;
       hasFadedIn = true;
 
-      // Animate each character fading in and moving down
       allChars.forEach((el, i) => {
         gsap.to(el, {
           y: 0,
@@ -906,19 +1118,14 @@ function initQuoteExplosion() {
       });
     },
     onLeaveBack: () => {
-      // Reset when scrolling back up past section
       hasFadedIn = false;
       allChars.forEach((el) => {
-        gsap.set(el, {
-          y: -40,
-          opacity: 0,
-        });
+        gsap.set(el, { y: -40, opacity: 0 });
       });
     },
   });
 
-  // 4. Concom.tv style: Section shrinks as it scrolls up, revealing black bg
-  // Use gsap.to with scrub for smooth scaling
+  // Section shrinks as it scrolls up
   gsap.to(section, {
     scale: 0.9,
     borderRadius: '24px',
@@ -943,10 +1150,20 @@ function initContactParallax() {
 
   if (!section) return;
 
+  const reducedMotion = prefersReducedMotion();
+  const config = getScrollTriggerConfig('contact');
+
+  // If reduced motion, show immediately
+  if (reducedMotion) {
+    blocks.forEach((block) => block.classList.add('is-visible'));
+    footer?.classList.add('is-visible');
+    return;
+  }
+
   // Animate contact blocks when section is in view
   ScrollTrigger.create({
     trigger: section,
-    start: 'top 60%',
+    start: config.reveal?.start || 'top 60%',
     onEnter: () => {
       blocks.forEach((block) => {
         block.classList.add('is-visible');
@@ -1146,6 +1363,7 @@ function initTourCTA() {
       stagger: 0.15,
       duration: 0.8,
       ease: 'power3.out',
+      immediateRender: false,
       scrollTrigger: {
         trigger: cta,
         start: 'top 70%',
