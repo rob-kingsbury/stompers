@@ -209,3 +209,59 @@ sync:
 
     3_report:
       action: List changes made and commit if any updates
+
+simplify:
+  triggers: ["simplify", "clean up code", "code cleanup"]
+  description: Run code-simplifier on recently modified files
+  steps:
+    1_identify:
+      command: git diff --name-only HEAD~1
+      action: List recently modified files (.css, .js, .html only)
+
+    2_analyze:
+      action: |
+        For each file, check against project standards:
+        - CSS: variables, mobile-first, BEM naming, no !important
+        - JS: responsive utilities, ScrollTrigger patterns, reduced motion
+        - HTML: semantic elements, no inline styles
+
+    3_simplify:
+      action: |
+        Apply changes that preserve functionality while improving clarity:
+        - Reduce nesting and complexity
+        - Use project utilities (isMobile, getScrollTriggerConfig)
+        - Replace hardcoded values with CSS variables
+        - Remove dead code and obvious comments
+
+    4_report:
+      format: |
+        | File | Changes | Impact |
+        |------|---------|--------|
+        | [file] | [changes] | [none/low] |
+
+check:
+  triggers: ["check", "verify", "visual check"]
+  description: Quick visual verification checklist
+  steps:
+    1_dev_server:
+      command: npm run dev
+      action: Start dev server if not already running
+
+    2_verify:
+      checklist:
+        - Animations play correctly on scroll
+        - Menu open/close works with dust particles
+        - Progress nav updates on scroll
+        - Hero video scales on scroll
+        - Band cards stack correctly
+        - Quote characters fade in
+        - Page transitions work between pages
+        - No console errors in browser
+
+    3_responsive:
+      action: |
+        Test at these widths:
+        - Mobile: 375px
+        - Tablet: 768px
+        - Desktop: 1200px+
+        Check that responsive utilities activate correctly

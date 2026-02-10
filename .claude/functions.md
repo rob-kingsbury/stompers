@@ -1,264 +1,270 @@
 # Stompers Functions Reference
 
-**Last Updated:** 2026-01-05
+**Last Updated:** 2026-02-09 (Session 8)
+**File:** `js/main.js` (1,390 lines)
 
 ---
 
-## View Transitions API
+## Responsive & Accessibility Utilities
+**Lines:** 20-83
 
-**Files:** All HTML pages need `<meta name="view-transition" content="same-origin">`
-**CSS:** Add to main stylesheet
+### Constants & Device Detection
 
-### Enabling Transitions
+```javascript
+const BREAKPOINTS = { mobile: 768, tablet: 1024, desktop: 1200 };
 
-```html
-<!-- In <head> of every page -->
-<meta name="view-transition" content="same-origin">
+const isMobile = () => window.innerWidth <= BREAKPOINTS.mobile;
+const isTablet = () => window.innerWidth > BREAKPOINTS.mobile && window.innerWidth <= BREAKPOINTS.tablet;
+const isDesktop = () => window.innerWidth > BREAKPOINTS.tablet;
+const isTouchDevice = () => 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 ```
 
-```css
-/* Enable cross-document transitions */
-@view-transition {
-  navigation: auto;
-}
-```
+### `getScrollTriggerConfig(section)`
+**Lines:** 41-80
 
-### Lift Transition (Production Style)
+Returns responsive ScrollTrigger start/end values per section. Adjusts trigger points for mobile viewport sizes.
 
-```css
-::view-transition-old(page-content) {
-  animation: lift-out 0.45s cubic-bezier(0.4, 0, 0.2, 1) both;
-  transform-style: preserve-3d;
-}
-::view-transition-new(page-content) {
-  animation: lift-in 0.45s cubic-bezier(0.4, 0, 0.2, 1) both;
-  transform-style: preserve-3d;
-}
+**Sections:** hero, about, quote, contact, tour
 
-@keyframes lift-out {
-  from { opacity: 1; transform: perspective(800px) scale(1) rotateX(0deg) translateY(0); }
-  to { opacity: 0; transform: perspective(800px) scale(0.88) rotateX(12deg) translateY(-40px); }
-}
-
-@keyframes lift-in {
-  from { opacity: 0; transform: perspective(800px) scale(1.06) rotateX(-10deg) translateY(50px); }
-  to { opacity: 1; transform: perspective(800px) scale(1) rotateX(0deg) translateY(0); }
-}
-```
-
-### Named Transition Elements
-
-```html
-<!-- Elements that morph between pages -->
-<main style="view-transition-name: page-content;">
-<h1 style="view-transition-name: hero-title;">
+**Usage:**
+```javascript
+const config = getScrollTriggerConfig('hero');
+// config.contentFade.start → mobile: '20% top', desktop: '30% top'
 ```
 
 ---
-
-## GSAP/Lenis Reference
-
-**File:** `js/main.js`
 
 ## Initialization
+**Lines:** 89-113
 
-### `initLenis()`
-Initializes Lenis smooth scroll with GSAP integration.
+### `init()`
+Entry point. Routes to page-specific initializers based on `document.body.dataset.page`.
 
-```javascript
-// Called on DOMContentLoaded
-// Syncs Lenis scroll with GSAP ScrollTrigger
-lenis.on('scroll', ScrollTrigger.update);
-gsap.ticker.add((time) => lenis.raf(time * 1000));
-gsap.ticker.lagSmoothing(0);
-```
+**Index page:** initProgressNav → initHeroAnimations → initAboutAnimations → initBandCardStack → initTourSection → initQuoteExplosion → initContactParallax
 
-### `initGSAP()`
-Registers GSAP plugins and calls all section initializers.
-
-```javascript
-// Registers ScrollTrigger plugin
-// Calls:
-//   - initProgressNav()
-//   - initHeroAnimations()
-//   - initAboutAnimations()
-//   - initBandCardStack()
-//   - initTourSection()
-//   - initQuoteSection()
-```
+**Tour page:** initTourPage()
 
 ---
 
-## Section Functions
+## Page Transitions (Barba.js)
+**Lines:** 119-196
+
+### `initPageTransitions()`
+Creates a Barba.js lift transition with GSAP animations. Creates `.transition-overlay` element.
+
+**Leave:** opacity 0, y -30, scale 0.98 (0.35s power2.in)
+**Enter:** opacity 0→1, y 30→0, scale 0.98→1 (0.35s power2.out)
+
+After enter: Reinitializes all page-specific animations via `afterEnter`.
+
+---
+
+## Site Navigation (Stomp Menu)
+**Lines:** 198-448
+
+### `resetStompMenu()`
+**Lines:** 207-249
+
+Resets menu state before page transitions. Clears GSAP transforms, removes classes, kills timeline.
+
+### `initSiteNav()`
+**Lines:** 251-407
+
+Builds the Stomp menu with seismic shake effect. Creates `.menu-bg` and `.dust-container` elements if missing.
+
+**Timeline sequence:**
+1. Hamburger → X animation (0.2s)
+2. Screen shake on page content (reduced on mobile: 4px/3 repeats vs 8px/6 repeats)
+3. Menu background slides in from right (0.5s power4.out)
+4. Dust particles spawn on impact
+5. Menu links bounce in (0.8s elastic, 0.1s stagger)
+6. Footer fades in
+
+**Close:** Custom timeline (not reverse) for snappy exit with dust particles.
+
+### `spawnDustParticles(container, count)`
+**Lines:** 410-448
+
+Creates and animates dust particle divs. Random position, size, trajectory. Self-cleaning (removes DOM elements on complete).
+
+---
+
+## Smooth Scroll (Lenis)
+**Lines:** 454-505
+
+### `initSmoothScroll()`
+Configures Lenis with device-specific settings:
+- Duration: mobile 1.0s, desktop 1.4s (0.01s for reduced motion)
+- wheelMultiplier: mobile 1.0, desktop 0.8
+- touchMultiplier: mobile 1.5, desktop 2.0
+
+Syncs with GSAP ticker. Handles anchor links and resize events.
+
+---
+
+## Progress Nav
+**Lines:** 511-620
 
 ### `initProgressNav()`
-**Lines:** 71-131
+MetaMask-style vertical progress indicator with progress bars between dots.
 
-MetaMask-style vertical progress indicator.
-
-**Elements:**
-- `.progress-nav` - Container
-- `.progress-dot[data-section]` - Clickable dots
-- `.progress-blob` - Animated gold indicator
-- `.progress-tooltip` - Hover labels
+**Elements:** `.progress-nav`, `.progress-dot[data-section]`, `.dot-bar`
 
 **Behavior:**
-- Blob moves between dots based on active section
-- Click dot to scroll to section
-- Stretch animation during transitions
+- Calculates section boundaries from dot data-section attributes
+- Updates progress bars via `--progress` CSS custom property
+- Throttled via requestAnimationFrame
+- Click dot to scroll to section via Lenis
 
 ---
+
+## Hero Animations
+**Lines:** 626-741
 
 ### `initHeroAnimations()`
-**Lines:** 137-217
+**Lines:** 626-721
 
-Hero section entrance and scroll effects.
+Staggered entrance animation + scroll effects.
 
-**Animations:**
-1. Staggered entrance: meta → title → tagline → stats → scroll cue
-2. Animated number counters for stats
-3. Video scale 1 → 1.3 on scroll (scrub)
+**Entrance timeline:** meta → title lines → tagline → stats → scroll cue (class-based visibility)
 
-**Key Code:**
-```javascript
-gsap.to(video, {
-  scale: 1.3,
-  scrollTrigger: {
-    trigger: hero,
-    start: 'top top',
-    end: 'bottom top',
-    scrub: true
-  }
-});
-```
+**Scroll effects:**
+- Video scale: 1 → 1.3 desktop / 1.15 mobile (scrub)
+- Content fade: opacity 0, y -80 desktop / -40 mobile (scrub)
+- Scroll cue fade (scrub)
+
+### `animateStats()`
+**Lines:** 723-741
+
+Counter animation for `.stat-value` elements. Reads `data-count` attribute, increments over 40 frames at 30ms intervals.
 
 ---
+
+## About Animations
+**Lines:** 747-789
 
 ### `initAboutAnimations()`
-**Lines:** 243-257
-
-Image reveal from center with clip-path.
-
-**Animations:**
-1. Image clip-path: `inset(50%)` → `inset(0%)`
-2. Image scale: 1.4 → 1
-3. Content slides in from right
-
-**CSS Classes Used:**
-- `.about-image-revealer` - Trigger element
-- `.about-image-mask` - Animated element
-- `.is-revealed` - State class added on reveal
+Story chapters with parallax. For each `.about-card`:
+- Content children: opacity 0→1, y 50→0 with stagger (0.15s)
+- Image parallax: yPercent 0→15 (scrub)
+- Uses `immediateRender: false` to prevent content flash
 
 ---
+
+## Band Card Stack
+**Lines:** 795-825
 
 ### `initBandCardStack()`
-**Lines:** ~260-320
+Concom.tv-style stacking cards. Cards use `position: sticky`.
 
-Concom.tv-style stacking cards.
+**Key:** Scales `.stack-card-inner` (not the card itself) because transforms break sticky positioning.
 
-**Behavior:**
-- Cards use `position: sticky` with staggered `top` values
-- Each card scales down (1 → 0.9) when next card scrolls over
-- Last card doesn't scale (nothing comes after)
-
-**Key Code:**
-```javascript
-cards.forEach((card, i) => {
-  if (i === cards.length - 1) return;
-
-  gsap.to(card, {
-    scale: 0.9,
-    scrollTrigger: {
-      trigger: cards[i + 1],
-      start: 'top bottom',
-      end: 'top top+=100',
-      scrub: true,
-    }
-  });
-});
-```
+Scale: 1 → 0.9 as next card scrolls over. Last card doesn't scale.
 
 ---
+
+## Tour Section (Index Page)
+**Lines:** 831-939
 
 ### `initTourSection()`
-**Lines:** 346-394
+Full-page cards + accordion list with pagination.
 
-Two-phase tour display.
-
-**Phase 1:** Immersive cards
-- Full-page sticky cards for each show
-- Giant date, venue, location
-
-**Phase 2:** Accordion list
-- Revealed after cards scroll
-- Click to expand with map + details
+**Phase 1:** Fullpage cards activate/deactivate via ScrollTrigger (is-active class)
+**Phase 2:** Accordion list with click-to-expand
+**Pagination:** 8 items per page, prev/next buttons
 
 ---
 
-### `initQuoteSection()`
-**Lines:** ~400-470
+## Quote Explosion
+**Lines:** 945-1140
 
-Character fade-in + section shrink effect.
+### `initQuoteExplosion()`
+**Lines:** 945-972
 
-**Animations:**
-1. Characters fade in with stagger (0.008s) when section enters at 60%
-2. Section scales 1 → 0.9 with border-radius as user scrolls past
+Routes to simplified (mobile) or full (desktop) version.
 
-**Key Insight:** No pin used - pins create spacer elements that conflict with other ScrollTriggers.
+### `initQuoteSimplified(section, quoteLines, attribution, config)`
+**Lines:** 975-1028
 
-**Key Code:**
-```javascript
-// Fade-in trigger
-ScrollTrigger.create({
-  trigger: section,
-  start: 'top 60%',
-  onEnter: () => {
-    allChars.forEach((el, i) => {
-      gsap.to(el, {
-        y: 0, opacity: 1,
-        duration: 0.6,
-        delay: 0.2 + i * 0.008,
-        ease: 'power2.out',
-      });
-    });
-  },
-});
+Mobile: Fade in quote lines with stagger (0.15s each). Section shrinks to 0.95 scale with 16px border-radius.
 
-// Shrink effect
-gsap.to(section, {
-  scale: 0.9,
-  borderRadius: '24px',
-  scrollTrigger: {
-    trigger: section,
-    start: 'top top',
-    end: 'bottom top',
-    scrub: true,
-  },
-});
-```
+### `initQuoteFull(section, quoteContent, quoteLines, attribution, config)`
+**Lines:** 1031-1140
+
+Desktop: Splits text into individual `<span class="char">` elements. Characters fade in with 0.008s stagger. Pre-calculates explosion vectors from center. Section shrinks to 0.9 scale with 24px border-radius.
 
 ---
+
+## Contact Section
+**Lines:** 1146-1178
+
+### `initContactParallax()`
+Simple scroll-triggered reveal. Contact blocks and footer get `is-visible` class.
+
+---
+
+## Tour Page (Dedicated)
+**Lines:** 1184-1374
+
+### `initTourPage()`
+**Lines:** 1184-1189
+
+Orchestrator for tour page. Calls hero, horizontal scroll, past shows, CTA.
+
+### `initTourHeroAnimations()`
+**Lines:** 1191-1242
+
+Tour page hero with parallax background (scale 1→1.2) and content fade-out on scroll.
+
+### `initTourHorizontalScroll()`
+**Lines:** 1244-1324
+
+Horizontal scroll carousel pinned with ScrollTrigger. Progress bar tracks scroll. Card content (date, info, button, number) fades in as cards enter center of viewport.
+
+### `initTourPastShows()`
+**Lines:** 1326-1351
+
+Past shows list. Items fade in with stagger (0.1s delay per item) on scroll enter.
+
+### `initTourCTA()`
+**Lines:** 1353-1374
+
+CTA section. Content children animate with stagger. Uses `immediateRender: false`.
+
+---
+
+## Boot
+**Lines:** 1380-1390
+
+Initializes on DOMContentLoaded (or immediately if already loaded). Refreshes ScrollTrigger on window load for accurate position calculations.
+
+---
+
+## External Dependencies
+
+- **Lenis** - `import Lenis from 'lenis'`
+- **GSAP** - `import gsap from 'gsap'`
+- **ScrollTrigger** - `import { ScrollTrigger } from 'gsap/ScrollTrigger'`
+- **ScrollToPlugin** - `import { ScrollToPlugin } from 'gsap/ScrollToPlugin'`
+- **Barba.js** - `import barba from '@barba/core'`
 
 ## Utility Patterns
 
 ### ScrollTrigger Scrub Pattern
-For scroll-linked animations:
-
 ```javascript
 gsap.to(element, {
   // properties to animate
   scrollTrigger: {
     trigger: triggerElement,
-    start: 'top bottom',  // when trigger top hits viewport bottom
-    end: 'bottom top',    // when trigger bottom hits viewport top
-    scrub: true,          // links to scroll position
+    start: 'top bottom',
+    end: 'bottom top',
+    scrub: true,
   }
 });
 ```
 
 ### ScrollTrigger Toggle Pattern
-For enter/leave animations:
-
 ```javascript
 ScrollTrigger.create({
   trigger: element,
@@ -269,8 +275,6 @@ ScrollTrigger.create({
 ```
 
 ### Staggered Animation Pattern
-For sequential element animations:
-
 ```javascript
 elements.forEach((el, i) => {
   gsap.to(el, {
@@ -282,19 +286,13 @@ elements.forEach((el, i) => {
 });
 ```
 
----
-
-## External Dependencies
-
-### Lenis
+### Responsive Animation Pattern
 ```javascript
-import Lenis from '@studio-freight/lenis';
-// or via CDN: https://unpkg.com/@studio-freight/lenis
-```
+const mobile = isMobile();
+const reducedMotion = prefersReducedMotion();
+const config = getScrollTriggerConfig('section');
 
-### GSAP + ScrollTrigger
-```javascript
-import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
-// or via CDN: https://cdnjs.cloudflare.com/ajax/libs/gsap/3.x.x/
+if (reducedMotion) { /* show immediately */ return; }
+if (mobile) { /* simplified animation */ return; }
+/* full desktop animation */
 ```

@@ -38,22 +38,28 @@
 
 ```
 stompers-redesign/
-├── index-immersive-master.html    # Master design (main file)
+├── index.html                     # Master design (main file)
 ├── css/
-│   ├── styles.css       # Master styles
+│   ├── styles.css                 # Master styles
 │   └── themes.css                 # CSS variables
 ├── js/
-│   └── main.js             # GSAP/Lenis animations
+│   └── main.js                    # GSAP/Lenis/Barba animations
 ├── img/
 │   └── vid-header-mute.mp4        # Hero video
 ├── .claude/
-│   ├── context.md                 # Project context
+│   ├── context.md                 # Project context (YAML frontmatter)
 │   ├── workflows.yaml             # Automated workflows
 │   ├── functions.md               # GSAP function reference
 │   ├── style-guide.json           # Design tokens
+│   ├── skills/                    # Custom skills
+│   │   ├── session-start/         # /session-start
+│   │   ├── handoff/               # /handoff
+│   │   ├── fix-issue/             # /fix-issue [number]
+│   │   └── simplify/              # /simplify [file]
 │   └── rules/
 │       ├── development-workflow.md  # This file
-│       └── css-architecture.md      # CSS standards
+│       ├── css-architecture.md      # CSS standards
+│       └── thinking-mode.md         # When to use deep analysis
 └── handoff.md                     # Detailed section docs
 ```
 
@@ -68,7 +74,7 @@ Short description of change
 
 Fixes #123
 
-Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
 ```
 
 ### Auto-Close Issues in Commits
@@ -122,20 +128,36 @@ gh issue close <number> --comment "Completed in <commit>"
 
 ## Sessions and Context
 
-### Starting a Session ("Ready?" prompt)
+### Starting a Session
 
-When you ask "Ready?" or similar, I read/run these before responding:
-1. `.claude/context.md` - Project overview, status, recent changes
-2. Run `gh issue list --state open` - Check current open issues
+Use `/session-start` skill, or respond to "Ready?" the same way:
+1. Read `.claude/context.md` and `handoff.md` in parallel
+2. Run `gh issue list --state open`
+3. Output formatted session summary
 
-Read `handoff.md` on-demand when working on specific sections (not at startup).
+Read `handoff.md` for section-specific work, `functions.md` for animation work.
 
-This keeps startup lean while ensuring full context is available when needed.
+### Ending a Session
+
+Use `/handoff` skill:
+1. Persist incomplete todos as GitHub Issues
+2. Update context.md with session notes
+3. Commit and push
+
+### Available Skills
+
+```
+/session-start          Load context, check issues, display summary
+/handoff                End session: update docs, commit, push
+/fix-issue [number]     Work on a GitHub issue with full context
+/simplify [file]        Run code-simplifier on modified code
+```
 
 ### During a Session
 
 - Run `npm run dev` to start development
 - Check issues with `gh issue list`
+- Use keyword triggers (see CLAUDE.md) for auto-loading relevant docs
 
 ## Your Preferences (Learned)
 

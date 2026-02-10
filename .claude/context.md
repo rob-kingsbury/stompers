@@ -1,3 +1,13 @@
+---
+project: Stompers
+status: In Progress
+last_session: 8
+session_date: 2026-02-09
+current_focus: Configuration optimization, skills, workflows
+open_issues: 11
+next_priority: "Tour page layout (#11)"
+---
+
 # Stompers Redesign Context
 
 ```yaml
@@ -8,7 +18,7 @@ tech:
   build: Vite
   scroll: Lenis (smooth scroll)
   animation: GSAP + ScrollTrigger
-  transitions: View Transitions API (Lift style)
+  transitions: Barba.js (Lift style)
   css: Vanilla CSS with CSS variables
   js: Vanilla JS (ES6+)
 
@@ -44,6 +54,19 @@ repo:
 
 ## Recent Changes
 
+### February 2026 - Session 8: Configuration Optimization
+
+**Overhauled Claude Code configuration for Opus 4.6:**
+
+- Expanded CLAUDE.md with communication style, keyword triggers, session protocol, project scope
+- Created 4 custom skills: `/session-start`, `/handoff`, `/fix-issue`, `/simplify`
+- Added YAML frontmatter to context.md for machine-readable state
+- Added thinking-mode.md rule for complex animation analysis
+- Cleaned up settings.local.json (34 entries to 7 generic patterns)
+- Updated workflows.yaml with simplify and check workflows
+- Refreshed functions.md with current line numbers from js/main.js
+- Updated development-workflow.md with skill references
+
 ### February 2026 - Session 7 (Nav Menu Fixes)
 **Fixed nav menu bugs and consolidated file naming:**
 
@@ -54,9 +77,6 @@ File Renames:
 
 Nav Menu Fixes (css/styles.css + js/main.js):
 - Fixed menu text hidden behind menu-bg: z-index stacking with `calc(var(--z-overlay) +/- 1)`
-  - `.menu-bg`: `calc(var(--z-overlay) - 1)` (background, behind content)
-  - `.menu-overlay`: `var(--z-overlay)` (menu content)
-  - `.hamburger-container`: `calc(var(--z-overlay) + 1)` (always clickable)
 - Removed CSS `opacity: 0` from `.menu-nav-link` and `.menu-footer` (GSAP controls initial state)
 - Added dynamic `is-active` class on menu links based on `window.location.pathname`
 - Replaced `menuTimeline.reverse()` with custom close timeline for snappy exit
@@ -64,7 +84,6 @@ Nav Menu Fixes (css/styles.css + js/main.js):
 
 Scroll Animation Fix (js/main.js):
 - Added `immediateRender: false` to `gsap.from()` calls with ScrollTrigger
-- Prevents about section text from being invisible at desktop widths
 
 Config:
 - Fixed `vite.config.js` server open path to `/index.html`
@@ -73,23 +92,19 @@ Config:
 **Complete mobile-first refactor of entire codebase:**
 
 CSS Changes (styles.css):
-- Added `.no-js` fallback styles (lines 9-35) - content visible without JS
+- Added `.no-js` fallback styles - content visible without JS
 - Converted ALL 7 `max-width` queries to mobile-first `min-width`
 - Responsive breakpoints: 481px, 769px, 1025px, 1201px
-- Menu responsive styles refactored to mobile-first
 
 JS Changes (main.js):
 - Added responsive utilities: `isMobile()`, `isTablet()`, `isDesktop()`, `isTouchDevice()`
 - Added `prefersReducedMotion()` support throughout all animations
 - `getScrollTriggerConfig()` returns mobile-adjusted trigger points
-- Lenis configured with mobile touch multipliers (1.5x mobile, 2.0x desktop)
+- Lenis configured with mobile touch multipliers
 - Quote animation simplified on mobile (fade lines, not characters)
-- Menu shake reduced on mobile (4px/3 repeats vs 8px/6 repeats)
-- Hero video scale reduced on mobile (1.15 vs 1.3)
-- Removes `no-js` class from `<html>` on load
 
 HTML Changes:
-- Added `class="no-js"` to all 6 production pages (index, tour, merch, story, epk, contact)
+- Added `class="no-js"` to all 6 production pages
 
 ### January 2026 - Session 5
 - Built merch.html page with sticky product slides layout
@@ -101,17 +116,3 @@ HTML Changes:
 - Fixed band card animations (transform breaks sticky)
 - Added Lenis CSS compatibility rules
 - Created GitHub issues #6-10
-
-### January 2026 - Session 3
-- Implemented Stomp hamburger menu with seismic shake
-- Major CSS refactoring for DRY compliance
-- Added comprehensive z-index scale to themes.css
-
-### January 2026 - Session 2
-- Added View Transitions API (Lift style chosen)
-- Archived 52 experimental files to _archive/
-- Created .claude/ configuration directory
-
-### January 2026 - Session 1
-- Initial GitHub repo setup
-- Quote section overhauled to shrink reveal
