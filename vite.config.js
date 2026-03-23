@@ -1,25 +1,18 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
 
-// Dev: `npm run dev` serves .html files via Vite (needed for ESM bare imports)
-// Production: .php files served by Apache use the built assets from dist/
-// The .html files are Vite entry points; .php files are the canonical source (DRY via includes/)
+// Vite is a local build tool only — bundles JS/CSS for production.
+// PHP files are canonical, served by Apache (XAMPP locally, WHC.ca in production).
+// Run `npm run build` before deploying. includes/vite.php reads the manifest.
 
 export default defineConfig({
-  root: '.',
-  base: './',
-  publicDir: 'public',
   build: {
     outDir: 'dist',
     sourcemap: false,
+    manifest: true,
     rollupOptions: {
       input: {
-        index: resolve(__dirname, 'index.html'),
-        tour: resolve(__dirname, 'tour.html'),
-        story: resolve(__dirname, 'story.html'),
-        epk: resolve(__dirname, 'epk.html'),
-        merch: resolve(__dirname, 'merch.html'),
-        contact: resolve(__dirname, 'contact.html'),
+        main: resolve(__dirname, 'js/main.js'),
       },
       output: {
         entryFileNames: 'assets/[name]-[hash].js',
@@ -30,6 +23,5 @@ export default defineConfig({
   },
   server: {
     port: 3000,
-    open: '/index.html',
   },
 });

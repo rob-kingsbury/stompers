@@ -25,23 +25,16 @@ function vite_assets(): string {
     $html = '';
 
     if (is_vite_dev()) {
+        // Vite HMR client + JS entry (CSS loaded directly by head.php)
         $html .= '<script type="module" src="' . VITE_DEV_SERVER . '/@vite/client"></script>' . "\n";
-        $html .= '<link rel="stylesheet" href="' . VITE_DEV_SERVER . '/css/themes.css">' . "\n";
-        $html .= '<link rel="stylesheet" href="' . VITE_DEV_SERVER . '/css/styles.css">' . "\n";
         $html .= '<script type="module" src="' . VITE_DEV_SERVER . '/js/main.js"></script>' . "\n";
     } elseif (file_exists(VITE_MANIFEST)) {
+        // Production: read manifest for hashed filenames
         $manifest = json_decode(file_get_contents(VITE_MANIFEST), true);
 
-        // CSS files
-        foreach (['css/themes.css', 'css/styles.css'] as $css) {
-            if (isset($manifest[$css])) {
-                $html .= '<link rel="stylesheet" href="dist/' . $manifest[$css]['file'] . '">' . "\n";
-            }
-        }
-
-        // JS entry + its CSS imports
         if (isset($manifest['js/main.js'])) {
             $entry = $manifest['js/main.js'];
+            // CSS extracted from JS imports (e.g. lenis.css)
             if (isset($entry['css'])) {
                 foreach ($entry['css'] as $cssFile) {
                     $html .= '<link rel="stylesheet" href="dist/' . $cssFile . '">' . "\n";
@@ -50,10 +43,8 @@ function vite_assets(): string {
             $html .= '<script type="module" src="dist/' . $entry['file'] . '"></script>' . "\n";
         }
     } else {
-        // Fallback: load source files directly (works if no bare imports, otherwise needs Vite)
-        $html .= '<link rel="stylesheet" href="css/themes.css">' . "\n";
-        $html .= '<link rel="stylesheet" href="css/styles.css">' . "\n";
-        $html .= '<script type="module" src="js/main.js"></script>' . "\n";
+        // No Vite dev server, no built manifest — CSS loaded by head.php, skip JS
+        $html .= '<!-- Run npm run build to generate production assets -->' . "\n";
     }
 
     return $html;
