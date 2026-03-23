@@ -1,6 +1,10 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
 
+// Dev: `npm run dev` serves .html files via Vite (needed for ESM bare imports)
+// Production: .php files served by Apache use the built assets from dist/
+// The .html files are Vite entry points; .php files are the canonical source (DRY via includes/)
+
 export default defineConfig({
   root: '.',
   base: './',

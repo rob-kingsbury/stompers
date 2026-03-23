@@ -245,7 +245,7 @@ function resetStompMenu() {
   }
 
   if (menuBg) {
-    gsap.set(menuBg, { right: '-100%' });
+    gsap.set(menuBg, { right: '-100%', visibility: 'hidden' });
   }
 
   if (menuLinks.length) {
@@ -277,6 +277,9 @@ function initSiteNav() {
   if (!document.querySelector('.menu-bg')) {
     const menuBg = document.createElement('div');
     menuBg.className = 'menu-bg';
+    // Inline styles prevent flash before CSS loads
+    menuBg.style.visibility = 'hidden';
+    menuBg.style.right = '-100%';
     document.body.appendChild(menuBg);
   }
 
@@ -291,7 +294,7 @@ function initSiteNav() {
   const menuLinks = menuOverlay.querySelectorAll('.menu-nav-link');
 
   // Set active state on menu links based on current page
-  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+  const currentPath = window.location.pathname.split('/').pop() || 'index.php';
   menuLinks.forEach((link) => {
     link.classList.toggle('is-active', link.getAttribute('href') === currentPath);
   });
@@ -329,6 +332,7 @@ function initSiteNav() {
     .set(pageContent, { x: 0, y: 0 })
 
     // Menu background crashes in from right
+    .set(menuBg, { visibility: 'visible' }, 0.15)
     .to(menuBg, {
       right: 0,
       duration: 0.5,
@@ -417,6 +421,7 @@ function initSiteNav() {
       onComplete: () => {
         menuOverlay.classList.remove('is-open');
         menuBg.classList.remove('is-open');
+        gsap.set(menuBg, { visibility: 'hidden' });
         menuIsAnimating = false;
         menuTimeline.pause(0); // Reset open timeline to start
       },
@@ -707,18 +712,24 @@ function initHeroAnimations() {
 
   tl.add(() => scrollCue?.classList.add('is-visible'), '+=0.4');
 
-  // Fade out logo + content on scroll (delayed start so it doesn't vanish instantly)
-  gsap.to('.hero-logo-reveal', {
-    opacity: 0,
-    y: mobile ? -40 : -80,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: hero,
-      start: '20% top',
-      end: '80% top',
-      scrub: true,
-    },
-  });
+  // Fade out logo + content on scroll
+  // Must use fromTo + immediateRender:false because the entry timeline
+  // hasn't set opacity:1 yet when this ScrollTrigger is created
+  gsap.fromTo('.hero-logo-reveal',
+    { opacity: 1, y: 0 },
+    {
+      opacity: 0,
+      y: mobile ? -40 : -80,
+      ease: 'none',
+      immediateRender: false,
+      scrollTrigger: {
+        trigger: hero,
+        start: '20% top',
+        end: '80% top',
+        scrub: true,
+      },
+    }
+  );
 
   // Fade out scroll cue
   gsap.fromTo('.hero-scroll-cue', { opacity: 1 }, {

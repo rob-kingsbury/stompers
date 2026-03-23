@@ -1,59 +1,16 @@
+<?php
+$page_title = 'Swamp City Stompers | Southern Rock from the Bayou';
+$page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, and roots Americana from Eastern Ontario.';
+?>
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Swamp City Stompers | Southern Rock from the Bayou</title>
-  <meta name="description" content="Swamp City Stompers - Gritty southern rock, swamp blues, and roots Americana from Eastern Ontario.">
-  <link rel="icon" type="image/png" href="img/logo-goon.png">
-
-  <meta property="og:title" content="Swamp City Stompers | Southern Rock from the Bayou">
-  <meta property="og:description" content="Gritty southern rock, swamp blues, and roots Americana from Eastern Ontario.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="img/logo-stompers.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Swamp City Stompers">
-  <meta name="twitter:description" content="Southern Rock | Blues | Soul | Outlaw Country">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="css/themes.css">
-  <link rel="stylesheet" href="css/styles.css">
+<?php include 'includes/head.php'; ?>
 </head>
 <body data-barba="wrapper">
-  <a href="#main-content" class="skip-link">Skip to main content</a>
+<?php include 'includes/nav.php'; ?>
 
-  <!-- Hamburger Menu Button -->
-  <div class="hamburger-container">
-    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </div>
-
-  <!-- Full-screen Menu Overlay -->
-  <div class="menu-overlay" aria-hidden="true">
-    <nav class="menu-nav">
-      <a href="index.html" class="menu-nav-link is-active">Home</a>
-      <a href="tour.html" class="menu-nav-link">Tour</a>
-      <a href="story.html" class="menu-nav-link">Story</a>
-      <a href="epk.html" class="menu-nav-link">EPK</a>
-      <a href="merch.html" class="menu-nav-link">Merch</a>
-      <a href="contact.html" class="menu-nav-link">Contact</a>
-    </nav>
-    <div class="menu-footer">
-      <a href="https://facebook.com/swampcitystompers" target="_blank" rel="noopener">Facebook</a>
-      <a href="https://instagram.com/swampcitystompers" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://youtube.com/@swampcitystompers" target="_blank" rel="noopener">YouTube</a>
-    </div>
-  </div>
-
-  <!-- ============================================================
-       PROGRESS NAV (MetaMask Style - Vertical Pill with Blob)
-       ============================================================ -->
+  <!-- Progress Nav (MetaMask Style - Vertical Pill with Blob) -->
   <nav class="progress-nav" aria-label="Section navigation">
     <div class="progress-pill">
       <button class="progress-dot is-active" data-section="hero" aria-label="Go to Home section">
@@ -95,20 +52,14 @@
   </nav>
 
   <main class="immersive" id="main-content" data-barba="container" data-barba-namespace="home">
-    <!-- ============================================================
-         SECTION 1: HERO - Dark video that GROWS on scroll
-         ============================================================ -->
+    <!-- SECTION 1: HERO -->
     <section id="hero" class="section section--hero" data-section="hero">
-      <!-- Looping grunge video — does the bulk of the movement -->
       <video class="hero-video-grain" autoplay muted loop playsinline aria-hidden="true">
         <source src="img/grunge-loop.mp4" type="video/mp4">
       </video>
-      <!-- Single drifting grunge layer on top -->
       <div class="hero-grain" aria-hidden="true"></div>
-      <!-- Ambient floating sparks -->
       <div class="hero-sparks" aria-hidden="true"></div>
 
-      <!-- Logo reveal: single column — logo, meta, tagline, stamp -->
       <div class="hero-logo-reveal">
         <img class="hero-logo-img" src="img/stompers-logo-full.png" alt="Swamp City Stompers" width="600" height="600">
 
@@ -133,11 +84,8 @@
       </div>
     </section>
 
-    <!-- ============================================================
-         SECTION 2: ABOUT - Stacking Cards with Staggered Layout
-         ============================================================ -->
+    <!-- SECTION 2: ABOUT -->
     <section id="about" class="section section--about" data-section="about">
-      <!-- Card 1: Photo Left, Text Right -->
       <article class="about-card about-card--1">
         <div class="about-card-image">
           <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800" alt="Live performance" loading="lazy">
@@ -153,7 +101,6 @@
         </div>
       </article>
 
-      <!-- Card 2: Text Left, Photo Right -->
       <article class="about-card about-card--2 about-card--reverse">
         <div class="about-card-image">
           <img src="https://images.unsplash.com/photo-1501612780327-45045538702b?w=800" alt="Concert crowd" loading="lazy">
@@ -169,7 +116,6 @@
         </div>
       </article>
 
-      <!-- Card 3: Photo Left, Text Right -->
       <article class="about-card about-card--3">
         <div class="about-card-image">
           <img src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=800" alt="Guitar close-up" loading="lazy">
@@ -185,7 +131,6 @@
         </div>
       </article>
 
-      <!-- Card 4: Text Left, Photo Right -->
       <article class="about-card about-card--4 about-card--reverse">
         <div class="about-card-image">
           <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800" alt="Stage lights" loading="lazy">
@@ -202,19 +147,14 @@
       </article>
     </section>
 
-    <!-- ============================================================
-         SECTION 3: BAND - Concom.tv Style Stacking Cards
-         ============================================================ -->
+    <!-- SECTION 3: BAND -->
     <section id="band" class="section section--band" data-section="band">
       <header class="section-header section-header--center">
         <span class="section-number">02</span>
         <h2 class="section-title">The Band</h2>
       </header>
 
-      <!-- Stacking cards container - cards stack on top of each other -->
       <div class="stack-container">
-
-        <!-- Member 1: Rob -->
         <article class="stack-card" data-index="0">
           <div class="stack-card-inner">
             <div class="stack-card-image">
@@ -230,7 +170,6 @@
           </div>
         </article>
 
-        <!-- Member 2: Jeans -->
         <article class="stack-card" data-index="1">
           <div class="stack-card-inner">
             <div class="stack-card-image">
@@ -246,7 +185,6 @@
           </div>
         </article>
 
-        <!-- Member 3: Kurt -->
         <article class="stack-card" data-index="2">
           <div class="stack-card-inner">
             <div class="stack-card-image">
@@ -262,7 +200,6 @@
           </div>
         </article>
 
-        <!-- Member 4: Matt -->
         <article class="stack-card" data-index="3">
           <div class="stack-card-inner">
             <div class="stack-card-image">
@@ -277,20 +214,16 @@
             </div>
           </div>
         </article>
-
       </div>
     </section>
 
-    <!-- ============================================================
-         SECTION 4: TOUR - Full-Page Cards THEN List Accordion
-         ============================================================ -->
+    <!-- SECTION 4: TOUR -->
     <section id="tour" class="section section--tour" data-section="tour">
-      <!-- Full-page show cards - Next 3 shows only -->
       <!-- TODO: Replace placeholder images with venue/event photos -->
       <div class="tour-fullpage-cards">
         <article class="tour-fullpage-card" data-show="0">
           <div class="fullpage-card-bg">
-            <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1600" alt="Kaffe 1870 Wakefield - placeholder image, replace with venue photo" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1600" alt="Kaffe 1870 Wakefield - placeholder" loading="lazy">
           </div>
           <div class="fullpage-card-content">
             <div class="show-date-big">
@@ -300,15 +233,13 @@
             </div>
             <h3 class="show-venue-big">Kaffe 1870</h3>
             <p class="show-location-big">Wakefield, QC</p>
-            <div class="show-details-big">
-              <span>18+</span>
-            </div>
+            <div class="show-details-big"><span>18+</span></div>
           </div>
         </article>
 
         <article class="tour-fullpage-card" data-show="1">
           <div class="fullpage-card-bg">
-            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1600" alt="Rob Roy's Smiths Falls - placeholder image, replace with venue photo" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1600" alt="Rob Roy's Smiths Falls - placeholder" loading="lazy">
           </div>
           <div class="fullpage-card-content">
             <div class="show-date-big">
@@ -318,15 +249,13 @@
             </div>
             <h3 class="show-venue-big">Rob Roy's</h3>
             <p class="show-location-big">Smiths Falls, ON</p>
-            <div class="show-details-big">
-              <span>19+</span>
-            </div>
+            <div class="show-details-big"><span>19+</span></div>
           </div>
         </article>
 
         <article class="tour-fullpage-card" data-show="2">
           <div class="fullpage-card-bg">
-            <img src="https://images.unsplash.com/photo-1501612780327-45045538702b?w=1600" alt="Hard Rock Cafe Ottawa - placeholder image, replace with venue photo" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1501612780327-45045538702b?w=1600" alt="Hard Rock Cafe Ottawa - placeholder" loading="lazy">
           </div>
           <div class="fullpage-card-content">
             <div class="show-date-big">
@@ -336,15 +265,11 @@
             </div>
             <h3 class="show-venue-big">Hard Rock Cafe</h3>
             <p class="show-location-big">Ottawa, ON (Blues Society)</p>
-            <div class="show-details-big">
-              <span>Pending</span>
-              <span>19+</span>
-            </div>
+            <div class="show-details-big"><span>Pending</span><span>19+</span></div>
           </div>
         </article>
       </div>
 
-      <!-- List view with accordions (revealed after full-page cards) -->
       <div class="tour-list-section">
         <header class="section-header section-header--center">
           <span class="section-number">03</span>
@@ -352,148 +277,43 @@
         </header>
 
         <div class="tour-accordion-list" data-page="1">
-          <!-- Show 1 -->
-          <div class="tour-accordion-item" data-venue="Kaffe 1870">
+          <?php
+          $shows = [
+            ['date' => 'MAR 27', 'venue' => 'Kaffe 1870', 'location' => 'Wakefield, QC', 'age' => '18+', 'map_q' => 'Kaffe+1870+Wakefield+QC'],
+            ['date' => 'APR 17', 'venue' => "Rob Roy's", 'location' => 'Smiths Falls, ON', 'age' => '19+', 'map_q' => 'Rob+Roys+Smiths+Falls+ON'],
+            ['date' => 'APR 30', 'venue' => 'Hard Rock Cafe (Blues Society)', 'location' => 'Ottawa, ON', 'age' => '19+', 'map_q' => 'Hard+Rock+Cafe+Ottawa+ON', 'status' => 'Pending'],
+            ['date' => 'MAY 22', 'venue' => 'Busters', 'location' => 'Kanata, ON', 'age' => '19+', 'map_q' => 'Busters+Bar+and+Grill+Kanata+ON'],
+            ['date' => 'MAY 23', 'venue' => 'The Buckle', 'location' => 'Kingston, ON', 'age' => '19+', 'map_q' => 'The+Buckle+Kingston+ON'],
+            ['date' => 'JUN 12', 'venue' => 'Kaffe 1870', 'location' => 'Wakefield, QC', 'age' => '18+', 'map_q' => 'Kaffe+1870+Wakefield+QC'],
+            ['date' => 'JUL 01', 'venue' => 'Aylmer Legion', 'location' => 'Aylmer, QC', 'age' => '18+', 'map_q' => 'Royal+Canadian+Legion+Aylmer+QC'],
+          ];
+          foreach ($shows as $show): ?>
+          <div class="tour-accordion-item" data-venue="<?= htmlspecialchars($show['venue']) ?>">
             <button class="accordion-header" aria-expanded="false">
-              <span class="accordion-date">MAR 27</span>
-              <span class="accordion-venue">Kaffe 1870</span>
-              <span class="accordion-location">Wakefield, QC</span>
+              <span class="accordion-date"><?= $show['date'] ?></span>
+              <span class="accordion-venue"><?= htmlspecialchars($show['venue']) ?></span>
+              <span class="accordion-location"><?= $show['location'] ?></span>
               <span class="accordion-icon"></span>
             </button>
             <div class="accordion-body" role="region">
               <div class="accordion-map">
-                <iframe src="https://www.google.com/maps?q=Kaffe+1870+Wakefield+QC&output=embed" loading="lazy" title="Map showing Kaffe 1870, Wakefield QC"></iframe>
+                <iframe src="https://www.google.com/maps?q=<?= $show['map_q'] ?>&output=embed" loading="lazy" title="Map showing <?= htmlspecialchars($show['venue']) ?>, <?= $show['location'] ?>"></iframe>
               </div>
               <div class="accordion-details">
-                <p><strong>Age:</strong> 18+</p>
+                <?php if (!empty($show['status'])): ?>
+                <p><strong>Status:</strong> <?= $show['status'] ?></p>
+                <?php endif; ?>
+                <p><strong>Age:</strong> <?= $show['age'] ?></p>
                 <a href="#" class="btn-tickets">Get Tickets</a>
               </div>
             </div>
           </div>
-
-          <!-- Show 2 -->
-          <div class="tour-accordion-item" data-venue="Rob Roy's">
-            <button class="accordion-header" aria-expanded="false">
-              <span class="accordion-date">APR 17</span>
-              <span class="accordion-venue">Rob Roy's</span>
-              <span class="accordion-location">Smiths Falls, ON</span>
-              <span class="accordion-icon"></span>
-            </button>
-            <div class="accordion-body" role="region">
-              <div class="accordion-map">
-                <iframe src="https://www.google.com/maps?q=Rob+Roys+Smiths+Falls+ON&output=embed" loading="lazy" title="Map showing Rob Roy's, Smiths Falls ON"></iframe>
-              </div>
-              <div class="accordion-details">
-                <p><strong>Age:</strong> 19+</p>
-                <a href="#" class="btn-tickets">Get Tickets</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Show 3 -->
-          <div class="tour-accordion-item" data-venue="Hard Rock Cafe">
-            <button class="accordion-header" aria-expanded="false">
-              <span class="accordion-date">APR 30</span>
-              <span class="accordion-venue">Hard Rock Cafe (Blues Society)</span>
-              <span class="accordion-location">Ottawa, ON</span>
-              <span class="accordion-icon"></span>
-            </button>
-            <div class="accordion-body" role="region">
-              <div class="accordion-map">
-                <iframe src="https://www.google.com/maps?q=Hard+Rock+Cafe+Ottawa+ON&output=embed" loading="lazy" title="Map showing Hard Rock Cafe, Ottawa ON"></iframe>
-              </div>
-              <div class="accordion-details">
-                <p><strong>Status:</strong> Pending</p>
-                <p><strong>Age:</strong> 19+</p>
-                <a href="#" class="btn-tickets">Get Tickets</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Show 4 -->
-          <div class="tour-accordion-item" data-venue="Busters">
-            <button class="accordion-header" aria-expanded="false">
-              <span class="accordion-date">MAY 22</span>
-              <span class="accordion-venue">Busters</span>
-              <span class="accordion-location">Kanata, ON</span>
-              <span class="accordion-icon"></span>
-            </button>
-            <div class="accordion-body" role="region">
-              <div class="accordion-map">
-                <iframe src="https://www.google.com/maps?q=Busters+Bar+and+Grill+Kanata+ON&output=embed" loading="lazy" title="Map showing Busters, Kanata ON"></iframe>
-              </div>
-              <div class="accordion-details">
-                <p><strong>Age:</strong> 19+</p>
-                <a href="#" class="btn-tickets">Get Tickets</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Show 5 -->
-          <div class="tour-accordion-item" data-venue="The Buckle">
-            <button class="accordion-header" aria-expanded="false">
-              <span class="accordion-date">MAY 23</span>
-              <span class="accordion-venue">The Buckle</span>
-              <span class="accordion-location">Kingston, ON</span>
-              <span class="accordion-icon"></span>
-            </button>
-            <div class="accordion-body" role="region">
-              <div class="accordion-map">
-                <iframe src="https://www.google.com/maps?q=The+Buckle+Kingston+ON&output=embed" loading="lazy" title="Map showing The Buckle, Kingston ON"></iframe>
-              </div>
-              <div class="accordion-details">
-                <p><strong>Age:</strong> 19+</p>
-                <a href="#" class="btn-tickets">Get Tickets</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Show 6 -->
-          <div class="tour-accordion-item" data-venue="Kaffe 1870 June">
-            <button class="accordion-header" aria-expanded="false">
-              <span class="accordion-date">JUN 12</span>
-              <span class="accordion-venue">Kaffe 1870</span>
-              <span class="accordion-location">Wakefield, QC</span>
-              <span class="accordion-icon"></span>
-            </button>
-            <div class="accordion-body" role="region">
-              <div class="accordion-map">
-                <iframe src="https://www.google.com/maps?q=Kaffe+1870+Wakefield+QC&output=embed" loading="lazy" title="Map showing Kaffe 1870, Wakefield QC"></iframe>
-              </div>
-              <div class="accordion-details">
-                <p><strong>Age:</strong> 18+</p>
-                <a href="#" class="btn-tickets">Get Tickets</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Show 7 -->
-          <div class="tour-accordion-item" data-venue="Aylmer Legion">
-            <button class="accordion-header" aria-expanded="false">
-              <span class="accordion-date">JUL 01</span>
-              <span class="accordion-venue">Aylmer Legion</span>
-              <span class="accordion-location">Aylmer, QC</span>
-              <span class="accordion-icon"></span>
-            </button>
-            <div class="accordion-body" role="region">
-              <div class="accordion-map">
-                <iframe src="https://www.google.com/maps?q=Royal+Canadian+Legion+Aylmer+QC&output=embed" loading="lazy" title="Map showing Aylmer Legion, Aylmer QC"></iframe>
-              </div>
-              <div class="accordion-details">
-                <p><strong>Age:</strong> 18+</p>
-                <a href="#" class="btn-tickets">Get Tickets</a>
-              </div>
-            </div>
-          </div>
+          <?php endforeach; ?>
         </div>
-
-        <!-- Pagination hidden - all shows fit on one page -->
       </div>
     </section>
 
-    <!-- ============================================================
-         SECTION 5: QUOTE - Text Explodes Outward
-         ============================================================ -->
+    <!-- SECTION 5: QUOTE -->
     <section id="quote" class="section section--quote" data-section="quote">
       <div class="quote-pin-wrapper">
         <div class="quote-content">
@@ -508,11 +328,8 @@
       </div>
     </section>
 
-    <!-- ============================================================
-         SECTION 6: CONTACT/FOOTER - Deep Parallax Reveal
-         ============================================================ -->
+    <!-- SECTION 6: CONTACT/FOOTER -->
     <section id="contact" class="section section--contact" data-section="contact">
-      <!-- This creates the "reveal from under" effect -->
       <div class="contact-parallax-wrapper">
         <div class="contact-inner">
           <header class="section-header section-header--center">
@@ -524,30 +341,26 @@
             <div class="contact-block">
               <h3>Book The Band</h3>
               <a href="mailto:booking@swampcitystompers.ca" class="contact-email">booking@swampcitystompers.ca</a>
-              <p class="contact-phone">(613) 555-1234</p>
             </div>
 
             <div class="contact-block">
               <h3>Follow Us</h3>
               <div class="social-links">
-                <a href="#" class="social-link">FB</a>
-                <a href="#" class="social-link">IG</a>
-                <a href="#" class="social-link">YT</a>
-                <a href="#" class="social-link">SP</a>
+                <a href="https://facebook.com/swampcitystompers" target="_blank" rel="noopener" class="social-link">Facebook</a>
+                <a href="https://instagram.com/swampcitystompers" target="_blank" rel="noopener" class="social-link">Instagram</a>
+                <a href="https://youtube.com/@swampcitystompers" target="_blank" rel="noopener" class="social-link">YouTube</a>
               </div>
             </div>
 
             <div class="contact-block">
               <h3>Resources</h3>
-              <a href="#" class="resource-link">Electronic Press Kit</a>
-              <a href="#" class="resource-link">Tech Rider</a>
-              <a href="#" class="resource-link">Stage Plot</a>
+              <a href="epk.php" class="resource-link">Electronic Press Kit</a>
             </div>
           </div>
 
           <footer class="site-footer">
             <img src="img/logo-goon.png" alt="Swamp City Stompers" class="footer-logo" loading="lazy">
-            <p>&copy; 2026 Swamp City Stompers</p>
+            <p>&copy; <?= date('Y') ?> Swamp City Stompers</p>
             <p>Eastern Ontario, Canada</p>
           </footer>
         </div>
@@ -555,6 +368,5 @@
     </section>
   </main>
 
-  <script type="module" src="js/main.js"></script>
 </body>
 </html>

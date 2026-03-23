@@ -1,56 +1,16 @@
+<?php
+$page_title = 'EPK | Swamp City Stompers';
+$page_description = 'Electronic Press Kit for the Swamp City Stompers - photos, bio, tech rider, and booking info.';
+?>
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EPK | Swamp City Stompers</title>
-  <meta name="description" content="Electronic Press Kit for the Swamp City Stompers - photos, bio, tech rider, and booking info.">
-  <meta property="og:title" content="EPK | Swamp City Stompers">
-  <meta property="og:description" content="Electronic Press Kit for the Swamp City Stompers. Bio, photos, tech rider, and more.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="img/logo-stompers.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="EPK | Swamp City Stompers">
-  <meta name="twitter:description" content="Electronic Press Kit for the Swamp City Stompers.">
-
-  <link rel="icon" type="image/png" href="img/logo-goon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="css/themes.css">
-  <link rel="stylesheet" href="css/styles.css">
+<?php include 'includes/head.php'; ?>
 </head>
 <body data-barba="wrapper">
-  <a href="#main-content" class="skip-link">Skip to main content</a>
-  <!-- Hamburger Menu Button -->
-  <div class="hamburger-container">
-    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </div>
-
-  <!-- Menu Overlay -->
-  <div class="menu-overlay" aria-hidden="true">
-    <nav class="menu-nav">
-      <a href="index.html" class="menu-nav-link">Home</a>
-      <a href="tour.html" class="menu-nav-link">Tour</a>
-      <a href="story.html" class="menu-nav-link">Story</a>
-      <a href="epk.html" class="menu-nav-link is-active">EPK</a>
-      <a href="merch.html" class="menu-nav-link">Merch</a>
-      <a href="contact.html" class="menu-nav-link">Contact</a>
-    </nav>
-    <div class="menu-footer">
-      <a href="https://facebook.com/swampcitystompers" target="_blank" rel="noopener">Facebook</a>
-      <a href="https://instagram.com/swampcitystompers" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://youtube.com/@swampcitystompers" target="_blank" rel="noopener">YouTube</a>
-    </div>
-  </div>
+<?php include 'includes/nav.php'; ?>
 
   <main class="page-main" id="main-content" data-barba="container" data-barba-namespace="epk">
-    <!-- Page Hero -->
     <section class="page-hero page-hero--epk">
       <div class="page-hero-content">
         <span class="section-number">PRESS KIT</span>
@@ -58,7 +18,6 @@
       </div>
     </section>
 
-    <!-- EPK Downloads -->
     <section class="content-section">
       <div class="epk-grid">
         <div class="epk-card">
@@ -87,7 +46,6 @@
       </div>
     </section>
 
-    <!-- Quick Stats -->
     <section class="content-section epk-stats">
       <h2 class="section-title">At a Glance</h2>
       <div class="stats-grid">
@@ -110,7 +68,6 @@
       </div>
     </section>
 
-    <!-- Genre & Influences -->
     <section class="content-section">
       <div class="epk-info">
         <div class="info-block">
@@ -128,16 +85,14 @@
       </div>
     </section>
 
-    <!-- Contact CTA -->
     <section class="cta-section">
       <div class="cta-content">
         <h2>Book Us</h2>
         <p>For booking inquiries, please get in touch.</p>
-        <a href="contact.html" class="btn btn-primary">Contact</a>
+        <a href="contact.php" class="btn btn-primary">Contact</a>
       </div>
     </section>
   </main>
 
-  <script type="module" src="js/main.js"></script>
 </body>
 </html>

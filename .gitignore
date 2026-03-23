@@ -27,3 +27,4 @@ nul
 
 # Claude local settings only (keep .claude/ docs in repo)
 .claude/settings.local.json
+.mcp.json
