@@ -54,7 +54,7 @@ $page_description = 'Electronic Press Kit for the Swamp City Stompers - photos, 
           <span class="stat-label">Band Members</span>
         </div>
         <div class="stat-item">
-          <span class="stat-value">2019</span>
+          <span class="stat-value">2025</span>
           <span class="stat-label">Formed</span>
         </div>
         <div class="stat-item">

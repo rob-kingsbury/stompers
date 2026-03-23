@@ -595,16 +595,18 @@ function initProgressNav() {
       if (scrollY >= bounds.top) {
         currentSectionIndex = i;
 
-        // Calculate progress: 0 at section top, 1 when next section top reaches viewport top
-        // If this is the last section, use its own height
-        const endPoint = nextBounds ? nextBounds.top : bounds.bottom;
-        const scrollRange = endPoint - bounds.top - windowHeight;
-
-        if (scrollRange <= 0) {
-          // Section + gap is shorter than viewport
-          progressInSection = 1;
+        if (nextBounds) {
+          // Progress = how far from this section's top to the next section's top
+          const scrollRange = nextBounds.top - bounds.top;
+          progressInSection = scrollRange > 0
+            ? Math.min(1, Math.max(0, (scrollY - bounds.top) / scrollRange))
+            : 0;
         } else {
-          progressInSection = Math.min(1, Math.max(0, (scrollY - bounds.top) / scrollRange));
+          // Last section: progress based on its own scrollable height
+          const scrollRange = bounds.bottom - bounds.top - windowHeight;
+          progressInSection = scrollRange > 0
+            ? Math.min(1, Math.max(0, (scrollY - bounds.top) / scrollRange))
+            : 0;
         }
       }
     }

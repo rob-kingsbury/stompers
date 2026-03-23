@@ -59,7 +59,6 @@ $page_description = 'Catch the Swamp City Stompers live - upcoming shows and tou
               <p class="tour-location-large"><?= $card['location'] ?></p>
               <p class="tour-time"><?= $card['age'] ?><?= !empty($card['note']) ? ' / ' . $card['note'] : '' ?></p>
             </div>
-            <a href="#" class="btn btn-primary btn-large">Get Tickets</a>
           </div>
           <div class="tour-card-horizontal-number"><?= str_pad($i + 1, 2, '0', STR_PAD_LEFT) ?></div>
         </article>

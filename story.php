@@ -13,7 +13,7 @@ $page_description = 'The story of the Swamp City Stompers - from Eastern Ontario
   <main class="page-main" id="main-content" data-barba="container" data-barba-namespace="story">
     <section class="page-hero page-hero--story">
       <div class="page-hero-content">
-        <span class="section-number">SINCE 2019</span>
+        <span class="section-number">SINCE 2025</span>
         <h1 class="page-title">Our Story</h1>
       </div>
     </section>
@@ -22,7 +22,7 @@ $page_description = 'The story of the Swamp City Stompers - from Eastern Ontario
       <div class="story-content">
         <div class="story-block">
           <h2>Born in the Swamp</h2>
-          <p>The Swamp City Stompers emerged from the murky waters of Eastern Ontario in 2019, bringing raw, unfiltered southern rock and swamp blues to stages across the region. What started as a few friends jamming in a garage has grown into a full-fledged blues revival.</p>
+          <p>The Swamp City Stompers emerged from the murky waters of Eastern Ontario in 2025, bringing raw, unfiltered southern rock and swamp blues to stages across the region. What started as a few friends jamming in a garage has grown into a full-fledged blues revival.</p>
         </div>
 
         <div class="story-block">

@@ -10,7 +10,6 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
 <body data-barba="wrapper">
 <?php include 'includes/nav.php'; ?>
 
-  <!-- Progress Nav (MetaMask Style - Vertical Pill with Blob) -->
   <nav class="progress-nav" aria-label="Section navigation">
     <div class="progress-pill">
       <button class="progress-dot is-active" data-section="hero" aria-label="Go to Home section">
@@ -52,7 +51,7 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
   </nav>
 
   <main class="immersive" id="main-content" data-barba="container" data-barba-namespace="home">
-    <!-- SECTION 1: HERO -->
+    <!-- HERO -->
     <section id="hero" class="section section--hero" data-section="hero">
       <video class="hero-video-grain" autoplay muted loop playsinline aria-hidden="true">
         <source src="img/grunge-loop.mp4" type="video/mp4">
@@ -64,7 +63,7 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
         <img class="hero-logo-img" src="img/stompers-logo-full.png" alt="Swamp City Stompers" width="600" height="600">
 
         <div class="hero-meta">
-          <span class="meta-year">Est. 2019</span>
+          <span class="meta-year">Est. 2025</span>
           <span class="meta-divider">/</span>
           <span class="meta-location">Eastern Ontario, CA</span>
         </div>
@@ -84,14 +83,13 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
       </div>
     </section>
 
-    <!-- SECTION 2: ABOUT -->
+    <!-- ABOUT -->
     <section id="about" class="section section--about" data-section="about">
       <article class="about-card about-card--1">
         <div class="about-card-image">
-          <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800" alt="Live performance" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?w=800" alt="Guitar amp and cables on a dark stage" loading="lazy">
         </div>
         <div class="about-card-content">
-          <span class="about-card-number">01</span>
           <h2 class="about-card-title">The Sound</h2>
           <p class="about-card-text">
             We blend swamp blues, southern rock, and a healthy dose of grit into something
@@ -103,10 +101,9 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
 
       <article class="about-card about-card--2 about-card--reverse">
         <div class="about-card-image">
-          <img src="https://images.unsplash.com/photo-1501612780327-45045538702b?w=800" alt="Concert crowd" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1508854710579-5cecc3a9ff17?w=800" alt="Dimly lit bar with neon signs" loading="lazy">
         </div>
         <div class="about-card-content">
-          <span class="about-card-number">02</span>
           <h2 class="about-card-title">The Vibe</h2>
           <p class="about-card-text">
             Every show is a party, every song is a story. We don't do setlists -
@@ -118,25 +115,23 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
 
       <article class="about-card about-card--3">
         <div class="about-card-image">
-          <img src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=800" alt="Guitar close-up" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1453738773917-9c3eff1db985?w=800" alt="Worn guitar pedals on a dark stage floor" loading="lazy">
         </div>
         <div class="about-card-content">
-          <span class="about-card-number">03</span>
           <h2 class="about-card-title">The Mission</h2>
           <p class="about-card-text">
             Keep real rock and roll alive. No backing tracks, no auto-tune,
-            no bullshit. Just four people making noise loud enough to feel
-            in your chest.
+            no bullshit. Just four people playing every note like it matters —
+            because it does.
           </p>
         </div>
       </article>
 
       <article class="about-card about-card--4 about-card--reverse">
         <div class="about-card-image">
-          <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800" alt="Stage lights" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800" alt="Road at night through a windshield" loading="lazy">
         </div>
         <div class="about-card-content">
-          <span class="about-card-number">04</span>
           <h2 class="about-card-title">The Road</h2>
           <p class="about-card-text">
             From dive bars to festival stages, we've played them all. Every mile,
@@ -147,10 +142,9 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
       </article>
     </section>
 
-    <!-- SECTION 3: BAND -->
+    <!-- BAND -->
     <section id="band" class="section section--band" data-section="band">
       <header class="section-header section-header--center">
-        <span class="section-number">02</span>
         <h2 class="section-title">The Band</h2>
       </header>
 
@@ -161,10 +155,9 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
               <img src="img/rob.jpg" alt="Rob" loading="lazy">
             </div>
             <div class="stack-card-content">
-              <span class="member-number">01</span>
               <h3 class="member-name">Rob</h3>
               <p class="member-role">Guitar / Vocals</p>
-              <p class="member-bio">The riffs. The voice. Started the band with nothing but a broken amp and a dream. Former construction worker who traded his hard hat for a six-string.</p>
+              <p class="member-bio">Tone wizard. Pedal hoarder. Spent a decade studying the greats before finding his own voice. Will spend 45 minutes getting his sound right, then play a solo that makes you forget your own name.</p>
               <blockquote class="member-quote">"If it doesn't make you feel something, we're not doing it right."</blockquote>
             </div>
           </div>
@@ -176,11 +169,10 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
               <img src="img/jeans.jpg" alt="Jeans" loading="lazy">
             </div>
             <div class="stack-card-content">
-              <span class="member-number">02</span>
               <h3 class="member-name">Jeans</h3>
               <p class="member-role">Guitar / Vocals</p>
-              <p class="member-bio">Tone wizard. Pedal hoarder. Spent a decade studying the greats before finding his own voice. Will spend 45 minutes getting his sound right, then play a solo that makes you forget your own name.</p>
-              <blockquote class="member-quote">"The sound isn't something we invented. It's something we discovered."</blockquote>
+              <p class="member-bio">Country roots, blues soul. Jeans grew up on Merle and Waylon, then fell headfirst into blues rock and never came back. Always has a Telecaster in hand — it's basically a fifth limb at this point.</p>
+              <blockquote class="member-quote">"A Tele through a dirty amp. That's all you need."</blockquote>
             </div>
           </div>
         </article>
@@ -191,11 +183,10 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
               <img src="img/kurt.jpg" alt="Kurt" loading="lazy">
             </div>
             <div class="stack-card-content">
-              <span class="member-number">03</span>
               <h3 class="member-name">Kurt</h3>
               <p class="member-role">Bass / Vocals</p>
-              <p class="member-bio">The pocket. The groove. The guy who keeps us from completely falling apart. Someone has to be the adult in the room. Also the designated driver.</p>
-              <blockquote class="member-quote">"Lock in with the kick drum and let the music breathe."</blockquote>
+              <p class="member-bio">Eyes closed, hands draped over the neck like a piano player — that's Kurt. He doesn't watch the fretboard, he feels it. Holds down the low end with a style all his own and a groove you can't fake.</p>
+              <blockquote class="member-quote">"You don't find the groove. You let it find you."</blockquote>
             </div>
           </div>
         </article>
@@ -206,73 +197,53 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
               <img src="img/matt.jpg" alt="Matt" loading="lazy">
             </div>
             <div class="stack-card-content">
-              <span class="member-number">04</span>
               <h3 class="member-name">Matt</h3>
               <p class="member-role">Drums</p>
-              <p class="member-bio">Hits like thunder. Drives the bus. Self-taught. Been keeping time since day one, and breaks about three sticks per show. It's part of the act now.</p>
-              <blockquote class="member-quote">"Play every show like it's your last."</blockquote>
+              <p class="member-bio">Jazz-trained, rock-unleashed. Matt keeps things steady in the pocket — until he doesn't. When "Mad Matt" decides to go off the rails with a solo, the rest of the band just hangs on and enjoys the ride.</p>
+              <blockquote class="member-quote">"Stay in the pocket. Unless the pocket gets boring."</blockquote>
             </div>
           </div>
         </article>
       </div>
     </section>
 
-    <!-- SECTION 4: TOUR -->
+    <!-- TOUR -->
     <section id="tour" class="section section--tour" data-section="tour">
-      <!-- TODO: Replace placeholder images with venue/event photos -->
       <div class="tour-fullpage-cards">
-        <article class="tour-fullpage-card" data-show="0">
-          <div class="fullpage-card-bg">
-            <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1600" alt="Kaffe 1870 Wakefield - placeholder" loading="lazy">
+        <?php
+        $upcoming = [
+          ['day' => '27', 'month' => 'MAR', 'year' => '2026', 'venue' => 'Kaffe 1870', 'location' => 'Wakefield, QC', 'age' => '18+', 'lat' => '45.6384', 'lng' => '-75.9231'],
+          ['day' => '17', 'month' => 'APR', 'year' => '2026', 'venue' => "Rob Roy's", 'location' => 'Smiths Falls, ON', 'age' => '19+', 'lat' => '44.9042', 'lng' => '-76.0274'],
+          ['day' => '30', 'month' => 'APR', 'year' => '2026', 'venue' => 'Hard Rock Cafe', 'location' => 'Ottawa, ON', 'age' => '19+', 'lat' => '45.4284', 'lng' => '-75.6919', 'note' => 'Blues Society / Pending'],
+        ];
+        foreach ($upcoming as $i => $show):
+          // OpenStreetMap dark tile — no API key required
+          $zoom = 13;
+          $mapUrl = "https://tile.openstreetmap.org/{$zoom}/" . floor(($show['lng'] + 180) / 360 * pow(2, $zoom)) . "/" . floor((1 - log(tan(deg2rad($show['lat'])) + 1/cos(deg2rad($show['lat']))) / M_PI) / 2 * pow(2, $zoom)) . ".png";
+        ?>
+        <article class="tour-fullpage-card" data-show="<?= $i ?>">
+          <div class="fullpage-card-bg fullpage-card-bg--map">
+            <iframe class="tour-static-map" src="https://www.openstreetmap.org/export/embed.html?bbox=<?= $show['lng'] - 0.04 ?>,<?= $show['lat'] - 0.02 ?>,<?= $show['lng'] + 0.04 ?>,<?= $show['lat'] + 0.02 ?>&layer=mapnik&marker=<?= $show['lat'] ?>,<?= $show['lng'] ?>" loading="lazy" title="Map of <?= htmlspecialchars($show['venue']) ?>" aria-hidden="true"></iframe>
           </div>
           <div class="fullpage-card-content">
             <div class="show-date-big">
-              <span class="date-day">27</span>
-              <span class="date-month">MAR</span>
-              <span class="date-year">2026</span>
+              <span class="date-day"><?= $show['day'] ?></span>
+              <span class="date-month"><?= $show['month'] ?></span>
+              <span class="date-year"><?= $show['year'] ?></span>
             </div>
-            <h3 class="show-venue-big">Kaffe 1870</h3>
-            <p class="show-location-big">Wakefield, QC</p>
-            <div class="show-details-big"><span>18+</span></div>
+            <h3 class="show-venue-big"><?= htmlspecialchars($show['venue']) ?></h3>
+            <p class="show-location-big"><?= $show['location'] ?></p>
+            <div class="show-details-big">
+              <?php if (!empty($show['note'])): ?><span><?= $show['note'] ?></span><?php endif; ?>
+              <span><?= $show['age'] ?></span>
+            </div>
           </div>
         </article>
-
-        <article class="tour-fullpage-card" data-show="1">
-          <div class="fullpage-card-bg">
-            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1600" alt="Rob Roy's Smiths Falls - placeholder" loading="lazy">
-          </div>
-          <div class="fullpage-card-content">
-            <div class="show-date-big">
-              <span class="date-day">17</span>
-              <span class="date-month">APR</span>
-              <span class="date-year">2026</span>
-            </div>
-            <h3 class="show-venue-big">Rob Roy's</h3>
-            <p class="show-location-big">Smiths Falls, ON</p>
-            <div class="show-details-big"><span>19+</span></div>
-          </div>
-        </article>
-
-        <article class="tour-fullpage-card" data-show="2">
-          <div class="fullpage-card-bg">
-            <img src="https://images.unsplash.com/photo-1501612780327-45045538702b?w=1600" alt="Hard Rock Cafe Ottawa - placeholder" loading="lazy">
-          </div>
-          <div class="fullpage-card-content">
-            <div class="show-date-big">
-              <span class="date-day">30</span>
-              <span class="date-month">APR</span>
-              <span class="date-year">2026</span>
-            </div>
-            <h3 class="show-venue-big">Hard Rock Cafe</h3>
-            <p class="show-location-big">Ottawa, ON (Blues Society)</p>
-            <div class="show-details-big"><span>Pending</span><span>19+</span></div>
-          </div>
-        </article>
+        <?php endforeach; ?>
       </div>
 
       <div class="tour-list-section">
         <header class="section-header section-header--center">
-          <span class="section-number">03</span>
           <h2 class="section-title">All Shows</h2>
         </header>
 
@@ -304,7 +275,6 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
                 <p><strong>Status:</strong> <?= $show['status'] ?></p>
                 <?php endif; ?>
                 <p><strong>Age:</strong> <?= $show['age'] ?></p>
-                <a href="#" class="btn-tickets">Get Tickets</a>
               </div>
             </div>
           </div>
@@ -313,27 +283,25 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
       </div>
     </section>
 
-    <!-- SECTION 5: QUOTE -->
+    <!-- QUOTE -->
     <section id="quote" class="section section--quote" data-section="quote">
       <div class="quote-pin-wrapper">
         <div class="quote-content">
           <blockquote class="exploding-quote">
-            <p class="quote-line">"We didn't set out</p>
-            <p class="quote-line">to be famous.</p>
-            <p class="quote-line">We set out to be</p>
-            <p class="quote-line quote-line--accent">remembered."</p>
+            <p class="quote-line">"We're not here to</p>
+            <p class="quote-line">make it big.</p>
+            <p class="quote-line">We're here to make</p>
+            <p class="quote-line quote-line--accent">it loud and dirty."</p>
           </blockquote>
-          <cite class="quote-attribution">— Rob, 2024</cite>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 6: CONTACT/FOOTER -->
+    <!-- CONTACT/FOOTER -->
     <section id="contact" class="section section--contact" data-section="contact">
       <div class="contact-parallax-wrapper">
         <div class="contact-inner">
           <header class="section-header section-header--center">
-            <span class="section-number">04</span>
             <h2 class="section-title">Get In Touch</h2>
           </header>
 

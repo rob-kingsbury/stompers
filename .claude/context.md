@@ -3,9 +3,9 @@ project: Stompers
 status: In Progress
 last_session: 12
 session_date: 2026-03-23
-current_focus: "Site audit: PHP includes, band member fixes, tour date updates, token optimization"
-open_issues: 10
-next_priority: "Test PHP pages on Apache, verify animations work"
+current_focus: "Content overhaul, bug fixes, deployed to staging"
+open_issues: 11
+next_priority: "Fix minor issues Rob noted, deploy updates to staging, footer overhaul (#13)"
 ---
 
 # Stompers Redesign Context
@@ -65,38 +65,21 @@ band:
 
 ## Recent Changes
 
-### March 2026 - Session 12: Site Audit + PHP Conversion
+### March 2026 - Session 12: PHP Conversion + Content Overhaul
 
-**Fixed hero bugs, updated tour dates, converted to PHP includes, band member corrections.**
+PHP conversion, bug fixes, content rewrite, deployed to staging.
 
-Bug Fixes:
-- Logo scroll fade: changed `gsap.to()` to `gsap.fromTo()` with `immediateRender: false` (was reading pre-animation opacity:0 as start value)
-- Menu flash on load: set visibility/right inline on `.menu-bg` creation, added explicit GSAP visibility toggling in open/close/reset
+Early session: Converted to PHP includes, fixed hero bugs (logo fade, menu flash), updated tour dates, corrected band members, slimmed docs. Dropped .html files — PHP is canonical, Vite builds JS only. Deployed to staging.swampcitystompers.ca.
 
-PHP Conversion:
-- Created `includes/head.php` (meta, fonts, CSS) and `includes/nav.php` (skip-link, hamburger, menu overlay)
-- Converted all 6 pages to .php with includes (DRY: ~45 lines removed per page)
-- Tour accordion in index.php uses PHP loop from `$shows` array
-- Nav links updated to .php extensions
-- .html files kept as Vite entry points for bundling
-
-Content Fixes:
-- Band member roles corrected: Rob (gtr/vox), Jeans (gtr/vox), Kurt (bass/vox), Matt (drums)
-- Matt and Kurt cards were swapped — fixed order and bios
-- EPK stats: 5 → 4 band members
-- Tour dates: replaced 12 fake US venues with 7 real dates (Mar-Jul 2026)
-- Contact email standardized to .ca across all pages
-- Social links: replaced # placeholders with real URLs
-- Removed placeholder phone number and placeholder resource links
-- merch.php: removed hardcoded .menu-bg/.dust-container divs, removed CDN script duplicates
-
-Slimmed context.md and handoff.md (learned from Daybook/BandPilot patterns).
+Late session: Fixed menu overlay flash (visibility:hidden in CSS). Fixed progress nav bar (scrollRange divide-by-zero). Est. 2025 sitewide. Removed section numbers. Grittier about images. Rewrote Mission (no "loud"), band bios (swapped Rob/Jeans, new Kurt+Matt), quote (less pretentious). Tour cards use OSM maps. Removed "Get Tickets". Created #13 (footer overhaul).
 
 ### February 2026 - Session 11: Hero Background Rework
 
-Replaced static grunge textures with looping grunge video + single scratch overlay. Video at 15% opacity with `mix-blend-mode: screen`. Single scratch overlay drifts on top at 8% opacity.
+Replaced static grunge textures with looping grunge video + single scratch overlay.
 
-Unresolved bugs (fixed in session 12): menu flash on load, logo instant disappear on scroll.
+### February 2026 - Session 10: Hero Redesign
+
+Replaced 16MB hero video with logo animation. Two-layer grunge background. Ambient gold sparks.
 
 ### February 2026 - Session 10: Hero Redesign (Video to Logo Animation)
 
