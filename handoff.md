@@ -1,36 +1,45 @@
 # Stompers Redesign - Handoff
 
-**Last Updated:** 2026-03-23 (Session 12, continued)
-**Total Open Issues: 11**
+**Last Updated:** 2026-03-26 (Session 13)
+**Total Open Issues: 10**
 
 ---
 
+## SESSION 13: About Images, Quote, Mobile, EPK Scaffold
+
+- Replaced all 4 about section images:
+  - Sound: guitarist in low light (no horns)
+  - Vibe: packed dark venue crowd (locked in)
+  - Mission: worn boot on pedalboard (locked in)
+  - Road: "Cold Beer & Rock and Roll" neon sign (contain fit for full visibility)
+- New Vibe copy: "strangers buy each other rounds"
+- New Road copy: softer tone, not bar-owner-specific
+- New closing quote: "We find the songs that deserved a bigger stage and we give them one."
+- Hard Rock Cafe address fixed: 4837 Albion Rd S, Gloucester, ON (coords, map query, all files)
+- Mobile fixes: hero text clamp, quote section 70vh (was 100vh), no horizontal overflow
+- EPK page scaffolded with scroll animations (bio, stats, genre, sets, downloads, CTA)
+- Demo pages created: epk-demos.html (5 layout options), vibe-options.html (image picker)
+
+### KEY BRAND INSIGHT
+The Stompers are "the B-side guys." They play familiar favorites people forgot they loved — not the obvious hits, not obscure stuff, but the deep cuts that get the best reaction. This angle needs to be woven into homepage copy (The Sound, The Mission sections) and the EPK bio.
+
 ## SESSION 12 (continued): Content Overhaul + Bug Fixes
 
-- Fixed menu flash (visibility:hidden on .menu-overlay in CSS)
-- Fixed progress nav bar starting full (scrollRange calculation was dividing by zero for hero section)
-- Est. 2019 → 2025 sitewide (hero, story, EPK)
-- Removed all section numbers (01, 02, etc) from index.php
-- Replaced about section images with grittier bar band Unsplash photos
-- Rewrote The Mission (removed "loud" language)
-- Swapped Rob/Jeans bios, rewrote Kurt + Matt bios and quotes
-- Tour fullpage cards: stock photos replaced with dark-filtered OpenStreetMap embeds
-- Removed all "Get Tickets" references
-- Quote section: less pretentious ("We're not here to make it big...")
-- Created issue #13 for footer overhaul
+- Fixed menu flash, progress nav, dates, bios, tour cards, quote section
 
 ## SESSION 12: Site Audit + PHP Conversion
 
-- Converted all pages to PHP with includes. Fixed hero bugs. Updated tour dates and band info. Slimmed docs.
+- Converted all pages to PHP with includes. Fixed hero bugs. Updated tour dates and band info.
 
 ---
 
 ## NEXT SESSION PRIORITIES
 
-1. Rob noted "a few minor issues" to tackle
-2. Deploy updated files to staging.swampcitystompers.ca
-3. Issue #13: Footer complete overhaul
-4. Issue #11: Tour page final layout
+1. **EPK page** — Rob needs to pick layout from epk-demos.html (5 options), then build final version
+2. **Weave "B-sides" angle** into homepage copy (The Sound, The Mission sections)
+3. Deploy updated files to staging.swampcitystompers.ca
+4. Issue #13: Footer complete overhaul
+5. Issue #11: Tour page final layout
 
 ---
 

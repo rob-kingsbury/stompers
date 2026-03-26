@@ -1,11 +1,11 @@
 ---
 project: Stompers
 status: In Progress
-last_session: 12
-session_date: 2026-03-23
-current_focus: "Content overhaul, bug fixes, deployed to staging"
-open_issues: 11
-next_priority: "Fix minor issues Rob noted, deploy updates to staging, footer overhaul (#13)"
+last_session: 13
+session_date: 2026-03-26
+current_focus: "About images, quote, mobile, EPK scaffold"
+open_issues: 10
+next_priority: "EPK page design (pick layout from demos), weave B-sides angle into homepage copy"
 ---
 
 # Stompers Redesign Context
@@ -64,6 +64,12 @@ band:
 | Contact/Footer | Needs Work | |
 
 ## Recent Changes
+
+### March 2026 - Session 13: About Images, Quote, Mobile, EPK Scaffold
+
+Replaced all 4 about section images. Locked in: Sound (guitarist low light), Vibe (packed dark venue crowd), Mission (boot on pedalboard), Road (neon Cold Beer sign with contain fit). New Vibe copy ("strangers buy each other rounds"). New Road copy (softer tone). New closing quote: "We find the songs that deserved a bigger stage and we give them one." Mobile fixes: hero text bump, quote section 70vh. Hard Rock Cafe address corrected to Gloucester, ON (all files). EPK page scaffolded with scroll animations. Demo pages created for EPK layout options (5 designs) and vibe image selection.
+
+Key brand insight from Rob: The Stompers are "the B-side guys" — they play familiar favorites people forgot they loved, not the obvious hits. This angle needs to be woven throughout the site (The Sound, The Mission, EPK bio).
 
 ### March 2026 - Session 12: PHP Conversion + Content Overhaul
 
