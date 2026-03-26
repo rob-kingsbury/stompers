@@ -99,6 +99,8 @@ function init() {
 
   if (page === 'tour') {
     initTourPage();
+  } else if (page === 'epk') {
+    initEPK();
   } else {
     // Index page (master) animations
     initProgressNav();
@@ -196,6 +198,8 @@ function initPageTransitions() {
 
           if (namespace === 'tour') {
             initTourPage();
+          } else if (namespace === 'epk') {
+            initEPK();
           } else {
             initProgressNav();
             initHeroAnimations();
@@ -1439,6 +1443,117 @@ function initTourCTA() {
       scrollTrigger: {
         trigger: cta,
         start: 'top 70%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+  }
+}
+
+// ============================================================
+// EPK PAGE
+// ============================================================
+
+function initEPK() {
+  const sections = document.querySelectorAll('[data-animate="epk"]');
+  if (!sections.length) return;
+
+  // Animate each section's children on scroll
+  sections.forEach((section) => {
+    const header = section.querySelector('.epk-section-header');
+    if (header) {
+      gsap.to(header, {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 80%',
+          toggleActions: 'play none none reverse',
+        },
+      });
+    }
+
+    // Staggered children - bio paragraphs, cards, tags, members
+    const staggerTargets = section.querySelectorAll(
+      '.epk-bio-short, .epk-bio-long, .stat-item, .epk-genre-block, .epk-set-card, .epk-member, .epk-card, .epk-music-placeholder'
+    );
+
+    if (staggerTargets.length) {
+      gsap.to(staggerTargets, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: 'power3.out',
+        immediateRender: false,
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 70%',
+          toggleActions: 'play none none reverse',
+        },
+      });
+    }
+  });
+
+  // Stat counters - count up on scroll
+  const statsSection = document.querySelector('.epk-stats');
+  if (statsSection) {
+    const countEls = statsSection.querySelectorAll('[data-count]');
+    countEls.forEach((el) => {
+      const target = parseInt(el.dataset.count, 10);
+      if (isNaN(target)) return;
+
+      ScrollTrigger.create({
+        trigger: statsSection,
+        start: 'top 70%',
+        onEnter: () => {
+          gsap.fromTo(
+            el,
+            { innerText: 0 },
+            {
+              innerText: target,
+              duration: target > 100 ? 1.5 : 0.8,
+              ease: 'power2.out',
+              snap: { innerText: 1 },
+              onUpdate() {
+                el.textContent = Math.round(parseFloat(el.innerText));
+              },
+            }
+          );
+        },
+        once: true,
+      });
+    });
+  }
+
+  // Quote reveal
+  const quoteBlock = document.querySelector('.epk-quote .epk-blockquote');
+  if (quoteBlock) {
+    gsap.to(quoteBlock, {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.epk-quote',
+        start: 'top 75%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+  }
+
+  // CTA reveal
+  const ctaContent = document.querySelector('.epk-cta .cta-content');
+  if (ctaContent) {
+    gsap.to(ctaContent, {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.epk-cta',
+        start: 'top 75%',
         toggleActions: 'play none none reverse',
       },
     });

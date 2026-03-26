@@ -87,7 +87,7 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
     <section id="about" class="section section--about" data-section="about">
       <article class="about-card about-card--1">
         <div class="about-card-image">
-          <img src="https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?w=800" alt="Guitar amp and cables on a dark stage" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1516734668183-dcbd209d15e0?w=800" alt="Guitarist playing in low light on a dark stage" loading="lazy">
         </div>
         <div class="about-card-content">
           <h2 class="about-card-title">The Sound</h2>
@@ -101,21 +101,21 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
 
       <article class="about-card about-card--2 about-card--reverse">
         <div class="about-card-image">
-          <img src="https://images.unsplash.com/photo-1508854710579-5cecc3a9ff17?w=800" alt="Dimly lit bar with neon signs" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1581617616979-ca3d553d0120?w=800" alt="Packed dark venue with low ceiling and crowd silhouettes" loading="lazy">
         </div>
         <div class="about-card-content">
           <h2 class="about-card-title">The Vibe</h2>
           <p class="about-card-text">
-            Every show is a party, every song is a story. We don't do setlists -
-            we read the room and play what feels right. Sometimes that means three
-            encores. Sometimes it means one very long jam.
+            We play the kind of music that makes strangers buy each other
+            rounds. No phones out, no standing still. Just people having
+            a damn good night.
           </p>
         </div>
       </article>
 
       <article class="about-card about-card--3">
         <div class="about-card-image">
-          <img src="https://images.unsplash.com/photo-1453738773917-9c3eff1db985?w=800" alt="Worn guitar pedals on a dark stage floor" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1553406624-8ddc9cef36b2?w=800" alt="Worn boot on a pedalboard full of guitar pedals on a dark stage" loading="lazy">
         </div>
         <div class="about-card-content">
           <h2 class="about-card-title">The Mission</h2>
@@ -129,14 +129,14 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
 
       <article class="about-card about-card--4 about-card--reverse">
         <div class="about-card-image">
-          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800" alt="Road at night through a windshield" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1644405940732-c23906d1afca?w=800" alt="Neon sign reading Cold Beer and Rock and Roll" loading="lazy">
         </div>
         <div class="about-card-content">
           <h2 class="about-card-title">The Road</h2>
           <p class="about-card-text">
-            From dive bars to festival stages, we've played them all. Every mile,
-            every broken string, every 3 AM load-out has shaped who we are.
-            The road is home.
+            From dive bars to festival stages, we show up and make sure
+            you have a hell of a good time. Every mile, every broken string,
+            every 3 AM load-out has shaped who we are. The road is home.
           </p>
         </div>
       </article>
@@ -214,7 +214,7 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
         $upcoming = [
           ['day' => '27', 'month' => 'MAR', 'year' => '2026', 'venue' => 'Kaffe 1870', 'location' => 'Wakefield, QC', 'age' => '18+', 'lat' => '45.6384', 'lng' => '-75.9231'],
           ['day' => '17', 'month' => 'APR', 'year' => '2026', 'venue' => "Rob Roy's", 'location' => 'Smiths Falls, ON', 'age' => '19+', 'lat' => '44.9042', 'lng' => '-76.0274'],
-          ['day' => '30', 'month' => 'APR', 'year' => '2026', 'venue' => 'Hard Rock Cafe', 'location' => 'Ottawa, ON', 'age' => '19+', 'lat' => '45.4284', 'lng' => '-75.6919', 'note' => 'Blues Society / Pending'],
+          ['day' => '30', 'month' => 'APR', 'year' => '2026', 'venue' => 'Hard Rock Cafe', 'location' => 'Gloucester, ON', 'age' => '19+', 'lat' => '45.2946', 'lng' => '-75.6056', 'note' => 'Blues Society / Pending'],
         ];
         foreach ($upcoming as $i => $show):
           // OpenStreetMap dark tile — no API key required
@@ -252,7 +252,7 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
           $shows = [
             ['date' => 'MAR 27', 'venue' => 'Kaffe 1870', 'location' => 'Wakefield, QC', 'age' => '18+', 'map_q' => 'Kaffe+1870+Wakefield+QC'],
             ['date' => 'APR 17', 'venue' => "Rob Roy's", 'location' => 'Smiths Falls, ON', 'age' => '19+', 'map_q' => 'Rob+Roys+Smiths+Falls+ON'],
-            ['date' => 'APR 30', 'venue' => 'Hard Rock Cafe (Blues Society)', 'location' => 'Ottawa, ON', 'age' => '19+', 'map_q' => 'Hard+Rock+Cafe+Ottawa+ON', 'status' => 'Pending'],
+            ['date' => 'APR 30', 'venue' => 'Hard Rock Cafe (Blues Society)', 'location' => 'Gloucester, ON', 'age' => '19+', 'map_q' => '4837+Albion+Rd+S+Gloucester+ON', 'status' => 'Pending'],
             ['date' => 'MAY 22', 'venue' => 'Busters', 'location' => 'Kanata, ON', 'age' => '19+', 'map_q' => 'Busters+Bar+and+Grill+Kanata+ON'],
             ['date' => 'MAY 23', 'venue' => 'The Buckle', 'location' => 'Kingston, ON', 'age' => '19+', 'map_q' => 'The+Buckle+Kingston+ON'],
             ['date' => 'JUN 12', 'venue' => 'Kaffe 1870', 'location' => 'Wakefield, QC', 'age' => '18+', 'map_q' => 'Kaffe+1870+Wakefield+QC'],
@@ -288,10 +288,9 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
       <div class="quote-pin-wrapper">
         <div class="quote-content">
           <blockquote class="exploding-quote">
-            <p class="quote-line">"We're not here to</p>
-            <p class="quote-line">make it big.</p>
-            <p class="quote-line">We're here to make</p>
-            <p class="quote-line quote-line--accent">it loud and dirty."</p>
+            <p class="quote-line">"We find the songs that</p>
+            <p class="quote-line">deserved a bigger stage</p>
+            <p class="quote-line quote-line--accent">and we give them one."</p>
           </blockquote>
         </div>
       </div>

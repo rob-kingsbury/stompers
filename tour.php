@@ -36,7 +36,7 @@ $page_description = 'Catch the Swamp City Stompers live - upcoming shows and tou
         $tour_cards = [
           ['day' => '27', 'month' => 'MAR', 'year' => '2026', 'venue' => 'Kaffe 1870', 'location' => 'Wakefield, QC', 'age' => '18+'],
           ['day' => '17', 'month' => 'APR', 'year' => '2026', 'venue' => "Rob Roy's", 'location' => 'Smiths Falls, ON', 'age' => '19+'],
-          ['day' => '30', 'month' => 'APR', 'year' => '2026', 'venue' => 'Hard Rock Cafe', 'location' => 'Ottawa, ON', 'age' => '19+', 'note' => 'Blues Society / Pending'],
+          ['day' => '30', 'month' => 'APR', 'year' => '2026', 'venue' => 'Hard Rock Cafe', 'location' => 'Gloucester, ON', 'age' => '19+', 'note' => 'Blues Society / Pending'],
           ['day' => '22', 'month' => 'MAY', 'year' => '2026', 'venue' => 'Busters', 'location' => 'Kanata, ON', 'age' => '19+'],
           ['day' => '23', 'month' => 'MAY', 'year' => '2026', 'venue' => 'The Buckle', 'location' => 'Kingston, ON', 'age' => '19+'],
           ['day' => '12', 'month' => 'JUN', 'year' => '2026', 'venue' => 'Kaffe 1870', 'location' => 'Wakefield, QC', 'age' => '18+'],
