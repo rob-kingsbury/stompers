@@ -7,7 +7,7 @@ $page_description = 'The story of the Swamp City Stompers - from Eastern Ontario
 <head>
 <?php include 'includes/head.php'; ?>
 </head>
-<body data-barba="wrapper">
+<body data-barba="wrapper" data-page="story">
 <?php include 'includes/nav.php'; ?>
 
   <main class="page-main" id="main-content" data-barba="container" data-barba-namespace="story">
@@ -50,6 +50,8 @@ $page_description = 'The story of the Swamp City Stompers - from Eastern Ontario
         <a href="index.php#band" class="btn btn-primary">The Lineup</a>
       </div>
     </section>
+
+    <?php include 'includes/footer.php'; ?>
   </main>
 
 </body>

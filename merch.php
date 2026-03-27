@@ -118,6 +118,8 @@ $nav_extra_before = '    <a href="#" class="header-cart" aria-label="Shopping ca
         Merch available at all shows. Online orders ship within 5-7 business days. Questions? <a href="contact.php" style="color: var(--color-accent);">Contact us</a>.
       </p>
     </section>
+
+    <?php include 'includes/footer.php'; ?>
   </main>
 
   <script>

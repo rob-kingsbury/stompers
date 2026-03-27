@@ -208,19 +208,10 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
     </section>
 
     <!-- TOUR -->
+    <?php require_once 'includes/tour-dates.php'; ?>
     <section id="tour" class="section section--tour" data-section="tour">
       <div class="tour-fullpage-cards">
-        <?php
-        $upcoming = [
-          ['day' => '27', 'month' => 'MAR', 'year' => '2026', 'venue' => 'Kaffe 1870', 'location' => 'Wakefield, QC', 'age' => '18+', 'lat' => '45.6384', 'lng' => '-75.9231'],
-          ['day' => '17', 'month' => 'APR', 'year' => '2026', 'venue' => "Rob Roy's", 'location' => 'Smiths Falls, ON', 'age' => '19+', 'lat' => '44.9042', 'lng' => '-76.0274'],
-          ['day' => '30', 'month' => 'APR', 'year' => '2026', 'venue' => 'Hard Rock Cafe', 'location' => 'Gloucester, ON', 'age' => '19+', 'lat' => '45.2946', 'lng' => '-75.6056', 'note' => 'Blues Society / Pending'],
-        ];
-        foreach ($upcoming as $i => $show):
-          // OpenStreetMap dark tile — no API key required
-          $zoom = 13;
-          $mapUrl = "https://tile.openstreetmap.org/{$zoom}/" . floor(($show['lng'] + 180) / 360 * pow(2, $zoom)) . "/" . floor((1 - log(tan(deg2rad($show['lat'])) + 1/cos(deg2rad($show['lat']))) / M_PI) / 2 * pow(2, $zoom)) . ".png";
-        ?>
+        <?php foreach ($upcoming as $i => $show): ?>
         <article class="tour-fullpage-card" data-show="<?= $i ?>">
           <div class="fullpage-card-bg fullpage-card-bg--map">
             <iframe class="tour-static-map" src="https://www.openstreetmap.org/export/embed.html?bbox=<?= $show['lng'] - 0.04 ?>,<?= $show['lat'] - 0.02 ?>,<?= $show['lng'] + 0.04 ?>,<?= $show['lat'] + 0.02 ?>&layer=mapnik&marker=<?= $show['lat'] ?>,<?= $show['lng'] ?>" loading="lazy" title="Map of <?= htmlspecialchars($show['venue']) ?>" aria-hidden="true"></iframe>
@@ -248,20 +239,10 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
         </header>
 
         <div class="tour-accordion-list" data-page="1">
-          <?php
-          $shows = [
-            ['date' => 'MAR 27', 'venue' => 'Kaffe 1870', 'location' => 'Wakefield, QC', 'age' => '18+', 'map_q' => 'Kaffe+1870+Wakefield+QC'],
-            ['date' => 'APR 17', 'venue' => "Rob Roy's", 'location' => 'Smiths Falls, ON', 'age' => '19+', 'map_q' => 'Rob+Roys+Smiths+Falls+ON'],
-            ['date' => 'APR 30', 'venue' => 'Hard Rock Cafe (Blues Society)', 'location' => 'Gloucester, ON', 'age' => '19+', 'map_q' => '4837+Albion+Rd+S+Gloucester+ON', 'status' => 'Pending'],
-            ['date' => 'MAY 22', 'venue' => 'Busters', 'location' => 'Kanata, ON', 'age' => '19+', 'map_q' => 'Busters+Bar+and+Grill+Kanata+ON'],
-            ['date' => 'MAY 23', 'venue' => 'The Buckle', 'location' => 'Kingston, ON', 'age' => '19+', 'map_q' => 'The+Buckle+Kingston+ON'],
-            ['date' => 'JUN 12', 'venue' => 'Kaffe 1870', 'location' => 'Wakefield, QC', 'age' => '18+', 'map_q' => 'Kaffe+1870+Wakefield+QC'],
-            ['date' => 'JUL 01', 'venue' => 'Aylmer Legion', 'location' => 'Aylmer, QC', 'age' => '18+', 'map_q' => 'Royal+Canadian+Legion+Aylmer+QC'],
-          ];
-          foreach ($shows as $show): ?>
+          <?php foreach ($future_shows as $show): ?>
           <div class="tour-accordion-item" data-venue="<?= htmlspecialchars($show['venue']) ?>">
             <button class="accordion-header" aria-expanded="false">
-              <span class="accordion-date"><?= $show['date'] ?></span>
+              <span class="accordion-date"><?= $show['month'] ?> <?= $show['day'] ?></span>
               <span class="accordion-venue"><?= htmlspecialchars($show['venue']) ?></span>
               <span class="accordion-location"><?= $show['location'] ?></span>
               <span class="accordion-icon"></span>
@@ -271,8 +252,8 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
                 <iframe src="https://www.google.com/maps?q=<?= $show['map_q'] ?>&output=embed" loading="lazy" title="Map showing <?= htmlspecialchars($show['venue']) ?>, <?= $show['location'] ?>"></iframe>
               </div>
               <div class="accordion-details">
-                <?php if (!empty($show['status'])): ?>
-                <p><strong>Status:</strong> <?= $show['status'] ?></p>
+                <?php if (!empty($show['note'])): ?>
+                <p><strong>Note:</strong> <?= $show['note'] ?></p>
                 <?php endif; ?>
                 <p><strong>Age:</strong> <?= $show['age'] ?></p>
               </div>
@@ -325,14 +306,11 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
             </div>
           </div>
 
-          <footer class="site-footer">
-            <img src="img/logo-goon.png" alt="Swamp City Stompers" class="footer-logo" loading="lazy">
-            <p>&copy; <?= date('Y') ?> Swamp City Stompers</p>
-            <p>Eastern Ontario, Canada</p>
-          </footer>
         </div>
       </div>
     </section>
+
+    <?php include 'includes/footer.php'; ?>
   </main>
 
 </body>

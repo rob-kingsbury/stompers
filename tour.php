@@ -33,16 +33,8 @@ $page_description = 'Catch the Swamp City Stompers live - upcoming shows and tou
       </div>
       <div class="tour-cards-wrapper">
         <?php
-        $tour_cards = [
-          ['day' => '27', 'month' => 'MAR', 'year' => '2026', 'venue' => 'Kaffe 1870', 'location' => 'Wakefield, QC', 'age' => '18+'],
-          ['day' => '17', 'month' => 'APR', 'year' => '2026', 'venue' => "Rob Roy's", 'location' => 'Smiths Falls, ON', 'age' => '19+'],
-          ['day' => '30', 'month' => 'APR', 'year' => '2026', 'venue' => 'Hard Rock Cafe', 'location' => 'Gloucester, ON', 'age' => '19+', 'note' => 'Blues Society / Pending'],
-          ['day' => '22', 'month' => 'MAY', 'year' => '2026', 'venue' => 'Busters', 'location' => 'Kanata, ON', 'age' => '19+'],
-          ['day' => '23', 'month' => 'MAY', 'year' => '2026', 'venue' => 'The Buckle', 'location' => 'Kingston, ON', 'age' => '19+'],
-          ['day' => '12', 'month' => 'JUN', 'year' => '2026', 'venue' => 'Kaffe 1870', 'location' => 'Wakefield, QC', 'age' => '18+'],
-          ['day' => '01', 'month' => 'JUL', 'year' => '2026', 'venue' => 'Aylmer Legion', 'location' => 'Aylmer, QC', 'age' => '18+'],
-        ];
-        foreach ($tour_cards as $i => $card): ?>
+        require_once 'includes/tour-dates.php';
+        foreach ($future_shows as $i => $card): ?>
         <article class="tour-card-horizontal">
           <div class="tour-card-horizontal-bg">
             <img src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=1200" alt="<?= htmlspecialchars($card['venue']) ?> - placeholder" loading="lazy">
@@ -73,6 +65,8 @@ $page_description = 'Catch the Swamp City Stompers live - upcoming shows and tou
         <a href="contact.php" class="btn btn-primary">Get in Touch</a>
       </div>
     </section>
+
+    <?php include 'includes/footer.php'; ?>
   </main>
 
 </body>

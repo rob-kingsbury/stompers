@@ -1,11 +1,11 @@
 ---
 project: Stompers
 status: In Progress
-last_session: 13
-session_date: 2026-03-26
-current_focus: "About images, quote, mobile, EPK scaffold"
-open_issues: 10
-next_priority: "EPK page design (pick layout from demos), weave B-sides angle into homepage copy"
+last_session: 14
+session_date: 2026-03-27
+current_focus: "Footer illustration integration, EPK refinements"
+open_issues: 16
+next_priority: "Integrate swamp SVG into footer as atmospheric design, EPK YouTube embed, genre review"
 ---
 
 # Stompers Redesign Context
@@ -30,9 +30,9 @@ paths:
   css: css/styles.css
   js: js/main.js
   themes: css/themes.css
-  includes: includes/head.php, includes/nav.php
+  includes: includes/head.php, includes/nav.php, includes/footer.php, includes/tour-dates.php
   pages: tour.php, story.php, epk.php, merch.php, contact.php
-  docs: handoff.md (section docs, read on-demand)
+  docs: handoff.md, .claude/design-system.md
 
 workflow:
   dev: npm run dev (Vite + .html files)
@@ -49,6 +49,12 @@ band:
   Jeans: Guitar / Vocals
   Kurt: Bass / Vocals
   Matt: Drums
+
+socials:
+  facebook: https://www.facebook.com/profile.php?id=61576878274856
+  instagram: https://www.instagram.com/swamp_city_stompers
+  youtube_playlist: https://youtube.com/playlist?list=PLy1-_1Va1knJ8knIMNVISzCq9HsexLwf-
+  booking: booking@swampcitystompers.ca
 ```
 
 ## Section Status
@@ -59,34 +65,20 @@ band:
 | Hero | Complete (logo anim + grunge video) | tour.php - In Progress |
 | About | Complete | merch.php - Complete |
 | Band Cards | Complete | story.php - Not Started |
-| Tour | Updated (real dates) | epk.php - Not Started |
+| Tour | Updated (auto-prune, DRY) | epk.php - Split Screen (functional) |
 | Quote | Complete | contact.php - Not Started |
-| Contact/Footer | Needs Work | |
+| Footer | In Progress (3 zones working, illustration pending) | |
 
 ## Recent Changes
 
+### March 2026 - Session 14: EPK, Footer, Tour DRY, Design System
+
+EPK rebuilt as split-screen (sticky sidebar + scrollable content). B-sides brand copy. Barba.js async enter fix. New sitewide footer: quote zone + next show (auto from tour-dates.php, OSM map parallax) + utility strip (fireflies, fog, Goon watermark). Tour dates consolidated to includes/tour-dates.php with auto-prune. Added Cupboard Arnprior (Aug 8, Nov 7) and Brauwerk Hoffman Campbell's Bay (Jul 18). Design system created (.claude/design-system.md). BandPilot DB analyzed (52 songs, genre breakdown). Social URLs updated to real profiles. Footer illustration (swamp SVG) pending integration as atmospheric design element.
+
 ### March 2026 - Session 13: About Images, Quote, Mobile, EPK Scaffold
 
-Replaced all 4 about section images. Locked in: Sound (guitarist low light), Vibe (packed dark venue crowd), Mission (boot on pedalboard), Road (neon Cold Beer sign with contain fit). New Vibe copy ("strangers buy each other rounds"). New Road copy (softer tone). New closing quote: "We find the songs that deserved a bigger stage and we give them one." Mobile fixes: hero text bump, quote section 70vh. Hard Rock Cafe address corrected to Gloucester, ON (all files). EPK page scaffolded with scroll animations. Demo pages created for EPK layout options (5 designs) and vibe image selection.
-
-Key brand insight from Rob: The Stompers are "the B-side guys" — they play familiar favorites people forgot they loved, not the obvious hits. This angle needs to be woven throughout the site (The Sound, The Mission, EPK bio).
+Replaced all 4 about section images. New closing quote. Mobile fixes. Hard Rock address corrected. EPK scaffolded. Key brand insight: "the B-side guys" — familiar favorites people forgot they loved.
 
 ### March 2026 - Session 12: PHP Conversion + Content Overhaul
 
-PHP conversion, bug fixes, content rewrite, deployed to staging.
-
-Early session: Converted to PHP includes, fixed hero bugs (logo fade, menu flash), updated tour dates, corrected band members, slimmed docs. Dropped .html files — PHP is canonical, Vite builds JS only. Deployed to staging.swampcitystompers.ca.
-
-Late session: Fixed menu overlay flash (visibility:hidden in CSS). Fixed progress nav bar (scrollRange divide-by-zero). Est. 2025 sitewide. Removed section numbers. Grittier about images. Rewrote Mission (no "loud"), band bios (swapped Rob/Jeans, new Kurt+Matt), quote (less pretentious). Tour cards use OSM maps. Removed "Get Tickets". Created #13 (footer overhaul).
-
-### February 2026 - Session 11: Hero Background Rework
-
-Replaced static grunge textures with looping grunge video + single scratch overlay.
-
-### February 2026 - Session 10: Hero Redesign
-
-Replaced 16MB hero video with logo animation. Two-layer grunge background. Ambient gold sparks.
-
-### February 2026 - Session 10: Hero Redesign (Video to Logo Animation)
-
-Replaced 16MB hero video with logo-based intro animation. Sequence: logo fade-in with scale → meta/tagline → stamp BAM with screen shake. Two-layer grunge background (static scratch + moving Ken Burns). Ambient gold sparks.
+PHP conversion, bug fixes, content rewrite, deployed to staging. Fixed menu flash, progress nav, dates, bios, tour cards, quote section. Dropped .html files — PHP is canonical.

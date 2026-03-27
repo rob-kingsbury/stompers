@@ -112,6 +112,9 @@ function init() {
     initContactParallax();
   }
 
+  // New footer: reveal zones + map parallax (all pages)
+  initNewFooter();
+
 }
 
 // Run all registered cleanup functions and clear the list
@@ -161,7 +164,11 @@ function initPageTransitions() {
           });
         },
         enter(data) {
+          const done = this.async();
           const content = data.next.container;
+
+          // Scroll to top before animation starts
+          window.scrollTo(0, 0);
 
           // Set initial state
           gsap.set(content, {
@@ -170,24 +177,24 @@ function initPageTransitions() {
             scale: 0.98,
           });
 
-          // Lift in animation
+          // Lift in animation — wait for completion before afterEnter
           gsap.to(content, {
             opacity: 1,
             y: 0,
             scale: 1,
             duration: 0.35,
             ease: 'power2.out',
+            onComplete: done,
           });
-
-          // Scroll to top
-          window.scrollTo(0, 0);
-          if (lenis) {
-            lenis.scrollTo(0, { immediate: true });
-          }
         },
         afterEnter(data) {
           // Reinitialize smooth scroll first (other inits depend on lenis)
           initSmoothScroll();
+
+          // Scroll to top with lenis now that it's initialized
+          if (lenis) {
+            lenis.scrollTo(0, { immediate: true });
+          }
 
           // Reset menu state before reinitializing
           resetStompMenu();
@@ -210,7 +217,7 @@ function initPageTransitions() {
             initContactParallax();
           }
 
-          // Refresh after all triggers created
+          // Refresh after all triggers created — container is now fully visible
           ScrollTrigger.refresh();
         },
       },
@@ -1454,108 +1461,142 @@ function initTourCTA() {
 // ============================================================
 
 function initEPK() {
-  const sections = document.querySelectorAll('[data-animate="epk"]');
-  if (!sections.length) return;
+  const splitLeft = document.querySelector('.epk-split-left');
+  const sections = document.querySelectorAll('.epk-split-section');
 
-  // Animate each section's children on scroll
-  sections.forEach((section) => {
-    const header = section.querySelector('.epk-section-header');
-    if (header) {
-      gsap.to(header, {
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 80%',
-          toggleActions: 'play none none reverse',
-        },
-      });
+  if (!splitLeft && !sections.length) return;
+
+  const reducedMotion = prefersReducedMotion();
+
+  // If reduced motion, show everything immediately
+  if (reducedMotion) {
+    if (splitLeft) {
+      gsap.set([splitLeft.querySelector('.epk-split-band'), splitLeft.querySelector('.epk-split-book'), ...splitLeft.querySelectorAll('.epk-dl-link')], { opacity: 1, y: 0 });
     }
+    sections.forEach((s) => gsap.set(s, { opacity: 1, y: 0 }));
+    return;
+  }
 
-    // Staggered children - bio paragraphs, cards, tags, members
-    const staggerTargets = section.querySelectorAll(
-      '.epk-bio-short, .epk-bio-long, .stat-item, .epk-genre-block, .epk-set-card, .epk-member, .epk-card, .epk-music-placeholder'
-    );
+  // Animate left sidebar elements on load
+  if (splitLeft) {
+    const leftTargets = [
+      splitLeft.querySelector('.epk-split-band'),
+      splitLeft.querySelector('.epk-split-book'),
+      ...splitLeft.querySelectorAll('.epk-dl-link'),
+    ].filter(Boolean);
 
-    if (staggerTargets.length) {
-      gsap.to(staggerTargets, {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: 'power3.out',
-        immediateRender: false,
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 70%',
-          toggleActions: 'play none none reverse',
-        },
-      });
-    }
+    gsap.to(leftTargets, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      stagger: 0.1,
+      ease: 'power3.out',
+      delay: 0.3,
+    });
+  }
+
+  // Animate right-side sections on scroll
+  sections.forEach((section, i) => {
+    gsap.to(section, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      delay: i * 0.08,
+      ease: 'power3.out',
+      immediateRender: false,
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 85%',
+        toggleActions: 'play none none none',
+      },
+    });
   });
 
-  // Stat counters - count up on scroll
-  const statsSection = document.querySelector('.epk-stats');
-  if (statsSection) {
-    const countEls = statsSection.querySelectorAll('[data-count]');
-    countEls.forEach((el) => {
-      const target = parseInt(el.dataset.count, 10);
-      if (isNaN(target)) return;
+  // Ensure triggers fire for elements already in viewport
+  requestAnimationFrame(() => ScrollTrigger.refresh());
+}
 
+// ============================================================
+// NEW FOOTER — Quote reveal, map parallax, utility reveal
+// ============================================================
+
+function initNewFooter() {
+  const quoteZone = document.querySelector('.footer-quote-zone');
+  const mapZone = document.querySelector('.footer-next-show-zone');
+  const mapBg = document.querySelector('.footer-next-show-map');
+  const utility = document.querySelector('.footer-utility');
+  const backToTop = document.querySelector('.back-to-top');
+
+  const reducedMotion = prefersReducedMotion();
+
+  // Reveal quote zone
+  if (quoteZone) {
+    if (reducedMotion) {
+      quoteZone.classList.add('is-visible');
+    } else {
       ScrollTrigger.create({
-        trigger: statsSection,
-        start: 'top 70%',
-        onEnter: () => {
-          gsap.fromTo(
-            el,
-            { innerText: 0 },
-            {
-              innerText: target,
-              duration: target > 100 ? 1.5 : 0.8,
-              ease: 'power2.out',
-              snap: { innerText: 1 },
-              onUpdate() {
-                el.textContent = Math.round(parseFloat(el.innerText));
-              },
-            }
-          );
-        },
-        once: true,
+        trigger: quoteZone,
+        start: 'top 85%',
+        onEnter: () => quoteZone.classList.add('is-visible'),
       });
-    });
+    }
   }
 
-  // Quote reveal
-  const quoteBlock = document.querySelector('.epk-quote .epk-blockquote');
-  if (quoteBlock) {
-    gsap.to(quoteBlock, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: 'power3.out',
+  // Map parallax
+  if (mapZone && mapBg && !reducedMotion) {
+    gsap.to(mapBg, {
+      yPercent: 15,
+      ease: 'none',
       scrollTrigger: {
-        trigger: '.epk-quote',
-        start: 'top 75%',
-        toggleActions: 'play none none reverse',
+        trigger: mapZone,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true,
       },
     });
   }
 
-  // CTA reveal
-  const ctaContent = document.querySelector('.epk-cta .cta-content');
-  if (ctaContent) {
-    gsap.to(ctaContent, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: '.epk-cta',
-        start: 'top 75%',
-        toggleActions: 'play none none reverse',
-      },
+  // Reveal utility zone
+  if (utility) {
+    if (reducedMotion) {
+      utility.classList.add('is-visible');
+    } else {
+      ScrollTrigger.create({
+        trigger: utility,
+        start: 'top 90%',
+        onEnter: () => utility.classList.add('is-visible'),
+      });
+    }
+  }
+
+  // Fireflies — gold sparks drifting through the bayou floor
+  const fireflyContainer = document.querySelector('.footer-fireflies');
+  if (fireflyContainer && !reducedMotion) {
+    const count = window.innerWidth < 768 ? 4 : 8;
+    for (let i = 0; i < count; i++) {
+      const fly = document.createElement('div');
+      fly.className = 'footer-firefly';
+      fly.style.left = `${Math.random() * 100}%`;
+      fly.style.top = `${30 + Math.random() * 60}%`;
+      fly.style.setProperty('--fly-duration', `${12 + Math.random() * 10}s`);
+      fly.style.setProperty('--fly-delay', `${Math.random() * 12}s`);
+      fly.style.setProperty('--fly-dx', `${(Math.random() - 0.5) * 80}px`);
+      fly.style.setProperty('--fly-dy', `${(Math.random() - 0.5) * 30}px`);
+      fly.style.setProperty('--fly-opacity', `${0.15 + Math.random() * 0.2}`);
+      fly.style.width = `${1.5 + Math.random() * 1.5}px`;
+      fly.style.height = fly.style.width;
+      fireflyContainer.appendChild(fly);
+    }
+  }
+
+  // Back to top button
+  if (backToTop) {
+    backToTop.addEventListener('click', () => {
+      if (lenis) {
+        lenis.scrollTo(0);
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     });
   }
 }

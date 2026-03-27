@@ -7,7 +7,7 @@ $page_description = 'Get in touch with the Swamp City Stompers - booking inquiri
 <head>
 <?php include 'includes/head.php'; ?>
 </head>
-<body data-barba="wrapper">
+<body data-barba="wrapper" data-page="contact">
 <?php include 'includes/nav.php'; ?>
 
   <main class="page-main" id="main-content" data-barba="container" data-barba-namespace="contact">
@@ -70,6 +70,8 @@ $page_description = 'Get in touch with the Swamp City Stompers - booking inquiri
         </div>
       </div>
     </section>
+
+    <?php include 'includes/footer.php'; ?>
   </main>
 
 </body>

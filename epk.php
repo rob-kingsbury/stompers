@@ -12,245 +12,132 @@ $page_description = 'Electronic Press Kit for the Swamp City Stompers - photos, 
 
   <main class="page-main" id="main-content" data-barba="container" data-barba-namespace="epk">
 
-    <!-- Quick-scan header -->
+    <!-- Hero -->
     <section class="page-hero page-hero--epk">
       <div class="page-hero-content">
         <span class="section-number">ELECTRONIC PRESS KIT</span>
-        <h1 class="page-title">Swamp City Stompers</h1>
-        <div class="epk-hero-meta">
-          <span class="epk-hero-tag">Southern Rock / Blues / Soul</span>
-          <span class="epk-hero-divider">/</span>
-          <span class="epk-hero-tag">Eastern Ontario, Canada</span>
-          <span class="epk-hero-divider">/</span>
-          <a href="mailto:booking@swampcitystompers.ca" class="epk-hero-tag epk-hero-tag--link">booking@swampcitystompers.ca</a>
-        </div>
+        <h1 class="page-title">EPK</h1>
       </div>
     </section>
 
-    <!-- Band Bio -->
-    <section class="content-section epk-bio" data-animate="epk">
-      <div class="epk-section-header">
-        <span class="epk-label">01</span>
-        <h2 class="epk-heading">About the Band</h2>
-      </div>
-      <div class="epk-bio-content">
-        <p class="epk-bio-short">
-          The Swamp City Stompers are a four-piece southern rock and blues outfit from Eastern Ontario, delivering raw,
-          high-energy sets that pull from the deep end of rock, soul, and outlaw country.
-        </p>
-        <p class="epk-bio-long">
-          Born out of a shared obsession with greasy guitar tone and swamp-soaked grooves, the Stompers bring a
-          no-frills, full-throttle approach to every stage they hit. With dual guitars trading leads over a locked-in
-          rhythm section, the band channels the spirit of southern rock legends while carving their own gritty path.
-          From dive bars to festival stages, they deliver sets built on loud guitars, tight harmonies, and the kind
-          of energy that leaves audiences drenched in sweat and asking for more. The Swamp City Stompers are not
-          here to reinvent the wheel - they are here to set it on fire and roll it down the hill.
-        </p>
-      </div>
-    </section>
+    <!-- Split Screen EPK -->
+    <div class="epk-split">
 
-    <!-- At a Glance stats -->
-    <section class="content-section epk-stats" data-animate="epk">
-      <div class="epk-section-header epk-section-header--center">
-        <span class="epk-label">02</span>
-        <h2 class="epk-heading">At a Glance</h2>
-      </div>
-      <div class="stats-grid">
-        <div class="stat-item">
-          <span class="stat-value" data-count="4">0</span>
-          <span class="stat-label">Members</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-value" data-count="2025">0</span>
-          <span class="stat-label">Established</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-value stat-value--text">Eastern ON</span>
-          <span class="stat-label">Home Base</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-value stat-value--text">3</span>
-          <span class="stat-label">Set Options</span>
-        </div>
-      </div>
-    </section>
+      <!-- Left: Sticky sidebar with essentials -->
+      <aside class="epk-split-left">
+        <h2 class="epk-split-band">Swamp City<br>Stompers</h2>
+        <span class="section-number">Southern Rock / Blues / Soul</span>
+        <div class="epk-split-location">Eastern Ontario, Canada &middot; Est. 2025</div>
 
-    <!-- Genre / For Fans Of -->
-    <section class="content-section epk-genre" data-animate="epk">
-      <div class="epk-section-header">
-        <span class="epk-label">03</span>
-        <h2 class="epk-heading">The Sound</h2>
-      </div>
-      <div class="epk-genre-grid">
-        <div class="epk-genre-block">
-          <h3 class="epk-subheading">Genre</h3>
-          <div class="epk-tag-list">
-            <span class="epk-tag">Southern Rock</span>
-            <span class="epk-tag">Blues</span>
-            <span class="epk-tag">Soul</span>
-            <span class="epk-tag">Outlaw Country</span>
+        <a href="mailto:booking@swampcitystompers.ca" class="btn btn-primary epk-split-book">Book This Band</a>
+
+        <div class="epk-split-downloads">
+          <a href="#" class="epk-dl-link">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Press Photos
+          </a>
+          <a href="#" class="epk-dl-link">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Stage Plot
+          </a>
+          <a href="#" class="epk-dl-link">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Tech Rider
+          </a>
+          <a href="#" class="epk-dl-link">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            One-Sheet PDF
+          </a>
+        </div>
+      </aside>
+
+      <!-- Right: Scrollable content -->
+      <div class="epk-split-right">
+
+        <section class="epk-split-section">
+          <h2 class="epk-split-heading">About</h2>
+          <p class="epk-split-bio-short">
+            The Swamp City Stompers are a four-piece southern rock and blues outfit from Eastern Ontario. We're the B-side guys &mdash; we play the familiar favorites people forgot they loved, the deep cuts that get the best reaction, the songs that deserved a bigger stage.
+          </p>
+          <p class="epk-split-bio-long">
+            No setlists, no obvious hits, no filler. We read the room and pull from a catalogue of rock, blues, soul, and outlaw country that spans five decades. Dual guitars trading leads over a locked-in rhythm section, tight vocal harmonies, and the kind of energy that keeps people off their phones and on their feet. From dive bars to festival stages, we deliver sets built to fill rooms and empty beer fridges.
+          </p>
+        </section>
+
+        <section class="epk-split-section">
+          <h2 class="epk-split-heading">Genre</h2>
+          <div class="epk-split-tags">
+            <span class="epk-split-tag epk-split-tag--gold">Southern Rock</span>
+            <span class="epk-split-tag epk-split-tag--gold">Blues</span>
+            <span class="epk-split-tag epk-split-tag--gold">Soul</span>
+            <span class="epk-split-tag epk-split-tag--gold">Outlaw Country</span>
           </div>
-        </div>
-        <div class="epk-genre-block">
-          <h3 class="epk-subheading">For Fans Of</h3>
-          <div class="epk-tag-list">
-            <span class="epk-tag epk-tag--outline">ZZ Top</span>
-            <span class="epk-tag epk-tag--outline">CCR</span>
-            <span class="epk-tag epk-tag--outline">The Black Keys</span>
-            <span class="epk-tag epk-tag--outline">Rival Sons</span>
-            <span class="epk-tag epk-tag--outline">Black Crowes</span>
+        </section>
+
+        <section class="epk-split-section">
+          <h2 class="epk-split-heading">For Fans Of</h2>
+          <div class="epk-split-tags">
+            <span class="epk-split-tag">ZZ Top</span>
+            <span class="epk-split-tag">CCR</span>
+            <span class="epk-split-tag">The Black Keys</span>
+            <span class="epk-split-tag">Rival Sons</span>
+            <span class="epk-split-tag">Black Crowes</span>
           </div>
-        </div>
-      </div>
-    </section>
+        </section>
 
-    <!-- Set Lengths -->
-    <section class="content-section epk-sets" data-animate="epk">
-      <div class="epk-section-header">
-        <span class="epk-label">04</span>
-        <h2 class="epk-heading">Set Lengths</h2>
-      </div>
-      <div class="epk-sets-grid">
-        <div class="epk-set-card">
-          <span class="epk-set-duration">45</span>
-          <span class="epk-set-unit">min</span>
-          <p class="epk-set-desc">Festival slot or opening set</p>
-        </div>
-        <div class="epk-set-card">
-          <span class="epk-set-duration">90</span>
-          <span class="epk-set-unit">min</span>
-          <p class="epk-set-desc">Standard club or venue booking</p>
-        </div>
-        <div class="epk-set-card epk-set-card--featured">
-          <span class="epk-set-duration">Full</span>
-          <span class="epk-set-unit">evening</span>
-          <p class="epk-set-desc">Multi-set evening with breaks</p>
-        </div>
-      </div>
-    </section>
+        <section class="epk-split-section">
+          <h2 class="epk-split-heading">Set Lengths</h2>
+          <ul class="epk-split-sets">
+            <li>
+              <span>45-Minute Set</span>
+              <span>Festival slot or opening set</span>
+            </li>
+            <li>
+              <span>90-Minute Set</span>
+              <span>Standard club or venue booking</span>
+            </li>
+            <li class="epk-split-sets--featured">
+              <span>Full Evening</span>
+              <span>Multi-set evening with breaks</span>
+            </li>
+          </ul>
+        </section>
 
-    <!-- Members -->
-    <section class="content-section epk-members" data-animate="epk">
-      <div class="epk-section-header">
-        <span class="epk-label">05</span>
-        <h2 class="epk-heading">The Lineup</h2>
-      </div>
-      <div class="epk-members-grid">
-        <div class="epk-member">
-          <span class="epk-member-name">Rob</span>
-          <span class="epk-member-role">Guitar / Vocals</span>
-        </div>
-        <div class="epk-member">
-          <span class="epk-member-name">Jeans</span>
-          <span class="epk-member-role">Guitar / Vocals</span>
-        </div>
-        <div class="epk-member">
-          <span class="epk-member-name">Kurt</span>
-          <span class="epk-member-role">Bass / Vocals</span>
-        </div>
-        <div class="epk-member">
-          <span class="epk-member-name">Matt</span>
-          <span class="epk-member-role">Drums</span>
-        </div>
-      </div>
-    </section>
+        <section class="epk-split-section">
+          <h2 class="epk-split-heading">The Lineup</h2>
+          <ul class="epk-split-members">
+            <li><strong>Rob</strong> &mdash; Guitar / Vocals</li>
+            <li><strong>Jeans</strong> &mdash; Guitar / Vocals</li>
+            <li><strong>Kurt</strong> &mdash; Bass / Vocals</li>
+            <li><strong>Matt</strong> &mdash; Drums</li>
+          </ul>
+        </section>
 
-    <!-- Downloads -->
-    <section class="content-section epk-downloads" data-animate="epk">
-      <div class="epk-section-header">
-        <span class="epk-label">06</span>
-        <h2 class="epk-heading">Downloads</h2>
-      </div>
-      <div class="epk-grid">
-        <a href="#" class="epk-card">
-          <div class="epk-card-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <polyline points="14 2 14 8 20 8"/>
-              <line x1="16" y1="13" x2="8" y2="13"/>
-              <line x1="16" y1="17" x2="8" y2="17"/>
-            </svg>
+        <section class="epk-split-section">
+          <div class="epk-split-quote">
+            <blockquote>
+              "These guys bring the kind of energy you can't fake. The room was packed and nobody left. Book them."
+            </blockquote>
+            <cite>&mdash; Venue Owner</cite>
           </div>
-          <h3 class="epk-card-title">Press Photos</h3>
-          <p class="epk-card-desc">High-resolution promotional photos, print and web ready.</p>
-          <span class="epk-card-action">Download ZIP</span>
-        </a>
+        </section>
 
-        <a href="#" class="epk-card">
-          <div class="epk-card-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-              <line x1="8" y1="21" x2="16" y2="21"/>
-              <line x1="12" y1="17" x2="12" y2="21"/>
-            </svg>
-          </div>
-          <h3 class="epk-card-title">Tech Rider</h3>
-          <p class="epk-card-desc">Stage plot, input list, and technical requirements.</p>
-          <span class="epk-card-action">Download PDF</span>
-        </a>
-
-        <a href="#" class="epk-card">
-          <div class="epk-card-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-            </svg>
-          </div>
-          <h3 class="epk-card-title">Logo Pack</h3>
-          <p class="epk-card-desc">Vector logos in various formats for print and digital.</p>
-          <span class="epk-card-action">Download ZIP</span>
-        </a>
-
-        <a href="#" class="epk-card">
-          <div class="epk-card-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <polyline points="14 2 14 8 20 8"/>
-              <line x1="12" y1="18" x2="12" y2="12"/>
-              <polyline points="9 15 12 18 15 15"/>
-            </svg>
-          </div>
-          <h3 class="epk-card-title">One-Sheet</h3>
-          <p class="epk-card-desc">Single-page overview with bio, photos, and contact info.</p>
-          <span class="epk-card-action">Download PDF</span>
-        </a>
       </div>
-    </section>
+    </div>
 
-    <!-- Music Samples -->
-    <section class="content-section epk-music" data-animate="epk">
-      <div class="epk-section-header">
-        <span class="epk-label">07</span>
-        <h2 class="epk-heading">Listen</h2>
-      </div>
-      <div class="epk-music-placeholder">
-        <p>Recordings coming soon. In the meantime, catch us live.</p>
-        <a href="tour.php" class="btn btn-outline">View Tour Dates</a>
-      </div>
-    </section>
-
-    <!-- Social Proof -->
-    <section class="epk-quote" data-animate="epk">
-      <div class="epk-quote-inner">
-        <blockquote class="epk-blockquote">
-          <p>"These guys bring the kind of energy you can't fake. The room was packed and nobody left. Book them."</p>
-          <footer class="epk-quote-source">
-            <span class="epk-quote-author">- Venue Owner</span>
-          </footer>
-        </blockquote>
-      </div>
-    </section>
-
-    <!-- Book Us CTA -->
-    <section class="cta-section epk-cta" data-animate="epk">
+    <!-- CTA -->
+    <section class="cta-section epk-cta">
       <div class="cta-content">
         <h2>Book the Stompers</h2>
-        <p>Festivals, clubs, private events - we bring the heat.</p>
+        <p>Festivals, clubs, private events &mdash; we bring the heat.</p>
         <div class="epk-cta-actions">
           <a href="mailto:booking@swampcitystompers.ca" class="btn btn-primary">booking@swampcitystompers.ca</a>
           <a href="contact.php" class="btn btn-outline">Contact Form</a>
         </div>
       </div>
     </section>
+
+    <?php include 'includes/footer.php'; ?>
   </main>
 
 </body>
