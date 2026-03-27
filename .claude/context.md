@@ -1,11 +1,11 @@
 ---
 project: Stompers
 status: In Progress
-last_session: 14
+last_session: 15
 session_date: 2026-03-27
-current_focus: "Footer illustration integration, EPK refinements"
-open_issues: 16
-next_priority: "Integrate swamp SVG into footer as atmospheric design, EPK YouTube embed, genre review"
+current_focus: "EPK genre review, contact page, staging deploy"
+open_issues: 10
+next_priority: "EPK genre/fans-of review (#18), contact page build, staging deployment"
 ---
 
 # Stompers Redesign Context
@@ -62,23 +62,23 @@ socials:
 | Section | Status | Page Status |
 |---------|--------|-------------|
 | Progress Nav | Complete | index.php - Complete |
-| Hero | Complete (logo anim + grunge video) | tour.php - In Progress |
+| Hero | Complete (logo anim + grunge video) | tour.php - Complete (accordion list) |
 | About | Complete | merch.php - Complete |
-| Band Cards | Complete | story.php - Not Started |
-| Tour | Updated (auto-prune, DRY) | epk.php - Split Screen (functional) |
-| Quote | Complete | contact.php - Not Started |
-| Footer | In Progress (3 zones working, illustration pending) | |
+| Band Cards | Complete | story.php - Complete (timeline) |
+| Tour | Complete (homepage cards + accordion) | epk.php - Split Screen (functional) |
+| Watch | Complete (YouTube facade embeds) | contact.php - Not Started |
+| Footer | Complete (next show + utility strip) | |
 
 ## Recent Changes
 
+### March 2026 - Session 15: Footer Cleanup, Watch, Tour, Story, URL Rewrites, JS Fixes
+
+Footer simplified (solid black, removed atmosphere/goon/quote zone). Quote section replaced with Watch (YouTube facade embeds, session rotation). Homepage contact section removed. Tour page rebuilt (accordion pattern, hero image). Story page rebuilt (staggered timeline, jam origin story). All sub-pages got darkened hero images. Cart icon added to nav. .htaccess URL rewrites, all links updated to clean URLs. Critical JS fixes: GSAP ticker accumulation, Vite HMR double-init, FOUC fix, Barba hash scroll, progress nav cleanup. 6 issues closed.
+
 ### March 2026 - Session 14: EPK, Footer, Tour DRY, Design System
 
-EPK rebuilt as split-screen (sticky sidebar + scrollable content). B-sides brand copy. Barba.js async enter fix. New sitewide footer: quote zone + next show (auto from tour-dates.php, OSM map parallax) + utility strip (fireflies, fog, Goon watermark). Tour dates consolidated to includes/tour-dates.php with auto-prune. Added Cupboard Arnprior (Aug 8, Nov 7) and Brauwerk Hoffman Campbell's Bay (Jul 18). Design system created (.claude/design-system.md). BandPilot DB analyzed (52 songs, genre breakdown). Social URLs updated to real profiles. Footer illustration (swamp SVG) pending integration as atmospheric design element.
+EPK split-screen layout. Sitewide footer (3 zones). Tour dates DRY. Design system created. Barba.js async enter fix. BandPilot DB analyzed.
 
 ### March 2026 - Session 13: About Images, Quote, Mobile, EPK Scaffold
 
-Replaced all 4 about section images. New closing quote. Mobile fixes. Hard Rock address corrected. EPK scaffolded. Key brand insight: "the B-side guys" — familiar favorites people forgot they loved.
-
-### March 2026 - Session 12: PHP Conversion + Content Overhaul
-
-PHP conversion, bug fixes, content rewrite, deployed to staging. Fixed menu flash, progress nav, dates, bios, tour cards, quote section. Dropped .html files — PHP is canonical.
+Replaced about images. New closing quote. Mobile fixes. EPK scaffolded. "The B-side guys" brand insight.

@@ -16,13 +16,6 @@ $month_names = [
   <!-- SITE FOOTER -->
   <footer class="site-footer-new">
 
-    <!-- Quote Zone -->
-    <div class="footer-quote-zone">
-      <blockquote class="footer-quote">
-        "We find the songs that <span class="gold">deserved a bigger stage</span> and we give them one."
-      </blockquote>
-    </div>
-
     <!-- Next Show Zone (map background) -->
     <?php if ($next_show): ?>
     <div class="footer-next-show-zone">
@@ -40,14 +33,13 @@ $month_names = [
         <div class="footer-next-show-date"><?= $month_names[$next_show['month']] ?? $next_show['month'] ?> <?= (int)$next_show['day'] ?>, <?= $next_show['year'] ?></div>
         <div class="footer-next-show-venue"><?= htmlspecialchars($next_show['venue']) ?></div>
         <div class="footer-next-show-location"><?= $next_show['location'] ?><?= !empty($next_show['age']) ? ' &middot; ' . $next_show['age'] : '' ?></div>
-        <a href="tour.php" class="footer-next-show-cta">View All Dates</a>
+        <a href="tour" class="footer-next-show-cta">View All Dates</a>
       </div>
     </div>
     <?php endif; ?>
 
     <!-- Bayou Floor: utility content floats over swamp atmosphere -->
     <div class="footer-utility">
-      <div class="footer-fireflies" aria-hidden="true"></div>
       <div class="footer-strip">
 
         <!-- Left: booking + socials -->
@@ -66,19 +58,14 @@ $month_names = [
           </div>
         </div>
 
-        <!-- Center: The Goon (watermark) -->
-        <div class="footer-goon" aria-hidden="true">
-          <img src="img/logo-goon.png" alt="" class="footer-goon-img" loading="lazy">
-        </div>
-
         <!-- Right: Nav -->
         <nav class="footer-nav" aria-label="Footer navigation">
-          <a href="index.php">Home</a>
-          <a href="tour.php">Tour</a>
-          <a href="story.php">Story</a>
-          <a href="epk.php">EPK</a>
-          <a href="merch.php">Merch</a>
-          <a href="contact.php">Contact</a>
+          <a href="./">Home</a>
+          <a href="tour">Tour</a>
+          <a href="story">Story</a>
+          <a href="epk">EPK</a>
+          <a href="merch">Merch</a>
+          <a href="contact">Contact</a>
         </nav>
 
       </div>

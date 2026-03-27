@@ -1,0 +1,15 @@
+RewriteEngine On
+RewriteBase /stompers-redesign/
+
+# Skip rewrites for actual files and directories
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Clean URL rewrites — /page maps to page.php
+RewriteRule ^tour/?$ tour.php [L]
+RewriteRule ^story/?$ story.php [L]
+RewriteRule ^epk/?$ epk.php [L]
+RewriteRule ^merch/?$ merch.php [L]
+RewriteRule ^contact/?$ contact.php [L]
+
+# Home — /stompers-redesign/ already serves index.php via DirectoryIndex

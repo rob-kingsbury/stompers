@@ -14,6 +14,7 @@ $page_description = 'Electronic Press Kit for the Swamp City Stompers - photos, 
 
     <!-- Hero -->
     <section class="page-hero page-hero--epk">
+      <img class="page-hero-bg" src="https://images.unsplash.com/photo-1508854710579-5cecc3a9ff17?w=1600&q=75&auto=format&fit=crop" alt="" loading="eager" aria-hidden="true">
       <div class="page-hero-content">
         <span class="section-number">ELECTRONIC PRESS KIT</span>
         <h1 class="page-title">EPK</h1>
@@ -132,7 +133,7 @@ $page_description = 'Electronic Press Kit for the Swamp City Stompers - photos, 
         <p>Festivals, clubs, private events &mdash; we bring the heat.</p>
         <div class="epk-cta-actions">
           <a href="mailto:booking@swampcitystompers.ca" class="btn btn-primary">booking@swampcitystompers.ca</a>
-          <a href="contact.php" class="btn btn-outline">Contact Form</a>
+          <a href="contact" class="btn btn-outline">Contact Form</a>
         </div>
       </div>
     </section>

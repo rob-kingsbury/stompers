@@ -12,6 +12,7 @@ $page_description = 'Get in touch with the Swamp City Stompers - booking inquiri
 
   <main class="page-main" id="main-content" data-barba="container" data-barba-namespace="contact">
     <section class="page-hero page-hero--contact">
+      <img class="page-hero-bg" src="https://images.unsplash.com/photo-1534131707746-25d604851a1f?w=1600&q=75&auto=format&fit=crop" alt="" loading="eager" aria-hidden="true">
       <div class="page-hero-content">
         <span class="section-number">GET IN TOUCH</span>
         <h1 class="page-title">Contact</h1>

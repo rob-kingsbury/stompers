@@ -22,6 +22,7 @@ $nav_extra_before = '    <a href="#" class="header-cart" aria-label="Shopping ca
 
   <main class="page-main immersive" id="main-content" data-barba="container" data-barba-namespace="merch">
     <section class="page-hero page-hero--merch">
+      <img class="page-hero-bg" src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=1600&q=75&auto=format&fit=crop" alt="" loading="eager" aria-hidden="true">
       <div class="page-hero-content">
         <span class="section-number">OFFICIAL GEAR</span>
         <h1 class="page-title">Merch</h1>
@@ -115,7 +116,7 @@ $nav_extra_before = '    <a href="#" class="header-cart" aria-label="Shopping ca
 
     <section class="merch-cta">
       <p class="merch-cta-text">
-        Merch available at all shows. Online orders ship within 5-7 business days. Questions? <a href="contact.php" style="color: var(--color-accent);">Contact us</a>.
+        Merch available at all shows. Online orders ship within 5-7 business days. Questions? <a href="contact" style="color: var(--color-accent);">Contact us</a>.
       </p>
     </section>
 

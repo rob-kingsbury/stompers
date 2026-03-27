@@ -1,63 +1,55 @@
 # Stompers Redesign - Handoff
 
-**Last Updated:** 2026-03-26 (Session 13)
+**Last Updated:** 2026-03-27 (Session 15)
 **Total Open Issues: 10**
 
 ---
 
-## SESSION 13: About Images, Quote, Mobile, EPK Scaffold
+## SESSION 15: Footer Cleanup, Watch Section, Tour Page, Story Timeline, URL Rewrites, Bug Fixes
 
-- Replaced all 4 about section images:
-  - Sound: guitarist in low light (no horns)
-  - Vibe: packed dark venue crowd (locked in)
-  - Mission: worn boot on pedalboard (locked in)
-  - Road: "Cold Beer & Rock and Roll" neon sign (contain fit for full visibility)
-- New Vibe copy: "strangers buy each other rounds"
-- New Road copy: softer tone, not bar-owner-specific
-- New closing quote: "We find the songs that deserved a bigger stage and we give them one."
-- Hard Rock Cafe address fixed: 4837 Albion Rd S, Gloucester, ON (coords, map query, all files)
-- Mobile fixes: hero text clamp, quote section 70vh (was 100vh), no horizontal overflow
-- EPK page scaffolded with scroll animations (bio, stats, genre, sets, downloads, CTA)
-- Demo pages created: epk-demos.html (5 layout options), vibe-options.html (image picker)
+Major session: footer simplification, homepage quote→Watch section, tour page rebuild, story page timeline, URL rewrites, critical JS bug fixes.
 
-### KEY BRAND INSIGHT
-The Stompers are "the B-side guys." They play familiar favorites people forgot they loved — not the obvious hits, not obscure stuff, but the deep cuts that get the best reaction. This angle needs to be woven into homepage copy (The Sound, The Mission sections) and the EPK bio.
+- **Footer simplified:** Removed bayou atmosphere (treeline SVG, fog, fireflies, water shimmer, Goon watermark, quote zone). Solid black background. Two zones remain: next show (OSM map) + utility strip (booking, socials, nav, copyright).
+- **Homepage Watch section:** Replaced quote/"Words" section with YouTube facade embeds. 7 videos from playlist, session-based rotation, thumbnail strip, "Full Playlist" link. Zero YouTube JS until click. Progress nav updated: "Words" → "Watch".
+- **Homepage contact section removed:** Redundant with footer. Progress nav contact dot removed.
+- **Tour page rebuilt:** Replaced horizontal scroll carousel with accordion list pattern (matching homepage). Page hero with darkened Unsplash image. CTA links to contact page. Shows 50 dates before "Show More".
+- **Story page timeline:** Staggered left/right timeline with center line and gold dots. Updated content (met at local jam, impromptu show origin). Quote section restyled (centered serif, no orange bar).
+- **Sub-page hero images:** All 5 sub-pages now have darkened Unsplash background images with shared `.page-hero-bg` CSS pattern.
+- **Shopping cart icon:** Added to nav beside hamburger on all pages, links to merch.
+- **URL rewrites:** `.htaccess` created with clean URLs (`/tour`, `/story`, etc.). All internal links updated. Barba hash handling for cross-page anchors (`/#band`).
+- **Critical JS fixes:** GSAP ticker callback accumulation (was never removed on Barba transitions — caused ScrollTrigger failures). Vite HMR double-init guard (`import.meta.hot.decline()`). `lenis.raf` null check. FOUC fix (moved `no-js` removal to inline `<head>` script). Progress nav cleanup (timeout + click handlers tracked in cleanupFns). `initNewFooter()` added to Barba afterEnter. `.eyebrow` CSS alias for `.section-number`.
 
-## SESSION 12 (continued): Content Overhaul + Bug Fixes
+## SESSION 14: EPK Split Screen, Footer Overhaul, Tour Dates DRY, Design System
 
-- Fixed menu flash, progress nav, dates, bios, tour cards, quote section
-
-## SESSION 12: Site Audit + PHP Conversion
-
-- Converted all pages to PHP with includes. Fixed hero bugs. Updated tour dates and band info.
+EPK split-screen layout. Sitewide footer (3 zones). Tour dates DRY (`includes/tour-dates.php`). Design system created. Barba.js async enter fix. BandPilot DB analyzed.
 
 ---
 
 ## NEXT SESSION PRIORITIES
 
-1. **EPK page** — Rob needs to pick layout from epk-demos.html (5 options), then build final version
-2. **Weave "B-sides" angle** into homepage copy (The Sound, The Mission sections)
-3. Deploy updated files to staging.swampcitystompers.ca
-4. Issue #13: Footer complete overhaul
-5. Issue #11: Tour page final layout
+1. **EPK genre/fans-of review** (#18) — Rob confirms genre direction
+2. **EPK downloads** (#19) — Generate one-sheet PDF, stage plot SVG
+3. **Venue testimonial** (#15) — Need a real quote from a venue owner
+4. **Contact page** — Build out contact form / booking info
+5. **Deploy to staging** — Push updates to staging.swampcitystompers.ca
 
 ---
 
-## OPEN ISSUES (11)
+## OPEN ISSUES (10)
 
 | # | Title | Category |
 |---|-------|----------|
+| 1 | Mobile: Progress nav hidden on screens < 768px | note (by design) |
 | 2 | Band cards: flip animation tuning | animation |
-| 3 | Footer design needs refresh | css |
-| 4 | Quote section: pin behavior note | note |
 | 5 | Static/lite version of site | enhancement |
 | 6 | Hardcoded colors on band cards | css |
 | 7 | Tour panels: persistent label | enhancement |
 | 8 | Consolidate tour to tour page | enhancement |
 | 9 | Gradient blends at image edges | css |
 | 10 | JSON config for dynamic content | enhancement |
-| 11 | Tour page: final layout | enhancement |
-| 13 | Footer needs complete overhaul | enhancement |
+| 15 | EPK: Add real venue testimonial | enhancement |
+| 18 | EPK: Review genre tags and expand For Fans Of | enhancement |
+| 19 | EPK: Generate downloadable assets | enhancement |
 
 ---
 
@@ -65,13 +57,21 @@ The Stompers are "the B-side guys." They play familiar favorites people forgot t
 
 | File | Purpose |
 |------|---------|
-| `index.php` | Home page (canonical) |
-| `includes/head.php` | Shared `<head>` + vite_assets() |
-| `includes/nav.php` | Shared nav (skip-link, hamburger, menu) |
-| `includes/vite.php` | Vite manifest reader (dev/prod) |
+| `index.php` | Home page (hero, about, band, tour cards, watch, footer) |
+| `tour.php` | Tour page (accordion list, CTA) |
+| `story.php` | Story page (staggered timeline, closing quote) |
+| `epk.php` | EPK page (split-screen layout) |
+| `merch.php` | Merch page |
+| `contact.php` | Contact page (not started) |
+| `.htaccess` | Clean URL rewrites |
+| `includes/head.php` | Shared `<head>` + no-js removal + vite_assets() |
+| `includes/nav.php` | Shared nav (cart icon, hamburger, menu) |
+| `includes/footer.php` | Shared footer (next show + utility strip) |
+| `includes/tour-dates.php` | Single source of truth for all tour dates |
 | `css/styles.css` | All styles |
 | `js/main.js` | GSAP/Lenis/Barba animations |
+| `.claude/design-system.md` | Design system & brand guide |
 
 ---
 
-**Continue with:** Fix minor issues Rob noted, deploy to staging, footer overhaul (#13)
+**Continue with:** EPK genre review (#18), contact page build, staging deployment

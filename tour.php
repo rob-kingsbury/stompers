@@ -1,6 +1,7 @@
 <?php
 $page_title = 'Tour | Swamp City Stompers';
 $page_description = 'Catch the Swamp City Stompers live - upcoming shows and tour dates.';
+require_once 'includes/tour-dates.php';
 ?>
 <!DOCTYPE html>
 <html lang="en" class="no-js">
@@ -11,58 +12,65 @@ $page_description = 'Catch the Swamp City Stompers live - upcoming shows and tou
 <?php include 'includes/nav.php'; ?>
 
   <main class="page-main" id="main-content" data-barba="container" data-barba-namespace="tour">
+
+    <!-- HERO -->
     <section class="page-hero page-hero--tour">
-      <div class="page-hero-bg">
-        <img src="https://images.unsplash.com/photo-1501612780327-45045538702b?w=1600" alt="Concert crowd" loading="lazy">
-      </div>
-      <div class="page-hero-overlay"></div>
+      <img class="page-hero-bg" src="https://images.unsplash.com/photo-1658091747909-91188be4df87?w=1600&q=75&auto=format&fit=crop" alt="" loading="eager" aria-hidden="true">
       <div class="page-hero-content">
-        <span class="section-number">LIVE SHOWS</span>
+        <span class="eyebrow">Live Shows</span>
         <h1 class="page-title">Tour</h1>
-        <p class="page-subtitle">Scroll to explore upcoming dates</p>
-      </div>
-      <div class="page-hero-scroll-cue">
-        <span>Scroll</span>
-        <div class="scroll-line"></div>
+        <p class="page-subtitle"><?= count($future_shows) ?> upcoming dates across Eastern Ontario &amp; Western Quebec</p>
       </div>
     </section>
 
-    <section class="tour-horizontal">
-      <div class="tour-horizontal-progress">
-        <div class="tour-horizontal-progress-bar"></div>
-      </div>
-      <div class="tour-cards-wrapper">
-        <?php
-        require_once 'includes/tour-dates.php';
-        foreach ($future_shows as $i => $card): ?>
-        <article class="tour-card-horizontal">
-          <div class="tour-card-horizontal-bg">
-            <img src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=1200" alt="<?= htmlspecialchars($card['venue']) ?> - placeholder" loading="lazy">
-          </div>
-          <div class="tour-card-horizontal-overlay"></div>
-          <div class="tour-card-horizontal-content">
-            <div class="tour-card-horizontal-date">
-              <span class="date-day"><?= $card['day'] ?></span>
-              <span class="date-month"><?= $card['month'] ?></span>
-              <span class="date-year"><?= $card['year'] ?></span>
+    <!-- ALL SHOWS -->
+    <section class="content-section tour-page-dates">
+      <header class="section-header section-header--center">
+        <span class="eyebrow">Upcoming</span>
+        <h2 class="section-title">All Shows</h2>
+      </header>
+
+      <div class="tour-accordion-list" id="tour-page-accordion">
+        <?php foreach ($future_shows as $i => $show): ?>
+        <div class="tour-accordion-item<?= $i >= 50 ? ' is-hidden' : '' ?>" data-venue="<?= htmlspecialchars($show['venue']) ?>">
+          <button class="accordion-header" aria-expanded="false">
+            <span class="accordion-date"><?= $show['month'] ?> <?= $show['day'] ?></span>
+            <span class="accordion-venue"><?= htmlspecialchars($show['venue']) ?></span>
+            <span class="accordion-location"><?= $show['location'] ?></span>
+            <span class="accordion-icon"></span>
+          </button>
+          <div class="accordion-body" role="region">
+            <div class="accordion-map">
+              <iframe src="https://www.google.com/maps?q=<?= $show['map_q'] ?>&output=embed" loading="lazy" title="Map showing <?= htmlspecialchars($show['venue']) ?>, <?= $show['location'] ?>"></iframe>
             </div>
-            <div class="tour-card-horizontal-info">
-              <h2 class="tour-venue-large"><?= htmlspecialchars($card['venue']) ?></h2>
-              <p class="tour-location-large"><?= $card['location'] ?></p>
-              <p class="tour-time"><?= $card['age'] ?><?= !empty($card['note']) ? ' / ' . $card['note'] : '' ?></p>
+            <div class="accordion-details">
+              <?php if (!empty($show['note'])): ?>
+              <p><strong>Note:</strong> <?= $show['note'] ?></p>
+              <?php endif; ?>
+              <p><strong>Age:</strong> <?= $show['age'] ?></p>
             </div>
           </div>
-          <div class="tour-card-horizontal-number"><?= str_pad($i + 1, 2, '0', STR_PAD_LEFT) ?></div>
-        </article>
+        </div>
         <?php endforeach; ?>
       </div>
+      <?php if (count($future_shows) > 50): ?>
+      <button class="tour-show-more" id="tour-page-show-more" aria-label="Show more dates">
+        Show More Dates
+      </button>
+      <?php endif; ?>
+
+      <?php if (empty($future_shows)): ?>
+      <p class="tour-no-shows">No upcoming shows scheduled. Check back soon or follow us on social media for announcements.</p>
+      <?php endif; ?>
     </section>
 
+    <!-- CTA -->
     <section class="cta-section tour-cta">
       <div class="cta-content">
+        <span class="eyebrow">Bookings</span>
         <h2>Book the Stompers</h2>
-        <p>Looking for a band that'll shake the rafters and get the crowd moving? Let's talk.</p>
-        <a href="contact.php" class="btn btn-primary">Get in Touch</a>
+        <p>Looking for a band that packs the house? Let's talk.</p>
+        <a href="contact" class="btn btn-primary">Get in Touch</a>
       </div>
     </section>
 

@@ -36,17 +36,12 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
         <span class="dot-tooltip">Tour</span>
       </button>
 
-      <button class="progress-dot" data-section="quote" aria-label="Go to Quote section">
+      <button class="progress-dot" data-section="watch" aria-label="Go to Watch section">
         <span class="dot-inner"></span>
         <span class="dot-bar"></span>
-        <span class="dot-tooltip">Words</span>
+        <span class="dot-tooltip">Watch</span>
       </button>
 
-      <button class="progress-dot" data-section="contact" aria-label="Go to Contact section">
-        <span class="dot-inner"></span>
-        <span class="dot-bar"></span>
-        <span class="dot-tooltip">Contact</span>
-      </button>
     </div>
   </nav>
 
@@ -238,9 +233,9 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
           <h2 class="section-title">All Shows</h2>
         </header>
 
-        <div class="tour-accordion-list" data-page="1">
-          <?php foreach ($future_shows as $show): ?>
-          <div class="tour-accordion-item" data-venue="<?= htmlspecialchars($show['venue']) ?>">
+        <div class="tour-accordion-list" id="tour-accordion-list">
+          <?php foreach ($future_shows as $i => $show): ?>
+          <div class="tour-accordion-item<?= $i >= 6 ? ' is-hidden' : '' ?>" data-venue="<?= htmlspecialchars($show['venue']) ?>">
             <button class="accordion-header" aria-expanded="false">
               <span class="accordion-date"><?= $show['month'] ?> <?= $show['day'] ?></span>
               <span class="accordion-venue"><?= htmlspecialchars($show['venue']) ?></span>
@@ -261,52 +256,36 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
           </div>
           <?php endforeach; ?>
         </div>
+        <?php if (count($future_shows) > 6): ?>
+        <button class="tour-show-more" id="tour-show-more" aria-label="Show more dates">
+          Show More Dates
+        </button>
+        <?php endif; ?>
       </div>
     </section>
 
-    <!-- QUOTE -->
-    <section id="quote" class="section section--quote" data-section="quote">
-      <div class="quote-pin-wrapper">
-        <div class="quote-content">
-          <blockquote class="exploding-quote">
-            <p class="quote-line">"We find the songs that</p>
-            <p class="quote-line">deserved a bigger stage</p>
-            <p class="quote-line quote-line--accent">and we give them one."</p>
-          </blockquote>
-        </div>
-      </div>
-    </section>
+    <!-- WATCH -->
+    <section id="watch" class="section section--watch" data-section="watch">
+      <div class="watch-inner">
+        <header class="section-header section-header--center">
+          <span class="eyebrow">Live From The Swamp</span>
+          <h2 class="section-title">Watch</h2>
+        </header>
 
-    <!-- CONTACT/FOOTER -->
-    <section id="contact" class="section section--contact" data-section="contact">
-      <div class="contact-parallax-wrapper">
-        <div class="contact-inner">
-          <header class="section-header section-header--center">
-            <h2 class="section-title">Get In Touch</h2>
-          </header>
-
-          <div class="contact-grid">
-            <div class="contact-block">
-              <h3>Book The Band</h3>
-              <a href="mailto:booking@swampcitystompers.ca" class="contact-email">booking@swampcitystompers.ca</a>
-            </div>
-
-            <div class="contact-block">
-              <h3>Follow Us</h3>
-              <div class="social-links">
-                <a href="https://facebook.com/swampcitystompers" target="_blank" rel="noopener" class="social-link">Facebook</a>
-                <a href="https://instagram.com/swampcitystompers" target="_blank" rel="noopener" class="social-link">Instagram</a>
-                <a href="https://youtube.com/@swampcitystompers" target="_blank" rel="noopener" class="social-link">YouTube</a>
-              </div>
-            </div>
-
-            <div class="contact-block">
-              <h3>Resources</h3>
-              <a href="epk.php" class="resource-link">Electronic Press Kit</a>
-            </div>
+        <div class="watch-player-frame">
+          <div class="watch-main" id="watch-main">
+            <!-- Facade: thumbnail + play button, replaced with iframe on click -->
           </div>
-
         </div>
+
+        <div class="watch-thumbs" id="watch-thumbs">
+          <!-- Populated by JS -->
+        </div>
+
+        <a href="https://youtube.com/playlist?list=PLy1-_1Va1knJ8knIMNVISzCq9HsexLwf-" target="_blank" rel="noopener" class="watch-playlist-link">
+          Full Playlist on YouTube
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
       </div>
     </section>
 
