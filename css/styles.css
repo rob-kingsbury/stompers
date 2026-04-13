@@ -477,6 +477,7 @@ button {
   letter-spacing: var(--letter-spacing-ultra);
   text-transform: uppercase;
   color: var(--color-text-muted);
+  text-align: center;
   opacity: 0;
   transform: translateY(20px);
 }
