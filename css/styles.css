@@ -473,7 +473,7 @@ button {
 /* Tagline */
 .hero-tagline {
   font-family: var(--font-mono);
-  font-size: clamp(1.1rem, 3.5vw, 1.375rem);
+  font-size: clamp(0.85rem, 2.5vw, var(--font-size-sm));
   letter-spacing: var(--letter-spacing-ultra);
   text-transform: uppercase;
   color: var(--color-text-muted);
@@ -974,13 +974,11 @@ button {
   opacity: 0;
   transform: translateY(80px);
   transition: all 1s var(--ease-out-expo);
-  pointer-events: none;
 }
 
 .tour-list-section.is-revealed {
   opacity: 1;
   transform: translateY(0);
-  pointer-events: auto;
 }
 
 .tour-accordion-list {
