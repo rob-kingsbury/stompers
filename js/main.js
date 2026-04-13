@@ -15,6 +15,14 @@ import 'lenis/dist/lenis.css';
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
+// Reload when restored from bfcache. Barba/GSAP/Lenis state is stale after
+// a back/forward navigation that hits the bfcache, leaving layout broken.
+window.addEventListener('pageshow', (event) => {
+  if (event.persisted) {
+    window.location.reload();
+  }
+});
+
 let lenis;
 
 // Track listeners for cleanup on page transitions

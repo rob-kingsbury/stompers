@@ -1,5 +1,4 @@
 RewriteEngine On
-RewriteBase /stompers-redesign/
 
 # Skip rewrites for actual files and directories
 RewriteCond %{REQUEST_FILENAME} !-f
