@@ -12,7 +12,15 @@ define('VITE_DEV_SERVER', 'http://localhost:3000');
 define('VITE_MANIFEST', __DIR__ . '/../dist/.vite/manifest.json');
 
 function is_vite_dev(): bool {
-    // Check if Vite dev server is running
+    // Only consider dev mode when the request is served from a local host.
+    // Prevents shared hosting from serving Vite dev tags if something on the
+    // server happens to answer on port 3000.
+    $host = $_SERVER['HTTP_HOST'] ?? '';
+    $host = strtolower(preg_replace('/:\d+$/', '', $host));
+    $localHosts = ['localhost', '127.0.0.1', '::1'];
+    if (!in_array($host, $localHosts, true)) {
+        return false;
+    }
     $handle = @fsockopen('localhost', 3000, $errno, $errstr, 0.3);
     if ($handle) {
         fclose($handle);
