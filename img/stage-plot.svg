@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" font-family="'Courier New', monospace">
+
+  <!-- Background -->
+  <rect width="900" height="560" fill="#0a0a0a"/>
+
+  <!-- Stage area -->
+  <rect x="40" y="80" width="820" height="380" rx="6" fill="#111" stroke="#c9a227" stroke-width="1.5"/>
+
+  <!-- Stage lip -->
+  <rect x="40" y="420" width="820" height="40" rx="0" fill="#1a1a1a" stroke="#c9a227" stroke-width="1"/>
+  <text x="450" y="446" text-anchor="middle" fill="#666" font-size="11" letter-spacing="3">STAGE FRONT / AUDIENCE</text>
+
+  <!-- Title -->
+  <text x="450" y="40" text-anchor="middle" fill="#c9a227" font-size="18" font-weight="bold" letter-spacing="4">SWAMP CITY STOMPERS</text>
+  <text x="450" y="60" text-anchor="middle" fill="#666" font-size="11" letter-spacing="3">STAGE PLOT</text>
+
+  <!-- SR / SL labels -->
+  <text x="60" y="108" fill="#444" font-size="10" letter-spacing="2">STAGE LEFT</text>
+  <text x="780" y="108" fill="#444" font-size="10" letter-spacing="2">STAGE RIGHT</text>
+
+  <!-- ============ MATT - DRUMS (back center) ============ -->
+  <!-- Kick drum -->
+  <ellipse cx="450" cy="195" rx="32" ry="22" fill="none" stroke="#c9a227" stroke-width="1.5"/>
+  <ellipse cx="450" cy="195" rx="20" ry="13" fill="#1a1a1a" stroke="#666" stroke-width="1"/>
+  <!-- Hi-hat -->
+  <ellipse cx="395" cy="178" rx="16" ry="5" fill="none" stroke="#888" stroke-width="1.2"/>
+  <line x1="395" y1="183" x2="395" y2="210" stroke="#666" stroke-width="1"/>
+  <!-- Snare -->
+  <ellipse cx="415" cy="218" rx="14" ry="9" fill="none" stroke="#888" stroke-width="1.2"/>
+  <!-- Ride -->
+  <ellipse cx="505" cy="178" rx="18" ry="5" fill="none" stroke="#888" stroke-width="1.2"/>
+  <line x1="505" y1="183" x2="505" y2="210" stroke="#666" stroke-width="1"/>
+  <!-- Crash -->
+  <ellipse cx="480" cy="160" rx="14" ry="4" fill="none" stroke="#888" stroke-width="1.2"/>
+  <!-- Floor tom -->
+  <ellipse cx="494" cy="218" rx="14" ry="9" fill="none" stroke="#888" stroke-width="1.2"/>
+  <!-- Drummer stool area -->
+  <circle cx="450" cy="245" r="8" fill="#1a1a1a" stroke="#555" stroke-width="1"/>
+
+  <!-- Matt label -->
+  <text x="450" y="278" text-anchor="middle" fill="#f5f5f0" font-size="13" font-weight="bold">MATT</text>
+  <text x="450" y="293" text-anchor="middle" fill="#888" font-size="10">Drums</text>
+
+  <!-- Kick mic -->
+  <line x1="450" y1="218" x2="450" y2="232" stroke="#c9a227" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="450" y="310" text-anchor="middle" fill="#c9a227" font-size="9">kick mic (venue)</text>
+
+  <!-- Matt monitor -->
+  <polygon points="435,390 465,390 460,410 440,410" fill="#222" stroke="#555" stroke-width="1"/>
+  <text x="450" y="430" text-anchor="middle" fill="#555" font-size="9">MON 4</text>
+
+  <!-- ============ ROB - Stage Left ============ -->
+  <!-- Amp -->
+  <rect x="90" y="130" width="70" height="55" rx="4" fill="#1a1a1a" stroke="#c9a227" stroke-width="1.5"/>
+  <rect x="98" y="138" width="54" height="35" rx="2" fill="#111" stroke="#444" stroke-width="1"/>
+  <ellipse cx="125" cy="155" rx="16" ry="16" fill="none" stroke="#555" stroke-width="1"/>
+  <ellipse cx="125" cy="155" rx="8" ry="8" fill="#0a0a0a" stroke="#444" stroke-width="1"/>
+  <text x="125" y="198" text-anchor="middle" fill="#888" font-size="8">Fender '65 Deluxe</text>
+  <text x="125" y="208" text-anchor="middle" fill="#888" font-size="8">Reverb Reissue</text>
+
+  <!-- Amp mic (e906) -->
+  <line x1="125" y1="185" x2="125" y2="220" stroke="#c9a227" stroke-width="1" stroke-dasharray="3,2"/>
+  <rect x="118" y="215" width="14" height="8" rx="2" fill="#c9a227"/>
+  <text x="125" y="237" text-anchor="middle" fill="#c9a227" font-size="9">e906</text>
+
+  <!-- Vocal mic stand -->
+  <line x1="160" y1="290" x2="160" y2="380" stroke="#666" stroke-width="1.5"/>
+  <line x1="145" y1="380" x2="175" y2="380" stroke="#666" stroke-width="1.5"/>
+  <circle cx="160" cy="284" r="8" fill="#333" stroke="#c9a227" stroke-width="1.2"/>
+  <text x="160" y="268" text-anchor="middle" fill="#c9a227" font-size="9">SM58</text>
+
+  <!-- Pedalboard -->
+  <rect x="90" y="330" width="80" height="25" rx="3" fill="#1a1a1a" stroke="#444" stroke-width="1"/>
+  <text x="130" y="346" text-anchor="middle" fill="#555" font-size="8">PEDALBOARD</text>
+
+  <!-- Rob label -->
+  <text x="130" y="260" text-anchor="middle" fill="#f5f5f0" font-size="13" font-weight="bold">ROB</text>
+  <text x="130" y="275" text-anchor="middle" fill="#888" font-size="10">Guitar / Vocals</text>
+
+  <!-- Rob monitor x2 -->
+  <polygon points="100,388 130,388 126,408 104,408" fill="#222" stroke="#c9a227" stroke-width="1.2"/>
+  <polygon points="135,388 165,388 161,408 139,408" fill="#222" stroke="#c9a227" stroke-width="1.2"/>
+  <text x="130" y="424" text-anchor="middle" fill="#c9a227" font-size="9">MON 1 + 2</text>
+
+  <!-- ============ KURT - Center Left ============ -->
+  <!-- DI Box -->
+  <rect x="310" y="315" width="40" height="25" rx="3" fill="#1a1a1a" stroke="#c9a227" stroke-width="1.5"/>
+  <text x="330" y="332" text-anchor="middle" fill="#c9a227" font-size="9" font-weight="bold">DI</text>
+
+  <!-- Bass cable line -->
+  <line x1="330" y1="315" x2="330" y2="295" stroke="#c9a227" stroke-width="1" stroke-dasharray="3,2"/>
+
+  <!-- Vocal mic stand -->
+  <line x1="330" y1="290" x2="330" y2="380" stroke="#666" stroke-width="1.5"/>
+  <line x1="315" y1="380" x2="345" y2="380" stroke="#666" stroke-width="1.5"/>
+  <circle cx="330" cy="284" r="8" fill="#333" stroke="#c9a227" stroke-width="1.2"/>
+  <text x="330" y="268" text-anchor="middle" fill="#c9a227" font-size="9">SM58</text>
+
+  <!-- Kurt label -->
+  <text x="330" y="255" text-anchor="middle" fill="#f5f5f0" font-size="13" font-weight="bold">KURT</text>
+  <text x="330" y="270" text-anchor="middle" fill="#888" font-size="10">Bass / Vocals</text>
+
+  <!-- Kurt monitor -->
+  <polygon points="315,388 345,388 341,408 319,408" fill="#222" stroke="#555" stroke-width="1"/>
+  <text x="330" y="424" text-anchor="middle" fill="#555" font-size="9">MON 3</text>
+
+  <!-- ============ EUGENE - Stage Right ============ -->
+  <!-- Amp -->
+  <rect x="740" y="130" width="70" height="55" rx="4" fill="#1a1a1a" stroke="#c9a227" stroke-width="1.5"/>
+  <rect x="748" y="138" width="54" height="35" rx="2" fill="#111" stroke="#444" stroke-width="1"/>
+  <ellipse cx="775" cy="155" rx="16" ry="16" fill="none" stroke="#555" stroke-width="1"/>
+  <ellipse cx="775" cy="155" rx="8" ry="8" fill="#0a0a0a" stroke="#444" stroke-width="1"/>
+  <text x="775" y="198" text-anchor="middle" fill="#888" font-size="8">Tweed Fender</text>
+  <text x="775" y="208" text-anchor="middle" fill="#888" font-size="8">Harvard</text>
+
+  <!-- Amp mic (SM57) -->
+  <line x1="775" y1="185" x2="775" y2="220" stroke="#c9a227" stroke-width="1" stroke-dasharray="3,2"/>
+  <rect x="768" y="215" width="14" height="8" rx="2" fill="#c9a227"/>
+  <text x="775" y="237" text-anchor="middle" fill="#c9a227" font-size="9">SM57</text>
+
+  <!-- Vocal mic stand -->
+  <line x1="740" y1="290" x2="740" y2="380" stroke="#666" stroke-width="1.5"/>
+  <line x1="725" y1="380" x2="755" y2="380" stroke="#666" stroke-width="1.5"/>
+  <circle cx="740" cy="284" r="8" fill="#333" stroke="#c9a227" stroke-width="1.2"/>
+  <text x="740" y="268" text-anchor="middle" fill="#c9a227" font-size="9">SM58</text>
+
+  <!-- Pedalboard -->
+  <rect x="730" y="330" width="80" height="25" rx="3" fill="#1a1a1a" stroke="#444" stroke-width="1"/>
+  <text x="770" y="346" text-anchor="middle" fill="#555" font-size="8">PEDALBOARD</text>
+
+  <!-- Eugene label -->
+  <text x="770" y="260" text-anchor="middle" fill="#f5f5f0" font-size="13" font-weight="bold">EUGENE</text>
+  <text x="770" y="275" text-anchor="middle" fill="#888" font-size="10">Guitar / Vocals</text>
+
+  <!-- Eugene monitor x2 -->
+  <polygon points="735,388 765,388 761,408 739,408" fill="#222" stroke="#c9a227" stroke-width="1.2"/>
+  <polygon points="770,388 800,388 796,408 774,408" fill="#222" stroke="#c9a227" stroke-width="1.2"/>
+  <text x="770" y="424" text-anchor="middle" fill="#c9a227" font-size="9">MON 1 + 2</text>
+
+  <!-- Channel list legend -->
+  <rect x="40" y="480" width="820" height="70" rx="4" fill="#0d0d0d" stroke="#333" stroke-width="1"/>
+  <text x="60" y="498" fill="#c9a227" font-size="10" font-weight="bold" letter-spacing="2">CHANNEL LIST</text>
+  <text x="60" y="515" fill="#888" font-size="9">1. Rob Vox (SM58)</text>
+  <text x="60" y="528" fill="#888" font-size="9">2. Eugene Vox (SM58)</text>
+  <text x="60" y="541" fill="#888" font-size="9">3. Kurt Vox (SM58)</text>
+  <text x="230" y="515" fill="#888" font-size="9">4. Rob Guitar (e906)</text>
+  <text x="230" y="528" fill="#888" font-size="9">5. Eugene Guitar (SM57)</text>
+  <text x="230" y="541" fill="#888" font-size="9">6. Bass DI</text>
+  <text x="400" y="515" fill="#888" font-size="9">7. Kick Drum (venue mic)</text>
+  <text x="400" y="528" fill="#888" font-size="9">8+. Additional drums as applicable</text>
+  <text x="620" y="515" fill="#555" font-size="9">Monitors: 4 mixes</text>
+  <text x="620" y="528" fill="#555" font-size="9">Mix 1/2: Rob + Eugene (x2 wedges each)</text>
+  <text x="620" y="541" fill="#555" font-size="9">Mix 3: Kurt  |  Mix 4: Matt</text>
+
+</svg>

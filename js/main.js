@@ -108,19 +108,24 @@ function init() {
   // New footer: reveal zones + map parallax (all pages)
   initNewFooter();
 
-  // Handle initial hash scroll (e.g. index.php#band from another page)
+  // Handle initial hash scroll (e.g. landing directly on index.php#band)
   if (window.location.hash && lenis) {
-    const hashTarget = document.querySelector(window.location.hash);
-    if (hashTarget) {
-      // Delay to let hero animations and ScrollTrigger settle
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          lenis.scrollTo(hashTarget, { immediate: true, offset: 0 });
-          // Refresh triggers at the new position
-          ScrollTrigger.refresh();
-        });
-      });
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
     }
+    const hash = window.location.hash;
+    requestAnimationFrame(() => {
+      const hashTarget = document.querySelector(hash);
+      if (!hashTarget) return;
+      const targetY = hashTarget.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo(0, targetY);
+      lenis.scrollTo(targetY, { immediate: true, force: true, lock: true });
+      ScrollTrigger.refresh();
+      requestAnimationFrame(() => {
+        window.scrollTo(0, targetY);
+        lenis.scrollTo(targetY, { immediate: true, force: true });
+      });
+    });
   }
 }
 
@@ -174,8 +179,11 @@ function initPageTransitions() {
           const done = this.async();
           const content = data.next.container;
 
-          // Scroll to top before animation starts
-          window.scrollTo(0, 0);
+          // Scroll to top before animation starts — skip if navigating to a hash target
+          const enterHash = window.location.hash || (data.next.url && data.next.url.hash ? '#' + data.next.url.hash : '');
+          if (!enterHash) {
+            window.scrollTo(0, 0);
+          }
 
           // Set initial state
           gsap.set(content, {
@@ -195,13 +203,20 @@ function initPageTransitions() {
           });
         },
         afterEnter(data) {
+          // Resolve incoming hash BEFORE anything else touches scroll.
+          // Prefer Barba's parsed URL (reliable) over window.location.hash.
+          const rawHash = (data.next.url && data.next.url.hash) ? data.next.url.hash : '';
+          const incomingHash = rawHash
+            ? (rawHash.startsWith('#') ? rawHash : '#' + rawHash)
+            : (window.location.hash || '');
+
+          // Disable native scroll restoration so the browser doesn't fight us
+          if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+          }
+
           // Reinitialize smooth scroll first (other inits depend on lenis)
           initSmoothScroll();
-
-          // Scroll to top (or hash target) with lenis
-          if (lenis) {
-            lenis.scrollTo(0, { immediate: true });
-          }
 
           // Reset menu state before reinitializing
           resetStompMenu();
@@ -226,20 +241,55 @@ function initPageTransitions() {
           // Footer is inside Barba container — must reinit after every transition
           initNewFooter();
 
-          // Refresh after DOM settles — Barba container swap needs a frame to finalize layout
-          requestAnimationFrame(() => {
+          // Position scroll BEFORE ScrollTrigger.refresh so triggers evaluate
+          // at the correct position. Without this, fromTo scrubs with
+          // immediateRender:false snap to their start state (scroll = 0).
+          if (incomingHash) {
+            // Wait one frame for Barba's new container to be in the DOM flow
+            // so offsetTop/getBoundingClientRect return real values.
             requestAnimationFrame(() => {
-              ScrollTrigger.refresh();
-              // Scroll to hash target if present (works with clean URLs and .php URLs)
-              const hash = window.location.hash || (data.next.url && data.next.url.hash ? '#' + data.next.url.hash : '');
-              if (hash && lenis) {
-                const hashTarget = document.querySelector(hash);
-                if (hashTarget) {
-                  lenis.scrollTo(hashTarget, { immediate: true, offset: 0 });
-                }
+              const hashTarget = document.querySelector(incomingHash);
+              if (!hashTarget) {
+                ScrollTrigger.refresh();
+                return;
               }
+
+              const targetY = hashTarget.getBoundingClientRect().top + window.scrollY;
+
+              // 1. Native scroll first (instant, no Lenis interpolation)
+              window.scrollTo(0, targetY);
+
+              // 2. Sync Lenis internal state to match so its next RAF tick
+              //    doesn't snap back to 0
+              if (lenis) {
+                lenis.scrollTo(targetY, { immediate: true, force: true, lock: true });
+              }
+
+              // 3. Refresh triggers at the new position
+              ScrollTrigger.refresh();
+
+              // 4. Re-assert after refresh + layout settle. The hero intro
+              //    timeline (delay 0.3s) can cause subtle layout shifts, and
+              //    ScrollTrigger.refresh can nudge scroll on pinned sections.
+              requestAnimationFrame(() => {
+                window.scrollTo(0, targetY);
+                if (lenis) {
+                  lenis.scrollTo(targetY, { immediate: true, force: true });
+                }
+              });
             });
-          });
+          } else {
+            // No hash — scroll to top and refresh
+            window.scrollTo(0, 0);
+            if (lenis) {
+              lenis.scrollTo(0, { immediate: true, force: true });
+            }
+            requestAnimationFrame(() => {
+              requestAnimationFrame(() => {
+                ScrollTrigger.refresh();
+              });
+            });
+          }
         },
       },
     ],
@@ -1309,11 +1359,17 @@ function initNewFooter() {
     if (reducedMotion) {
       utility.classList.add('is-visible');
     } else {
-      ScrollTrigger.create({
-        trigger: utility,
-        start: 'top 90%',
-        onEnter: () => utility.classList.add('is-visible'),
-      });
+      // If already in view on load (common on subpages), show immediately
+      const rect = utility.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.9) {
+        utility.classList.add('is-visible');
+      } else {
+        ScrollTrigger.create({
+          trigger: utility,
+          start: 'top 90%',
+          onEnter: () => utility.classList.add('is-visible'),
+        });
+      }
     }
   }
 

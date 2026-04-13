@@ -3348,6 +3348,23 @@ button {
   margin-bottom: var(--spacing-xl);
 }
 
+.form-status {
+  padding: var(--spacing-md) var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  font-size: 0.9rem;
+  border-left: 3px solid;
+}
+
+.form-status--success {
+  border-color: #4caf50;
+  color: #4caf50;
+}
+
+.form-status--error {
+  border-color: #e53935;
+  color: #e53935;
+}
+
 .contact-form {
   display: flex;
   flex-direction: column;

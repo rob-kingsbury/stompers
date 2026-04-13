@@ -30,26 +30,8 @@ $page_description = 'Electronic Press Kit for the Swamp City Stompers - photos, 
         <span class="section-number">Southern Rock / Blues / Soul</span>
         <div class="epk-split-location">Eastern Ontario, Canada &middot; Est. 2025</div>
 
-        <a href="mailto:booking@swampcitystompers.ca" class="btn btn-primary epk-split-book">Book This Band</a>
+        <a href="contact" class="btn btn-primary epk-split-book">Book This Band</a>
 
-        <div class="epk-split-downloads">
-          <a href="#" class="epk-dl-link">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Press Photos
-          </a>
-          <a href="#" class="epk-dl-link">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Stage Plot
-          </a>
-          <a href="#" class="epk-dl-link">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Tech Rider
-          </a>
-          <a href="#" class="epk-dl-link">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            One-Sheet PDF
-          </a>
-        </div>
       </aside>
 
       <!-- Right: Scrollable content -->
@@ -132,8 +114,7 @@ $page_description = 'Electronic Press Kit for the Swamp City Stompers - photos, 
         <h2>Book the Stompers</h2>
         <p>Festivals, clubs, private events &mdash; we bring the heat.</p>
         <div class="epk-cta-actions">
-          <a href="mailto:booking@swampcitystompers.ca" class="btn btn-primary">booking@swampcitystompers.ca</a>
-          <a href="contact" class="btn btn-outline">Contact Form</a>
+          <a href="contact" class="btn btn-primary">Get in Touch</a>
         </div>
       </div>
     </section>

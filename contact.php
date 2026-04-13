@@ -23,7 +23,12 @@ $page_description = 'Get in touch with the Swamp City Stompers - booking inquiri
       <div class="contact-grid">
         <div class="contact-form-wrapper">
           <h2>Send a Message</h2>
-          <form class="contact-form" action="#" method="post">
+          <?php if (isset($_GET['status'])): ?>
+            <div class="form-status form-status--<?= $_GET['status'] === 'sent' ? 'success' : 'error' ?>">
+              <?= $_GET['status'] === 'sent' ? 'Message sent. We\'ll be in touch.' : 'Something went wrong. Try emailing us directly.' ?>
+            </div>
+          <?php endif; ?>
+          <form class="contact-form" action="contact-handler.php" method="post">
             <div class="form-group">
               <label for="name">Name</label>
               <input type="text" id="name" name="name" autocomplete="name" required>
@@ -52,7 +57,7 @@ $page_description = 'Get in touch with the Swamp City Stompers - booking inquiri
           <div class="info-block">
             <h3>Booking</h3>
             <p>For booking inquiries, please use the form or email us directly.</p>
-            <a href="mailto:booking@swampcitystompers.ca">booking@swampcitystompers.ca</a>
+            <a href="contact">info@swampcitystompers.ca</a>
           </div>
 
           <div class="info-block">

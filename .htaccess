@@ -11,5 +11,6 @@ RewriteRule ^story/?$ story.php [L]
 RewriteRule ^epk/?$ epk.php [L]
 RewriteRule ^merch/?$ merch.php [L]
 RewriteRule ^contact/?$ contact.php [L]
+RewriteRule ^tech-rider/?$ tech-rider.php [L]
 
 # Home — /stompers-redesign/ already serves index.php via DirectoryIndex
