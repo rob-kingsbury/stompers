@@ -1405,6 +1405,17 @@ if (document.readyState === 'loading') {
 // Refresh ScrollTrigger after all images load for accurate position calculations
 window.addEventListener('load', () => {
   ScrollTrigger.refresh();
+
+  // Defer hero video load until after critical resources. The <source> uses
+  // data-src so the browser never fetches the 26MB file during page load.
+  const heroVideo = document.querySelector('.hero-video-grain');
+  if (heroVideo) {
+    heroVideo.querySelectorAll('source[data-src]').forEach(s => {
+      s.src = s.dataset.src;
+    });
+    heroVideo.load();
+    heroVideo.play().catch(() => {});
+  }
 });
 
 // Vite HMR: force full reload to prevent double-initialization

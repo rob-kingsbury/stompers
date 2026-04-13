@@ -48,8 +48,8 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
   <main class="immersive" id="main-content" data-barba="container" data-barba-namespace="home">
     <!-- HERO -->
     <section id="hero" class="section section--hero" data-section="hero">
-      <video class="hero-video-grain" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
-        <source src="img/grunge-loop.mp4" type="video/mp4">
+      <video class="hero-video-grain" muted loop playsinline preload="none" aria-hidden="true">
+        <source data-src="img/grunge-loop.mp4" type="video/mp4">
       </video>
       <div class="hero-grain" aria-hidden="true"></div>
       <div class="hero-sparks" aria-hidden="true"></div>
