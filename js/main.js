@@ -1348,8 +1348,9 @@ function initNewFooter() {
 
   const reducedMotion = prefersReducedMotion();
 
-  // Map parallax
-  if (mapZone && mapBg && !reducedMotion) {
+  // Map parallax — desktop only. On mobile the map sits at top:0/height:100%
+  // via CSS so there's nothing to parallax and yPercent would misplace it.
+  if (mapZone && mapBg && !reducedMotion && !isMobile()) {
     gsap.to(mapBg, {
       yPercent: 15,
       ease: 'none',

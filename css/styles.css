@@ -1091,8 +1091,14 @@ button {
 }
 
 .tour-accordion-item.is-open .accordion-body {
-  max-height: 400px;
+  max-height: 600px;
   padding: 0 0 2rem;
+}
+
+@media (max-width: 480px) {
+  .tour-accordion-item.is-open .accordion-body {
+    max-height: 800px;
+  }
 }
 
 .accordion-map {
@@ -1362,14 +1368,21 @@ button {
   position: absolute;
   left: 0;
   right: 0;
-  top: -30%;
+  top: 0;
   z-index: 0;
   border: none;
   width: 100%;
-  height: 160%;
+  height: 100%;
   filter: saturate(0) contrast(1.2) brightness(0.4);
   pointer-events: none;
-  will-change: transform;
+}
+
+@media (min-width: 768px) {
+  .footer-next-show-map {
+    top: -30%;
+    height: 160%;
+    will-change: transform;
+  }
 }
 
 .footer-next-show-zone::after {
@@ -1513,6 +1526,8 @@ button {
   color: var(--color-text);
   opacity: 0.35;
   text-decoration: none;
+  padding: var(--spacing-sm); /* 44px+ touch target */
+  margin: calc(-1 * var(--spacing-sm)); /* Offset padding so layout is unaffected */
   transition: opacity var(--duration-slow) ease, color var(--duration-slow) ease;
 }
 
@@ -2140,8 +2155,8 @@ button {
 }
 
 .menu-nav-link {
-  font-size: clamp(1.75rem, 12vw, 2.5rem);
-  padding: 0.2em 0;
+  font-size: clamp(1.5rem, 9vw, 2rem);
+  padding: 0.25em 0;
 }
 
 .menu-footer {
@@ -2872,10 +2887,9 @@ button {
   background: var(--color-surface);
   padding: var(--spacing-2xl) var(--spacing-lg);
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--spacing-md);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
   border-bottom: var(--border-width) solid var(--color-border);
 }
 
@@ -3392,7 +3406,7 @@ button {
   border: var(--border-width) solid var(--color-border);
   color: var(--color-text);
   font-family: var(--font-serif);
-  font-size: var(--font-size-md);
+  font-size: 16px; /* Prevent iOS auto-zoom on focus (triggers below 16px) */
   border-radius: var(--radius-md);
   transition: border-color var(--duration-slow) ease;
 }
