@@ -1362,22 +1362,21 @@ function initNewFooter() {
     });
   }
 
-  // Reveal utility zone
+  // Reveal utility zone — IntersectionObserver is robust against layout
+  // shifts and Barba transitions in a way ScrollTrigger isn't here.
   if (utility) {
     if (reducedMotion) {
       utility.classList.add('is-visible');
     } else {
-      // If already in view on load (common on subpages), show immediately
-      const rect = utility.getBoundingClientRect();
-      if (rect.top < window.innerHeight * 0.9) {
-        utility.classList.add('is-visible');
-      } else {
-        ScrollTrigger.create({
-          trigger: utility,
-          start: 'top 90%',
-          onEnter: () => utility.classList.add('is-visible'),
+      const io = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            utility.classList.add('is-visible');
+            observer.disconnect();
+          }
         });
-      }
+      }, { rootMargin: '0px 0px -10% 0px' });
+      io.observe(utility);
     }
   }
 
