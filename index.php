@@ -48,14 +48,17 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
   <main class="immersive" id="main-content" data-barba="container" data-barba-namespace="home">
     <!-- HERO -->
     <section id="hero" class="section section--hero" data-section="hero">
-      <video class="hero-video-grain" autoplay muted loop playsinline aria-hidden="true">
+      <video class="hero-video-grain" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
         <source src="img/grunge-loop.mp4" type="video/mp4">
       </video>
       <div class="hero-grain" aria-hidden="true"></div>
       <div class="hero-sparks" aria-hidden="true"></div>
 
       <div class="hero-logo-reveal">
-        <img class="hero-logo-img" src="img/stompers-logo-full.png" alt="Swamp City Stompers" width="600" height="600">
+        <picture>
+          <source srcset="img/stompers-logo-full.webp" type="image/webp">
+          <img class="hero-logo-img" src="img/stompers-logo-full.png" alt="Swamp City Stompers" width="600" height="600" fetchpriority="high">
+        </picture>
 
         <div class="hero-meta">
           <span class="meta-year">Est. 2025</span>
