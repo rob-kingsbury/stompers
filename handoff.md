@@ -1,41 +1,42 @@
 # Stompers Redesign - Handoff
 
-**Last Updated:** 2026-03-27 (Session 15)
-**Total Open Issues: 10**
+**Last Updated:** 2026-04-13 (Session 16)
+**Total Open Issues: 12**
 
 ---
 
+## SESSION 16: Staging, Production Deploy, Mobile Audit, Performance Fixes
+
+Deployed live to swampcitystompers.ca. Full mobile audit + fixes. Performance improvements.
+
+- **Production deploy:** Site now live at swampcitystompers.ca. Staging retired. Deploy method: tar + scp + SSH untar to `/home/debl4277/public_html/`.
+- **vite.php fix:** `is_vite_dev()` gated on HTTP_HOST being localhost — was serving dev asset tags on production.
+- **bfcache:** Added `pageshow` reload handler for iOS back-button breakage.
+- **Footer:** Replaced ScrollTrigger with IntersectionObserver for footer utility reveal (more reliable post-Barba).
+- **Performance:** WebP logo (669KB vs 7.7MB PNG), deferred hero video load via `data-src` on window.load, cache headers + gzip in .htaccess, `font-display=swap`.
+- **Tour dates:** Updated to 10 confirmed 2026 dates.
+- **Mobile audit:** Accordion max-height fix, footer map mobile layout, EPK split-left flex fix, contact form font-size 16px (iOS zoom), menu nav link clamp reduced, footer social 44px touch targets.
+- **CSS fixes:** `accordion-venue` ellipsis truncation, watch-thumbs horizontal scroll on mobile, tour-list-section reduced mobile padding.
+- **Tagline:** `text-align: center` added (was left-aligned on mobile).
+- **Known regression:** Homepage accordion buttons unresponsive on mobile (#21) — pointer-events fix was attempted and reverted, root cause not fully resolved.
+
 ## SESSION 15: Footer Cleanup, Watch Section, Tour Page, Story Timeline, URL Rewrites, Bug Fixes
 
-Major session: footer simplification, homepage quote→Watch section, tour page rebuild, story page timeline, URL rewrites, critical JS bug fixes.
-
-- **Footer simplified:** Removed bayou atmosphere (treeline SVG, fog, fireflies, water shimmer, Goon watermark, quote zone). Solid black background. Two zones remain: next show (OSM map) + utility strip (booking, socials, nav, copyright).
-- **Homepage Watch section:** Replaced quote/"Words" section with YouTube facade embeds. 7 videos from playlist, session-based rotation, thumbnail strip, "Full Playlist" link. Zero YouTube JS until click. Progress nav updated: "Words" → "Watch".
-- **Homepage contact section removed:** Redundant with footer. Progress nav contact dot removed.
-- **Tour page rebuilt:** Replaced horizontal scroll carousel with accordion list pattern (matching homepage). Page hero with darkened Unsplash image. CTA links to contact page. Shows 50 dates before "Show More".
-- **Story page timeline:** Staggered left/right timeline with center line and gold dots. Updated content (met at local jam, impromptu show origin). Quote section restyled (centered serif, no orange bar).
-- **Sub-page hero images:** All 5 sub-pages now have darkened Unsplash background images with shared `.page-hero-bg` CSS pattern.
-- **Shopping cart icon:** Added to nav beside hamburger on all pages, links to merch.
-- **URL rewrites:** `.htaccess` created with clean URLs (`/tour`, `/story`, etc.). All internal links updated. Barba hash handling for cross-page anchors (`/#band`).
-- **Critical JS fixes:** GSAP ticker callback accumulation (was never removed on Barba transitions — caused ScrollTrigger failures). Vite HMR double-init guard (`import.meta.hot.decline()`). `lenis.raf` null check. FOUC fix (moved `no-js` removal to inline `<head>` script). Progress nav cleanup (timeout + click handlers tracked in cleanupFns). `initNewFooter()` added to Barba afterEnter. `.eyebrow` CSS alias for `.section-number`.
-
-## SESSION 14: EPK Split Screen, Footer Overhaul, Tour Dates DRY, Design System
-
-EPK split-screen layout. Sitewide footer (3 zones). Tour dates DRY (`includes/tour-dates.php`). Design system created. Barba.js async enter fix. BandPilot DB analyzed.
+Footer simplified (solid black). Watch section added (YouTube facade embeds). Tour/Story pages rebuilt. URL rewrites (.htaccess). Critical JS fixes: GSAP ticker accumulation, Vite HMR double-init, FOUC, Barba hash scroll, progress nav cleanup. 6 issues closed.
 
 ---
 
 ## NEXT SESSION PRIORITIES
 
-1. **EPK genre/fans-of review** (#18) — Rob confirms genre direction
-2. **EPK downloads** (#19) — Generate one-sheet PDF, stage plot SVG
-3. **Venue testimonial** (#15) — Need a real quote from a venue owner
-4. **Contact page** — Build out contact form / booking info
-5. **Deploy to staging** — Push updates to staging.swampcitystompers.ca
+1. **Fix mobile accordion (#21)** — Buttons unresponsive on iOS. Likely Lenis/touch event conflict or reveal not firing. Use MCP + device to diagnose.
+2. **EPK genre/fans-of review** (#18) — Rob confirms genre direction
+3. **EPK downloads** (#19) — Generate one-sheet PDF, stage plot SVG
+4. **Venue testimonial** (#15) — Need a real quote from a venue owner
+5. **Contact page** — Build out contact form / booking info
 
 ---
 
-## OPEN ISSUES (10)
+## OPEN ISSUES (12)
 
 | # | Title | Category |
 |---|-------|----------|
@@ -50,6 +51,8 @@ EPK split-screen layout. Sitewide footer (3 zones). Tour dates DRY (`includes/to
 | 15 | EPK: Add real venue testimonial | enhancement |
 | 18 | EPK: Review genre tags and expand For Fans Of | enhancement |
 | 19 | EPK: Generate downloadable assets | enhancement |
+| 20 | Evaluate band-photo-doorway.jpeg for site use | media |
+| 21 | Homepage accordion: buttons unresponsive on mobile | bug |
 
 ---
 
@@ -63,8 +66,9 @@ EPK split-screen layout. Sitewide footer (3 zones). Tour dates DRY (`includes/to
 | `epk.php` | EPK page (split-screen layout) |
 | `merch.php` | Merch page |
 | `contact.php` | Contact page (not started) |
-| `.htaccess` | Clean URL rewrites |
+| `.htaccess` | Clean URL rewrites + cache headers + gzip |
 | `includes/head.php` | Shared `<head>` + no-js removal + vite_assets() |
+| `includes/vite.php` | Vite dev detection (localhost-gated) |
 | `includes/nav.php` | Shared nav (cart icon, hamburger, menu) |
 | `includes/footer.php` | Shared footer (next show + utility strip) |
 | `includes/tour-dates.php` | Single source of truth for all tour dates |
@@ -74,4 +78,4 @@ EPK split-screen layout. Sitewide footer (3 zones). Tour dates DRY (`includes/to
 
 ---
 
-**Continue with:** EPK genre review (#18), contact page build, staging deployment
+**Continue with:** Fix mobile accordion (#21), EPK genre review (#18)

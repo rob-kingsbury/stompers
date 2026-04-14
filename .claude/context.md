@@ -1,11 +1,11 @@
 ---
 project: Stompers
 status: In Progress
-last_session: 15
-session_date: 2026-03-27
-current_focus: "EPK genre review, contact page, staging deploy"
-open_issues: 10
-next_priority: "EPK genre/fans-of review (#18), contact page build, staging deployment"
+last_session: 16
+session_date: 2026-04-13
+current_focus: "Mobile accordion fix, EPK genre review"
+open_issues: 12
+next_priority: "Fix mobile accordion (#21), EPK genre/fans-of review (#18)"
 ---
 
 # Stompers Redesign Context
@@ -71,14 +71,14 @@ socials:
 
 ## Recent Changes
 
+### April 2026 - Session 16: Production Deploy, Mobile Audit, Performance
+
+Site live at swampcitystompers.ca. vite.php fixed for production. bfcache reload handler added. Footer reveal switched to IntersectionObserver. WebP logo, deferred video, cache headers, font-display=swap. Tour dates updated (10 shows). Mobile audit: accordion max-height, footer map, EPK flex, contact font-size 16px, touch targets, ellipsis truncation, watch-thumbs scroll. Open bug: homepage accordion unresponsive on iOS (#21).
+
 ### March 2026 - Session 15: Footer Cleanup, Watch, Tour, Story, URL Rewrites, JS Fixes
 
-Footer simplified (solid black, removed atmosphere/goon/quote zone). Quote section replaced with Watch (YouTube facade embeds, session rotation). Homepage contact section removed. Tour page rebuilt (accordion pattern, hero image). Story page rebuilt (staggered timeline, jam origin story). All sub-pages got darkened hero images. Cart icon added to nav. .htaccess URL rewrites, all links updated to clean URLs. Critical JS fixes: GSAP ticker accumulation, Vite HMR double-init, FOUC fix, Barba hash scroll, progress nav cleanup. 6 issues closed.
+Footer simplified (solid black). Watch section (YouTube facade embeds). Tour/Story pages rebuilt. .htaccess URL rewrites. GSAP ticker fix, Vite HMR guard, FOUC fix, Barba hash scroll. 6 issues closed.
 
 ### March 2026 - Session 14: EPK, Footer, Tour DRY, Design System
 
-EPK split-screen layout. Sitewide footer (3 zones). Tour dates DRY. Design system created. Barba.js async enter fix. BandPilot DB analyzed.
-
-### March 2026 - Session 13: About Images, Quote, Mobile, EPK Scaffold
-
-Replaced about images. New closing quote. Mobile fixes. EPK scaffolded. "The B-side guys" brand insight.
+EPK split-screen layout. Sitewide footer (3 zones). Tour dates DRY. Design system created. Barba.js async enter fix.
