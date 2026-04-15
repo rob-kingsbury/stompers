@@ -1,0 +1,12 @@
+{
+    "Rob Roy's|Smiths Falls, ON": { "lat": "44.9042", "lng": "-76.0274" },
+    "Hard Rock Cafe|Ottawa, ON": { "lat": "45.2946", "lng": "-75.6056" },
+    "Busters|Kanata, ON": { "lat": "45.3088", "lng": "-75.9108" },
+    "The Buckle|Kingston, ON": { "lat": "44.2312", "lng": "-76.4860" },
+    "Ottawa Fun Fair|Gloucester, ON": { "lat": "45.3200", "lng": "-75.6050" },
+    "Kaffe 1870|Wakefield, QC": { "lat": "45.6384", "lng": "-75.9231" },
+    "Aylmer Legion|Aylmer, QC": { "lat": "45.3941", "lng": "-75.8486" },
+    "The Point|Constance Bay, ON": { "lat": "45.3840", "lng": "-76.0710" },
+    "Brauwerk Hoffman|Campbell's Bay, QC": { "lat": "45.7294", "lng": "-76.5917" },
+    "The Cupboard|Arnprior, ON": { "lat": "45.4346", "lng": "-76.3529" }
+}
