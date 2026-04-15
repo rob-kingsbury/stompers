@@ -11,7 +11,7 @@
 
 $all_shows = [
   ['day' => '17', 'month' => 'APR', 'year' => '2026', 'venue' => "Rob Roy's", 'location' => 'Smiths Falls, ON', 'age' => '19+', 'lat' => '44.9042', 'lng' => '-76.0274', 'map_q' => 'Rob+Roys+Smiths+Falls+ON'],
-  ['day' => '23', 'month' => 'APR', 'year' => '2026', 'venue' => 'Hard Rock Cafe', 'location' => 'Ottawa, ON', 'age' => '19+', 'lat' => '45.2946', 'lng' => '-75.6056', 'map_q' => '4837+Albion+Rd+S+Gloucester+ON'],
+  ['day' => '30', 'month' => 'APR', 'year' => '2026', 'venue' => 'Hard Rock Cafe', 'location' => 'Ottawa, ON', 'age' => '19+', 'lat' => '45.2946', 'lng' => '-75.6056', 'map_q' => '4837+Albion+Rd+S+Gloucester+ON'],
   ['day' => '22', 'month' => 'MAY', 'year' => '2026', 'venue' => 'Busters', 'location' => 'Kanata, ON', 'age' => '19+', 'lat' => '45.3088', 'lng' => '-75.9108', 'map_q' => 'Busters+Bar+and+Grill+Kanata+ON'],
   ['day' => '23', 'month' => 'MAY', 'year' => '2026', 'venue' => 'The Buckle', 'location' => 'Kingston, ON', 'age' => '19+', 'lat' => '44.2312', 'lng' => '-76.4860', 'map_q' => 'The+Buckle+Kingston+ON'],
   ['day' => '30', 'month' => 'MAY', 'year' => '2026', 'venue' => 'Ottawa Fun Fair', 'location' => 'Gloucester, ON', 'age' => 'All ages', 'lat' => '45.3200', 'lng' => '-75.6050', 'map_q' => 'Ottawa+Fun+Fair+Gloucester+ON'],
