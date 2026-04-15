@@ -1,11 +1,11 @@
 ---
 project: Stompers
 status: In Progress
-last_session: 16
-session_date: 2026-04-13
-current_focus: "Mobile accordion fix, EPK genre review"
-open_issues: 12
-next_priority: "Fix mobile accordion (#21), EPK genre/fans-of review (#18)"
+last_session: 17
+session_date: 2026-04-15
+current_focus: "Google Sheets tour dates, mobile accordion fix"
+open_issues: 13
+next_priority: "Connect Google Sheets (#22), fix mobile accordion (#21)"
 ---
 
 # Stompers Redesign Context
@@ -71,6 +71,10 @@ socials:
 
 ## Recent Changes
 
+### April 2026 - Session 17: Tour Date Fix, Sheets Integration, Mobile CSS Fixes
+
+Hard Rock Cafe corrected to Apr 30. Hero tagline font-size reverted, text-align:center kept. Accordion pointer-events fix reverted (was breaking mobile clicks). Google Sheets + Nominatim infrastructure built in tour-dates.php — waiting on CSV URL to activate (#22).
+
 ### April 2026 - Session 16: Production Deploy, Mobile Audit, Performance
 
 Site live at swampcitystompers.ca. vite.php fixed for production. bfcache reload handler added. Footer reveal switched to IntersectionObserver. WebP logo, deferred video, cache headers, font-display=swap. Tour dates updated (10 shows). Mobile audit: accordion max-height, footer map, EPK flex, contact font-size 16px, touch targets, ellipsis truncation, watch-thumbs scroll. Open bug: homepage accordion unresponsive on iOS (#21).
@@ -79,6 +83,3 @@ Site live at swampcitystompers.ca. vite.php fixed for production. bfcache reload
 
 Footer simplified (solid black). Watch section (YouTube facade embeds). Tour/Story pages rebuilt. .htaccess URL rewrites. GSAP ticker fix, Vite HMR guard, FOUC fix, Barba hash scroll. 6 issues closed.
 
-### March 2026 - Session 14: EPK, Footer, Tour DRY, Design System
-
-EPK split-screen layout. Sitewide footer (3 zones). Tour dates DRY. Design system created. Barba.js async enter fix.
