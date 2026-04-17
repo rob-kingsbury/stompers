@@ -1058,8 +1058,13 @@ function initTourSection() {
 
   accordionItems.forEach((item) => {
     const header = item.querySelector('.accordion-header');
-    // touchend fires immediately on iOS without the 300ms click delay
+    let touchStartY = 0;
+    header.addEventListener('touchstart', (e) => {
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
     header.addEventListener('touchend', (e) => {
+      const delta = Math.abs(e.changedTouches[0].clientY - touchStartY);
+      if (delta > 10) return; // scroll gesture, not a tap
       e.preventDefault();
       toggleAccordion(item);
     }, { passive: false });
@@ -1079,7 +1084,13 @@ function initTourSection() {
       });
       if (hidden.length <= BATCH) showMoreBtn.style.display = 'none';
     };
-    showMoreBtn.addEventListener('touchend', (e) => { e.preventDefault(); showMore(); }, { passive: false });
+    let showMoreTouchStartY = 0;
+    showMoreBtn.addEventListener('touchstart', (e) => { showMoreTouchStartY = e.touches[0].clientY; }, { passive: true });
+    showMoreBtn.addEventListener('touchend', (e) => {
+      if (Math.abs(e.changedTouches[0].clientY - showMoreTouchStartY) > 10) return;
+      e.preventDefault();
+      showMore();
+    }, { passive: false });
     showMoreBtn.addEventListener('click', showMore);
   }
 

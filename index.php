@@ -236,7 +236,7 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
           <h2 class="section-title">All Shows</h2>
         </header>
 
-        <div class="tour-accordion-list" id="tour-accordion-list">
+        <div class="tour-accordion-list" id="tour-accordion-list" data-lenis-prevent>
           <?php foreach ($future_shows as $i => $show): ?>
           <div class="tour-accordion-item<?= $i >= 6 ? ' is-hidden' : '' ?>" data-venue="<?= htmlspecialchars($show['venue']) ?>">
             <button class="accordion-header" aria-expanded="false">

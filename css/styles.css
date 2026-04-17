@@ -1699,10 +1699,14 @@ button {
 }
 
 .stack-card-image {
-  height: 120px;
+  height: 200px;
   aspect-ratio: unset;
   max-width: 500px;
   margin: 0 auto;
+}
+
+.stack-card-image img {
+  object-position: top;
 }
 
 .member-role {
@@ -1752,6 +1756,9 @@ button {
 
 .tour-list-section {
   padding: var(--spacing-xl) var(--spacing-lg);
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
 }
 
 .watch-thumbs {
@@ -1889,6 +1896,10 @@ button {
     aspect-ratio: 4/5;
     max-width: none;
     margin: 0;
+  }
+
+  .stack-card-image img {
+    object-position: 50% 50%;
   }
 
   .stack-card-content {
