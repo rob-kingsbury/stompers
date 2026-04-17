@@ -239,7 +239,7 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
         <div class="tour-accordion-list" id="tour-accordion-list" data-lenis-prevent>
           <?php foreach ($future_shows as $i => $show): ?>
           <div class="tour-accordion-item<?= $i >= 6 ? ' is-hidden' : '' ?>" data-venue="<?= htmlspecialchars($show['venue']) ?>">
-            <button class="accordion-header" aria-expanded="false">
+            <button type="button" class="accordion-header" aria-expanded="false">
               <span class="accordion-date"><?= $show['month'] ?> <?= $show['day'] ?></span>
               <span class="accordion-venue"><?= htmlspecialchars($show['venue']) ?></span>
               <span class="accordion-location"><?= $show['location'] ?></span>
@@ -260,7 +260,7 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
           <?php endforeach; ?>
         </div>
         <?php if (count($future_shows) > 6): ?>
-        <button class="tour-show-more" id="tour-show-more" aria-label="Show more dates">
+        <button type="button" class="tour-show-more" id="tour-show-more" aria-label="Show more dates">
           Show More Dates
         </button>
         <?php endif; ?>

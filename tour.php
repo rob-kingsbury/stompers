@@ -33,7 +33,7 @@ require_once 'includes/tour-dates.php';
       <div class="tour-accordion-list" id="tour-page-accordion">
         <?php foreach ($future_shows as $i => $show): ?>
         <div class="tour-accordion-item<?= $i >= 50 ? ' is-hidden' : '' ?>" data-venue="<?= htmlspecialchars($show['venue']) ?>">
-          <button class="accordion-header" aria-expanded="false">
+          <button type="button" class="accordion-header" aria-expanded="false">
             <span class="accordion-date"><?= $show['month'] ?> <?= $show['day'] ?></span>
             <span class="accordion-venue"><?= htmlspecialchars($show['venue']) ?></span>
             <span class="accordion-location"><?= $show['location'] ?></span>
@@ -54,7 +54,7 @@ require_once 'includes/tour-dates.php';
         <?php endforeach; ?>
       </div>
       <?php if (count($future_shows) > 50): ?>
-      <button class="tour-show-more" id="tour-page-show-more" aria-label="Show more dates">
+      <button type="button" class="tour-show-more" id="tour-page-show-more" aria-label="Show more dates">
         Show More Dates
       </button>
       <?php endif; ?>

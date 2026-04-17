@@ -1706,10 +1706,10 @@ button {
   margin: 0 auto;
 }
 
-.stack-card-image img {
-  object-fit: cover;
-  object-position: 50% 15%;
-}
+.stack-card[data-index="0"] .stack-card-image img { object-position: 50% 16%; } /* Rob */
+.stack-card[data-index="1"] .stack-card-image img { object-position: 50% 22%; } /* Jeans */
+.stack-card[data-index="2"] .stack-card-image img { object-position: 50% 26%; } /* Kurt */
+.stack-card[data-index="3"] .stack-card-image img { object-position: 50% 30%; } /* Matt */
 
 .member-role {
   margin-bottom: 0.5rem;
@@ -1900,7 +1900,11 @@ button {
     margin: 0;
   }
 
-  .stack-card-image img {
+  .stack-card-image img,
+  .stack-card[data-index="0"] .stack-card-image img,
+  .stack-card[data-index="1"] .stack-card-image img,
+  .stack-card[data-index="2"] .stack-card-image img,
+  .stack-card[data-index="3"] .stack-card-image img {
     object-position: 50% 50%;
   }
 
