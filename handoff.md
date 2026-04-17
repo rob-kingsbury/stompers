@@ -1,34 +1,28 @@
 # Stompers Redesign - Handoff
 
-**Last Updated:** 2026-04-17 (Session 18)
+**Last Updated:** 2026-04-17 (Session 19)
 **Total Open Issues: 12**
 
 ---
 
+## SESSION 19: Mobile Fixes, Security, Audit
+
+Band card images fixed (width:100%, per-member object-position). Tour page scroll-to-bottom fixed (scrollRestoration=manual in head). Homepage "See All Dates" now links to tour.php. Tour page iOS accordion ported: data-lenis-prevent + touchend delta guard. Soren+Atlas audit run — iOS accordion code confirmed correct (not a code bug, cache issue). Security: email header injection fixed, all show fields wrapped in e() helper, OG image absolute URL fixed. Fullpage tour card iframes made eager-load.
+
 ## SESSION 18: Mobile Accordion Fix, Band Card Images
 
-Fixed long-standing iOS accordion bug and band card image cropping.
-
-- **Mobile accordion fixed (#21 closed):** Root cause was Lenis intercepting touch events. Fix: `data-lenis-prevent` on `.tour-accordion-list`, touchstart/touchend delta guard (>10px = scroll gesture, ignored), tour-list-section forced visible on mobile (opacity:1, transform:none — skips GSAP reveal animation).
-- **Band card images:** Height 200px (was 120px — too short), `object-position: top` on mobile so faces show. Reset to `50% 50%` on desktop (min-width 992px).
-- MCP verified: accordion opens to 272px, object-position confirmed `50% 0%` on live server.
-
-## SESSION 17: Tour Date Fixes, Google Sheets Integration, Accordion/Tagline Mobile Fixes
-
-Minor session: tour date corrections, mobile CSS fixes, Google Sheets + Nominatim infrastructure built.
-
-- Hard Rock Cafe corrected to Apr 30. Hero tagline font-size reverted. Accordion pointer-events fix reverted.
-- Google Sheets integration built (#22): `tour-dates.php` fetches CSV, auto-geocodes via Nominatim, falls back to hardcoded. Waiting on Rob to create sheet and share CSV URL.
+iOS accordion fixed (#21 closed): data-lenis-prevent on list, touchend delta guard, tour section forced visible. Band card images 200px with object-position:top. MCP verified on live server.
 
 ---
 
 ## NEXT SESSION PRIORITIES
 
-1. **Connect Google Sheets (#22)** — Rob creates sheet, shares CSV URL, paste into `SHEETS_CSV_URL` in `tour-dates.php` and deploy
-2. **Test accordion on real iOS device** — MCP confirms working in Chromium; needs real-device verification
+1. **Verify accordion on real iOS device** — audit confirms code is correct; if still failing, connect Safari devtools via USB to a Mac and get console logs
+2. **Connect Google Sheets (#22)** — Rob creates sheet, shares CSV URL, paste into SHEETS_CSV_URL in tour-dates.php and deploy
 3. **EPK genre/fans-of review (#18)** — Rob confirms genre direction
 4. **EPK downloads (#19)** — One-sheet PDF, stage plot SVG
 5. **Contact page** — Build out contact form / booking info
+6. **Replace Unsplash hotlinks** — Download + WebP convert 13 images, heroes first (audit M6)
 
 ---
 
@@ -62,9 +56,9 @@ Minor session: tour date corrections, mobile CSS fixes, Google Sheets + Nominati
 | `merch.php` | Merch page |
 | `contact.php` | Contact page (not started) |
 | `.htaccess` | Clean URL rewrites + cache headers + gzip |
-| `includes/tour-dates.php` | Tour dates — Sheets CSV fetch + Nominatim geocoding + fallback |
+| `includes/tour-dates.php` | Tour dates — Sheets CSV + Nominatim + fallback; defines e() helper |
 | `includes/vite.php` | Vite dev detection (localhost-gated) |
-| `includes/head.php` | Shared `<head>` |
+| `includes/head.php` | Shared head — sets scrollRestoration=manual inline |
 | `includes/nav.php` | Shared nav |
 | `includes/footer.php` | Shared footer |
 | `data/geo-cache.json` | Permanent venue coordinate cache (do not delete) |
@@ -73,4 +67,4 @@ Minor session: tour date corrections, mobile CSS fixes, Google Sheets + Nominati
 
 ---
 
-**Continue with:** Connect Google Sheets (#22), verify accordion on real iOS device
+**Continue with:** Verify accordion on real iOS (Safari devtools if needed), then Google Sheets (#22)

@@ -1,11 +1,11 @@
 ---
 project: Stompers
 status: In Progress
-last_session: 18
+last_session: 19
 session_date: 2026-04-17
-current_focus: "Mobile accordion fix, band card images"
+current_focus: "Mobile fixes, security audit, accordion debugging"
 open_issues: 12
-next_priority: "Connect Google Sheets (#22), verify accordion on real iOS"
+next_priority: "Verify accordion on real iOS (Safari devtools if needed), Google Sheets (#22)"
 ---
 
 # Stompers Redesign Context
@@ -71,15 +71,15 @@ socials:
 
 ## Recent Changes
 
+### April 2026 - Session 19: Mobile Fixes, Security, Collab Audit
+
+Band card images: width:100% + per-member object-position. Tour page scroll-to-top fixed (scrollRestoration=manual in head). See All Dates links to tour.php. Tour page accordion ported iOS fixes. Soren+Atlas audit: accordion code confirmed correct, email header injection fixed, all show fields wrapped in e(), OG image absolute URL fixed, fullpage map iframes eager-load.
+
 ### April 2026 - Session 18: Mobile Accordion Fix, Band Card Images
 
-iOS accordion fixed: data-lenis-prevent on list, touchend delta guard, tour-list-section forced visible on mobile. Band card images 200px with object-position:top (faces visible). #21 closed.
+iOS accordion fixed: data-lenis-prevent, touchend delta guard, tour section forced visible. Band card images 200px + object-position per member. #21 closed.
 
 ### April 2026 - Session 17: Tour Date Fix, Sheets Integration, Mobile CSS Fixes
 
-Hard Rock Cafe corrected to Apr 30. Hero tagline font-size reverted. Google Sheets + Nominatim infrastructure built in tour-dates.php — waiting on CSV URL to activate (#22).
-
-### April 2026 - Session 16: Production Deploy, Mobile Audit, Performance
-
-Site live at swampcitystompers.ca. vite.php fixed for production. bfcache reload handler, IntersectionObserver footer, WebP logo, deferred video, cache headers. Mobile audit pass.
+Hard Rock Cafe corrected to Apr 30. Hero tagline font-size reverted. Google Sheets + Nominatim infrastructure built in tour-dates.php.
 
