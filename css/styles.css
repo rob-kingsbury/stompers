@@ -1679,6 +1679,7 @@ button {
 
 .stack-card {
   width: calc(100% - var(--spacing-xl));
+  min-height: auto;
   padding: 3rem 1.5rem;
   border-radius: 16px;
 }
@@ -1690,18 +1691,20 @@ button {
 
 .stack-card-inner {
   grid-template-columns: 1fr;
-  gap: 3rem;
+  gap: 1.5rem;
   text-align: center;
+}
+
+.stack-card-image {
+  height: 180px;
+  aspect-ratio: unset;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .stack-card[data-index="1"] .stack-card-inner,
 .stack-card[data-index="3"] .stack-card-inner {
   direction: ltr;
-}
-
-.stack-card-image {
-  max-width: 500px;
-  margin: 0 auto;
 }
 
 .stack-card-content {
@@ -1871,6 +1874,8 @@ button {
   }
 
   .stack-card-image {
+    height: auto;
+    aspect-ratio: 4/5;
     max-width: none;
     margin: 0;
   }
