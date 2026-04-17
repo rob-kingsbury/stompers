@@ -212,19 +212,19 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
         <?php foreach ($upcoming as $i => $show): ?>
         <article class="tour-fullpage-card" data-show="<?= $i ?>">
           <div class="fullpage-card-bg fullpage-card-bg--map">
-            <iframe class="tour-static-map" src="https://www.openstreetmap.org/export/embed.html?bbox=<?= $show['lng'] - 0.04 ?>,<?= $show['lat'] - 0.02 ?>,<?= $show['lng'] + 0.04 ?>,<?= $show['lat'] + 0.02 ?>&layer=mapnik&marker=<?= $show['lat'] ?>,<?= $show['lng'] ?>" loading="lazy" title="Map of <?= htmlspecialchars($show['venue']) ?>" aria-hidden="true"></iframe>
+            <iframe class="tour-static-map" src="https://www.openstreetmap.org/export/embed.html?bbox=<?= $show['lng'] - 0.04 ?>,<?= $show['lat'] - 0.02 ?>,<?= $show['lng'] + 0.04 ?>,<?= $show['lat'] + 0.02 ?>&layer=mapnik&marker=<?= $show['lat'] ?>,<?= $show['lng'] ?>" title="Map of <?= htmlspecialchars($show['venue']) ?>" aria-hidden="true"></iframe>
           </div>
           <div class="fullpage-card-content">
             <div class="show-date-big">
-              <span class="date-day"><?= $show['day'] ?></span>
-              <span class="date-month"><?= $show['month'] ?></span>
-              <span class="date-year"><?= $show['year'] ?></span>
+              <span class="date-day"><?= e($show['day']) ?></span>
+              <span class="date-month"><?= e($show['month']) ?></span>
+              <span class="date-year"><?= e($show['year']) ?></span>
             </div>
-            <h3 class="show-venue-big"><?= htmlspecialchars($show['venue']) ?></h3>
-            <p class="show-location-big"><?= $show['location'] ?></p>
+            <h3 class="show-venue-big"><?= e($show['venue']) ?></h3>
+            <p class="show-location-big"><?= e($show['location']) ?></p>
             <div class="show-details-big">
-              <?php if (!empty($show['note'])): ?><span><?= $show['note'] ?></span><?php endif; ?>
-              <span><?= $show['age'] ?></span>
+              <?php if (!empty($show['note'])): ?><span><?= e($show['note']) ?></span><?php endif; ?>
+              <span><?= e($show['age']) ?></span>
             </div>
           </div>
         </article>
@@ -240,20 +240,20 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
           <?php foreach ($future_shows as $i => $show): ?>
           <div class="tour-accordion-item<?= $i >= 6 ? ' is-hidden' : '' ?>" data-venue="<?= htmlspecialchars($show['venue']) ?>">
             <button type="button" class="accordion-header" aria-expanded="false">
-              <span class="accordion-date"><?= $show['month'] ?> <?= $show['day'] ?></span>
-              <span class="accordion-venue"><?= htmlspecialchars($show['venue']) ?></span>
-              <span class="accordion-location"><?= $show['location'] ?></span>
+              <span class="accordion-date"><?= e($show['month']) ?> <?= e($show['day']) ?></span>
+              <span class="accordion-venue"><?= e($show['venue']) ?></span>
+              <span class="accordion-location"><?= e($show['location']) ?></span>
               <span class="accordion-icon"></span>
             </button>
             <div class="accordion-body" role="region">
               <div class="accordion-map">
-                <iframe src="https://www.google.com/maps?q=<?= $show['map_q'] ?>&output=embed" loading="lazy" title="Map showing <?= htmlspecialchars($show['venue']) ?>, <?= $show['location'] ?>"></iframe>
+                <iframe src="https://www.google.com/maps?q=<?= $show['map_q'] ?>&output=embed" loading="lazy" title="Map showing <?= e($show['venue']) ?>, <?= e($show['location']) ?>"></iframe>
               </div>
               <div class="accordion-details">
                 <?php if (!empty($show['note'])): ?>
-                <p><strong>Note:</strong> <?= $show['note'] ?></p>
+                <p><strong>Note:</strong> <?= e($show['note']) ?></p>
                 <?php endif; ?>
-                <p><strong>Age:</strong> <?= $show['age'] ?></p>
+                <p><strong>Age:</strong> <?= e($show['age']) ?></p>
               </div>
             </div>
           </div>

@@ -4,7 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
   exit;
 }
 
-$name    = trim(strip_tags($_POST['name'] ?? ''));
+$name    = str_replace(["\r", "\n"], '', trim(strip_tags($_POST['name'] ?? '')));
 $email   = trim(strip_tags($_POST['email'] ?? ''));
 $subject = trim(strip_tags($_POST['subject'] ?? ''));
 $message = trim(strip_tags($_POST['message'] ?? ''));

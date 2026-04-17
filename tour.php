@@ -32,22 +32,22 @@ require_once 'includes/tour-dates.php';
 
       <div class="tour-accordion-list" id="tour-page-accordion" data-lenis-prevent>
         <?php foreach ($future_shows as $i => $show): ?>
-        <div class="tour-accordion-item<?= $i >= 50 ? ' is-hidden' : '' ?>" data-venue="<?= htmlspecialchars($show['venue']) ?>">
+        <div class="tour-accordion-item<?= $i >= 50 ? ' is-hidden' : '' ?>" data-venue="<?= e($show['venue']) ?>">
           <button type="button" class="accordion-header" aria-expanded="false">
-            <span class="accordion-date"><?= $show['month'] ?> <?= $show['day'] ?></span>
-            <span class="accordion-venue"><?= htmlspecialchars($show['venue']) ?></span>
-            <span class="accordion-location"><?= $show['location'] ?></span>
+            <span class="accordion-date"><?= e($show['month']) ?> <?= e($show['day']) ?></span>
+            <span class="accordion-venue"><?= e($show['venue']) ?></span>
+            <span class="accordion-location"><?= e($show['location']) ?></span>
             <span class="accordion-icon"></span>
           </button>
           <div class="accordion-body" role="region">
             <div class="accordion-map">
-              <iframe src="https://www.google.com/maps?q=<?= $show['map_q'] ?>&output=embed" loading="lazy" title="Map showing <?= htmlspecialchars($show['venue']) ?>, <?= $show['location'] ?>"></iframe>
+              <iframe src="https://www.google.com/maps?q=<?= $show['map_q'] ?>&output=embed" loading="lazy" title="Map showing <?= e($show['venue']) ?>, <?= e($show['location']) ?>"></iframe>
             </div>
             <div class="accordion-details">
               <?php if (!empty($show['note'])): ?>
-              <p><strong>Note:</strong> <?= $show['note'] ?></p>
+              <p><strong>Note:</strong> <?= e($show['note']) ?></p>
               <?php endif; ?>
-              <p><strong>Age:</strong> <?= $show['age'] ?></p>
+              <p><strong>Age:</strong> <?= e($show['age']) ?></p>
             </div>
           </div>
         </div>

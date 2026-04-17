@@ -24,15 +24,15 @@ $month_names = [
         class="footer-next-show-map"
         src="https://www.openstreetmap.org/export/embed.html?bbox=<?= $next_show['lng'] - 0.04 ?>,<?= $next_show['lat'] - 0.02 ?>,<?= $next_show['lng'] + 0.04 ?>,<?= $next_show['lat'] + 0.02 ?>&layer=mapnik&marker=<?= $next_show['lat'] ?>,<?= $next_show['lng'] ?>"
         loading="lazy"
-        title="Map — <?= htmlspecialchars($next_show['venue']) ?>, <?= $next_show['location'] ?>"
+        title="Map — <?= e($next_show['venue']) ?>, <?= e($next_show['location']) ?>"
         aria-hidden="true"
       ></iframe>
       <?php endif; ?>
       <div class="footer-next-show-content">
         <div class="footer-next-show-label">Next Show</div>
-        <div class="footer-next-show-date"><?= $month_names[$next_show['month']] ?? $next_show['month'] ?> <?= (int)$next_show['day'] ?>, <?= $next_show['year'] ?></div>
-        <div class="footer-next-show-venue"><?= htmlspecialchars($next_show['venue']) ?></div>
-        <div class="footer-next-show-location"><?= $next_show['location'] ?><?= !empty($next_show['age']) ? ' &middot; ' . $next_show['age'] : '' ?></div>
+        <div class="footer-next-show-date"><?= e($month_names[$next_show['month']] ?? $next_show['month']) ?> <?= (int)$next_show['day'] ?>, <?= e($next_show['year']) ?></div>
+        <div class="footer-next-show-venue"><?= e($next_show['venue']) ?></div>
+        <div class="footer-next-show-location"><?= e($next_show['location']) ?><?= !empty($next_show['age']) ? ' &middot; ' . e($next_show['age']) : '' ?></div>
         <a href="tour" class="footer-next-show-cta">View All Dates</a>
       </div>
     </div>
