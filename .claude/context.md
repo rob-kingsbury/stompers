@@ -1,11 +1,11 @@
 ---
 project: Stompers
 status: In Progress
-last_session: 17
-session_date: 2026-04-15
-current_focus: "Google Sheets tour dates, mobile accordion fix"
-open_issues: 13
-next_priority: "Connect Google Sheets (#22), fix mobile accordion (#21)"
+last_session: 18
+session_date: 2026-04-17
+current_focus: "Mobile accordion fix, band card images"
+open_issues: 12
+next_priority: "Connect Google Sheets (#22), verify accordion on real iOS"
 ---
 
 # Stompers Redesign Context
@@ -71,15 +71,15 @@ socials:
 
 ## Recent Changes
 
+### April 2026 - Session 18: Mobile Accordion Fix, Band Card Images
+
+iOS accordion fixed: data-lenis-prevent on list, touchend delta guard, tour-list-section forced visible on mobile. Band card images 200px with object-position:top (faces visible). #21 closed.
+
 ### April 2026 - Session 17: Tour Date Fix, Sheets Integration, Mobile CSS Fixes
 
-Hard Rock Cafe corrected to Apr 30. Hero tagline font-size reverted, text-align:center kept. Accordion pointer-events fix reverted (was breaking mobile clicks). Google Sheets + Nominatim infrastructure built in tour-dates.php — waiting on CSV URL to activate (#22).
+Hard Rock Cafe corrected to Apr 30. Hero tagline font-size reverted. Google Sheets + Nominatim infrastructure built in tour-dates.php — waiting on CSV URL to activate (#22).
 
 ### April 2026 - Session 16: Production Deploy, Mobile Audit, Performance
 
-Site live at swampcitystompers.ca. vite.php fixed for production. bfcache reload handler added. Footer reveal switched to IntersectionObserver. WebP logo, deferred video, cache headers, font-display=swap. Tour dates updated (10 shows). Mobile audit: accordion max-height, footer map, EPK flex, contact font-size 16px, touch targets, ellipsis truncation, watch-thumbs scroll. Open bug: homepage accordion unresponsive on iOS (#21).
-
-### March 2026 - Session 15: Footer Cleanup, Watch, Tour, Story, URL Rewrites, JS Fixes
-
-Footer simplified (solid black). Watch section (YouTube facade embeds). Tour/Story pages rebuilt. .htaccess URL rewrites. GSAP ticker fix, Vite HMR guard, FOUC fix, Barba hash scroll. 6 issues closed.
+Site live at swampcitystompers.ca. vite.php fixed for production. bfcache reload handler, IntersectionObserver footer, WebP logo, deferred video, cache headers. Mobile audit pass.
 
