@@ -1050,40 +1050,37 @@ function initTourSection() {
   }
 
   // Accordion functionality
+  const toggleAccordion = (item) => {
+    const isOpen = item.classList.contains('is-open');
+    accordionItems.forEach((other) => { if (other !== item) other.classList.remove('is-open'); });
+    item.classList.toggle('is-open', !isOpen);
+  };
+
   accordionItems.forEach((item) => {
     const header = item.querySelector('.accordion-header');
-
-    header.addEventListener('click', () => {
-      const isOpen = item.classList.contains('is-open');
-
-      // Close all other items
-      accordionItems.forEach((other) => {
-        if (other !== item) {
-          other.classList.remove('is-open');
-        }
-      });
-
-      // Toggle current item
-      item.classList.toggle('is-open', !isOpen);
-    });
+    // touchend fires immediately on iOS without the 300ms click delay
+    header.addEventListener('touchend', (e) => {
+      e.preventDefault();
+      toggleAccordion(item);
+    }, { passive: false });
+    header.addEventListener('click', () => toggleAccordion(item));
   });
 
   // "Show More" lazy loader — reveal 6 hidden items at a time
   const showMoreBtn = document.getElementById('tour-show-more');
   if (showMoreBtn) {
     const BATCH = 6;
-    showMoreBtn.addEventListener('click', () => {
+    const showMore = () => {
       const hidden = document.querySelectorAll('.tour-accordion-item.is-hidden');
       const batch = Array.from(hidden).slice(0, BATCH);
-      batch.forEach((item, i) => {
+      batch.forEach((item) => {
         item.classList.remove('is-hidden');
         item.classList.add('is-visible');
       });
-      // Hide button when no more hidden items
-      if (hidden.length <= BATCH) {
-        showMoreBtn.style.display = 'none';
-      }
-    });
+      if (hidden.length <= BATCH) showMoreBtn.style.display = 'none';
+    };
+    showMoreBtn.addEventListener('touchend', (e) => { e.preventDefault(); showMore(); }, { passive: false });
+    showMoreBtn.addEventListener('click', showMore);
   }
 
   // Mark visible items for animation

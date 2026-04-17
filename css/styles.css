@@ -1007,6 +1007,7 @@ button {
   background: none;
   border: var(--border-width) solid var(--color-accent);
   cursor: pointer;
+  touch-action: manipulation;
   transition: background var(--duration-slow) ease, color var(--duration-slow) ease;
 }
 
@@ -1023,6 +1024,8 @@ button {
   width: 100%;
   padding: var(--spacing-lg) 0;
   text-align: left;
+  cursor: pointer;
+  touch-action: manipulation;
   transition: all 0.3s ease;
 }
 
@@ -1696,10 +1699,18 @@ button {
 }
 
 .stack-card-image {
-  height: 180px;
+  height: 120px;
   aspect-ratio: unset;
   max-width: 500px;
   margin: 0 auto;
+}
+
+.member-role {
+  margin-bottom: 0.5rem;
+}
+
+.member-bio {
+  margin-bottom: 0.75rem;
 }
 
 .stack-card[data-index="1"] .stack-card-inner,
