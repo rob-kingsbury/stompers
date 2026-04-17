@@ -1071,29 +1071,6 @@ function initTourSection() {
     header.addEventListener('click', () => toggleAccordion(item));
   });
 
-  // "Show More" lazy loader — reveal 6 hidden items at a time
-  const showMoreBtn = document.getElementById('tour-show-more');
-  if (showMoreBtn) {
-    const BATCH = 6;
-    const showMore = () => {
-      const hidden = document.querySelectorAll('.tour-accordion-item.is-hidden');
-      const batch = Array.from(hidden).slice(0, BATCH);
-      batch.forEach((item) => {
-        item.classList.remove('is-hidden');
-        item.classList.add('is-visible');
-      });
-      if (hidden.length <= BATCH) showMoreBtn.style.display = 'none';
-    };
-    let showMoreTouchStartY = 0;
-    showMoreBtn.addEventListener('touchstart', (e) => { showMoreTouchStartY = e.touches[0].clientY; }, { passive: true });
-    showMoreBtn.addEventListener('touchend', (e) => {
-      if (Math.abs(e.changedTouches[0].clientY - showMoreTouchStartY) > 10) return;
-      e.preventDefault();
-      showMore();
-    }, { passive: false });
-    showMoreBtn.addEventListener('click', showMore);
-  }
-
   // Mark visible items for animation
   accordionItems.forEach((item) => {
     if (!item.classList.contains('is-hidden')) {
@@ -1235,32 +1212,43 @@ function initTourPage() {
     }
   }
 
-  // Accordion functionality (same pattern as homepage)
+  // Accordion functionality with iOS touch delta guard
+  const toggleTourPageAccordion = (item) => {
+    const isOpen = item.classList.contains('is-open');
+    accordionItems.forEach((other) => { if (other !== item) other.classList.remove('is-open'); });
+    item.classList.toggle('is-open', !isOpen);
+  };
+
   accordionItems.forEach((item) => {
     const header = item.querySelector('.accordion-header');
-    header.addEventListener('click', () => {
-      const isOpen = item.classList.contains('is-open');
-      accordionItems.forEach((other) => {
-        if (other !== item) other.classList.remove('is-open');
-      });
-      item.classList.toggle('is-open', !isOpen);
-    });
+    let touchStartY = 0;
+    header.addEventListener('touchstart', (e) => { touchStartY = e.touches[0].clientY; }, { passive: true });
+    header.addEventListener('touchend', (e) => {
+      if (Math.abs(e.changedTouches[0].clientY - touchStartY) > 10) return;
+      e.preventDefault();
+      toggleTourPageAccordion(item);
+    }, { passive: false });
+    header.addEventListener('click', () => toggleTourPageAccordion(item));
   });
 
   // Show more button
   const showMoreBtn = document.getElementById('tour-page-show-more');
   if (showMoreBtn) {
     const BATCH = 6;
-    showMoreBtn.addEventListener('click', () => {
+    const showMore = () => {
       const hidden = document.querySelectorAll('.tour-page-dates .tour-accordion-item.is-hidden');
       const batch = Array.from(hidden).slice(0, BATCH);
-      batch.forEach((item) => {
-        item.classList.remove('is-hidden');
-      });
-      if (hidden.length <= BATCH) {
-        showMoreBtn.style.display = 'none';
-      }
-    });
+      batch.forEach((item) => { item.classList.remove('is-hidden'); });
+      if (hidden.length <= BATCH) showMoreBtn.style.display = 'none';
+    };
+    let showMoreTouchStartY = 0;
+    showMoreBtn.addEventListener('touchstart', (e) => { showMoreTouchStartY = e.touches[0].clientY; }, { passive: true });
+    showMoreBtn.addEventListener('touchend', (e) => {
+      if (Math.abs(e.changedTouches[0].clientY - showMoreTouchStartY) > 10) return;
+      e.preventDefault();
+      showMore();
+    }, { passive: false });
+    showMoreBtn.addEventListener('click', showMore);
   }
 
   // CTA section reveal

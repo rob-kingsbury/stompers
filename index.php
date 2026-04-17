@@ -260,9 +260,9 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
           <?php endforeach; ?>
         </div>
         <?php if (count($future_shows) > 6): ?>
-        <button type="button" class="tour-show-more" id="tour-show-more" aria-label="Show more dates">
-          Show More Dates
-        </button>
+        <a href="tour" class="tour-show-more" aria-label="See all dates">
+          See All Dates
+        </a>
         <?php endif; ?>
       </div>
     </section>

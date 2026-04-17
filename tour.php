@@ -30,7 +30,7 @@ require_once 'includes/tour-dates.php';
         <h2 class="section-title">All Shows</h2>
       </header>
 
-      <div class="tour-accordion-list" id="tour-page-accordion">
+      <div class="tour-accordion-list" id="tour-page-accordion" data-lenis-prevent>
         <?php foreach ($future_shows as $i => $show): ?>
         <div class="tour-accordion-item<?= $i >= 50 ? ' is-hidden' : '' ?>" data-venue="<?= htmlspecialchars($show['venue']) ?>">
           <button type="button" class="accordion-header" aria-expanded="false">
