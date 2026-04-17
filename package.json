@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "npm run build && tar --exclude='.git' --exclude='node_modules' --exclude='.claude' --exclude='*.md' --exclude='index.html' --exclude='*.jsonl' --exclude='footer-demos.html' --exclude='footer-final.html' --exclude='scroll-analysis-output' -czf /tmp/stompers-deploy.tar.gz . && scp /tmp/stompers-deploy.tar.gz whc-hellopebble:/tmp/ && ssh whc-hellopebble \"cd /home/debl4277/public_html && tar -xzf /tmp/stompers-deploy.tar.gz && rm /tmp/stompers-deploy.tar.gz && echo DEPLOY OK\""
   },
   "keywords": [
     "band",
