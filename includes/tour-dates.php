@@ -25,16 +25,17 @@ const TOUR_CACHE_TTL  = 3600; // seconds before re-fetching the sheet
 // Fallback — used when Sheets URL is empty or fetch fails
 // ----------------------------------------------------------------
 const FALLBACK_SHOWS = [
-    ['day'=>'17','month'=>'APR','year'=>'2026','venue'=>"Rob Roy's",       'location'=>'Smiths Falls, ON',   'age'=>'19+',      'note'=>''],
-    ['day'=>'30','month'=>'APR','year'=>'2026','venue'=>'Hard Rock Cafe',  'location'=>'Ottawa, ON',          'age'=>'19+',      'note'=>''],
-    ['day'=>'22','month'=>'MAY','year'=>'2026','venue'=>'Busters',         'location'=>'Kanata, ON',          'age'=>'19+',      'note'=>''],
-    ['day'=>'23','month'=>'MAY','year'=>'2026','venue'=>'The Buckle',      'location'=>'Kingston, ON',        'age'=>'19+',      'note'=>''],
-    ['day'=>'30','month'=>'MAY','year'=>'2026','venue'=>'Ottawa Fun Fair', 'location'=>'Gloucester, ON',      'age'=>'All ages', 'note'=>''],
-    ['day'=>'12','month'=>'JUN','year'=>'2026','venue'=>'Kaffe 1870',      'location'=>'Wakefield, QC',       'age'=>'18+',      'note'=>''],
-    ['day'=>'01','month'=>'JUL','year'=>'2026','venue'=>'Aylmer Legion',   'location'=>'Aylmer, QC',          'age'=>'18+',      'note'=>''],
-    ['day'=>'11','month'=>'JUL','year'=>'2026','venue'=>'The Point',       'location'=>'Constance Bay, ON',   'age'=>'19+',      'note'=>''],
-    ['day'=>'12','month'=>'JUL','year'=>'2026','venue'=>'Brauwerk Hoffman','location'=>"Campbell's Bay, QC",  'age'=>'18+',      'note'=>''],
-    ['day'=>'08','month'=>'AUG','year'=>'2026','venue'=>'The Cupboard',    'location'=>'Arnprior, ON',        'age'=>'19+',      'note'=>''],
+    ['day'=>'17','month'=>'APR','year'=>'2026','venue'=>"Rob Roy's",        'location'=>'Smiths Falls, ON',   'age'=>'19+',      'note'=>''],
+    ['day'=>'30','month'=>'APR','year'=>'2026','venue'=>'Hard Rock Cafe',   'location'=>'Bank St, Ottawa, ON', 'age'=>'19+',      'note'=>''],
+    ['day'=>'16','month'=>'MAY','year'=>'2026','venue'=>'Cold Bear Brewery','location'=>'Arnprior, ON',        'age'=>'19+',      'note'=>''],
+    ['day'=>'22','month'=>'MAY','year'=>'2026','venue'=>'Busters',          'location'=>'Kanata, ON',          'age'=>'19+',      'note'=>''],
+    ['day'=>'23','month'=>'MAY','year'=>'2026','venue'=>'The Buckle',       'location'=>'Kingston, ON',        'age'=>'19+',      'note'=>''],
+    ['day'=>'30','month'=>'MAY','year'=>'2026','venue'=>'Ottawa Fun Fair',  'location'=>'Gloucester, ON',      'age'=>'All ages', 'note'=>''],
+    ['day'=>'12','month'=>'JUN','year'=>'2026','venue'=>'Kaffe 1870',       'location'=>'Wakefield, QC',       'age'=>'18+',      'note'=>''],
+    ['day'=>'01','month'=>'JUL','year'=>'2026','venue'=>'Aylmer Legion',    'location'=>'Aylmer, QC',          'age'=>'18+',      'note'=>''],
+    ['day'=>'11','month'=>'JUL','year'=>'2026','venue'=>'The Point',        'location'=>'Constance Bay, ON',   'age'=>'19+',      'note'=>''],
+    ['day'=>'18','month'=>'JUL','year'=>'2026','venue'=>'Brauwerk Hoffman', 'location'=>"Campbell's Bay, QC",  'age'=>'18+',      'note'=>''],
+    ['day'=>'08','month'=>'AUG','year'=>'2026','venue'=>'The Cupboard',     'location'=>'Arnprior, ON',        'age'=>'19+',      'note'=>''],
 ];
 
 // ----------------------------------------------------------------
