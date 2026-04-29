@@ -1,17 +1,17 @@
 # Stompers Redesign - Handoff
 
-**Last Updated:** 2026-04-17 (Session 19)
+**Last Updated:** 2026-04-28 (Session 20)
 **Total Open Issues: 12**
 
 ---
 
+## SESSION 20: Tour Date Updates
+
+Quick update session. Added May 16 Cold Bear Brewery (100 Madawaska Blvd, Arnprior) with pre-cached coords. Brauwerk Hoffman date corrected (Jul 12 -> Jul 18). Hard Rock "Cafe" was actually Hard Rock Casino (4837 Albion Rd, south Ottawa) — venue name + coords updated.
+
 ## SESSION 19: Mobile Fixes, Security, Audit
 
-Band card images fixed (width:100%, per-member object-position). Tour page scroll-to-bottom fixed (scrollRestoration=manual in head). Homepage "See All Dates" now links to tour.php. Tour page iOS accordion ported: data-lenis-prevent + touchend delta guard. Soren+Atlas audit run — iOS accordion code confirmed correct (not a code bug, cache issue). Security: email header injection fixed, all show fields wrapped in e() helper, OG image absolute URL fixed. Fullpage tour card iframes made eager-load.
-
-## SESSION 18: Mobile Accordion Fix, Band Card Images
-
-iOS accordion fixed (#21 closed): data-lenis-prevent on list, touchend delta guard, tour section forced visible. Band card images 200px with object-position:top. MCP verified on live server.
+Band card images fixed (width:100%, per-member object-position). Tour page scroll fix (scrollRestoration=manual in head). Homepage "See All Dates" links to tour.php. Tour page iOS accordion ported. Soren+Atlas audit confirmed accordion code is correct (cache issue). Security: email header injection, e() helper, OG image URL, eager map iframes.
 
 ---
 
@@ -67,4 +67,4 @@ iOS accordion fixed (#21 closed): data-lenis-prevent on list, touchend delta gua
 
 ---
 
-**Continue with:** Verify accordion on real iOS (Safari devtools if needed), then Google Sheets (#22)
+**Continue with:** Verify maps on live site (Hard Rock Casino + Cold Bear Brewery). Then accordion verification on real iOS, then Google Sheets (#22).

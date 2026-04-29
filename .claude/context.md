@@ -1,11 +1,11 @@
 ---
 project: Stompers
 status: In Progress
-last_session: 19
-session_date: 2026-04-17
-current_focus: "Mobile fixes, security audit, accordion debugging"
+last_session: 20
+session_date: 2026-04-28
+current_focus: "Tour date updates"
 open_issues: 12
-next_priority: "Verify accordion on real iOS (Safari devtools if needed), Google Sheets (#22)"
+next_priority: "Verify maps on live, then accordion on real iOS, then Google Sheets (#22)"
 ---
 
 # Stompers Redesign Context
@@ -71,15 +71,15 @@ socials:
 
 ## Recent Changes
 
+### April 2026 - Session 20: Tour Date Updates
+
+Added May 16 Cold Bear Brewery (Arnprior, pre-cached coords). Brauwerk Hoffman Jul 12 -> Jul 18. Hard Rock Cafe -> Hard Rock Casino (Albion Rd, south Ottawa) with corrected coords.
+
 ### April 2026 - Session 19: Mobile Fixes, Security, Collab Audit
 
-Band card images: width:100% + per-member object-position. Tour page scroll-to-top fixed (scrollRestoration=manual in head). See All Dates links to tour.php. Tour page accordion ported iOS fixes. Soren+Atlas audit: accordion code confirmed correct, email header injection fixed, all show fields wrapped in e(), OG image absolute URL fixed, fullpage map iframes eager-load.
+Band card images: width:100% + per-member object-position. Tour page scroll-to-top fixed (scrollRestoration=manual). See All Dates links to tour.php. Soren+Atlas audit: accordion code correct. Security: email injection, e() helper, OG image, eager map iframes.
 
 ### April 2026 - Session 18: Mobile Accordion Fix, Band Card Images
 
 iOS accordion fixed: data-lenis-prevent, touchend delta guard, tour section forced visible. Band card images 200px + object-position per member. #21 closed.
-
-### April 2026 - Session 17: Tour Date Fix, Sheets Integration, Mobile CSS Fixes
-
-Hard Rock Cafe corrected to Apr 30. Hero tagline font-size reverted. Google Sheets + Nominatim infrastructure built in tour-dates.php.
 
