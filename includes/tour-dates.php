@@ -26,7 +26,7 @@ const TOUR_CACHE_TTL  = 3600; // seconds before re-fetching the sheet
 // ----------------------------------------------------------------
 const FALLBACK_SHOWS = [
     ['day'=>'17','month'=>'APR','year'=>'2026','venue'=>"Rob Roy's",        'location'=>'Smiths Falls, ON',   'age'=>'19+',      'note'=>''],
-    ['day'=>'30','month'=>'APR','year'=>'2026','venue'=>'Hard Rock Cafe',   'location'=>'Bank St, Ottawa, ON', 'age'=>'19+',      'note'=>''],
+    ['day'=>'30','month'=>'APR','year'=>'2026','venue'=>'Hard Rock Casino', 'location'=>'Ottawa, ON',          'age'=>'19+',      'note'=>''],
     ['day'=>'16','month'=>'MAY','year'=>'2026','venue'=>'Cold Bear Brewery','location'=>'Arnprior, ON',        'age'=>'19+',      'note'=>''],
     ['day'=>'22','month'=>'MAY','year'=>'2026','venue'=>'Busters',          'location'=>'Kanata, ON',          'age'=>'19+',      'note'=>''],
     ['day'=>'23','month'=>'MAY','year'=>'2026','venue'=>'The Buckle',       'location'=>'Kingston, ON',        'age'=>'19+',      'note'=>''],
