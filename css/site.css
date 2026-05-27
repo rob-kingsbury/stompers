@@ -1233,18 +1233,20 @@ button { font: inherit; background: none; border: none; cursor: pointer; color: 
   transition: transform 360ms var(--jk-ease-out-expo), opacity 220ms var(--jk-ease);
 }
 .ticket-overlay.is-open .ticket { transform: translateY(0) scale(1); opacity: 1; }
-/* Perforated ticket edges: repeating half-circle bites along top and bottom.
-   The circles use the overlay tint so they read against the modal backdrop. */
-.ticket::before, .ticket::after {
-  content: ""; position: absolute;
-  left: 0; right: 0; height: 14px;
-  background-image: radial-gradient(circle at 12px 50%, rgba(10, 6, 4, 0.92) 6px, transparent 6.5px);
-  background-size: 24px 14px;
-  background-repeat: repeat-x;
-  pointer-events: none;
+/* Perforated ticket edges: actually carve half-circle notches out of the
+   top and bottom using CSS masks. The notches reveal whatever's behind
+   the ticket (the modal overlay). Two stacked masks intersect so the
+   ticket stays opaque in the middle. */
+.ticket {
+  --notch-r: 8px;
+  --notch-gap: 22px;
+  -webkit-mask:
+    radial-gradient(var(--notch-r) at var(--notch-r) 0,    #0000 98%, #000) 0 0   / var(--notch-gap) 51% repeat-x,
+    radial-gradient(var(--notch-r) at var(--notch-r) 100%, #0000 98%, #000) 0 100%/ var(--notch-gap) 51% repeat-x;
+  mask:
+    radial-gradient(var(--notch-r) at var(--notch-r) 0,    #0000 98%, #000) 0 0   / var(--notch-gap) 51% repeat-x,
+    radial-gradient(var(--notch-r) at var(--notch-r) 100%, #0000 98%, #000) 0 100%/ var(--notch-gap) 51% repeat-x;
 }
-.ticket::before { top: -7px; }
-.ticket::after  { bottom: -7px; }
 .ticket-eyebrow {
   font-family: var(--jk-font-mono);
   font-size: 11px;
@@ -1277,22 +1279,22 @@ button { font: inherit; background: none; border: none; cursor: pointer; color: 
 .ticket-cta { margin-top: 22px; display: flex; gap: 10px; }
 .ticket-cta .btn { flex: 1; }
 .ticket-close {
-  position: absolute; top: 12px; right: 14px;
-  font-family: var(--jk-font-display);
-  font-size: 28px;
-  line-height: 1;
-  font-weight: 400;
-  color: #2a1608;
-  width: 36px; height: 36px;
+  position: absolute; top: 16px; right: 18px;
+  width: 34px; height: 34px;
   display: flex; align-items: center; justify-content: center;
-  border: 1px solid rgba(42, 22, 8, 0.25);
+  color: #2a1608;
+  border: 1.5px solid #2a1608;
   background: rgba(42, 22, 8, 0.06);
   border-radius: 9999px;
   cursor: pointer;
-  transition: background 140ms var(--jk-ease), border-color 140ms var(--jk-ease);
+  transition: background 140ms var(--jk-ease), color 140ms var(--jk-ease);
   z-index: 2;
 }
-.ticket-close:hover { background: rgba(42, 22, 8, 0.16); border-color: rgba(42, 22, 8, 0.5); }
+.ticket-close svg { display: block; }
+.ticket-close:hover {
+  background: #2a1608;
+  color: var(--jk-paper);
+}
 .ticket-stamp {
   position: absolute;
   top: -22px; right: -16px;
@@ -1421,34 +1423,31 @@ button { font: inherit; background: none; border: none; cursor: pointer; color: 
   color: var(--jk-fg-3);
 }
 
-/* Tour featured: 2-column with embedded map */
-.tour-featured-grid {
-  display: grid;
-  grid-template-columns: minmax(320px, 1fr) minmax(320px, 1fr);
-  gap: 32px;
-  align-items: stretch;
-  max-width: 1080px;
-  margin: 0 auto;
-}
-.tour-featured-info {
-  display: flex; flex-direction: column; align-items: center;
-  text-align: center;
-}
+/* Tour featured: map fills the entire panel as background, with a
+   dull wash and the info content layered on top centered. */
 .tour-featured-map {
-  border: 1px solid var(--jk-rule-strong);
-  border-radius: var(--jk-radius-sm);
+  position: absolute; inset: 0; z-index: 0;
   overflow: hidden;
-  min-height: 280px;
-  background: var(--jk-coal);
-  box-shadow: var(--jk-shadow-md);
+  border-radius: inherit;
 }
 .tour-featured-map iframe {
-  width: 100%; height: 100%; min-height: 280px;
+  width: 100%; height: 100%;
   border: 0; display: block;
-  filter: saturate(0.85) contrast(1.05) brightness(0.95);
+  filter: saturate(0.4) contrast(1.1) brightness(0.55) sepia(0.15);
+  pointer-events: none;
 }
-@media (max-width: 760px) {
-  .tour-featured-grid { grid-template-columns: 1fr; }
+.tour-featured-wash {
+  position: absolute; inset: 0; z-index: 1;
+  background:
+    radial-gradient(ellipse at center, rgba(20, 16, 12, 0.55) 0%, rgba(20, 16, 12, 0.85) 100%),
+    linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.55) 100%);
+  pointer-events: none;
+  border-radius: inherit;
+}
+.tour-featured .tour-featured-eyebrow,
+.tour-featured .tour-featured-info {
+  position: relative;
+  z-index: 2;
 }
 
 /* Tour archive trigger + modal */

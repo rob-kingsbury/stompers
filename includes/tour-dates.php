@@ -149,7 +149,16 @@ function hydrate_shows(array $raw): array {
 // ----------------------------------------------------------------
 // Build the three arrays used by index.php and tour.php
 // ----------------------------------------------------------------
+// Documented past shows pre-dating the live sheet's window.
+// Sourced from the watch-section video archive + project git history.
+// New entries here are merged into the archive modal automatically.
+const HISTORICAL_SHOWS = [
+    ['day'=>'01','month'=>'MAR','year'=>'2025','time'=>'','venue'=>'Busters',              'location'=>'Kanata, ON',  'age'=>'19+','note'=>''],
+    ['day'=>'18','month'=>'APR','year'=>'2025','time'=>'','venue'=>'The Neighbourhood Pub','location'=>'Ottawa, ON',  'age'=>'19+','note'=>''],
+];
+
 $raw_shows = fetch_sheets_csv() ?? FALLBACK_SHOWS;
+$raw_shows = array_merge($raw_shows, HISTORICAL_SHOWS);
 $all_shows = hydrate_shows($raw_shows);
 
 // Add a comparable timestamp to each row, then sort chronologically.

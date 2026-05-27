@@ -6,9 +6,7 @@
   </div>
   <div class="epk-split">
     <aside class="epk-side">
-      <span class="eyebrow">Press kit &middot; v1</span>
       <div class="epk-side-band">Swamp City Stompers</div>
-      <div class="epk-side-genre">Southern rock &middot; Blues &middot; Soul</div>
       <div class="epk-side-loc">Ottawa, ON &middot; Canada</div>
       <div class="epk-side-photo">
         <img src="img/band-photo-doorway.jpeg" alt="Swamp City Stompers" loading="lazy"/>

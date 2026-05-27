@@ -32,41 +32,40 @@ function show_map_url(array $s): string {
     $fTime = $featured['time'] !== '' ? $featured['time'] : 'Time TBA';
   ?>
     <div class="tour-featured">
+      <?php if (!empty($featured['map_q'])): ?>
+      <div class="tour-featured-map" aria-hidden="true">
+        <iframe src="https://www.google.com/maps?q=<?= e($featured['map_q']) ?>&output=embed"
+                loading="lazy"
+                title="Map showing <?= e($featured['venue']) ?>, <?= e($featured['location']) ?>"></iframe>
+      </div>
+      <div class="tour-featured-wash" aria-hidden="true"></div>
+      <?php endif; ?>
       <div class="tour-featured-eyebrow"><span class="star">&#10022;</span>&nbsp; Next show &nbsp;<span class="star">&#10022;</span></div>
-      <div class="tour-featured-grid">
-        <div class="tour-featured-info">
-          <div class="tour-featured-date">
-            <div class="tour-featured-day"><?= e($featured['day']) ?></div>
-            <div class="tour-featured-monyear">
-              <span class="month"><?= e(month_long($featured['month'])) ?></span>
-              <span class="year"><?= e($featured['year']) ?></span>
-            </div>
+      <div class="tour-featured-info">
+        <div class="tour-featured-date">
+          <div class="tour-featured-day"><?= e($featured['day']) ?></div>
+          <div class="tour-featured-monyear">
+            <span class="month"><?= e(month_long($featured['month'])) ?></span>
+            <span class="year"><?= e($featured['year']) ?></span>
           </div>
-          <div class="tour-featured-venue"><?= e($featured['venue']) ?></div>
-          <div class="tour-featured-loc"><?= e($featured['location']) ?></div>
-          <div class="tour-featured-meta">
-            <span><?= e($fTime) ?></span><span>&middot;</span>
-            <span><?= e($featured['age']) ?></span>
-            <?php if (!empty($featured['note'])): ?>
-              <span>&middot;</span><span><?= e($featured['note']) ?></span>
-            <?php endif; ?>
-          </div>
-          <button class="btn btn-primary js-ticket-open"
-                  data-date="<?= $fDate ?>"
-                  data-venue="<?= e($featured['venue']) ?>"
-                  data-loc="<?= e($featured['location']) ?>"
-                  data-time="<?= e($fTime) ?>"
-                  data-age="<?= e($featured['age']) ?>"
-                  data-note="<?= e($featured['note']) ?>"
-                  data-map="<?= e(show_map_url($featured)) ?>">Show details</button>
         </div>
-        <?php if (!empty($featured['map_q'])): ?>
-        <div class="tour-featured-map">
-          <iframe src="https://www.google.com/maps?q=<?= e($featured['map_q']) ?>&output=embed"
-                  loading="lazy"
-                  title="Map showing <?= e($featured['venue']) ?>, <?= e($featured['location']) ?>"></iframe>
+        <div class="tour-featured-venue"><?= e($featured['venue']) ?></div>
+        <div class="tour-featured-loc"><?= e($featured['location']) ?></div>
+        <div class="tour-featured-meta">
+          <span><?= e($fTime) ?></span><span>&middot;</span>
+          <span><?= e($featured['age']) ?></span>
+          <?php if (!empty($featured['note'])): ?>
+            <span>&middot;</span><span><?= e($featured['note']) ?></span>
+          <?php endif; ?>
         </div>
-        <?php endif; ?>
+        <button class="btn btn-primary js-ticket-open"
+                data-date="<?= $fDate ?>"
+                data-venue="<?= e($featured['venue']) ?>"
+                data-loc="<?= e($featured['location']) ?>"
+                data-time="<?= e($fTime) ?>"
+                data-age="<?= e($featured['age']) ?>"
+                data-note="<?= e($featured['note']) ?>"
+                data-map="<?= e(show_map_url($featured)) ?>">Show details</button>
       </div>
     </div>
   <?php else: ?>
