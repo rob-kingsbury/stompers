@@ -223,6 +223,7 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
             <h3 class="show-venue-big"><?= e($show['venue']) ?></h3>
             <p class="show-location-big"><?= e($show['location']) ?></p>
             <div class="show-details-big">
+              <?php if (!empty($show['time'])): ?><span><?= e($show['time']) ?></span><?php endif; ?>
               <?php if (!empty($show['note'])): ?><span><?= e($show['note']) ?></span><?php endif; ?>
               <span><?= e($show['age']) ?></span>
             </div>
@@ -250,6 +251,9 @@ $page_description = 'Swamp City Stompers - Gritty southern rock, swamp blues, an
                 <iframe src="https://www.google.com/maps?q=<?= $show['map_q'] ?>&output=embed" loading="lazy" title="Map showing <?= e($show['venue']) ?>, <?= e($show['location']) ?>"></iframe>
               </div>
               <div class="accordion-details">
+                <?php if (!empty($show['time'])): ?>
+                <p><strong>Start:</strong> <?= e($show['time']) ?></p>
+                <?php endif; ?>
                 <?php if (!empty($show['note'])): ?>
                 <p><strong>Note:</strong> <?= e($show['note']) ?></p>
                 <?php endif; ?>

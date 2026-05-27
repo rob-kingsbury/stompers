@@ -44,6 +44,9 @@ require_once 'includes/tour-dates.php';
               <iframe src="https://www.google.com/maps?q=<?= $show['map_q'] ?>&output=embed" loading="lazy" title="Map showing <?= e($show['venue']) ?>, <?= e($show['location']) ?>"></iframe>
             </div>
             <div class="accordion-details">
+              <?php if (!empty($show['time'])): ?>
+              <p><strong>Start:</strong> <?= e($show['time']) ?></p>
+              <?php endif; ?>
               <?php if (!empty($show['note'])): ?>
               <p><strong>Note:</strong> <?= e($show['note']) ?></p>
               <?php endif; ?>

@@ -3,7 +3,12 @@
  * Tour dates — fetched from Google Sheets (CSV), geocoded via Nominatim.
  *
  * Sheet columns (row 1 = header, ignored):
- *   Day | Month | Year | Venue | Location | Age | Note
+ *   Date | Hour | Minute | AM/PM | Venue | Location | Age | Note
+ *
+ * Date format: YYYY-MM-DD (Google Sheets native date picker output).
+ * Time is captured as three dropdowns (Hour 1-12, Minute 00-55 in 5-min steps,
+ * AM/PM) and combined here into a single 'time' string like "9:00 PM".
+ * If any time column is blank, 'time' is empty (display falls back gracefully).
  *
  * Provides:
  *   $all_shows    — every show
@@ -14,7 +19,7 @@
  * File > Share > Publish to web > Sheet 1 > CSV > Publish
  */
 
-const SHEETS_CSV_URL = ''; // <-- paste published CSV URL here
+const SHEETS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vStCqZF4CMAv7NZw2Mcr9utjJ9Rp7iBuESln4nPUydQVBJsqRMCzjBGbGbspj5QaWlIqGusX1hXoBTM/pub?gid=0&single=true&output=csv';
 
 function e($s) { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
 const TOUR_CACHE_FILE = __DIR__ . '/../data/tour-cache.json';
@@ -25,17 +30,17 @@ const TOUR_CACHE_TTL  = 3600; // seconds before re-fetching the sheet
 // Fallback — used when Sheets URL is empty or fetch fails
 // ----------------------------------------------------------------
 const FALLBACK_SHOWS = [
-    ['day'=>'17','month'=>'APR','year'=>'2026','venue'=>"Rob Roy's",        'location'=>'Smiths Falls, ON',   'age'=>'19+',      'note'=>''],
-    ['day'=>'30','month'=>'APR','year'=>'2026','venue'=>'Hard Rock Casino', 'location'=>'Ottawa, ON',          'age'=>'19+',      'note'=>''],
-    ['day'=>'16','month'=>'MAY','year'=>'2026','venue'=>'Cold Bear Brewery','location'=>'Arnprior, ON',        'age'=>'19+',      'note'=>''],
-    ['day'=>'22','month'=>'MAY','year'=>'2026','venue'=>'Busters',          'location'=>'Kanata, ON',          'age'=>'19+',      'note'=>''],
-    ['day'=>'23','month'=>'MAY','year'=>'2026','venue'=>'The Buckle',       'location'=>'Kingston, ON',        'age'=>'19+',      'note'=>''],
-    ['day'=>'30','month'=>'MAY','year'=>'2026','venue'=>'Ottawa Fun Fair',  'location'=>'Gloucester, ON',      'age'=>'All ages', 'note'=>''],
-    ['day'=>'12','month'=>'JUN','year'=>'2026','venue'=>'Kaffe 1870',       'location'=>'Wakefield, QC',       'age'=>'18+',      'note'=>''],
-    ['day'=>'01','month'=>'JUL','year'=>'2026','venue'=>'Aylmer Legion',    'location'=>'Aylmer, QC',          'age'=>'18+',      'note'=>''],
-    ['day'=>'11','month'=>'JUL','year'=>'2026','venue'=>'The Point',        'location'=>'Constance Bay, ON',   'age'=>'19+',      'note'=>''],
-    ['day'=>'18','month'=>'JUL','year'=>'2026','venue'=>'Brauwerk Hoffman', 'location'=>"Campbell's Bay, QC",  'age'=>'18+',      'note'=>''],
-    ['day'=>'08','month'=>'AUG','year'=>'2026','venue'=>'The Cupboard',     'location'=>'Arnprior, ON',        'age'=>'19+',      'note'=>''],
+    ['day'=>'17','month'=>'APR','year'=>'2026','time'=>'','venue'=>"Rob Roy's",        'location'=>'Smiths Falls, ON',   'age'=>'19+',      'note'=>''],
+    ['day'=>'30','month'=>'APR','year'=>'2026','time'=>'','venue'=>'Hard Rock Casino', 'location'=>'Ottawa, ON',          'age'=>'19+',      'note'=>''],
+    ['day'=>'16','month'=>'MAY','year'=>'2026','time'=>'','venue'=>'Cold Bear Brewery','location'=>'Arnprior, ON',        'age'=>'19+',      'note'=>''],
+    ['day'=>'22','month'=>'MAY','year'=>'2026','time'=>'','venue'=>'Busters',          'location'=>'Kanata, ON',          'age'=>'19+',      'note'=>''],
+    ['day'=>'23','month'=>'MAY','year'=>'2026','time'=>'','venue'=>'The Buckle',       'location'=>'Kingston, ON',        'age'=>'19+',      'note'=>''],
+    ['day'=>'30','month'=>'MAY','year'=>'2026','time'=>'','venue'=>'Ottawa Fun Fair',  'location'=>'Gloucester, ON',      'age'=>'All ages', 'note'=>''],
+    ['day'=>'12','month'=>'JUN','year'=>'2026','time'=>'','venue'=>'Kaffe 1870',       'location'=>'Wakefield, QC',       'age'=>'18+',      'note'=>''],
+    ['day'=>'01','month'=>'JUL','year'=>'2026','time'=>'','venue'=>'Aylmer Legion',    'location'=>'Aylmer, QC',          'age'=>'18+',      'note'=>''],
+    ['day'=>'11','month'=>'JUL','year'=>'2026','time'=>'','venue'=>'The Point',        'location'=>'Constance Bay, ON',   'age'=>'19+',      'note'=>''],
+    ['day'=>'18','month'=>'JUL','year'=>'2026','time'=>'','venue'=>'Brauwerk Hoffman', 'location'=>"Campbell's Bay, QC",  'age'=>'18+',      'note'=>''],
+    ['day'=>'08','month'=>'AUG','year'=>'2026','time'=>'','venue'=>'The Cupboard',     'location'=>'Arnprior, ON',        'age'=>'19+',      'note'=>''],
 ];
 
 // ----------------------------------------------------------------
@@ -62,15 +67,26 @@ function fetch_sheets_csv(): ?array {
 
     $shows = [];
     foreach ($rows as $row) {
-        if (count($row) < 6 || empty(trim($row[0]))) continue;
+        if (count($row) < 5 || empty(trim($row[0]))) continue;
+        $ts = strtotime(trim($row[0]));
+        if (!$ts) continue; // skip rows with unparseable date
+
+        $hour   = isset($row[1]) ? trim($row[1]) : '';
+        $minute = isset($row[2]) ? trim($row[2]) : '';
+        $ampm   = isset($row[3]) ? trim($row[3]) : '';
+        $time   = ($hour !== '' && $minute !== '' && $ampm !== '')
+            ? "{$hour}:{$minute} {$ampm}"
+            : '';
+
         $shows[] = [
-            'day'      => trim($row[0]),
-            'month'    => strtoupper(trim($row[1])),
-            'year'     => trim($row[2]),
-            'venue'    => trim($row[3]),
-            'location' => trim($row[4]),
-            'age'      => trim($row[5]),
-            'note'     => isset($row[6]) ? trim($row[6]) : '',
+            'day'      => date('d', $ts),
+            'month'    => strtoupper(date('M', $ts)),
+            'year'     => date('Y', $ts),
+            'time'     => $time,
+            'venue'    => isset($row[4]) ? trim($row[4]) : '',
+            'location' => isset($row[5]) ? trim($row[5]) : '',
+            'age'      => isset($row[6]) ? trim($row[6]) : '',
+            'note'     => isset($row[7]) ? trim($row[7]) : '',
         ];
     }
 

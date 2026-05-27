@@ -30,7 +30,7 @@ $month_names = [
       <?php endif; ?>
       <div class="footer-next-show-content">
         <div class="footer-next-show-label">Next Show</div>
-        <div class="footer-next-show-date"><?= e($month_names[$next_show['month']] ?? $next_show['month']) ?> <?= (int)$next_show['day'] ?>, <?= e($next_show['year']) ?></div>
+        <div class="footer-next-show-date"><?= e($month_names[$next_show['month']] ?? $next_show['month']) ?> <?= (int)$next_show['day'] ?>, <?= e($next_show['year']) ?><?= !empty($next_show['time']) ? ' &middot; ' . e($next_show['time']) : '' ?></div>
         <div class="footer-next-show-venue"><?= e($next_show['venue']) ?></div>
         <div class="footer-next-show-location"><?= e($next_show['location']) ?><?= !empty($next_show['age']) ? ' &middot; ' . e($next_show['age']) : '' ?></div>
         <a href="tour" class="footer-next-show-cta">View All Dates</a>
