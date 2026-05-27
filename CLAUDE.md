@@ -4,7 +4,7 @@
 
 Facts only. No fluff. Direct disagreement when something won't work.
 
-- Do NOT hype animation ideas - evaluate performance and feasibility first
+- Do NOT hype animation/UX ideas - evaluate performance and feasibility first
 - Do NOT say "this is novel" when CodePen/Awwwards has prior art
 - ALWAYS estimate realistic browser performance, especially on mobile
 - When in doubt about a visual effect, prototype it before committing
@@ -22,16 +22,25 @@ When a message contains these keywords, auto-load the relevant file BEFORE respo
 
 | Keywords | Auto-Load |
 |----------|-----------|
-| gsap, animation, scroll, lenis, scrolltrigger, timeline | `.claude/functions.md` |
-| css, style, theme, color, spacing, z-index, font | `.claude/style-guide.json` |
-| section, hero, band, tour, quote, merch, contact, about | `handoff.md` |
+| section, hero, band, tour, watch, epk, contact, about, marquee | `handoff.md` |
+| tour csv, sheets, geocoding, tour-dates | `includes/tour-dates.php` |
+| roster, drive, permissions, apps script | `data/roster-sheet-setup.gs` |
 | issue, fix, bug | `gh issue view [number]` |
 
 ## Project Scope
 
-**What Stompers IS:** A band website for the Swamp City Stompers with scroll-driven animations, immersive page transitions, and a dark/gold aesthetic. Static site, Vite build, GSAP + Lenis.
+**What Stompers IS (session 22 onward):** A single-page band website for the Swamp City Stompers. Vanilla PHP + CSS + JS. Vintage southern-rock aesthetic (oxblood + gold + parchment). Live tour data via Google Sheets CSV. Bandpilot-driven artist marquee. No build step.
 
-**What Stompers IS NOT:** A web app, a CMS, a SaaS product. No database, no auth, no server-side logic. Keep it simple.
+**What Stompers IS NOT:** A web app, a CMS, a SaaS product. No client-side framework. No Vite, no GSAP, no Lenis, no Barba. Keep it simple, plumbing-grade.
+
+## Stack
+
+- **Server:** XAMPP Apache locally; WHC shared hosting in prod
+- **Templating:** Plain PHP includes from `includes/*.php`
+- **CSS:** `css/site.css` (components) + `css/colors_and_type.css` (tokens)
+- **JS:** `js/site.js`. IntersectionObserver for reveals, no animation library
+- **Live data:** Tour CSV (Google Sheets) + Marquee artists (BandPilot Supabase via Mgmt API)
+- **Email:** PHP `mail()` via `contact-handler.php`
 
 ## Model Usage
 
@@ -39,33 +48,33 @@ When a message contains these keywords, auto-load the relevant file BEFORE respo
 - File cleanup, simple edits, git operations, reading/exploring code, documentation
 
 **Use Opus** for complex tasks:
-- GSAP animation logic, ScrollTrigger timing, multi-section coordination
-- Debugging scroll behavior, performance issues
 - Multi-file refactors, architectural decisions, planning
+- Debugging cross-section bugs
+- New section design
 
 **When spawning agents (Task tool):** Always specify `model: "haiku"` or `model: "sonnet"` for subtasks unless complexity demands Opus.
 
-## Multi-Agent Patterns
+## Project Layout
 
-Use these Opus 4.6 capabilities when appropriate:
-- **Explore agents** for investigating animation bugs across HTML/CSS/JS
-- **Plan agents** for designing new section animations
-- **scroll-analyzer MCP** for visual testing of scroll behavior
-- **Parallel agents** for independent research tasks (e.g., checking multiple sections)
-
-## Project Context
-
-- **Main file:** index.html
-- **Styles:** css/styles.css, css/themes.css
-- **Animations:** js/main.js (GSAP + Lenis + Barba.js)
-- **Pages:** tour.html, story.html, epk.html, merch.html, contact.html
-- **Docs:** .claude/context.md, handoff.md
+- **Entry:** `index.php` (single page, all sections included)
+- **Sections:** `includes/{hero,marquee,about,band,tour-section,watch,epk,contact,footer}.php`
+- **Data layer:** `includes/{tour-dates,marquee}.php`, `data/*.json`, `data/*.gs`
+- **Archive:** `_archive/site-v2-pre-jk-redesign/` (old Vite/GSAP build, frozen)
+- **Config:** `config.php` (gitignored) holds Supabase mgmt token
 
 ## Quick Reference
 
 ```bash
-npm run dev          # Start dev server
-gh issue list        # View open issues
+# Local dev - just hit XAMPP, no build step
+open http://localhost/stompers-redesign/
+
+# Tour CSV cache clear (forces re-fetch)
+rm data/tour-cache.json
+
+# Marquee artist cache clear
+rm data/marquee-cache.json
+
+gh issue list --state open
 ```
 
 ## Available Skills
@@ -79,14 +88,12 @@ gh issue list        # View open issues
 
 ## Before Pushing
 
-- Verify animations work at mobile (375px), tablet (768px), desktop (1200px+)
+- Verify renders correctly at mobile (375px), tablet (768px), desktop (1200px+)
 - No console.log left behind
 - Commit message follows format in development-workflow.md
 
 ## See Also
 
 - `.claude/context.md` - Project state and session history
-- `.claude/workflows.yaml` - Automated workflows (audit, handoff, status)
 - `.claude/rules/` - Development standards
-- `.claude/functions.md` - GSAP/Lenis function reference
-- `.claude/style-guide.json` - Design tokens
+- Legacy GSAP/Vite reference: `_archive/site-v2-pre-jk-redesign/` (frozen, do not edit)

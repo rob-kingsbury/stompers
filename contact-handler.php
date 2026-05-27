@@ -1,37 +1,41 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-  header('Location: contact');
-  exit;
+    header('Location: index.php#contact');
+    exit;
 }
 
-$name    = str_replace(["\r", "\n"], '', trim(strip_tags($_POST['name'] ?? '')));
-$email   = trim(strip_tags($_POST['email'] ?? ''));
-$subject = trim(strip_tags($_POST['subject'] ?? ''));
-$message = trim(strip_tags($_POST['message'] ?? ''));
+$clean = fn($v) => trim(strip_tags($v ?? ''));
+$noNewlines = fn($v) => str_replace(["\r", "\n"], ' ', $v);
 
-// Basic validation
+$name    = $noNewlines($clean($_POST['name']));
+$email   = $clean($_POST['email']);
+$venue   = $clean($_POST['venue']);
+$date    = $clean($_POST['date']);
+$message = $clean($_POST['message']);
+
+// Honeypot / basic validation
 if (!$name || !$email || !$message || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-  header('Location: contact?status=error');
-  exit;
+    header('Location: index.php?status=error#contact');
+    exit;
 }
 
-$subject_labels = [
-  'booking' => 'Booking Inquiry',
-  'press'   => 'Press / Media',
-  'general' => 'General',
-];
-$subject_label = $subject_labels[$subject] ?? 'Contact Form';
+$to      = 'booking@swampcitystompers.ca';
+$reply   = filter_var($email, FILTER_SANITIZE_EMAIL);
+$subject = "[Stompers] Booking inquiry from {$name}";
 
-$to      = 'robandtherockets@gmail.com';
 $headers = implode("\r\n", [
-  'From: Stompers Website <info@swampcitystompers.ca>',
-  'Reply-To: ' . $name . ' <' . $email . '>',
-  'Content-Type: text/plain; charset=UTF-8',
+    'From: Stompers Website <info@swampcitystompers.ca>',
+    "Reply-To: {$name} <{$reply}>",
+    'Content-Type: text/plain; charset=UTF-8',
 ]);
 
-$body = "Name: {$name}\nEmail: {$email}\nSubject: {$subject_label}\n\n{$message}";
+$body  = "Name: {$name}\n";
+$body .= "Email: {$email}\n";
+if ($venue) $body .= "Venue / event: {$venue}\n";
+if ($date)  $body .= "Target date: {$date}\n";
+$body .= "\n{$message}\n";
 
-$sent = mail($to, "[Stompers] {$subject_label} from {$name}", $body, $headers);
+$sent = @mail($to, $subject, $body, $headers);
 
-header('Location: contact?status=' . ($sent ? 'sent' : 'error'));
+header('Location: index.php?status=' . ($sent ? 'sent' : 'error') . '#contact');
 exit;

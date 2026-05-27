@@ -21,9 +21,7 @@
 
 const SHEETS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vStCqZF4CMAv7NZw2Mcr9utjJ9Rp7iBuESln4nPUydQVBJsqRMCzjBGbGbspj5QaWlIqGusX1hXoBTM/pub?gid=0&single=true&output=csv';
 
-if (!function_exists('e')) {
-    function e(mixed $s): string { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
-}
+function e($s) { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
 const TOUR_CACHE_FILE = __DIR__ . '/../data/tour-cache.json';
 const GEO_CACHE_FILE  = __DIR__ . '/../data/geo-cache.json';
 const TOUR_CACHE_TTL  = 60; // seconds before re-fetching the sheet

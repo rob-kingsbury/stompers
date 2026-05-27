@@ -5,11 +5,18 @@ dist/
 .env
 .env.local
 
-# Archive (experimental versions, analysis output)
-_archive/
-
 # Analysis output
 scroll-analysis-output/
+
+# Old experimental archive subfolders (pre-session-22)
+# The active backup is _archive/site-v2-pre-jk-redesign/ and IS tracked
+_archive/analysis/
+_archive/analysis-screenshots/
+_archive/css/
+_archive/html/
+_archive/js/
+_archive/scroll-analysis/
+_archive/scroll-analysis-output/
 
 # IDE/Editor
 .vscode/
@@ -28,3 +35,8 @@ nul
 # Claude local settings only (keep .claude/ docs in repo)
 .claude/settings.local.json
 .mcp.json
+
+# Local config (Supabase token, etc.)
+config.php
+data/tour-cache.json
+data/marquee-cache.json

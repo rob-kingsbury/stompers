@@ -1,0 +1,300 @@
+/**
+ * Jeans & King Design System
+ * Colors & Type
+ *
+ * Vintage southern rock — gold leaf, oxblood, parchment, and grit.
+ * Inspired by 1970s tour posters, Skynyrd-era record sleeves, and the
+ * filigree gold of the Jeans & King logo. Seedy but seasoned.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Patua+One&family=IM+Fell+English+SC&family=Special+Elite&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+  /* ============================================
+     COLORS — vintage palette pulled off the logo
+     Dark oxblood/black field, aged-gold accents,
+     parchment cream text, rust + bourbon supports
+     ============================================ */
+
+  /* Background field — deep, smoky, never pure black */
+  --jk-ink:            #14100c;   /* near-black, slightly warm */
+  --jk-ink-rgb:        20, 16, 12;
+  --jk-coal:           #1f1812;   /* alt bg */
+  --jk-tobacco:        #2a2018;   /* surface */
+  --jk-tobacco-raised: #362a1f;   /* surface raised */
+  --jk-oxblood:        #3a1410;   /* deep red-brown — section accents */
+
+  /* Cream / parchment — the warm "off-white" inside the logo */
+  --jk-parchment:      #f3e7c8;   /* primary text on dark */
+  --jk-parchment-dim:  #d8c89f;   /* secondary text */
+  --jk-bone:           #b8a682;   /* muted text / rules */
+  --jk-dust:           #6f5e44;   /* very muted / disabled */
+
+  /* Gold — the hero color. Three stops mirror the logo's brass→gold→pale gradient */
+  --jk-brass:          #8a6418;   /* deep antique brass */
+  --jk-gold:           #c8932c;   /* primary gold (the logo's mid) */
+  --jk-gold-light:     #e6b746;   /* highlight gold */
+  --jk-gold-pale:      #f4d779;   /* pale gold sheen */
+  --jk-gold-rgb:       200, 147, 44;
+
+  /* Rust / supporting reds — for stamps, warnings, accents */
+  --jk-rust:           #963a1c;
+  --jk-clay:           #b8552a;
+  --jk-burgundy:       #5a1a18;
+
+  /* Borders / hairlines */
+  --jk-rule:           rgba(243, 231, 200, 0.12);
+  --jk-rule-strong:    rgba(243, 231, 200, 0.22);
+  --jk-rule-gold:      rgba(200, 147, 44, 0.35);
+
+  /* Semantic */
+  --jk-success:        #6a8c3f;   /* moss */
+  --jk-warning:        #c8932c;   /* re-uses gold */
+  --jk-error:          #963a1c;   /* rust */
+  --jk-info:           #6e8a96;   /* slate-teal */
+
+  /* Light/inverted (rare — used for posters, parchment flyers) */
+  --jk-paper:          #efe2bd;   /* parchment paper */
+  --jk-paper-edge:     #d4c192;
+  --jk-paper-ink:      #1f1812;
+
+  /* ============================================
+     TYPOGRAPHY
+     - Display: Patua One — bold slab serif with
+       rounded terminals. Single weight, vintage
+       blues-rock LP-sleeve energy (Black Keys,
+       Tedeschi Trucks). Heavier than a didone,
+       softer than wood-type. Reads loud but warm.
+     - Subhead: IM Fell English SC — letterpress
+       small-caps, period-correct print feel
+     - Body:   Libre Caslon Text — workhorse
+       transitional serif, easy to read at length
+     - Utility: Special Elite — typewriter, used
+       for labels, tags, eyebrows, dates, set lists
+     ============================================ */
+
+  --jk-font-display: 'Patua One', 'Rockwell', 'Roboto Slab', Georgia, serif;
+  --jk-font-subhead: 'IM Fell English SC', 'IM Fell English', 'Trajan Pro', serif;
+  --jk-font-serif:   'Libre Caslon Text', Georgia, 'Times New Roman', serif;
+  --jk-font-italic:  'Libre Caslon Text', Georgia, serif;   /* italic via font-style: italic — readable at any size */
+  --jk-font-mono:    'Special Elite', 'Courier Prime', 'Courier New', monospace;
+
+  /* Type scale — fluid, rooted in 16px */
+  --jk-fs-xs:   0.75rem;     /* 12 — labels, fine print */
+  --jk-fs-sm:   0.875rem;    /* 14 — captions, eyebrows */
+  --jk-fs-md:   1rem;        /* 16 — body */
+  --jk-fs-lg:   1.125rem;    /* 18 — body large */
+  --jk-fs-xl:   1.375rem;    /* 22 — lede */
+  --jk-fs-2xl:  1.75rem;     /* 28 — h4 */
+  --jk-fs-3xl:  2.25rem;     /* 36 — h3 */
+  --jk-fs-4xl:  3rem;        /* 48 — h2 */
+  --jk-fs-5xl:  4rem;        /* 64 — h1 */
+  --jk-fs-6xl:  5.5rem;      /* 88 — display */
+  --jk-fs-poster: clamp(3rem, 12vw, 9rem);  /* big tour-poster type */
+
+  --jk-lh-tight:   1.05;
+  --jk-lh-snug:    1.2;
+  --jk-lh-normal:  1.45;
+  --jk-lh-relaxed: 1.7;
+
+  --jk-tracking-tight:  -0.01em;
+  --jk-tracking-normal: 0;
+  --jk-tracking-wide:   0.04em;
+  --jk-tracking-wider:  0.08em;
+  --jk-tracking-widest: 0.16em;
+  --jk-tracking-poster: 0.24em;  /* old-broadside spacing */
+
+  /* ============================================
+     SPACING — generous, poster-friendly rhythm
+     ============================================ */
+  --jk-s-1:  0.25rem;
+  --jk-s-2:  0.5rem;
+  --jk-s-3:  0.75rem;
+  --jk-s-4:  1rem;
+  --jk-s-5:  1.5rem;
+  --jk-s-6:  2rem;
+  --jk-s-7:  3rem;
+  --jk-s-8:  4rem;
+  --jk-s-9:  6rem;
+  --jk-s-10: 8rem;
+
+  /* ============================================
+     RADII — restrained. Old-press print is square.
+     Cards: 2–4px. Pills: full. Almost never 8px+.
+     ============================================ */
+  --jk-radius-none: 0;
+  --jk-radius-sm:   2px;
+  --jk-radius-md:   3px;
+  --jk-radius-lg:   6px;
+  --jk-radius-pill: 9999px;
+
+  /* ============================================
+     BORDERS
+     ============================================ */
+  --jk-bw:       1px;
+  --jk-bw-thick: 2px;
+  --jk-bw-rule:  3px;   /* vintage broadside top/bottom rules */
+
+  /* ============================================
+     SHADOWS — low and warm. Deep for posters,
+     quiet for inline UI. No bright/blue shadows.
+     ============================================ */
+  --jk-shadow-sm:  0 1px 2px rgba(0, 0, 0, 0.45);
+  --jk-shadow-md:  0 2px 12px rgba(0, 0, 0, 0.55);
+  --jk-shadow-lg:  0 8px 28px rgba(0, 0, 0, 0.65);
+  --jk-shadow-xl:  0 18px 48px rgba(0, 0, 0, 0.7);
+  --jk-shadow-glow: 0 0 32px rgba(var(--jk-gold-rgb), 0.25);
+  --jk-shadow-inset: inset 0 0 80px rgba(0, 0, 0, 0.55);
+
+  /* ============================================
+     EASING & DURATIONS — deliberate, never bouncy
+     ============================================ */
+  --jk-ease:        cubic-bezier(0.4, 0.0, 0.2, 1);
+  --jk-ease-out:    cubic-bezier(0.0, 0.0, 0.2, 1);
+  --jk-ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --jk-dur-fast:   140ms;
+  --jk-dur-norm:   220ms;
+  --jk-dur-slow:   400ms;
+  --jk-dur-poster: 800ms;
+
+  /* ============================================
+     SEMANTIC TOKENS — what designers actually grab
+     ============================================ */
+  --jk-bg:           var(--jk-ink);
+  --jk-bg-alt:       var(--jk-coal);
+  --jk-surface:      var(--jk-tobacco);
+  --jk-surface-raised: var(--jk-tobacco-raised);
+
+  --jk-fg:           var(--jk-parchment);
+  --jk-fg-2:         var(--jk-parchment-dim);
+  --jk-fg-3:         var(--jk-bone);
+  --jk-fg-muted:     var(--jk-dust);
+
+  --jk-accent:       var(--jk-gold);
+  --jk-accent-light: var(--jk-gold-light);
+  --jk-accent-dark:  var(--jk-brass);
+
+  --jk-link:         var(--jk-gold-light);
+  --jk-link-hover:   var(--jk-gold-pale);
+
+  --jk-border:       var(--jk-rule);
+  --jk-border-strong: var(--jk-rule-strong);
+}
+
+
+/* ============================================
+   SEMANTIC ELEMENT STYLES — drop into any page
+   ============================================ */
+
+.jk-h1, h1.jk {
+  font-family: var(--jk-font-display);
+  font-size: var(--jk-fs-6xl);
+  line-height: var(--jk-lh-tight);
+  letter-spacing: var(--jk-tracking-normal);
+  color: var(--jk-fg);
+  font-weight: 400;            /* Patua One is single-weight */
+  margin: 0 0 var(--jk-s-5);
+}
+
+.jk-h2, h2.jk {
+  font-family: var(--jk-font-display);
+  font-size: var(--jk-fs-5xl);
+  line-height: var(--jk-lh-tight);
+  color: var(--jk-fg);
+  margin: 0 0 var(--jk-s-4);
+}
+
+.jk-h3, h3.jk {
+  font-family: var(--jk-font-subhead);
+  font-size: var(--jk-fs-3xl);
+  letter-spacing: var(--jk-tracking-wide);
+  line-height: var(--jk-lh-snug);
+  color: var(--jk-fg);
+  margin: 0 0 var(--jk-s-4);
+}
+
+.jk-h4, h4.jk {
+  font-family: var(--jk-font-subhead);
+  font-size: var(--jk-fs-2xl);
+  letter-spacing: var(--jk-tracking-wide);
+  color: var(--jk-fg);
+  margin: 0 0 var(--jk-s-3);
+}
+
+.jk-eyebrow {
+  font-family: var(--jk-font-mono);
+  font-size: var(--jk-fs-xs);
+  letter-spacing: var(--jk-tracking-poster);
+  text-transform: uppercase;
+  color: var(--jk-accent);
+  display: block;
+  margin: 0 0 var(--jk-s-3);
+}
+
+.jk-poster {
+  font-family: var(--jk-font-display);
+  font-size: var(--jk-fs-poster);
+  line-height: 0.95;
+  color: var(--jk-fg);
+  text-shadow: 0 2px 0 rgba(0,0,0,0.5);
+}
+
+.jk-body, p.jk {
+  font-family: var(--jk-font-serif);
+  font-size: var(--jk-fs-md);
+  line-height: var(--jk-lh-relaxed);
+  color: var(--jk-fg-2);
+  margin: 0 0 var(--jk-s-4);
+}
+
+.jk-lede {
+  font-family: var(--jk-font-italic);
+  font-style: italic;
+  font-size: var(--jk-fs-xl);
+  line-height: var(--jk-lh-normal);
+  color: var(--jk-fg);
+}
+
+.jk-quote {
+  font-family: var(--jk-font-italic);
+  font-style: italic;
+  font-size: var(--jk-fs-xl);
+  color: var(--jk-fg);
+  border-left: var(--jk-bw-rule) solid var(--jk-accent);
+  padding-left: var(--jk-s-5);
+  margin: var(--jk-s-6) 0;
+}
+
+.jk-label {
+  font-family: var(--jk-font-mono);
+  font-size: var(--jk-fs-xs);
+  letter-spacing: var(--jk-tracking-widest);
+  text-transform: uppercase;
+  color: var(--jk-fg-3);
+}
+
+.jk-cite {
+  font-family: var(--jk-font-mono);
+  font-size: var(--jk-fs-xs);
+  letter-spacing: var(--jk-tracking-wider);
+  color: var(--jk-fg-3);
+  text-transform: uppercase;
+}
+
+a.jk, .jk-link {
+  color: var(--jk-link);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--jk-rule-gold);
+  transition: color var(--jk-dur-fast) var(--jk-ease);
+}
+a.jk:hover, .jk-link:hover {
+  color: var(--jk-link-hover);
+  text-decoration-color: var(--jk-gold-light);
+}
+
+::selection {
+  background: var(--jk-gold);
+  color: var(--jk-ink);
+}
