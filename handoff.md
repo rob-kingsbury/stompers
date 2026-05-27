@@ -1,24 +1,24 @@
 # Stompers Redesign - Handoff
 
-**Last Updated:** 2026-04-28 (Session 20)
-**Total Open Issues: 12**
+**Last Updated:** 2026-05-27 (Session 21)
+**Total Open Issues: 11**
 
 ---
 
+## SESSION 21: Google Sheets Tour Feed Live
+
+Connected Google Sheets CSV as the live tour-date source. New schema: Date | Hour | Minute | AM/PM | Venue | Location | Age | Note. PHP combines hour/min/ampm into a single `time` string surfaced on homepage card, both accordions, and footer Next Show line. Apps Script (`data/tour-sheet-setup.gs`) installs Stompers menu + date picker + dropdowns + past-show conditional formatting. Deployed live. #22 closed.
+
 ## SESSION 20: Tour Date Updates
 
-Quick update session. Added May 16 Cold Bear Brewery (100 Madawaska Blvd, Arnprior) with pre-cached coords. Brauwerk Hoffman date corrected (Jul 12 -> Jul 18). Hard Rock "Cafe" was actually Hard Rock Casino (4837 Albion Rd, south Ottawa) — venue name + coords updated.
-
-## SESSION 19: Mobile Fixes, Security, Audit
-
-Band card images fixed (width:100%, per-member object-position). Tour page scroll fix (scrollRestoration=manual in head). Homepage "See All Dates" links to tour.php. Tour page iOS accordion ported. Soren+Atlas audit confirmed accordion code is correct (cache issue). Security: email header injection, e() helper, OG image URL, eager map iframes.
+Added May 16 Cold Bear Brewery (Arnprior) with pre-cached coords. Brauwerk Hoffman corrected Jul 12 -> Jul 18. Hard Rock "Cafe" -> Hard Rock Casino (Albion Rd, south Ottawa) with corrected coords.
 
 ---
 
 ## NEXT SESSION PRIORITIES
 
-1. **Verify accordion on real iOS device** — audit confirms code is correct; if still failing, connect Safari devtools via USB to a Mac and get console logs
-2. **Connect Google Sheets (#22)** — Rob creates sheet, shares CSV URL, paste into SHEETS_CSV_URL in tour-dates.php and deploy
+1. **Backfill start times in the sheet** — Rob/Eugene fill Hour/Minute/AM/PM dropdowns for the 11 shows as confirmed with venues
+2. **Verify accordion on real iOS device** — audit confirms code is correct; if still failing, connect Safari devtools via USB to a Mac
 3. **EPK genre/fans-of review (#18)** — Rob confirms genre direction
 4. **EPK downloads (#19)** — One-sheet PDF, stage plot SVG
 5. **Contact page** — Build out contact form / booking info
@@ -26,7 +26,7 @@ Band card images fixed (width:100%, per-member object-position). Tour page scrol
 
 ---
 
-## OPEN ISSUES (12)
+## OPEN ISSUES (11)
 
 | # | Title | Category |
 |---|-------|----------|
@@ -41,7 +41,6 @@ Band card images fixed (width:100%, per-member object-position). Tour page scrol
 | 15 | EPK: Add real venue testimonial | enhancement |
 | 18 | EPK: Review genre tags and expand For Fans Of | enhancement |
 | 19 | EPK: Generate downloadable assets | enhancement |
-| 22 | Connect Google Sheets for tour date editing | enhancement |
 
 ---
 
@@ -56,15 +55,26 @@ Band card images fixed (width:100%, per-member object-position). Tour page scrol
 | `merch.php` | Merch page |
 | `contact.php` | Contact page (not started) |
 | `.htaccess` | Clean URL rewrites + cache headers + gzip |
-| `includes/tour-dates.php` | Tour dates — Sheets CSV + Nominatim + fallback; defines e() helper |
+| `includes/tour-dates.php` | Tour dates — Sheets CSV (live) + Nominatim + fallback; defines e() helper |
 | `includes/vite.php` | Vite dev detection (localhost-gated) |
 | `includes/head.php` | Shared head — sets scrollRestoration=manual inline |
 | `includes/nav.php` | Shared nav |
 | `includes/footer.php` | Shared footer |
 | `data/geo-cache.json` | Permanent venue coordinate cache (do not delete) |
+| `data/tour-cache.json` | 1-hour CSV cache (auto-created on first fetch; safe to delete) |
+| `data/tour-sheet-setup.gs` | Apps Script source for the tour sheet (paste into Extensions → Apps Script) |
 | `css/styles.css` | All styles |
 | `js/main.js` | GSAP/Lenis/Barba animations |
 
 ---
 
-**Continue with:** Verify maps on live site (Hard Rock Casino + Cold Bear Brewery). Then accordion verification on real iOS, then Google Sheets (#22).
+## TOUR SHEET — OPERATIONS NOTE
+
+- Published CSV URL is in `includes/tour-dates.php` line 17 (constant `SHEETS_CSV_URL`)
+- Sheet Share access is restricted to Rob + Eugene; the publish-to-web URL is its own public read layer (independent of Share)
+- Edits in the sheet appear on the site within ~60 seconds (PHP cache TTL). `npm run deploy` also clears `data/tour-cache.json` on the server
+- New venues geocode once via Nominatim on first fetch, then cache permanently in `data/geo-cache.json`
+
+---
+
+**Continue with:** Rob/Eugene backfill confirmed start times in the sheet. Then accordion verification on real iOS, then EPK work (#18/#19).

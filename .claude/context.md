@@ -1,11 +1,11 @@
 ---
 project: Stompers
 status: In Progress
-last_session: 20
-session_date: 2026-04-28
-current_focus: "Tour date updates"
-open_issues: 12
-next_priority: "Verify maps on live, then accordion on real iOS, then Google Sheets (#22)"
+last_session: 21
+session_date: 2026-05-27
+current_focus: "Google Sheets tour feed live"
+open_issues: 11
+next_priority: "Backfill start times in sheet, then iOS accordion verify, then EPK (#18/#19)"
 ---
 
 # Stompers Redesign Context
@@ -38,6 +38,7 @@ workflow:
   dev: npm run dev (Vite + .html files)
   apache: http://localhost/stompers-redesign/index.php
   build: npm run build
+  deploy: npm run deploy (build + tar + scp + untar on whc-hellopebble)
   issues: gh issue list --state open
 
 repo:
@@ -55,6 +56,14 @@ socials:
   instagram: https://www.instagram.com/swamp_city_stompers
   youtube_playlist: https://youtube.com/playlist?list=PLy1-_1Va1knJ8knIMNVISzCq9HsexLwf-
   booking: booking@swampcitystompers.ca
+
+tour_sheet:
+  source: Google Sheets CSV (published)
+  schema: Date | Hour | Minute | AM/PM | Venue | Location | Age | Note
+  url_const: SHEETS_CSV_URL in includes/tour-dates.php
+  cache_ttl: 60s (deploy also clears tour-cache.json on the live server)
+  apps_script: data/tour-sheet-setup.gs (installed in sheet's Apps Script editor)
+  editors: Rob + Eugene
 ```
 
 ## Section Status
@@ -65,11 +74,15 @@ socials:
 | Hero | Complete (logo anim + grunge video) | tour.php - Complete (accordion list) |
 | About | Complete | merch.php - Complete |
 | Band Cards | Complete | story.php - Complete (timeline) |
-| Tour | Complete (homepage cards + accordion) | epk.php - Split Screen (functional) |
+| Tour | Complete (homepage cards + accordion, Sheets-driven) | epk.php - Split Screen (functional) |
 | Watch | Complete (YouTube facade embeds) | contact.php - Not Started |
-| Footer | Complete (next show + utility strip) | |
+| Footer | Complete (next show + utility strip, with time) | |
 
 ## Recent Changes
+
+### May 2026 - Session 21: Google Sheets Tour Feed Live
+
+Connected published Google Sheets CSV as the live tour-date source. Schema: Date | Hour | Minute | AM/PM | Venue | Location | Age | Note. PHP combines time columns into single `time` string surfaced on big card, both accordions, and footer Next Show line. Apps Script (`data/tour-sheet-setup.gs`) installs Stompers menu + date picker + dropdowns + past-show conditional formatting. Deployed. #22 closed.
 
 ### April 2026 - Session 20: Tour Date Updates
 
@@ -78,8 +91,3 @@ Added May 16 Cold Bear Brewery (Arnprior, pre-cached coords). Brauwerk Hoffman J
 ### April 2026 - Session 19: Mobile Fixes, Security, Collab Audit
 
 Band card images: width:100% + per-member object-position. Tour page scroll-to-top fixed (scrollRestoration=manual). See All Dates links to tour.php. Soren+Atlas audit: accordion code correct. Security: email injection, e() helper, OG image, eager map iframes.
-
-### April 2026 - Session 18: Mobile Accordion Fix, Band Card Images
-
-iOS accordion fixed: data-lenis-prevent, touchend delta guard, tour section forced visible. Band card images 200px + object-position per member. #21 closed.
-

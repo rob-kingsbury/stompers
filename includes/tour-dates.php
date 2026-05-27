@@ -24,7 +24,7 @@ const SHEETS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vStCqZF4
 function e($s) { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
 const TOUR_CACHE_FILE = __DIR__ . '/../data/tour-cache.json';
 const GEO_CACHE_FILE  = __DIR__ . '/../data/geo-cache.json';
-const TOUR_CACHE_TTL  = 3600; // seconds before re-fetching the sheet
+const TOUR_CACHE_TTL  = 60; // seconds before re-fetching the sheet
 
 // ----------------------------------------------------------------
 // Fallback — used when Sheets URL is empty or fetch fails
