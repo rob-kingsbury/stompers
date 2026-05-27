@@ -221,30 +221,57 @@ const watchPlay   = document.getElementById('js-watch-play');
 function setWatchVideo(videoId, thumb, title, stamp, autoplay = false) {
   if (!watchFrameEl) return;
   watchFrameEl.dataset.videoId = videoId;
+  // Empty without parsing strings as HTML
+  while (watchFrameEl.firstChild) watchFrameEl.removeChild(watchFrameEl.firstChild);
 
   if (autoplay) {
-    watchFrameEl.innerHTML = `
-      <iframe
-        src="https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1"
-        title="${title}"
-        loading="lazy"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen></iframe>`;
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?autoplay=1&rel=0&modestbranding=1`;
+    iframe.title = title;
+    iframe.loading = 'lazy';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    iframe.setAttribute('allowfullscreen', '');
+    watchFrameEl.appendChild(iframe);
     return;
   }
 
-  // Restore facade with new video
-  watchFrameEl.innerHTML = `
-    <img id="js-watch-img" src="${thumb}" alt="${title}" loading="lazy"/>
-    <button class="watch-play" id="js-watch-play" type="button" aria-label="Play video">
-      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-    </button>
-    <div class="watch-meta">
-      <div class="watch-title" id="js-watch-title">${title}</div>
-      <div class="watch-stamp" id="js-watch-stamp">${stamp}</div>
-    </div>`;
-  // Re-bind click on the new play button
-  document.getElementById('js-watch-play')?.addEventListener('click', () => {
+  // Restore facade with new video — build with DOM, not innerHTML
+  const img = document.createElement('img');
+  img.id = 'js-watch-img';
+  img.src = thumb;
+  img.alt = title;
+  img.loading = 'lazy';
+  watchFrameEl.appendChild(img);
+
+  const playBtn = document.createElement('button');
+  playBtn.className = 'watch-play';
+  playBtn.id = 'js-watch-play';
+  playBtn.type = 'button';
+  playBtn.setAttribute('aria-label', 'Play video');
+  const SVG_NS = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(SVG_NS, 'svg');
+  svg.setAttribute('width', '36'); svg.setAttribute('height', '36');
+  svg.setAttribute('viewBox', '0 0 24 24'); svg.setAttribute('fill', 'none');
+  svg.setAttribute('stroke', 'currentColor'); svg.setAttribute('stroke-width', '2');
+  svg.setAttribute('stroke-linecap', 'round'); svg.setAttribute('stroke-linejoin', 'round');
+  const poly = document.createElementNS(SVG_NS, 'polygon');
+  poly.setAttribute('points', '5 3 19 12 5 21 5 3');
+  svg.appendChild(poly);
+  playBtn.appendChild(svg);
+  watchFrameEl.appendChild(playBtn);
+
+  const meta = document.createElement('div');
+  meta.className = 'watch-meta';
+  const titleEl = document.createElement('div');
+  titleEl.className = 'watch-title'; titleEl.id = 'js-watch-title';
+  titleEl.textContent = title;
+  const stampEl = document.createElement('div');
+  stampEl.className = 'watch-stamp'; stampEl.id = 'js-watch-stamp';
+  stampEl.textContent = stamp;
+  meta.appendChild(titleEl); meta.appendChild(stampEl);
+  watchFrameEl.appendChild(meta);
+
+  playBtn.addEventListener('click', () => {
     setWatchVideo(videoId, thumb, title, stamp, true);
   });
 }
@@ -271,4 +298,54 @@ watchThumbs.forEach(btn => {
       false
     );
   });
+});
+
+// ── Past-shows archive modal ──────────────────────────────────
+// Open button + close button + ESC + paginated fade-in for rows.
+const archiveOverlay   = document.getElementById('js-archive-overlay');
+const archiveOpenBtn   = document.getElementById('js-archive-open');
+const archiveCloseBtn  = document.getElementById('js-archive-close');
+const archiveList      = document.getElementById('js-archive-list');
+const archiveLoadMore  = document.getElementById('js-archive-loadmore');
+
+let archiveRevealedTo = 0;
+
+function revealArchiveBatch() {
+  if (!archiveList) return;
+  const rows = archiveList.querySelectorAll('.archive-row');
+  const pageSize = parseInt(archiveList.dataset.pageSize || '20', 10);
+  const end = Math.min(rows.length, archiveRevealedTo + pageSize);
+  for (let i = archiveRevealedTo; i < end; i++) {
+    // Stagger the fade per row
+    setTimeout(() => rows[i].classList.add('is-revealed'), (i - archiveRevealedTo) * 25);
+  }
+  archiveRevealedTo = end;
+  if (archiveLoadMore) {
+    archiveLoadMore.hidden = archiveRevealedTo >= rows.length;
+  }
+}
+
+function openArchive() {
+  if (!archiveOverlay) return;
+  archiveOverlay.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+  // Reset reveal state on each open so the fade plays again
+  archiveList?.querySelectorAll('.archive-row').forEach(r => r.classList.remove('is-revealed'));
+  archiveRevealedTo = 0;
+  revealArchiveBatch();
+}
+
+function closeArchive() {
+  archiveOverlay?.classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+
+archiveOpenBtn?.addEventListener('click', openArchive);
+archiveCloseBtn?.addEventListener('click', closeArchive);
+archiveOverlay?.addEventListener('click', (e) => { if (e.target === archiveOverlay) closeArchive(); });
+archiveLoadMore?.addEventListener('click', revealArchiveBatch);
+
+// Extend the existing Escape handler to also close the archive
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeArchive();
 });

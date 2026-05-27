@@ -2,16 +2,16 @@
 $members = [
   ['num'=>1,'name'=>'Rob',  'role'=>'Guitar / Vocals','img'=>'img/rob.jpg',
    'bio'=>'Founder. Tone wizard. Pedal hoarder. Spent a decade studying the greats before finding his own voice. Will spend 45 minutes getting his sound right, then play a solo that makes you forget your own name.',
-   'quote'=>"If it doesn't make you feel something, we're not doing it right."],
+   'faves'=>'Skynyrd, Tom Petty, SRV, Allmans, Clapton'],
   ['num'=>2,'name'=>'Jeans','role'=>'Guitar / Vocals','img'=>'img/jeans.jpg',
    'bio'=>'Country roots, blues soul. Grew up on Merle and Waylon, then fell headfirst into blues rock. Always has a Telecaster in hand. Basically a fifth limb at this point.',
-   'quote'=>'A Tele through a tweed amp. That\'s all you need.'],
+   'faves'=>'Merle Haggard, Waylon Jennings, Dwight Yoakam, Black Crowes'],
   ['num'=>3,'name'=>'Max',  'role'=>'Bass / Vocals','img'=>'img/max.jpg',
-   'bio'=>"New on the low end. Bio coming soon.",
-   'quote'=>" "],
+   'bio'=>'New on the low end. Bio coming soon.',
+   'faves'=>'(coming soon)'],
   ['num'=>4,'name'=>'Matt', 'role'=>'Drums','img'=>'img/matt.jpg',
-   'bio'=>"Jazz-trained, rock-leaning. Matt keeps things steady in the pocket, until he doesn't. When \"Mad Matt\" goes off the rails with a solo, the rest of us hang on and enjoy the ride.",
-   'quote'=>"Stay in the pocket. Unless the pocket gets boring."],
+   'bio'=>'Jazz-trained, rock-leaning. Matt keeps things steady in the pocket, until he doesn\'t. When "Mad Matt" goes off the rails with a solo, the rest of us hang on and enjoy the ride.',
+   'faves'=>'(coming soon)'],
 ];
 ?>
 <section id="band" class="section" data-screen-label="Band">
@@ -29,7 +29,10 @@ $members = [
         <div class="member-card-name"><?= htmlspecialchars($m['name']) ?></div>
         <div class="member-card-role"><?= htmlspecialchars($m['role']) ?></div>
         <div class="member-card-bio"><?= htmlspecialchars($m['bio']) ?></div>
-        <div class="member-card-quote">"<?= htmlspecialchars($m['quote']) ?>"</div>
+        <div class="member-card-faves">
+          <span class="faves-label">For fans of</span>
+          <span class="faves-list"><?= htmlspecialchars($m['faves']) ?></span>
+        </div>
       </div>
     </article>
     <?php endforeach; ?>

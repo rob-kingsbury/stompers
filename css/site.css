@@ -59,11 +59,19 @@ button { font: inherit; background: none; border: none; cursor: pointer; color: 
 }
 .nav-inner {
   width: 100%; max-width: 1440px; margin: 0 auto;
-  display: flex; align-items: center; justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
   gap: 32px;
 }
-.nav-logo { display: flex; align-items: center; gap: 12px; }
-.nav-logo img { height: 36px; width: auto; transition: transform 220ms var(--jk-ease); }
+.nav-logo { justify-self: start; display: flex; align-items: center; gap: 12px; }
+.nav-cta-wrap { justify-self: end; }
+.nav-logo img {
+  height: 40px; width: auto;
+  filter: brightness(1.6) contrast(1.05);
+  transition: transform 220ms var(--jk-ease), filter 220ms var(--jk-ease);
+}
+.nav-logo:hover img { filter: brightness(1.8) contrast(1.05); }
 .nav-logo:hover img { transform: rotate(-2deg) scale(1.04); }
 .nav-links { display: flex; gap: 28px; align-items: center; }
 .nav-link {
@@ -545,8 +553,9 @@ button { font: inherit; background: none; border: none; cursor: pointer; color: 
   transform: translateY(-3px);
 }
 .member-card:hover::before { opacity: 0.12; }
-.member-card-img { background: #000; overflow: hidden; position: relative; }
+.member-card-img { background: #000; overflow: hidden; position: relative; min-height: 100%; }
 .member-card-img img {
+  position: absolute; inset: 0;
   width: 100%; height: 100%; object-fit: cover;
   filter: saturate(0.85) contrast(1.1) sepia(0.08) brightness(0.9);
   transition: filter 600ms var(--jk-ease), transform 800ms var(--jk-ease-out-expo);
@@ -588,14 +597,25 @@ button { font: inherit; background: none; border: none; cursor: pointer; color: 
   line-height: 1.55;
   color: var(--jk-fg-2);
 }
-.member-card-quote {
-  font-family: var(--jk-font-italic);
-  font-style: italic;
+.member-card-faves {
+  margin-top: 4px;
+  padding-top: 12px;
+  border-top: 1px solid var(--jk-rule);
+  display: flex; flex-direction: column; gap: 4px;
+}
+.member-card-faves .faves-label {
+  font-family: var(--jk-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--jk-gold);
+}
+.member-card-faves .faves-list {
+  font-family: var(--jk-font-serif);
   font-size: 14px;
-  line-height: 1.5;
-  color: var(--jk-fg);
-  border-left: 2px solid var(--jk-gold);
-  padding-left: 12px;
+  line-height: 1.4;
+  color: var(--jk-fg-2);
+  font-style: italic;
 }
 @media (max-width: 760px) {
   .band-grid { grid-template-columns: 1fr; }
@@ -1213,15 +1233,18 @@ button { font: inherit; background: none; border: none; cursor: pointer; color: 
   transition: transform 360ms var(--jk-ease-out-expo), opacity 220ms var(--jk-ease);
 }
 .ticket-overlay.is-open .ticket { transform: translateY(0) scale(1); opacity: 1; }
+/* Perforated ticket edges: repeating half-circle bites along top and bottom.
+   The circles use the overlay tint so they read against the modal backdrop. */
 .ticket::before, .ticket::after {
   content: ""; position: absolute;
-  width: 26px; height: 26px;
-  background: var(--jk-ink);
-  border-radius: 9999px;
-  top: 50%; transform: translateY(-50%);
+  left: 0; right: 0; height: 14px;
+  background-image: radial-gradient(circle at 12px 50%, rgba(10, 6, 4, 0.92) 6px, transparent 6.5px);
+  background-size: 24px 14px;
+  background-repeat: repeat-x;
+  pointer-events: none;
 }
-.ticket::before { left: -13px; }
-.ticket::after { right: -13px; }
+.ticket::before { top: -7px; }
+.ticket::after  { bottom: -7px; }
 .ticket-eyebrow {
   font-family: var(--jk-font-mono);
   font-size: 11px;
@@ -1254,16 +1277,22 @@ button { font: inherit; background: none; border: none; cursor: pointer; color: 
 .ticket-cta { margin-top: 22px; display: flex; gap: 10px; }
 .ticket-cta .btn { flex: 1; }
 .ticket-close {
-  position: absolute; top: 10px; right: 12px;
-  font-family: var(--jk-font-mono);
-  font-size: 22px;
-  color: #6b4a18;
-  width: 32px; height: 32px;
+  position: absolute; top: 12px; right: 14px;
+  font-family: var(--jk-font-display);
+  font-size: 28px;
+  line-height: 1;
+  font-weight: 400;
+  color: #2a1608;
+  width: 36px; height: 36px;
   display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(42, 22, 8, 0.25);
+  background: rgba(42, 22, 8, 0.06);
   border-radius: 9999px;
   cursor: pointer;
+  transition: background 140ms var(--jk-ease), border-color 140ms var(--jk-ease);
+  z-index: 2;
 }
-.ticket-close:hover { background: rgba(0,0,0,0.08); }
+.ticket-close:hover { background: rgba(42, 22, 8, 0.16); border-color: rgba(42, 22, 8, 0.5); }
 .ticket-stamp {
   position: absolute;
   top: -22px; right: -16px;
@@ -1364,3 +1393,169 @@ button { font: inherit; background: none; border: none; cursor: pointer; color: 
   line-height: 1.5;
 }
 .form-error a { color: var(--jk-gold-light); text-decoration: underline; }
+
+/* Honeypot: visually hidden but still focusable for accessibility testers */
+.hp-field {
+  position: absolute !important;
+  left: -10000px !important;
+  width: 1px; height: 1px; overflow: hidden;
+}
+
+/* About card citation under each quote */
+.about-card-quote {
+  font-family: var(--jk-font-italic);
+  font-style: italic;
+  font-size: var(--jk-fs-xl);
+  color: var(--jk-fg);
+  border-left: var(--jk-bw-rule) solid var(--jk-accent);
+  padding-left: var(--jk-s-5);
+  margin: var(--jk-s-5) 0 0;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.about-card-cite {
+  font-family: var(--jk-font-mono);
+  font-style: normal;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--jk-fg-3);
+}
+
+/* Tour featured: 2-column with embedded map */
+.tour-featured-grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 1fr) minmax(320px, 1fr);
+  gap: 32px;
+  align-items: stretch;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.tour-featured-info {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center;
+}
+.tour-featured-map {
+  border: 1px solid var(--jk-rule-strong);
+  border-radius: var(--jk-radius-sm);
+  overflow: hidden;
+  min-height: 280px;
+  background: var(--jk-coal);
+  box-shadow: var(--jk-shadow-md);
+}
+.tour-featured-map iframe {
+  width: 100%; height: 100%; min-height: 280px;
+  border: 0; display: block;
+  filter: saturate(0.85) contrast(1.05) brightness(0.95);
+}
+@media (max-width: 760px) {
+  .tour-featured-grid { grid-template-columns: 1fr; }
+}
+
+/* Tour archive trigger + modal */
+.tour-archive-cta { text-align: center; margin-top: 36px; }
+.tour-archive-link {
+  background: transparent;
+  border: 1px solid var(--jk-rule-strong);
+  color: var(--jk-fg-2);
+  font-family: var(--jk-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  padding: 12px 22px;
+  border-radius: var(--jk-radius-sm);
+  cursor: pointer;
+  display: inline-flex; align-items: center; gap: 10px;
+  transition: border-color 140ms var(--jk-ease), color 140ms var(--jk-ease);
+}
+.tour-archive-link:hover { border-color: var(--jk-rule-gold); color: var(--jk-fg); }
+.tour-archive-link .acc-count {
+  background: var(--jk-tobacco-raised);
+  color: var(--jk-gold);
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 10px;
+}
+
+.archive-overlay {
+  position: fixed; inset: 0; z-index: 180;
+  background: rgba(10, 6, 4, 0.78);
+  backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 32px 18px;
+  opacity: 0; pointer-events: none;
+  transition: opacity 220ms var(--jk-ease);
+}
+.archive-overlay.is-open { opacity: 1; pointer-events: auto; }
+.archive-modal {
+  background: var(--jk-coal);
+  border: 1px solid var(--jk-rule-strong);
+  width: 100%; max-width: 720px;
+  max-height: 86vh;
+  border-radius: var(--jk-radius-sm);
+  padding: 28px 24px 18px;
+  position: relative;
+  display: flex; flex-direction: column;
+  box-shadow: var(--jk-shadow-xl);
+  transform: translateY(12px);
+  opacity: 0;
+  transition: transform 320ms var(--jk-ease-out-expo), opacity 220ms var(--jk-ease);
+}
+.archive-overlay.is-open .archive-modal { transform: translateY(0); opacity: 1; }
+.archive-header { text-align: center; padding-bottom: 16px; border-bottom: 1px solid var(--jk-rule); margin-bottom: 8px; }
+.archive-header h3 {
+  font-family: var(--jk-font-display);
+  font-size: 36px;
+  line-height: 1;
+  margin: 6px 0 6px;
+  color: var(--jk-fg);
+}
+.archive-sub { font-family: var(--jk-font-serif); color: var(--jk-fg-3); font-size: 14px; }
+.archive-close {
+  position: absolute; top: 10px; right: 12px;
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px; font-family: var(--jk-font-display);
+  color: var(--jk-fg-2);
+  background: rgba(243, 231, 200, 0.05);
+  border: 1px solid var(--jk-rule);
+  border-radius: 9999px;
+  cursor: pointer;
+}
+.archive-close:hover { background: rgba(243, 231, 200, 0.12); color: var(--jk-fg); }
+.archive-list {
+  list-style: none; padding: 0; margin: 0;
+  overflow-y: auto;
+  flex: 1 1 auto;
+}
+.archive-row {
+  display: grid;
+  grid-template-columns: 110px 1fr auto 60px;
+  gap: 12px;
+  padding: 12px 4px;
+  border-bottom: 1px dashed var(--jk-rule);
+  align-items: baseline;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 320ms var(--jk-ease), transform 320ms var(--jk-ease);
+}
+.archive-row.is-revealed { opacity: 1; transform: translateY(0); }
+.archive-date {
+  font-family: var(--jk-font-mono);
+  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--jk-gold);
+}
+.archive-venue { font-family: var(--jk-font-display); font-size: 18px; color: var(--jk-fg); }
+.archive-loc { font-family: var(--jk-font-serif); font-size: 13px; color: var(--jk-fg-3); }
+.archive-map-link {
+  font-family: var(--jk-font-mono);
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--jk-gold-light);
+  text-align: right;
+}
+.archive-map-link:hover { color: var(--jk-gold-pale); }
+.archive-loadmore-row { text-align: center; padding-top: 14px; }
+@media (max-width: 600px) {
+  .archive-row { grid-template-columns: 90px 1fr; gap: 4px; }
+  .archive-loc { grid-column: 1 / -1; padding-left: 0; }
+  .archive-map-link { grid-column: 1 / -1; text-align: left; }
+}

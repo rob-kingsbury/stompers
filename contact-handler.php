@@ -7,13 +7,18 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $clean = fn($v) => trim(strip_tags($v ?? ''));
 $noNewlines = fn($v) => str_replace(["\r", "\n"], ' ', $v);
 
+// Honeypot: if filled, silently 'succeed' so the bot doesn't retry.
+if (!empty(trim($_POST['website'] ?? ''))) {
+    header('Location: index.php?status=sent#contact');
+    exit;
+}
+
 $name    = $noNewlines($clean($_POST['name']));
 $email   = $clean($_POST['email']);
 $venue   = $clean($_POST['venue']);
 $date    = $clean($_POST['date']);
 $message = $clean($_POST['message']);
 
-// Honeypot / basic validation
 if (!$name || !$email || !$message || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
     header('Location: index.php?status=error#contact');
     exit;

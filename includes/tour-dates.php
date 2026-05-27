@@ -149,14 +149,21 @@ function hydrate_shows(array $raw): array {
 // ----------------------------------------------------------------
 // Build the three arrays used by index.php and tour.php
 // ----------------------------------------------------------------
-$raw_shows    = fetch_sheets_csv() ?? FALLBACK_SHOWS;
-$all_shows    = hydrate_shows($raw_shows);
+$raw_shows = fetch_sheets_csv() ?? FALLBACK_SHOWS;
+$all_shows = hydrate_shows($raw_shows);
+
+// Add a comparable timestamp to each row, then sort chronologically.
+foreach ($all_shows as &$s) {
+    $month_num = date('n', strtotime($s['month'] . ' 1'));
+    $s['_ts']  = mktime(0, 0, 0, $month_num, (int)$s['day'], (int)$s['year']);
+}
+unset($s);
+usort($all_shows, fn($a, $b) => $a['_ts'] <=> $b['_ts']);
 
 $cutoff       = strtotime('yesterday');
-$future_shows = array_values(array_filter($all_shows, function($show) use ($cutoff) {
-    $month_num = date('n', strtotime($show['month'] . ' 1'));
-    $show_date = mktime(0, 0, 0, $month_num, (int)$show['day'], (int)$show['year']);
-    return $show_date >= $cutoff;
-}));
+$future_shows = array_values(array_filter($all_shows, fn($s) => $s['_ts'] >= $cutoff));
+$past_shows   = array_values(array_filter($all_shows, fn($s) => $s['_ts'] <  $cutoff));
+// Past shows: newest first (most recent at top of archive modal)
+usort($past_shows, fn($a, $b) => $b['_ts'] <=> $a['_ts']);
 
 $upcoming = array_slice($future_shows, 0, 3);

@@ -54,6 +54,11 @@ $contact_status = $_GET['status'] ?? '';
           <?php if ($contact_status === 'error'): ?>
             <div class="form-error" role="alert">Something didn't go through. Check the fields below and try again, or email <a href="mailto:booking@swampcitystompers.ca">booking@swampcitystompers.ca</a> direct.</div>
           <?php endif; ?>
+          <!-- Honeypot: must stay empty. Bots fill this; humans never see it. -->
+          <div class="hp-field" aria-hidden="true">
+            <label for="c-website">Website (leave blank)</label>
+            <input id="c-website" name="website" type="text" tabindex="-1" autocomplete="off"/>
+          </div>
           <div class="field-row">
             <div class="field">
               <label for="c-name">Your name</label>

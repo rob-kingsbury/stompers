@@ -3,7 +3,6 @@
     <source src="img/grunge-loop.mp4" type="video/mp4"/>
   </video>
   <div class="hero-glow" aria-hidden="true"></div>
-  <img class="hero-stamp" src="img/sleazy-rock.png" alt=""/>
   <div class="hero-inner">
     <div class="hero-meta">
       <span>Est. 2025</span>
