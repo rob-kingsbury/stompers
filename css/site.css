@@ -1322,10 +1322,12 @@ button { font: inherit; background: none; border: none; cursor: pointer; color: 
   filter: saturate(0.7) contrast(1.05) brightness(0.55);
   pointer-events: none;
 }
-.hero > .hero-inner,
-.hero > .hero-glow,
-.hero > .hero-stamp,
-.hero > .hero-scroll-cue { position: relative; z-index: 2; }
+/* Don't override position on the absolutely-positioned children;
+   just lift them above the video via z-index. */
+.hero-inner      { z-index: 2; }
+.hero-glow       { z-index: 1; }
+.hero-stamp      { z-index: 2; }
+.hero-scroll-cue { z-index: 2; }
 
 /* EPK band photo in the sticky side card */
 .epk-side-photo {
