@@ -57,8 +57,7 @@ document.addEventListener('keydown', (e) => {
 
 // ── Scroll-spy ───────────────────────────────────────────────
 const SPY_SECTIONS = ['home','about','band','tour','watch','epk','contact'];
-const progressDots = document.querySelectorAll('.progress-dot');
-const navLinks     = document.querySelectorAll('.nav-link');
+const navLinks = document.querySelectorAll('.nav-link');
 
 function updateScrollSpy() {
   let active = SPY_SECTIONS[0];
@@ -66,12 +65,10 @@ function updateScrollSpy() {
     const el = document.getElementById(id);
     if (el && el.offsetTop <= window.scrollY + 140) active = id;
   });
-  progressDots.forEach(d => d.classList.toggle('is-active', d.dataset.target === active));
   navLinks.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === `#${active}`));
 }
 
 window.addEventListener('scroll', updateScrollSpy, { passive: true });
-progressDots.forEach(d => d.addEventListener('click', () => navigateTo(d.dataset.target)));
 updateScrollSpy();
 
 // ── Scroll reveals ───────────────────────────────────────────

@@ -33,13 +33,3 @@
   <a class="nav-link" href="#epk">EPK</a>
   <a class="nav-link" href="#contact">Contact</a>
 </div>
-
-<nav class="progress-nav" aria-label="Section navigation">
-  <button class="progress-dot" data-target="home" aria-label="Go to Home"><span class="dot-inner"></span><span class="dot-tooltip">Home</span></button>
-  <button class="progress-dot" data-target="about" aria-label="Go to About"><span class="dot-inner"></span><span class="dot-tooltip">About</span></button>
-  <button class="progress-dot" data-target="band" aria-label="Go to Band"><span class="dot-inner"></span><span class="dot-tooltip">Band</span></button>
-  <button class="progress-dot" data-target="tour" aria-label="Go to Tour"><span class="dot-inner"></span><span class="dot-tooltip">Tour</span></button>
-  <button class="progress-dot" data-target="watch" aria-label="Go to Watch"><span class="dot-inner"></span><span class="dot-tooltip">Watch</span></button>
-  <button class="progress-dot" data-target="epk" aria-label="Go to EPK"><span class="dot-inner"></span><span class="dot-tooltip">EPK</span></button>
-  <button class="progress-dot" data-target="contact" aria-label="Go to Book"><span class="dot-inner"></span><span class="dot-tooltip">Book</span></button>
-</nav>
