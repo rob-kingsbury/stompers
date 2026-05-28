@@ -34,6 +34,7 @@ const MARQUEE_ARTISTS = [
     'Neil Young',
     'Georgia Satellites',
     'Freddie King',
+    'Marvin Gaye',
     'Alan Jackson',
     'Crosby, Stills, Nash and Young',
     'B.B. King',
