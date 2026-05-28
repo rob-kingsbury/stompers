@@ -1218,21 +1218,25 @@ button { font: inherit; background: none; border: none; cursor: pointer; color: 
   transition: opacity 220ms var(--jk-ease);
 }
 .ticket-overlay.is-open { opacity: 1; pointer-events: auto; }
-.ticket {
-  background: var(--jk-paper);
-  color: var(--jk-paper-ink);
-  width: 100%; max-width: 480px;
-  padding: 36px 36px 28px;
-  border: 2px solid var(--jk-paper-edge);
-  border-radius: 3px;
+/* .ticket-frame is the positioning context for the stamp + close button
+   so they sit OUTSIDE the masked .ticket and don't get clipped. */
+.ticket-frame {
   position: relative;
-  box-shadow: 0 28px 70px rgba(0,0,0,0.78);
-  font-family: var(--jk-font-serif);
+  width: 100%; max-width: 480px;
   transform: translateY(16px) scale(0.96);
   opacity: 0;
   transition: transform 360ms var(--jk-ease-out-expo), opacity 220ms var(--jk-ease);
 }
-.ticket-overlay.is-open .ticket { transform: translateY(0) scale(1); opacity: 1; }
+.ticket-overlay.is-open .ticket-frame { transform: translateY(0) scale(1); opacity: 1; }
+.ticket {
+  background: var(--jk-paper);
+  color: var(--jk-paper-ink);
+  width: 100%;
+  padding: 36px 36px 28px;
+  border-radius: 3px;
+  box-shadow: 0 28px 70px rgba(0,0,0,0.78);
+  font-family: var(--jk-font-serif);
+}
 /* Perforated ticket edges: actually carve half-circle notches out of the
    top and bottom using CSS masks. The notches reveal whatever's behind
    the ticket (the modal overlay). Two stacked masks intersect so the
@@ -1279,21 +1283,22 @@ button { font: inherit; background: none; border: none; cursor: pointer; color: 
 .ticket-cta { margin-top: 22px; display: flex; gap: 10px; }
 .ticket-cta .btn { flex: 1; }
 .ticket-close {
-  position: absolute; top: 16px; right: 18px;
-  width: 34px; height: 34px;
+  position: absolute; top: 12px; right: 12px;
+  width: 40px; height: 40px;
   display: flex; align-items: center; justify-content: center;
-  color: #2a1608;
-  border: 1.5px solid #2a1608;
-  background: rgba(42, 22, 8, 0.06);
+  color: var(--jk-paper);
+  border: 0;
+  background: #2a1608;
   border-radius: 9999px;
   cursor: pointer;
-  transition: background 140ms var(--jk-ease), color 140ms var(--jk-ease);
-  z-index: 2;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: background 140ms var(--jk-ease), transform 140ms var(--jk-ease);
+  z-index: 4;
 }
 .ticket-close svg { display: block; }
 .ticket-close:hover {
-  background: #2a1608;
-  color: var(--jk-paper);
+  background: var(--jk-rust);
+  transform: scale(1.06);
 }
 .ticket-stamp {
   position: absolute;
@@ -1308,6 +1313,8 @@ button { font: inherit; background: none; border: none; cursor: pointer; color: 
   transform: rotate(8deg);
   text-transform: uppercase;
   box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+  z-index: 3;
+  pointer-events: none;
 }
 
 /* CTA Section */
