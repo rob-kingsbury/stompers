@@ -1300,6 +1300,22 @@ button { font: inherit; background: none; border: none; cursor: pointer; color: 
   background: var(--jk-rust);
   transform: scale(1.06);
 }
+
+/* Secondary Close button at the bottom: btn-ghost on parchment was
+   invisible. Force dark text + visible border so it actually reads. */
+.ticket .btn-ghost,
+.ticket-cta #js-ticket-close2 {
+  color: #2a1608;
+  background: transparent;
+  border: 2px solid #2a1608;
+  font-weight: 600;
+}
+.ticket .btn-ghost:hover,
+.ticket-cta #js-ticket-close2:hover {
+  background: #2a1608;
+  color: var(--jk-paper);
+  border-color: #2a1608;
+}
 .ticket-stamp {
   position: absolute;
   top: -22px; right: -16px;

@@ -4,7 +4,7 @@
     <a class="footer-link" href="https://www.facebook.com/swampcitystompers" target="_blank" rel="noopener">Facebook</a>
     <a class="footer-link" href="https://www.instagram.com/swamp_city_stompers" target="_blank" rel="noopener">Instagram</a>
     <a class="footer-link" href="https://youtube.com/playlist?list=PLy1-_1Va1knJ8knIMNVISzCq9HsexLwf-" target="_blank" rel="noopener">YouTube</a>
-    <a class="footer-link" href="mailto:booking@swampcitystompers.ca">Booking</a>
+    <a class="footer-link" href="#contact">Booking</a>
   </div>
   <div class="footer-meta">
     <span>&copy; <?= date('Y') ?> Swamp City Stompers</span>
