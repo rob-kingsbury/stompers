@@ -9,7 +9,7 @@
       <div class="epk-side-band">Swamp City Stompers</div>
       <div class="epk-side-loc">Ottawa, ON &middot; Canada</div>
       <div class="epk-side-photo">
-        <img src="img/band-photo-doorway.jpeg" alt="Swamp City Stompers" loading="lazy"/>
+        <img src="img/band-marquee-bw.jpg" alt="Swamp City Stompers" loading="lazy"/>
       </div>
       <div style="display:flex; flex-direction:column; gap:8px;">
         <a class="btn btn-primary" href="#" aria-disabled="true">Download EPK (PDF)</a>
