@@ -24,7 +24,6 @@ const MARQUEE_ARTISTS = [
     'Allman Brothers',
     'JJ Cale',
     'Eric Clapton',
-    'Brad Paisley',
     'Cream',
     'Big Wreck',
     'Doobie Brothers',
