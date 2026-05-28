@@ -25,7 +25,6 @@ $members = [
     <article class="member-card">
       <div class="member-card-img"><img src="<?= htmlspecialchars($m['img']) ?>" alt="<?= htmlspecialchars($m['name']) ?>" loading="lazy"/></div>
       <div class="member-card-body">
-        <div class="member-card-num">Member &middot; 0<?= $m['num'] ?></div>
         <div class="member-card-name"><?= htmlspecialchars($m['name']) ?></div>
         <div class="member-card-role"><?= htmlspecialchars($m['role']) ?></div>
         <div class="member-card-bio"><?= htmlspecialchars($m['bio']) ?></div>
