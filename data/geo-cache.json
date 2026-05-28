@@ -50,5 +50,9 @@
     "4 Muddy Paws|Arnprior, ON": {
         "lat": "0",
         "lng": "0"
+    },
+    "The Neighbourhood Pub|Ottawa, ON": {
+        "lat": "45.3418492",
+        "lng": "-75.7870186"
     }
 }

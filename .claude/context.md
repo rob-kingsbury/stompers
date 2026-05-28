@@ -2,10 +2,11 @@
 project: Stompers
 status: In Progress
 last_session: 22
+session: 23
 session_date: 2026-05-27
-current_focus: "JK-redesign rebuild + Drive media library wired up"
+current_focus: "Round-5 polish + Drive integration complete; awaiting Max bio + deploy"
 open_issues: 11
-next_priority: "Max bio + photo; sweep stage plot / tech rider for Kurt -> Max; deploy + cross-device smoke test"
+next_priority: "Max bio + photo (#23); deploy round-2 site to WHC + cross-device smoke test"
 ---
 
 # Stompers Redesign Context
@@ -18,7 +19,7 @@ type: Single-page band site, vanilla PHP/JS
 
 tech:
   build: NONE (no Vite, no GSAP, no Lenis, no Barba). Plain PHP + CSS + JS.
-  server: XAMPP Apache (PHP pages)
+  server: XAMPP Apache locally; WHC shared hosting in prod
   css: Vanilla CSS with CSS variables (oxblood/gold/parchment palette)
   js: Vanilla JS (ES6+), IntersectionObserver scroll reveals
   type_stack: Patua One + IM Fell English SC + Libre Caslon + Special Elite
@@ -31,13 +32,13 @@ paths:
   includes: includes/head.php, nav.php, hero.php, marquee.php, about.php,
             band.php, tour-section.php, tour-dates.php (data),
             watch.php, epk.php, contact.php, footer.php, ticket-modal.php,
-            helpers.php (defines e())
-  config: config.php (gitignored - Supabase mgmt token for marquee)
+            helpers.php
+  config: config.php (gitignored) — legacy Supabase mgmt token; marquee no longer uses it
   archive: _archive/site-v2-pre-jk-redesign/ (previous Vite/GSAP site, frozen)
-  docs: HANDOFF.md, .claude/context.md
+  docs: handoff.md, .claude/context.md
 
 workflow:
-  dev: just hit http://localhost/stompers-redesign/ via XAMPP. No build step.
+  dev: http://localhost/stompers-redesign/ via XAMPP. No build step.
   deploy: SFTP includes/, css/, js/, img/, index.php, contact-handler.php to WHC
   issues: gh issue list --state open
 
@@ -48,11 +49,11 @@ repo:
 band:
   Rob:  Guitar / Vocals (founder)
   Jeans: Guitar / Vocals (Eugene)
-  Max:  Bass / Vocals (joined session 22, replaced Kurt)
+  Max:  Bass / Vocals (joined session 22, replaced Kurt; bio + photo pending #23)
   Matt: Drums
 
 socials:
-  facebook: https://www.facebook.com/profile.php?id=61576878274856
+  facebook: https://www.facebook.com/swampcitystompers
   instagram: https://www.instagram.com/swamp_city_stompers
   youtube_playlist: https://youtube.com/playlist?list=PLy1-_1Va1knJ8knIMNVISzCq9HsexLwf-
   booking: booking@swampcitystompers.ca
@@ -63,69 +64,46 @@ tour_sheet:
   url_const: SHEETS_CSV_URL in includes/tour-dates.php
   cache_ttl: 60s
   apps_script: data/tour-sheet-setup.gs
+  past_shows: includes HISTORICAL_SHOWS const merged into the feed
+              (currently: Mar 1 2025 Busters; Apr 18 2025 The Neighbourhood Pub)
   editors: Rob + Eugene
 
 marquee:
-  source: bandpilot Supabase songs table (Stompers' top artists by song count)
-  api: Supabase Management API SQL endpoint (server-side PHP fetch)
-  cache: data/marquee-cache.json, 24h TTL
-  fallback: hardcoded curated artist list (Skynyrd, Allmans, Petty, etc.)
-  config: config.php holds Supabase access token + Stompers band UUID
-  todo: replace with public read endpoint on bandpilot side (cleaner than mgmt API)
+  source: hardcoded array in includes/marquee.php (25 artists, edit to change)
+  history: was BandPilot Mgmt API w/ 24h cache; switched to hardcoded session 22
 
 drive_media_library:
-  spec: see "Drive Media Library" section below
-  sheet: https://docs.google.com/spreadsheets/d/1dEuDPF1AuGS-4a0QW-JIBkzDysyEFNjPVa5nzGANIKk/edit
-  apps_script: data/roster-sheet-setup.gs (installed in sheet)
+  spec: see "Drive Media Library" section in HANDOFF.md
+  roster_sheet: https://docs.google.com/spreadsheets/d/1dEuDPF1AuGS-4a0QW-JIBkzDysyEFNjPVa5nzGANIKk/edit
+  apps_script: data/roster-sheet-setup.gs
+  drive_access: Drive MCP connector authorized as robandtherockets@gmail.com.
+                Read + copy operations work. No delete/move via MCP — manual cleanup needed.
 ```
 
 ## Section Status
 
 | Section | Status |
 |---------|--------|
-| Hero | Complete (logo + tagline + grunge-loop.mp4 background + scroll cue) |
-| Marquee (under hero) | Complete (live from bandpilot, 24h cache, fallback) |
-| About (4 cards) | Complete (B-sides angle copy; 2 cards still using Unsplash placeholders) |
-| Band (4 cards) | Complete in markup; Max has placeholder bio + missing `img/max.jpg` |
-| Tour | Complete (live CSV; featured + accordion; show-details modal) |
-| Watch | Complete (7 real YouTube IDs, facade -> iframe on click) |
-| EPK | Complete (band photo + bio + tags + sets + tech rider folded in) |
-| Contact | Complete (real PHP handler, status banner on redirect) |
-| Footer | Complete (real socials + booking email) |
-
-## Drive Media Library (session 22)
-
-Decided on Google Drive (not Piwigo, not custom) as the EPK/media layer. Migration to Piwigo is straightforward later if Drive feels limiting.
-
-Structure under "Stompers Band/":
-- EPK Press Kit/ (anyone-with-link Viewer; contains Band Photos, Logos, One-Sheet, Stage Plot, Tech Rider, Bio + Quotes, Posters, Promo Videos)
-- Show Photos/ (band Viewer)
-- Set Lists and Charts/ (band Viewer)
-- Inbox - Upload Here/ (band Editor — only upload spigot)
-- Admin (Rob Only)/
-
-Access driven by `Stompers - Band Access Roster` Google Sheet + bound Apps Script (`data/roster-sheet-setup.gs`). Roster tab + Tier Rules tab + Sync Log tab. "Stompers" menu has Sync + Dry Run options.
-
-Roster session 22:
-- Rob: Admin, robandtherockets@gmail.com
-- Jeans (Eugene): Band, eugenejohnson_55@hotmail.com (needs Google account on this address)
-- Max: Band, maxlauzon33@gmail.com
-- Matt: Band, no email (skipped by sync until provided)
+| Hero | Complete (logo + tagline + grunge-loop.mp4 background + scroll cue; sleazy stamp removed) |
+| Marquee | Complete (hardcoded 25-artist staggered list, no pause-on-hover) |
+| About (4 cards) | Complete (real Stompers photos; B-sides copy; placeholder cites under each quote pending real ones — #25 captures one from @roseyxiphoto) |
+| Band (4 cards) | Complete in markup; Max has placeholder bio + missing img/max.jpg (#23) |
+| Tour | Complete (live CSV + HISTORICAL_SHOWS, chronological sort, featured map-background card, accordion no pre-expand, past-shows archive modal) |
+| Watch | Complete (7 real YouTube IDs, facade-to-iframe; videos for Promo Videos pending YouTube upload #26) |
+| EPK | Complete v1 (band photo + bio + tags + sets + tech rider + mission quote; Rob will provide deeper EPK direction) |
+| Contact | Complete (real PHP handler + honeypot + status banner) |
+| Footer | Complete (real socials + Booking link = #contact) |
 
 ## Recent Changes
 
-### May 2026 - Session 22: JK-Style Rebuild + Drive Media Library + Lineup Change
+### Session 22 (2026-05-27): Multi-round redesign + Drive integration
 
-**Site rebuild.** Archived the entire Vite/GSAP/Lenis/Barba multi-page site to `_archive/site-v2-pre-jk-redesign/` and rebuilt from the `jeans-and-king` design as a single-page vanilla PHP/JS site. Brought forward: live CSV tour pipeline, Stompers logo + grunge video, real YouTube facade with 7 video IDs, real socials + booking email, PHP contact handler. New: marquee pulls live from bandpilot Supabase via Mgmt API + 24h cache, EPK folds in the tech rider, no build step.
+12-commit session. Rebuilt the entire site from JK design (single-page vanilla PHP/JS, no build step). Added Drive media library with Apps Script permission sync. Pulled 7 real band photos from Max's Drive Inbox and wired into About + EPK. Marquee artist list curated. Ticket modal got real CSS-mask perforations + restructured close-button positioning. Footer Booking link → #contact. Progress sidebar nav removed. 5 obsolete issues closed; 5 new follow-up issues created. Lineup change: Kurt → Max on bass.
 
-**Lineup change.** Kurt left the band; Max joined on bass. Band card swapped (placeholder bio + missing photo flagged). Memory updated. Stage plot SVG and tech rider PDF still reference Kurt — sweep pending.
+### Session 21 (earlier): Google Sheets Tour Feed Live
 
-**Drive media library.** Google Drive set up as the EPK/media store. Folder tree created (EPK Press Kit, Show Photos, Set Lists, Inbox, Admin). Apps Script (`data/roster-sheet-setup.gs`) syncs permissions from the roster sheet to folders. First sync run: 13 grants, 1 skip (Matt, no email), 0 errors.
+Connected published CSV as the live tour-date source. Apps Script for tour sheet installed.
 
-### May 2026 - Session 21: Google Sheets Tour Feed Live
+### Session 20 (earlier): Tour Date Updates
 
-Connected published Google Sheets CSV as the live tour-date source. Schema: Date | Hour | Minute | AM/PM | Venue | Location | Age | Note. PHP combines time columns into single `time` string. Apps Script installs Stompers menu + date picker + past-show conditional formatting. #22 closed.
-
-### April 2026 - Session 20: Tour Date Updates
-
-Added May 16 Cold Bear Brewery. Brauwerk Hoffman Jul 12 -> Jul 18. Hard Rock Cafe -> Hard Rock Casino with corrected coords.
+Added May 16 Cold Bear Brewery. Brauwerk Hoffman Jul 12 → Jul 18. Hard Rock Cafe → Hard Rock Casino with corrected coords.
