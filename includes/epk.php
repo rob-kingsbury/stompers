@@ -12,7 +12,7 @@
         <img src="img/band-marquee-bw.jpg" alt="Swamp City Stompers" loading="lazy"/>
       </div>
       <div style="display:flex; flex-direction:column; gap:8px;">
-        <a class="btn btn-primary" href="#" aria-disabled="true">Download EPK (PDF)</a>
+        <a class="btn btn-primary" href="#" aria-disabled="true">EPK PDF &middot; coming soon</a>
         <a class="btn btn-outline" href="#contact">Contact for booking</a>
       </div>
     </aside>
@@ -25,12 +25,12 @@
       <div class="epk-section">
         <h3>What we sound like</h3>
         <div class="epk-tags">
-          <span class="tag tag-gold">Southern rock</span>
+          <span class="tag tag-gold">Classic rock</span>
           <span class="tag tag-gold">Blues</span>
-          <span class="tag tag-gold">Soul</span>
-          <span class="tag">Outlaw country</span>
+          <span class="tag tag-gold">Outlaw country</span>
+          <span class="tag">Southern rock</span>
           <span class="tag">Roots rock</span>
-          <span class="tag">Classic rock</span>
+          <span class="tag">Soul</span>
           <span class="tag">R&amp;B</span>
         </div>
       </div>

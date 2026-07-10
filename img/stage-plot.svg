@@ -82,7 +82,7 @@
   <polygon points="135,388 165,388 161,408 139,408" fill="#222" stroke="#c9a227" stroke-width="1.2"/>
   <text x="130" y="424" text-anchor="middle" fill="#c9a227" font-size="9">MON 1 + 2</text>
 
-  <!-- ============ KURT - Center Left ============ -->
+  <!-- ============ MAX - Center Left ============ -->
   <!-- DI Box -->
   <rect x="310" y="315" width="40" height="25" rx="3" fill="#1a1a1a" stroke="#c9a227" stroke-width="1.5"/>
   <text x="330" y="332" text-anchor="middle" fill="#c9a227" font-size="9" font-weight="bold">DI</text>
@@ -96,11 +96,11 @@
   <circle cx="330" cy="284" r="8" fill="#333" stroke="#c9a227" stroke-width="1.2"/>
   <text x="330" y="268" text-anchor="middle" fill="#c9a227" font-size="9">SM58</text>
 
-  <!-- Kurt label -->
-  <text x="330" y="255" text-anchor="middle" fill="#f5f5f0" font-size="13" font-weight="bold">KURT</text>
+  <!-- Max label -->
+  <text x="330" y="255" text-anchor="middle" fill="#f5f5f0" font-size="13" font-weight="bold">MAX</text>
   <text x="330" y="270" text-anchor="middle" fill="#888" font-size="10">Bass / Vocals</text>
 
-  <!-- Kurt monitor -->
+  <!-- Max monitor -->
   <polygon points="315,388 345,388 341,408 319,408" fill="#222" stroke="#555" stroke-width="1"/>
   <text x="330" y="424" text-anchor="middle" fill="#555" font-size="9">MON 3</text>
 
@@ -142,7 +142,7 @@
   <text x="60" y="498" fill="#c9a227" font-size="10" font-weight="bold" letter-spacing="2">CHANNEL LIST</text>
   <text x="60" y="515" fill="#888" font-size="9">1. Rob Vox (SM58)</text>
   <text x="60" y="528" fill="#888" font-size="9">2. Eugene Vox (SM58)</text>
-  <text x="60" y="541" fill="#888" font-size="9">3. Kurt Vox (SM58)</text>
+  <text x="60" y="541" fill="#888" font-size="9">3. Max Vox (SM58)</text>
   <text x="230" y="515" fill="#888" font-size="9">4. Rob Guitar (e906)</text>
   <text x="230" y="528" fill="#888" font-size="9">5. Eugene Guitar (SM57)</text>
   <text x="230" y="541" fill="#888" font-size="9">6. Bass DI</text>
@@ -150,6 +150,6 @@
   <text x="400" y="528" fill="#888" font-size="9">8+. Additional drums as applicable</text>
   <text x="620" y="515" fill="#555" font-size="9">Monitors: 4 mixes</text>
   <text x="620" y="528" fill="#555" font-size="9">Mix 1/2: Rob + Eugene (x2 wedges each)</text>
-  <text x="620" y="541" fill="#555" font-size="9">Mix 3: Kurt  |  Mix 4: Matt</text>
+  <text x="620" y="541" fill="#555" font-size="9">Mix 3: Max  |  Mix 4: Matt</text>
 
 </svg>

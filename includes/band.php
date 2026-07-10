@@ -7,8 +7,8 @@ $members = [
    'bio'=>'Country roots, blues soul. Grew up on Merle and Waylon, then fell headfirst into blues rock. Always has a Telecaster in hand. Basically a fifth limb at this point.',
    'faves'=>'Merle Haggard, Waylon Jennings, Dwight Yoakam, Black Crowes'],
   ['num'=>3,'name'=>'Max',  'role'=>'Bass / Vocals','img'=>'img/max.jpg',
-   'bio'=>'New on the low end. Bio coming soon.',
-   'faves'=>'(coming soon)'],
+   'bio'=>'Switched from six strings to four. Played guitar around Ottawa, including a run with Lady Soul, before moving to bass for the Stompers. Deep pocket, singer\'s ear. If a song has a groove, Max already found the one and is sitting on it.',
+   'faves'=>'(coming soon)','pos'=>'center 22%'],
   ['num'=>4,'name'=>'Matt', 'role'=>'Drums','img'=>'img/matt.jpg',
    'bio'=>'Jazz-trained, rock-leaning. Matt keeps things steady in the pocket, until he doesn\'t. When "Mad Matt" goes off the rails with a solo, the rest of us hang on and enjoy the ride.',
    'faves'=>'(coming soon)'],
@@ -23,7 +23,7 @@ $members = [
   <div class="band-grid">
     <?php foreach ($members as $m): ?>
     <article class="member-card">
-      <div class="member-card-img"><img src="<?= htmlspecialchars($m['img']) ?>" alt="<?= htmlspecialchars($m['name']) ?>" loading="lazy"/></div>
+      <div class="member-card-img"><img src="<?= htmlspecialchars($m['img']) ?>" alt="<?= htmlspecialchars($m['name']) ?>" loading="lazy"<?= !empty($m['pos']) ? ' style="object-position:'.htmlspecialchars($m['pos']).'"' : '' ?>/></div>
       <div class="member-card-body">
         <div class="member-card-name"><?= htmlspecialchars($m['name']) ?></div>
         <div class="member-card-role"><?= htmlspecialchars($m['role']) ?></div>
