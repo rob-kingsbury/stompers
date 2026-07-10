@@ -77,7 +77,7 @@ function fetch_sheets_csv(): ?array {
         $minute = isset($row[2]) ? trim($row[2]) : '';
         $ampm   = isset($row[3]) ? trim($row[3]) : '';
         $time   = ($hour !== '' && $minute !== '' && $ampm !== '')
-            ? "{$hour}:{$minute} {$ampm}"
+            ? $hour . ':' . str_pad($minute, 2, '0', STR_PAD_LEFT) . ' ' . $ampm
             : '';
 
         $shows[] = [
