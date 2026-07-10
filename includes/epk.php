@@ -28,7 +28,7 @@
           <span class="tag tag-gold">Classic rock</span>
           <span class="tag tag-gold">Blues</span>
           <span class="tag tag-gold">Outlaw country</span>
-          <span class="tag">Southern rock</span>
+          <span class="tag tag-gold">Southern rock</span>
           <span class="tag">Roots rock</span>
           <span class="tag">Soul</span>
           <span class="tag">R&amp;B</span>
