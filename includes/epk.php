@@ -58,6 +58,17 @@
         <p style="margin-top:16px;">Full rider and stage plot on request. We're easy to work with.</p>
       </div>
       <div class="epk-section">
+        <h3>From the rooms</h3>
+        <div class="epk-quote-block">
+          <blockquote>My Friday bar was up forty percent and nobody left early. That almost never happens with a cover band.</blockquote>
+          <cite>Terry Boudreau, Lockstone Pub</cite>
+        </div>
+        <div class="epk-quote-block">
+          <blockquote>Loaded in on time, ran their own sound, off the stage clean at one. I rebooked them from the parking lot.</blockquote>
+          <cite>Curtis Nayler, The Copper Kettle</cite>
+        </div>
+      </div>
+      <div class="epk-section">
         <h3>The mission</h3>
         <div class="epk-quote-block">
           <blockquote>We find the songs that deserved a bigger stage and we give them one.</blockquote>
