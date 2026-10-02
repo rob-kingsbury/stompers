@@ -58,5 +58,13 @@
     "Barley Mow|Stittsville, ON": {
         "lat": "45.2681952",
         "lng": "-75.9403729"
+    },
+    "Gavan's Hotel|Quyon, QC": {
+        "lat": "0",
+        "lng": "0"
+    },
+    "OctoberWest|Almonte, ON": {
+        "lat": "0",
+        "lng": "0"
     }
 }

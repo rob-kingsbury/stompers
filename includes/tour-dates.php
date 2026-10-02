@@ -162,9 +162,13 @@ $raw_shows = array_merge($raw_shows, HISTORICAL_SHOWS);
 $all_shows = hydrate_shows($raw_shows);
 
 // Add a comparable timestamp to each row, then sort chronologically.
+// 'id' is date + venue slug: stable across sheet edits to time/age/note, so a
+// re-downloaded .ics replaces the old calendar entry instead of duplicating it.
 foreach ($all_shows as &$s) {
     $month_num = date('n', strtotime($s['month'] . ' 1'));
     $s['_ts']  = mktime(0, 0, 0, $month_num, (int)$s['day'], (int)$s['year']);
+    $slug      = trim(preg_replace('/[^a-z0-9]+/', '-', strtolower($s['venue'])), '-');
+    $s['id']   = date('Y-m-d', $s['_ts']) . '-' . $slug;
 }
 unset($s);
 usort($all_shows, fn($a, $b) => $a['_ts'] <=> $b['_ts']);

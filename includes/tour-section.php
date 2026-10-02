@@ -13,6 +13,10 @@ function month_long(string $m): string {
     return $map[strtoupper($m)] ?? $m;
 }
 
+function show_ics_url(array $s): string {
+    return 'calendar.php?show=' . rawurlencode($s['id']);
+}
+
 function show_map_url(array $s): string {
     if (!empty($s['map_q'])) {
         return 'https://www.google.com/maps/search/?api=1&query=' . $s['map_q'];
@@ -58,6 +62,7 @@ function show_map_url(array $s): string {
             <span>&middot;</span><span><?= e($featured['note']) ?></span>
           <?php endif; ?>
         </div>
+        <div class="tour-featured-cta">
         <button class="btn btn-primary js-ticket-open"
                 data-date="<?= $fDate ?>"
                 data-venue="<?= e($featured['venue']) ?>"
@@ -66,6 +71,8 @@ function show_map_url(array $s): string {
                 data-age="<?= e($featured['age']) ?>"
                 data-note="<?= e($featured['note']) ?>"
                 data-map="<?= e(show_map_url($featured)) ?>">Show details</button>
+        <a class="btn btn-ghost" href="<?= e(show_ics_url($featured)) ?>" download>Add to calendar</a>
+        </div>
       </div>
     </div>
   <?php else: ?>
@@ -107,6 +114,7 @@ function show_map_url(array $s): string {
                 <?php if ($sMap): ?>
                   <a class="btn btn-ghost" href="<?= e($sMap) ?>" target="_blank" rel="noopener">Map</a>
                 <?php endif; ?>
+                <a class="btn btn-ghost" href="<?= e(show_ics_url($s)) ?>" download>Add to calendar</a>
               </div>
             </div>
           </div>

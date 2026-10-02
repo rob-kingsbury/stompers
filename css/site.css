@@ -687,6 +687,7 @@ button { font: inherit; background: none; border: none; cursor: pointer; color: 
   margin-bottom: 6px;
   position: relative;
 }
+.tour-featured-cta { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; position: relative; }
 .tour-featured-loc { color: var(--jk-fg-2); margin-bottom: 22px; position: relative; }
 .tour-featured-meta {
   font-family: var(--jk-font-mono);
@@ -784,7 +785,7 @@ button { font: inherit; background: none; border: none; cursor: pointer; color: 
   color: var(--jk-fg-3);
 }
 .acc-detail-row .value { font-size: 15px; color: var(--jk-fg); }
-.acc-cta-row { display: flex; gap: 10px; align-items: center; padding-top: 10px; }
+.acc-cta-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding-top: 10px; }
 @media (max-width: 760px) {
   .tour-acc-head { grid-template-columns: 90px 1fr auto; }
   .acc-loc { display: none; }

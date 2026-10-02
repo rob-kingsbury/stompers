@@ -11,4 +11,4 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Libre+Caslon+Text:ital@0;1&family=Patua+One&family=Special+Elite&display=swap"/>
 <link rel="stylesheet" href="css/colors_and_type.css"/>
-<link rel="stylesheet" href="css/site.css"/>
+<link rel="stylesheet" href="css/site.css?v=<?= filemtime(__DIR__ . '/../css/site.css') ?>"/>

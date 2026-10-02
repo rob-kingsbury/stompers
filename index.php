@@ -21,6 +21,6 @@
   <?php include __DIR__ . '/includes/footer.php'; ?>
   <?php include __DIR__ . '/includes/ticket-modal.php'; ?>
 
-  <script src="js/site.js" defer></script>
+  <script src="js/site.js?v=<?= filemtime(__DIR__ . '/js/site.js') ?>" defer></script>
 </body>
 </html>
