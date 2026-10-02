@@ -6,7 +6,7 @@ session: 25
 session_date: 2026-10-02
 last_updated: 2026-10-02
 current_focus: "Site is LIVE at swampcitystompers.ca. Post-launch polish."
-open_issues: 12
+open_issues: 13
 continue_with: "Remove orphaned audit.php from public_html (#28); Max 'For Fans Of' bands (#23); real testimonials (#15/#25)"
 next_priority: "Remove orphaned audit.php from public_html (#28); Max 'For Fans Of' bands (#23); real testimonials (#15/#25)"
 blockers: none
@@ -73,7 +73,7 @@ deploy:
 ## Section Status
 
 All sections Complete and LIVE. Open follow-ups per section:
-- **Tour:** "Add to calendar" on featured show + every accordion row (s24). Not in the show-details modal.
+- **Tour:** "Add to calendar" on featured show + every accordion row (s24). Not in the show-details modal. Subscribe feed filtered by area is #29.
 - **Band:** Max photo + bio live; "For Fans Of" still "(coming soon)" (#23)
 - **About:** 4 testimonial cites are `[Venue]/[Year]` placeholders (real ones #15/#25)
 - **EPK:** "EPK PDF · coming soon" button — real PDF pending (#19)
@@ -82,7 +82,7 @@ All sections Complete and LIVE. Open follow-ups per section:
 ## Recent sessions
 
 ### Session 24 (2026-10-02): Add-to-calendar
-Shipped an .ics link for every upcoming show (calendar.php), deployed to prod and verified live. Decided: plain .ics, not a subscription feed (lands as a separate calendar) and not email invites (only route to true auto-update; needs a fan email list, a sheet-change cron and reliable mail from WHC, parked until a mailing list exists). Added filemtime cache-busting to site.css/site.js after finding returning visitors never got CSS changes. 5-session memory audit ran.
+Shipped an .ics link for every upcoming show (calendar.php), deployed to prod and verified live. Decided: plain .ics, not a subscription feed (lands as a separate calendar) and not email invites (only route to true auto-update; needs a fan email list, a sheet-change cron and reliable mail from WHC, parked until a mailing list exists). Filed #29 for a subscribe feed filterable by area. Added filemtime cache-busting to site.css/site.js after finding returning visitors never got CSS changes. 5-session memory audit ran.
 
 ### Session 23 (2026-07-10): DEPLOYED — site is live
 Max bio + photo shipped. Pulled fabricated venue testimonials back to placeholders. Deployed the full rebuild to WHC via staging first. Fixed tour time zero-pad. Filed #28.
