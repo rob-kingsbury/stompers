@@ -1,15 +1,15 @@
 ---
 project: Stompers
 status: In Progress
-last_session: 24
-session: 25
-session_date: 2026-10-02
-last_updated: 2026-10-02
+last_session: 25
+session: 26
+session_date: 2026-10-05
+last_updated: 2026-10-05
 current_focus: "Site is LIVE at swampcitystompers.ca. Post-launch polish."
 open_issues: 12
-continue_with: "Max 'For Fans Of' bands (#23); real testimonials (#15/#25)"
-next_priority: "Max 'For Fans Of' bands (#23); real testimonials (#15/#25)"
-blockers: none
+continue_with: "Band re-jig once new bass player info arrives (#23); then deploy Michel card"
+next_priority: "Band re-jig once new bass player info arrives (#23); real testimonials (#15/#25)"
+blockers: "Waiting on Rob for new bass player name, photo, bio, faves"
 ---
 
 # Stompers Redesign Context
@@ -18,7 +18,7 @@ blockers: none
 
 ## To Resume
 
-Session 25. main at the session 24 handoff commit, live site matches it. THIS WINDOW: #23 (ask Rob for Max's favourite bands), then real testimonials (#15/#25).
+Session 26. main is AHEAD of prod: Michel (drums/vocals, replaces Matt) card + img/michel.jpg committed but NOT deployed (Rob: hold). New bass player also coming (replaces Max). THIS WINDOW: when Rob brings the bassist's info, re-jig the band cards (#23), then deploy both changes together.
 
 ```yaml
 project: Swamp City Stompers Website (JK-style redesign)
@@ -43,7 +43,7 @@ repo:
   github: https://github.com/rob-kingsbury/stompers.git  (branch: main)
 
 band:
-  Rob: Guitar/Vocals (founder) | Jeans: Guitar/Vocals | Max: Bass/Vocals | Matt: Drums
+  Rob: Guitar/Vocals (founder) | Jeans: Guitar/Vocals | Bass: new player TBD (Max on site) | Michel Smithers: Drums/Vocals (local only)
 
 tour_sheet:
   source: Google Sheets published CSV (SHEETS_CSV_URL in includes/tour-dates.php)
@@ -74,21 +74,21 @@ deploy:
 
 All sections Complete and LIVE. Open follow-ups per section:
 - **Tour:** "Add to calendar" on featured show + every accordion row (s24). Not in the show-details modal. Subscribe feed filtered by area is #29.
-- **Band:** Max photo + bio live; "For Fans Of" still "(coming soon)" (#23)
+- **Band:** Prod still shows Max + Matt. Local main has Michel replacing Matt (photo denoised, face still motion-blurred; a sharper shot would beat it). Bass card waits on the new player (#23).
 - **About:** 4 testimonial cites are `[Venue]/[Year]` placeholders (real ones #15/#25)
 - **EPK:** "EPK PDF · coming soon" button — real PDF pending (#19)
 - **Watch:** promo videos pending YouTube upload (#26)
 
 ## Recent sessions
 
+### Session 25 (2026-10-05): Michel on drums
+Lineup change: Michel Smithers (drums/vocals) replaces Matt; a new bass player replaces Max, details pending. Added Michel's card locally (first name only, like the others; bio written from his faves, Rob to check) and a cropped, denoised img/michel.jpg. Not deployed on Rob's say: band gets re-jigged once in one go when the bassist's info lands.
+
 ### Session 24 (2026-10-02): Add-to-calendar
 Shipped an .ics link for every upcoming show (calendar.php), deployed to prod and verified live. Decided: plain .ics, not a subscription feed (lands as a separate calendar) and not email invites (only route to true auto-update; needs a fan email list, a sheet-change cron and reliable mail from WHC, parked until a mailing list exists). Filed #29 for a subscribe feed filterable by area. Deleted the orphaned audit tool from prod (backed up first), closing #28. Added filemtime cache-busting to site.css/site.js after finding returning visitors never got CSS changes. 5-session memory audit ran.
 
 ### Session 23 (2026-07-10): DEPLOYED — site is live
 Max bio + photo shipped. Pulled fabricated venue testimonials back to placeholders. Deployed the full rebuild to WHC via staging first. Fixed tour time zero-pad. Filed #28.
-
-### Session 22 (2026-05-27): Rebuild + Drive integration
-Rebuilt entire site from JK design (single-page vanilla PHP, no build). Drive media library + Apps Script permission sync. Lineup: Kurt → Max on bass.
 
 ## Gotchas
 - No `overflow:hidden` on html/body (breaks sticky). Use `overflow-x:clip` on a wrapper.

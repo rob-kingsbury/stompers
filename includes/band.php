@@ -9,9 +9,9 @@ $members = [
   ['num'=>3,'name'=>'Max',  'role'=>'Bass / Vocals','img'=>'img/max.jpg',
    'bio'=>'Switched from six strings to four. Played guitar around Ottawa, including a run with Lady Soul, before moving to bass for the Stompers. Deep pocket, singer\'s ear. If a song has a groove, Max already found the one and is sitting on it.',
    'faves'=>'(coming soon)','pos'=>'center 22%'],
-  ['num'=>4,'name'=>'Matt', 'role'=>'Drums','img'=>'img/matt.jpg',
-   'bio'=>'Jazz-trained, rock-leaning. Matt keeps things steady in the pocket, until he doesn\'t. When "Mad Matt" goes off the rails with a solo, the rest of us hang on and enjoy the ride.',
-   'faves'=>'(coming soon)'],
+  ['num'=>4,'name'=>'Michel','role'=>'Drums / Vocals','img'=>'img/michel.jpg',
+   'bio'=>'Holds down the kit and sings from behind it. Raised on Prince and old country, schooled on Stevie Ray, so the groove swings as hard as it hits.',
+   'faves'=>'Prince, old country, Stevie Ray Vaughan, Colin James, Black Crowes','pos'=>'center 22%'],
 ];
 ?>
 <section id="band" class="section" data-screen-label="Band">
