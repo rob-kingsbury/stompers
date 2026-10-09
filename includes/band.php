@@ -6,12 +6,12 @@ $members = [
   ['num'=>2,'name'=>'Jeans','role'=>'Guitar / Vocals','img'=>'img/jeans.jpg',
    'bio'=>'Country roots, blues soul. Grew up on Merle and Waylon, then fell headfirst into blues rock. Always has a Telecaster in hand. Basically a fifth limb at this point.',
    'faves'=>'Merle Haggard, Waylon Jennings, Dwight Yoakam, Black Crowes'],
-  ['num'=>3,'name'=>'Max',  'role'=>'Bass / Vocals','img'=>'img/max.jpg',
-   'bio'=>'Switched from six strings to four. Played guitar around Ottawa, including a run with Lady Soul, before moving to bass for the Stompers. Deep pocket, singer\'s ear. If a song has a groove, Max already found the one and is sitting on it.',
-   'faves'=>'(coming soon)','pos'=>'center 22%'],
-  ['num'=>4,'name'=>'Michel','role'=>'Drums / Vocals','img'=>'img/michel.jpg',
-   'bio'=>'Holds down the kit and sings from behind it. Raised on Prince and old country, schooled on Stevie Ray, so the groove swings as hard as it hits.',
-   'faves'=>'Prince, old country, Stevie Ray Vaughan, Colin James, Black Crowes','pos'=>'center 22%'],
+  ['num'=>3,'name'=>'Kyle','role'=>'Bass / Vocals','img'=>'img/kyle.jpg',
+   'bio'=>'An accomplished, schooled musician best known for his guitar and vocal work in the emTees. His taste runs from Aerosmith to James Taylor, so he knows when to dig in and when to leave room for the song.',
+   'faves'=>'Aerosmith, Pink Floyd, Scorpions, James Taylor, Eric Clapton, Bob Seger, Stone Temple Pilots','pos'=>'center 22%'],
+  ['num'=>4,'name'=>'Mich','role'=>'Drums / Vocals','img'=>'img/michel.jpg',
+   'bio'=>'A lifelong staple of the Ottawa Valley music scene. Rock solid behind the kit, and when he leans into the mic, that blues voice is the surprise of the night.',
+   'faves'=>'Prince, Stevie Ray Vaughan, Colin James, Black Crowes','pos'=>'center 22%'],
 ];
 ?>
 <section id="band" class="section" data-screen-label="Band">
