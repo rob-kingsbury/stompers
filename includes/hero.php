@@ -8,6 +8,8 @@
       <span>Est. 2025</span>
       <span class="meta-divider">/</span>
       <span>Ottawa, ON &middot; CA</span>
+      <span class="meta-divider hero-meta-wide">/</span>
+      <span class="hero-meta-wide">Four-part harmony</span>
     </div>
     <img class="hero-logo" src="img/stompers-logo-full.png" alt="Swamp City Stompers"/>
     <p class="hero-tagline">Southern Rock &middot; Blues &middot; Soul &middot; Outlaw Country</p>

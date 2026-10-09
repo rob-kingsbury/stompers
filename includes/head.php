@@ -1,9 +1,9 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Swamp City Stompers · Southern Rock, Blues, Soul, Outlaw Country · Ottawa</title>
-<meta name="description" content="Swamp City Stompers — Southern rock, blues, soul, and outlaw country out of Ottawa. The familiar favorites people forgot they loved. Tour dates, music, and shows."/>
+<meta name="description" content="Swamp City Stompers: southern rock, blues, soul, and outlaw country out of Ottawa. Tight four-part harmonies and a deep catalogue of A-side and B-side favourites. Tour dates, videos, and booking."/>
 <meta property="og:title" content="Swamp City Stompers"/>
-<meta property="og:description" content="Southern rock, blues, soul, outlaw country. Ottawa, ON."/>
+<meta property="og:description" content="Four-part harmonies and a deep catalogue of A-side and B-side favourites. Southern rock, blues, soul, outlaw country out of Ottawa."/>
 <meta property="og:image" content="img/stompers-logo-full.png"/>
 <meta property="og:type" content="website"/>
 <link rel="icon" type="image/png" href="img/logo-stompers.png"/>

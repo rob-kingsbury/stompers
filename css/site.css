@@ -314,6 +314,8 @@ button { font: inherit; background: none; border: none; cursor: pointer; color: 
   animation: heroFadeUp 700ms 200ms var(--jk-ease-out-expo) forwards;
 }
 .hero-meta .meta-divider { opacity: 0.5; }
+.hero-meta-wide { display: none; }
+@media (min-width: 600px) { .hero-meta-wide { display: inline; } }
 .hero-logo {
   width: clamp(260px, 50vw, 540px);
   filter: drop-shadow(0 12px 36px rgba(0,0,0,0.8));

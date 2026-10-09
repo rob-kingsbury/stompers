@@ -3,7 +3,7 @@
     <header class="section-header">
       <span class="eyebrow">The story</span>
       <h2 class="section-title">Who we are</h2>
-      <p class="section-subtitle">Four guys, a stack of amps, and a catalogue of songs that deserved a bigger stage.</p>
+      <p class="section-subtitle">Four guys, four voices, and a catalogue of songs that deserved a bigger stage.</p>
     </header>
     <div class="about-grid">
       <article class="about-card">
@@ -11,7 +11,7 @@
         <div class="about-card-content">
           <span class="eyebrow">The Sound</span>
           <h3 class="about-card-title">The best of the B's</h3>
-          <p class="about-card-text">We dig past the obvious hits. The second-best song on every great record. The one that comes on and somebody in the back yells, "I haven't heard this in twenty years." Five decades of southern rock, blues, soul, and outlaw country, played the way it was meant to be played.</p>
+          <p class="about-card-text">The A-sides everyone knows and the B-sides you forgot you loved. The big single sits right next to the second-best song on the record, the one that comes on and somebody in the back yells, "I haven't heard this in twenty years." Five decades of southern rock, blues, soul, and outlaw country, with all four of us singing.</p>
           <blockquote class="about-card-quote">"They played something off a record I hadn't touched in thirty years. Spent the whole song trying to remember the name of it, and I was still humming it Monday."
             <cite class="about-card-cite">— Dana Whitcombe, The Ironwood Tavern, 2025</cite>
           </blockquote>
@@ -33,7 +33,7 @@
         <div class="about-card-content">
           <span class="eyebrow">The Mission</span>
           <h3 class="about-card-title">Songs that deserved a bigger stage</h3>
-          <p class="about-card-text">No backing tracks. No autotune. Four people playing every note like it matters, because it does. The album cuts that radio skipped over. The hooks people half-remember. The songs that earned a louder room than they ever got.</p>
+          <p class="about-card-text">No backing tracks. No autotune. Four voices on every chorus, in tight four-part harmony, and every note played like it matters, because it does. The hits people sing along to. The album cuts radio skipped over. The songs that deserved a bigger room than they ever got.</p>
           <blockquote class="about-card-quote">"Nobody sat down. I watched a table of twenty-somethings and a table of retirees sing the same chorus at each other."
             <cite class="about-card-cite">— Marla Sutcliffe, Greyfield Brewing Co., 2025</cite>
           </blockquote>

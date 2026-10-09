@@ -19,8 +19,8 @@
     <div class="epk-content">
       <div class="epk-section">
         <h3>The short of it</h3>
-        <p>Four-piece southern rock and blues outfit out of Ottawa. Two guitars, bass, drums. We pull from five decades of southern rock, blues, soul, and outlaw country. The deep cuts. The familiar favorites people forgot they loved.</p>
-        <p>No backing tracks. No autotune. Four people playing every note like it matters.</p>
+        <p>Four-piece southern rock and blues outfit out of Ottawa. Two guitars, bass, drums, and all four of us sing, so the harmonies are tight and the big choruses land. We pull from five decades of southern rock, blues, soul, and outlaw country: the A-sides people came to hear and the B-sides they forgot they loved.</p>
+        <p>No backing tracks. No autotune. Four-part harmonies, sung live, every night.</p>
       </div>
       <div class="epk-section">
         <h3>What we sound like</h3>
