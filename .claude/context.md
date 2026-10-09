@@ -1,15 +1,15 @@
 ---
 project: Stompers
 status: In Progress
-last_session: 25
-session: 26
-session_date: 2026-10-05
-last_updated: 2026-10-05
+last_session: 26
+session: 27
+session_date: 2026-10-09
+last_updated: 2026-10-09
 current_focus: "Site is LIVE at swampcitystompers.ca. Post-launch polish."
 open_issues: 12
-continue_with: "Band re-jig once new bass player info arrives (#23); then deploy Michel card"
-next_priority: "Band re-jig once new bass player info arrives (#23); real testimonials (#15/#25)"
-blockers: "Waiting on Rob for new bass player name, photo, bio, faves"
+continue_with: "Swap in real Westfest group photos when Rob has them (#30); real testimonials (#15/#25)"
+next_priority: "Real group photos (#30); real testimonials (#15/#25); tech rider PDF (#24)"
+blockers: "Waiting on Westfest group photos and a real venue testimonial"
 ---
 
 # Stompers Redesign Context
@@ -18,7 +18,7 @@ blockers: "Waiting on Rob for new bass player name, photo, bio, faves"
 
 ## To Resume
 
-Session 26. main is AHEAD of prod: Michel (drums/vocals, replaces Matt) card + img/michel.jpg committed but NOT deployed (Rob: hold). New bass player also coming (replaces Max). THIS WINDOW: when Rob brings the bassist's info, re-jig the band cards (#23), then deploy both changes together.
+Session 27. main = prod (everything from s26 deployed and verified live). THIS WINDOW: when Rob brings Westfest group photos, replace the five placeholders in About + EPK (#30), then retire the old-lineup band-*.jpg files.
 
 ```yaml
 project: Swamp City Stompers Website (JK-style redesign)
@@ -43,14 +43,15 @@ repo:
   github: https://github.com/rob-kingsbury/stompers.git  (branch: main)
 
 band:
-  Rob: Guitar/Vocals (founder) | Jeans: Guitar/Vocals | Bass: new player TBD (Max on site) | Michel Smithers: Drums/Vocals (local only)
+  Rob: Guitar/Vocals (co-founder) | Jeans (Eugene Johnson): Guitar/Vocals (co-founder)
+  Kyle McKey: Bass/Vocals | Mich Smithers: Drums/Vocals (img/michel.jpg)
+  Selling point: tight four-part harmonies + A-side and B-side favourites
 
 tour_sheet:
   source: Google Sheets published CSV (SHEETS_CSV_URL in includes/tour-dates.php)
   schema: Date(YYYY-MM-DD) | Hour | Minute | AM/PM | Venue | Location | Age | Note
   cache_ttl: 60s (data/tour-cache.json). Sort is chronological in-code (usort), sheet order ignored.
-  show_id: date + venue slug (tour-dates.php). Also the .ics UID, so re-adding a changed show
-           overwrites the old entry. Changing date or venue makes a new id.
+  show_id: date + venue slug. Also the .ics UID.
   past_shows: HISTORICAL_SHOWS const merged into feed
 
 marquee:
@@ -59,39 +60,35 @@ marquee:
 deploy:
   host: WHC, ssh alias `whc-hellopebble` (72.251.7.108:27), creds in ../.credentials/whc-hosting.md
   prod_docroot: /home/debl4277/public_html  (swampcitystompers.ca is PARKED here)
-  staging: /home/debl4277/staging.swampcitystompers.ca (own docroot, real staging URL)
-  method: tar bundle + scp + extract over ssh (no rsync on local Win). Bundle =
-          index.php calendar.php contact-handler.php includes/ css/ js/ img/ data/geo-cache.json + clean .htaccess.
-          Exclude config.php, .claude, _archive, *.md, caches, .git.
+  staging: /home/debl4277/staging.swampcitystompers.ca
+  method: tar only the changed files + scp + extract over ssh; tar the live copies to ~/public_html-pre-<what>-<date>.tgz first.
           Write the tarball to a RELATIVE path: Git Bash tar reads "C:" as a remote host.
   preserved_in_public_html: cgi-bin, .well-known
-  backups_on_server: ~/public_html-backup-20260710.tgz, ~/staging-scs-backup-20260710.tgz,
-                     ~/public_html-pre-calendar-20261002.tgz, ~/audit-tool-backup-20261002.tgz
-  robkingsbury.com: separate site on VERCEL (76.76.21.21) — NOT this server, unaffected by deploys
+  robkingsbury.com: separate site on VERCEL — NOT this server
 ```
 
 ## Section Status
 
-All sections Complete and LIVE. Open follow-ups per section:
-- **Tour:** "Add to calendar" on featured show + every accordion row (s24). Not in the show-details modal. Subscribe feed filtered by area is #29.
-- **Band:** Prod still shows Max + Matt. Local main has Michel replacing Matt (photo denoised, face still motion-blurred; a sharper shot would beat it). Bass card waits on the new player (#23).
-- **About:** 4 testimonial cites are `[Venue]/[Year]` placeholders (real ones #15/#25)
-- **EPK:** "EPK PDF · coming soon" button — real PDF pending (#19)
+All sections Complete and LIVE. Open follow-ups:
+- **About:** Sound / Vibe / Road cards. The Mission card is hidden in an `if (false)` block. All 4 testimonial quotes are hidden in PHP comments with markup kept; swap in real text (#15/#25). Group photos are AI placeholders + a collage (#30); wide shots use `.about-card-img--wide` (16:9, no zoom) so end members aren't cropped.
+- **EPK:** "From the rooms" quotes hidden (#15). PDF button pending (#19). Tech rider PDF pending (#24); stage plot SVG is current.
+- **Tour:** subscribe feed filtered by area is #29.
 - **Watch:** promo videos pending YouTube upload (#26)
 
 ## Recent sessions
 
+### Session 26 (2026-10-09): New lineup live
+Kyle McKey (bass) and Mich Smithers (drums) replaced Max and Michel/Matt on the band cards and stage plot; Rob and Jeans both "Co-founder". Copy across hero, About, EPK and meta now pushes four-part harmonies and A/B-side favourites. Hid the made-up testimonials and The Mission card. Group photos replaced with two Gemini group shots and a collage of the band cards. Decided: AI can't reliably hold four real faces; only Gemini Pro (not the Flash fallback) got close, from one tight face file per person. Placeholders only, real Westfest shots next (#30). All deployed and verified live.
+
 ### Session 25 (2026-10-05): Michel on drums
-Lineup change: Michel Smithers (drums/vocals) replaces Matt; a new bass player replaces Max, details pending. Added Michel's card locally (first name only, like the others; bio written from his faves, Rob to check) and a cropped, denoised img/michel.jpg. Not deployed on Rob's say: band gets re-jigged once in one go when the bassist's info lands.
+Lineup change started: drummer card + img/michel.jpg, held from prod until the bassist's info arrived (done s26).
 
 ### Session 24 (2026-10-02): Add-to-calendar
-Shipped an .ics link for every upcoming show (calendar.php), deployed to prod and verified live. Decided: plain .ics, not a subscription feed (lands as a separate calendar) and not email invites (only route to true auto-update; needs a fan email list, a sheet-change cron and reliable mail from WHC, parked until a mailing list exists). Filed #29 for a subscribe feed filterable by area. Deleted the orphaned audit tool from prod (backed up first), closing #28. Added filemtime cache-busting to site.css/site.js after finding returning visitors never got CSS changes. 5-session memory audit ran.
-
-### Session 23 (2026-07-10): DEPLOYED — site is live
-Max bio + photo shipped. Pulled fabricated venue testimonials back to placeholders. Deployed the full rebuild to WHC via staging first. Fixed tour time zero-pad. Filed #28.
+Shipped an .ics link for every upcoming show (calendar.php). Decided: plain .ics, not a subscription feed or email invites. Filed #29. Added filemtime cache-busting to site.css/site.js. 5-session memory audit ran.
 
 ## Gotchas
 - No `overflow:hidden` on html/body (breaks sticky). Use `overflow-x:clip` on a wrapper.
-- Deploy needs SSH auth into WHC prod — classifier requires the user to name the host/action.
+- Prod deploys are blocked by the classifier unless Rob says "deploy" in that message.
 - Clear `data/tour-cache.json` on server after a tour-dates.php change to force rebuild (else 60s wait).
-- Chrome window resize won't go below ~500px; check 375px with a same-origin 375px iframe instead.
+- Headless Chrome screenshots: the hero is 100vh and fills any tall window; use Rob's Chrome and scrollIntoView instead. Window won't go below ~500px.
+- Can't nest PHP `/* */` comments: hide a block that already contains one with `<?php if (false): ?>`.
