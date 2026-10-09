@@ -57,6 +57,7 @@
         </ul>
         <p style="margin-top:16px;">Full rider and stage plot on request. We're easy to work with.</p>
       </div>
+      <?php /* Hidden until real testimonials arrive (#15). Swap the quote and cite text, then remove this comment wrapper.
       <div class="epk-section">
         <h3>From the rooms</h3>
         <div class="epk-quote-block">
@@ -66,7 +67,7 @@
         <div class="epk-quote-block">
           <blockquote>Loaded in on time, ran their own sound, off the stage clean at one. I rebooked them from the parking lot.</blockquote>
           <cite>Curtis Nayler, The Copper Kettle</cite>
-        </div>
+        </div> */ ?>
       </div>
       <div class="epk-section">
         <h3>The mission</h3>
