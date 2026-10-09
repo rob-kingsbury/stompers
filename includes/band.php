@@ -1,10 +1,10 @@
 <?php
 $members = [
   ['num'=>1,'name'=>'Rob',  'role'=>'Guitar / Vocals','img'=>'img/rob.jpg',
-   'bio'=>'Founder. Tone wizard. Pedal hoarder. Spent a decade studying the greats before finding his own voice. Will spend 45 minutes getting his sound right, then play a solo that makes you forget your own name.',
+   'bio'=>'Co-founder. Tone wizard. Pedal hoarder. Spent a decade studying the greats before finding his own voice. Will spend 45 minutes getting his sound right, then play a solo that makes you forget your own name.',
    'faves'=>'Skynyrd, Tom Petty, SRV, Allmans, Clapton'],
   ['num'=>2,'name'=>'Jeans','role'=>'Guitar / Vocals','img'=>'img/jeans.jpg',
-   'bio'=>'Country roots, blues soul. Grew up on Merle and Waylon, then fell headfirst into blues rock. Always has a Telecaster in hand. Basically a fifth limb at this point.',
+   'bio'=>'Co-founder. Country roots, blues soul. Grew up on Merle and Waylon, then fell headfirst into blues rock. Always has a Telecaster in hand. Basically a fifth limb at this point.',
    'faves'=>'Merle Haggard, Waylon Jennings, Dwight Yoakam, Black Crowes'],
   ['num'=>3,'name'=>'Kyle','role'=>'Bass / Vocals','img'=>'img/kyle.jpg',
    'bio'=>'An accomplished, schooled musician best known for his guitar and vocal work in the emTees. His taste runs from Aerosmith to James Taylor, so he knows when to dig in and when to leave room for the song.',
