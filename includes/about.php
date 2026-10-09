@@ -19,7 +19,7 @@
         </div>
       </article>
       <article class="about-card reverse">
-        <div class="about-card-img"><img src="img/band-ai-tavern.jpg" alt="The Swamp City Stompers leaning on a tavern bar" loading="lazy"/></div>
+        <div class="about-card-img about-card-img--wide"><img src="img/band-ai-tavern.jpg" alt="The Swamp City Stompers leaning on a tavern bar" loading="lazy"/></div>
         <div class="about-card-content">
           <span class="eyebrow">The Vibe</span>
           <h3 class="about-card-title">A room that keeps moving</h3>
@@ -30,8 +30,9 @@
           </blockquote> */ ?>
         </div>
       </article>
+      <?php if (false): // The Mission card, hidden for now. Remove this if/endif to bring it back. ?>
       <article class="about-card">
-        <div class="about-card-img"><img src="img/band-ai-roadhouse-bw.jpg" alt="The Swamp City Stompers beside an old Mustang, black and white" loading="lazy"/></div>
+        <div class="about-card-img about-card-img--wide"><img src="img/band-ai-roadhouse-bw.jpg" alt="The Swamp City Stompers beside an old Mustang, black and white" loading="lazy"/></div>
         <div class="about-card-content">
           <span class="eyebrow">The Mission</span>
           <h3 class="about-card-title">Songs that deserved a bigger stage</h3>
@@ -42,8 +43,9 @@
           </blockquote> */ ?>
         </div>
       </article>
-      <article class="about-card reverse">
-        <div class="about-card-img"><img src="img/band-ai-roadhouse.jpg" alt="The Swamp City Stompers outside a roadhouse at dusk" loading="lazy"/></div>
+      <?php endif; ?>
+      <article class="about-card">
+        <div class="about-card-img about-card-img--wide"><img src="img/band-ai-roadhouse.jpg" alt="The Swamp City Stompers outside a roadhouse at dusk" loading="lazy"/></div>
         <div class="about-card-content">
           <span class="eyebrow">The Road</span>
           <h3 class="about-card-title">Show up, set up, play the room</h3>

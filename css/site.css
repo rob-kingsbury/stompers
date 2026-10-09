@@ -483,6 +483,10 @@ button { font: inherit; background: none; border: none; cursor: pointer; color: 
   transform: scale(1.06);
 }
 .about-card-img:hover img { filter: saturate(1) contrast(1.05) brightness(1) sepia(0); transform: scale(1.1); }
+/* Wide group shots: show the whole frame so nobody at the ends gets cropped */
+.about-card-img--wide { aspect-ratio: 16/9; }
+.about-card-img--wide img { transform: none; }
+.about-card-img--wide:hover img { transform: scale(1.02); }
 .about-card-img::after {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(180deg, transparent 60%, rgba(58, 20, 16, 0.35) 100%);
