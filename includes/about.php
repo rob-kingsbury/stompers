@@ -7,7 +7,7 @@
     </header>
     <div class="about-grid">
       <article class="about-card">
-        <div class="about-card-img"><img src="img/band-marquee-color.jpg" alt="Swamp City Stompers under the marquee" loading="lazy"/></div>
+        <div class="about-card-img"><img src="img/band-collage.jpg" alt="Rob, Eugene, Kyle and Mich of the Swamp City Stompers" loading="lazy"/></div>
         <div class="about-card-content">
           <span class="eyebrow">The Sound</span>
           <h3 class="about-card-title">The best of the B's</h3>
@@ -19,7 +19,7 @@
         </div>
       </article>
       <article class="about-card reverse">
-        <div class="about-card-img"><img src="img/band-live-bw.jpg" alt="Stompers live at The Buckle" loading="lazy"/></div>
+        <div class="about-card-img"><img src="img/band-ai-tavern.jpg" alt="The Swamp City Stompers leaning on a tavern bar" loading="lazy"/></div>
         <div class="about-card-content">
           <span class="eyebrow">The Vibe</span>
           <h3 class="about-card-title">A room that keeps moving</h3>
@@ -31,7 +31,7 @@
         </div>
       </article>
       <article class="about-card">
-        <div class="about-card-img"><img src="img/band-live-color.jpg" alt="Stompers live, color" loading="lazy"/></div>
+        <div class="about-card-img"><img src="img/band-ai-roadhouse-bw.jpg" alt="The Swamp City Stompers beside an old Mustang, black and white" loading="lazy"/></div>
         <div class="about-card-content">
           <span class="eyebrow">The Mission</span>
           <h3 class="about-card-title">Songs that deserved a bigger stage</h3>
@@ -43,7 +43,7 @@
         </div>
       </article>
       <article class="about-card reverse">
-        <div class="about-card-img"><img src="img/band-marquee-theatre.jpg" alt="Stompers on the road, under a venue marquee" loading="lazy"/></div>
+        <div class="about-card-img"><img src="img/band-ai-roadhouse.jpg" alt="The Swamp City Stompers outside a roadhouse at dusk" loading="lazy"/></div>
         <div class="about-card-content">
           <span class="eyebrow">The Road</span>
           <h3 class="about-card-title">Show up, set up, play the room</h3>
